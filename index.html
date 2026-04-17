@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stacy Tomasi // TomiUX 🎮</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lavender-bg: #f0e8ff;
+    --lavender-mid: #c8a8f0;
+    --lavender-dark: #9b70d8;
+    --pink: #ff6eb4;
+    --hot-pink: #ff2d9b;
+    --baby-pink: #ffb3d9;
+    --teal: #3FBB9E;
+    --mint: #91EBD3;
+    --yellow: #ffe566;
+    --orange: #ff8c42;
+    --blue: #6bb8ff;
+    --baby-blue: #b3d9ff;
+    --purple: #A122C0;
+    --lime: #c8ff6b;
+    --red: #ff5252;
+    --white: #ffffff;
+    --offwhite: #fdf8ff;
+    --text: #1a0a3e;
+    --text-mid: #4a1878;
+    --text-light: #8850b0;
+    --pixel-dark: #0a0520;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--lavender-bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ===== TILED 90s PATTERN BG ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image:
+      radial-gradient(3px 3px at 12% 8%, var(--pink), transparent),
+      radial-gradient(2px 2px at 28% 22%, var(--teal), transparent),
+      radial-gradient(3px 3px at 45% 5%, var(--yellow), transparent),
+      radial-gradient(2px 2px at 62% 18%, var(--purple), transparent),
+      radial-gradient(3px 3px at 78% 10%, var(--orange), transparent),
+      radial-gradient(2px 2px at 92% 25%, var(--teal), transparent),
+      radial-gradient(3px 3px at 15% 45%, var(--yellow), transparent),
+      radial-gradient(2px 2px at 35% 60%, var(--pink), transparent),
+      radial-gradient(3px 3px at 55% 55%, var(--blue), transparent),
+      radial-gradient(2px 2px at 72% 48%, var(--lime), transparent),
+      radial-gradient(3px 3px at 88% 65%, var(--hot-pink), transparent),
+      radial-gradient(2px 2px at 8% 78%, var(--teal), transparent),
+      radial-gradient(3px 3px at 25% 88%, var(--purple), transparent),
+      radial-gradient(2px 2px at 48% 80%, var(--orange), transparent),
+      radial-gradient(3px 3px at 68% 92%, var(--pink), transparent),
+      radial-gradient(2px 2px at 85% 82%, var(--yellow), transparent);
+    background-size: 300px 300px;
+    animation: bgShimmer 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgShimmer { 0% { opacity: 0.08; } 100% { opacity: 0.18; } }
+
+  /* ===== NAV ===== */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(253,248,255,0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 4px solid var(--pixel-dark);
+    box-shadow: 0 4px 0 var(--lavender-dark);
+  }
+
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 2rem;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .nav-logo img {
+    height: 40px;
+    width: 40px;
+    filter: drop-shadow(2px 2px 0 var(--purple));
+    image-rendering: pixelated;
+  }
+
+  .nav-logo-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    line-height: 1;
+  }
+  .logo-tomi { color: #A122C0; text-shadow: 2px 2px 0 rgba(115,23,136,0.3); }
+  .logo-ux { color: #3FBB9E; text-shadow: 2px 2px 0 rgba(63,187,158,0.3); }
+
+  .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
+
+  .nav-links a {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-mid);
+    text-decoration: none;
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    transition: all 0.15s;
+  }
+
+  .nav-links a:hover {
+    background: var(--lavender-mid);
+    color: var(--purple);
+  }
+
+  .nav-cv {
+    background: #A122C0 !important;
+    color: white !important;
+    border: 3px solid var(--pixel-dark) !important;
+    box-shadow: 3px 3px 0 var(--pixel-dark) !important;
+    border-radius: 6px !important;
+  }
+
+  .nav-cv:hover {
+    transform: translate(-1px, -1px) !important;
+    box-shadow: 4px 4px 0 var(--pixel-dark) !important;
+    background: var(--hot-pink) !important;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+    padding: 6rem 0 4rem;
+    background:
+      radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 90%, rgba(155,89,255,0.2) 0%, transparent 50%),
+      var(--lavender-bg);
+  }
+
+  /* floating pixel icons */
+  .pixel-deco {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    font-size: 1.8rem;
+    animation: floatPx 4s ease-in-out infinite;
+    opacity: 0.6;
+    filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.15));
+  }
+
+  @keyframes floatPx {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(8deg); }
+  }
+
+  .hero-layout {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* ===== HERO TEXT ===== */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: var(--yellow);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 3px 3px 0 var(--pixel-dark);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.5rem;
+    color: var(--pixel-dark);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+  }
+
+  .hero-name {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 6.5rem);
+    line-height: 0.88;
+    margin-bottom: 1rem;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-name .line1 {
+    display: block;
+    color: var(--purple);
+    text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15);
+    -webkit-text-stroke: 2px var(--pixel-dark);
+  }
+
+  .hero-name .line2 {
+    display: block;
+    color: var(--teal);
+    text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15);
+    -webkit-text-stroke: 2px var(--pixel-dark);
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
+  }
+
+  .hero-role {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.55rem;
+    color: var(--hot-pink);
+    letter-spacing: 0.08em;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+
+  .btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.85rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.12s;
+    cursor: pointer;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+  }
+
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+  .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
+
+  .btn-primary { background: #A122C0; color: white; }
+  .btn-primary:hover { background: var(--hot-pink); }
+  .btn-secondary { background: var(--white); color: var(--purple); }
+  .btn-secondary:hover { background: var(--lavender-mid); }
+
+  /* ===== HERO ART — Game Boy ===== */
+  .hero-art {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .gameboy-wrap {
+    position: relative;
+    width: 360px;
+  }
+
+  /* stickers floating around */
+  .gb-sticker {
+    position: absolute;
+    font-size: 0.65rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    padding: 0.3rem 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 2.5px solid var(--pixel-dark);
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+    z-index: 10;
+  }
+
+  .gb-sticker-1 { top: -1.5rem; right: -1rem; background: var(--yellow); color: var(--pixel-dark); transform: rotate(8deg); }
+  .gb-sticker-2 { bottom: 2rem; left: -2rem; background: var(--pink); color: white; transform: rotate(-6deg); }
+  .gb-sticker-3 { top: 3rem; left: -2.5rem; background: var(--teal); color: var(--pixel-dark); transform: rotate(-3deg); font-size: 0.6rem; }
+  .gb-sticker-4 { bottom: -1rem; right: -1.5rem; background: var(--lime); color: var(--pixel-dark); transform: rotate(5deg); font-size: 0.58rem; }
+
+  /* Game Boy body */
+  .gameboy {
+    background: linear-gradient(160deg, #e8d5f5 0%, #d4b8f0 40%, #c4a0e8 100%);
+    border: 4px solid var(--pixel-dark);
+    border-radius: 12px 12px 40px 12px;
+    padding: 1.25rem 1.25rem 2rem;
+    box-shadow: 6px 6px 0 var(--pixel-dark), 0 20px 50px rgba(155,89,255,0.25);
+    position: relative;
+  }
+
+  /* screen bezel */
+  .gb-screen-bezel {
+    background: var(--pixel-dark);
+    border-radius: 8px 8px 20px 8px;
+    padding: 0.85rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .gb-screen-bezel::before {
+    content: 'DOT-MATRIX WITH STEREO SOUND';
+    position: absolute;
+    top: -1.5rem; left: 0;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.28rem;
+    color: var(--lavender-dark);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .gb-screen {
+    background: #91EBD3;
+    border: 2px solid #1a1a1a;
+    border-radius: 4px;
+    aspect-ratio: 10/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.25rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* scanlines on screen */
+  .gb-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 3px);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .screen-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.45rem;
+    color: #0a2820;
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .screen-mascot {
+    font-size: 2rem;
+    z-index: 1;
+    animation: screenBob 2s ease-in-out infinite;
+  }
+
+  @keyframes screenBob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+  }
+
+  .screen-health {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.38rem;
+    color: #0a2820;
+    letter-spacing: 0.05em;
+    z-index: 1;
+  }
+
+  /* power LED */
+  .gb-led {
+    position: absolute;
+    top: 1rem; right: 1.2rem;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--red);
+    box-shadow: 0 0 6px var(--red);
+    animation: ledBlink 2s ease-in-out infinite;
+  }
+
+  @keyframes ledBlink { 0%, 100% { opacity: 1; } 85% { opacity: 1; } 90% { opacity: 0.3; } 95% { opacity: 1; } }
+
+  /* label */
+  .gb-label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.5rem;
+    color: var(--purple);
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-bottom: 0.85rem;
+  }
+
+  /* d-pad */
+  .gb-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5rem;
+  }
+
+  .dpad {
+    width: 64px;
+    height: 64px;
+    position: relative;
+  }
+
+  .dpad-h, .dpad-v {
+    position: absolute;
+    background: var(--pixel-dark);
+    border-radius: 3px;
+  }
+
+  .dpad-h { top: 33%; left: 0; right: 0; height: 34%; }
+  .dpad-v { left: 33%; top: 0; bottom: 0; width: 34%; }
+
+  .dpad-center {
+    position: absolute;
+    top: 33%; left: 33%; right: 33%; bottom: 33%;
+    background: var(--pixel-dark);
+    border-radius: 2px;
+  }
+
+  /* AB buttons */
+  .gb-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .gb-btn {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 3px solid var(--pixel-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.45rem;
+    color: var(--white);
+    font-weight: bold;
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+  }
+
+  .gb-btn-b { background: #A122C0; }
+  .gb-btn-a { background: var(--red); }
+
+  /* start/select */
+  .gb-start-sel {
+    position: absolute;
+    bottom: 3.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .gb-mini-btn {
+    width: 32px; height: 8px;
+    background: var(--lavender-dark);
+    border: 2px solid var(--pixel-dark);
+    border-radius: 4px;
+  }
+
+  /* speaker holes */
+  .gb-speaker {
+    position: absolute;
+    bottom: 1.25rem; right: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(4, 6px);
+    gap: 3px;
+  }
+
+  .gb-hole {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--pixel-dark);
+    opacity: 0.6;
+  }
+
+  /* ===== DIVIDER ===== */
+  .pixel-divider {
+    height: 12px;
+    background: repeating-linear-gradient(90deg,
+      #3FBB9E 0px, #3FBB9E 24px,
+      #91EBD3 24px, #91EBD3 48px,
+      #A122C0 48px, #A122C0 72px,
+      #A122C0 72px, #A122C0 96px,
+      #53D1B1 96px, #53D1B1 120px,
+      #3FBB9E 120px, #3FBB9E 144px
+    );
+    border-top: 3px solid var(--pixel-dark);
+    border-bottom: 3px solid var(--pixel-dark);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-bg-white { background: var(--white); }
+  .section-bg-soft {
+    background:
+      radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%),
+      var(--lavender-bg);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .section-badge {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    background: var(--yellow);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 3px 3px 0 var(--pixel-dark);
+    color: var(--pixel-dark);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .section-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    color: var(--text);
+    flex: 1;
+    line-height: 1;
+    -webkit-text-stroke: 1.5px var(--pixel-dark);
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+  }
+
+  .section-title .accent { color: var(--purple); }
+  .section-title .accent2 { color: var(--hot-pink); }
+
+  /* ===== WORK ===== */
+  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+
+  .work-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 5px 5px 0 var(--pixel-dark);
+    transition: all 0.12s;
+    cursor: pointer;
+  }
+
+  .work-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
+  .work-card:active { transform: translate(2px,2px); box-shadow: 3px 3px 0 var(--pixel-dark); }
+
+  .work-thumb {
+    aspect-ratio: 16/10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    border-bottom: 3px solid var(--pixel-dark);
+  }
+
+  .work-thumb.p1 { background: linear-gradient(135deg, var(--baby-pink), var(--lavender-mid), var(--baby-blue)); }
+  .work-thumb.p2 { background: linear-gradient(135deg, var(--baby-blue), var(--mint), var(--lavender-mid)); }
+  .work-thumb.p3 { background: linear-gradient(135deg, var(--yellow), var(--baby-pink), var(--lavender-mid)); }
+
+  .work-card-body { padding: 1.1rem; }
+
+  .work-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+
+  .work-year {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.45rem;
+    color: var(--text-light);
+  }
+
+  .work-tag {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    background: #A122C0;
+    color: white;
+    border: 2px solid var(--pixel-dark);
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+    border-radius: 4px;
+  }
+
+  .work-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    -webkit-text-stroke: 0.5px var(--pixel-dark);
+  }
+
+  .work-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; font-weight: 600; }
+
+  /* ===== ARTIFACTS — cassette tape cards ===== */
+  .artifacts-intro {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    max-width: 46rem;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+    line-height: 1.7;
+    font-weight: 700;
+  }
+
+  .artifacts-intro em { color: var(--hot-pink); font-style: normal; font-weight: 900; }
+
+  .specimen-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+
+  .specimen {
+    background: var(--white);
+    border-radius: 8px;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    padding: 1rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: all 0.12s;
+    min-height: 150px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* rainbow stripe top */
+  .specimen::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: repeating-linear-gradient(90deg,
+      var(--pink) 0, var(--pink) 20%,
+      var(--yellow) 20%, var(--yellow) 40%,
+      var(--teal) 40%, var(--teal) 60%,
+      var(--purple) 60%, var(--purple) 80%,
+      var(--orange) 80%, var(--orange) 100%
+    );
+  }
+
+  .specimen:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--pixel-dark); }
+  .specimen:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
+
+  .specimen-num {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.45rem;
+    color: var(--hot-pink);
+    letter-spacing: 0.1em;
+    align-self: flex-start;
+    margin-top: 0.4rem;
+  }
+
+  .specimen-icon {
+    font-size: 2.2rem;
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .specimen-name {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.72rem;
+    color: var(--text);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .specimen-tag {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.38rem;
+    color: var(--purple);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .specimen.empty {
+    opacity: 0.35;
+    box-shadow: 3px 3px 0 var(--pixel-dark);
+    border-style: dashed;
+  }
+
+  .specimen.empty::before { opacity: 0.3; }
+  .specimen.empty .specimen-icon { font-size: 1.2rem; opacity: 0.4; }
+  .specimen.empty .specimen-name { color: var(--text-light); font-style: italic; font-weight: 600; font-size: 0.65rem; }
+
+  /* ===== ABOUT ===== */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
+
+  .about-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    overflow: hidden;
+  }
+
+  .about-card-top {
+    background: repeating-linear-gradient(90deg,
+      var(--pink) 0, var(--pink) 16.66%,
+      var(--yellow) 16.66%, var(--yellow) 33.33%,
+      var(--teal) 33.33%, var(--teal) 50%,
+      var(--purple) 50%, var(--purple) 66.66%,
+      var(--orange) 66.66%, var(--orange) 83.33%,
+      var(--blue) 83.33%, var(--blue) 100%
+    );
+    height: 12px;
+  }
+
+  .about-card-header {
+    background: #A122C0;
+    padding: 0.65rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--pixel-dark);
+  }
+
+  .about-card-header span {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.45rem;
+    color: var(--yellow);
+    letter-spacing: 0.08em;
+  }
+
+  .about-portrait {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 40%, rgba(255,179,217,0.3), var(--lavender-bg) 70%);
+    min-height: 170px;
+    border-bottom: 3px solid var(--pixel-dark);
+  }
+
+  .about-portrait img {
+    width: 120px;
+    filter: drop-shadow(3px 3px 0 var(--purple));
+  }
+
+  .about-stats { padding: 0; }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 1rem;
+    border-bottom: 2px solid var(--lavender-mid);
+    font-size: 0.78rem;
+  }
+
+  .stat-row:last-child { border-bottom: none; }
+  .stat-label { color: var(--text-light); font-weight: 700; font-size: 0.72rem; }
+  .stat-value { color: var(--text); font-weight: 800; text-align: right; }
+  .stat-value.open { color: var(--teal); }
+
+  .about-lead {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+    -webkit-text-stroke: 0.5px rgba(0,0,0,0.2);
+  }
+
+  .about-lead .hl { color: var(--purple); }
+
+  .about-body {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+  }
+
+  .about-placeholder {
+    display: inline-block;
+    padding: 0.15em 0.5em;
+    background: rgba(255,45,155,0.06);
+    border: 2px dashed var(--pink);
+    border-radius: 4px;
+    color: var(--hot-pink);
+    font-style: italic;
+  }
+
+  .contact-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.5rem; border-top: 3px dashed var(--lavender-mid); }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1rem;
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 3px 3px 0 var(--pixel-dark);
+    border-radius: 6px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--purple);
+    text-decoration: none;
+    transition: all 0.12s;
+  }
+
+  .contact-link:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--pixel-dark); background: var(--lavender-mid); }
+
+  /* ===== CONTACT ===== */
+  .contact-pod {
+    background: var(--white);
+    border-radius: 16px;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 8px 8px 0 var(--pixel-dark);
+    padding: 4rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .contact-pod::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 10px;
+    background: repeating-linear-gradient(90deg,
+      var(--pink) 0, var(--pink) 16.66%,
+      var(--yellow) 16.66%, var(--yellow) 33.33%,
+      var(--teal) 33.33%, var(--teal) 50%,
+      var(--purple) 50%, var(--purple) 66.66%,
+      var(--orange) 66.66%, var(--orange) 83.33%,
+      var(--blue) 83.33%, var(--blue) 100%
+    );
+  }
+
+  .contact-signal {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.52rem;
+    color: var(--teal);
+    letter-spacing: 0.12em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .signal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); animation: pulse 1.4s ease-in-out infinite; box-shadow: 0 0 6px var(--teal); }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .contact-headline {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--text);
+    line-height: 1.15;
+    margin-bottom: 1.75rem;
+    -webkit-text-stroke: 1px rgba(0,0,0,0.15);
+  }
+
+  .contact-headline .accent { color: var(--purple); }
+
+  .contact-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: var(--purple);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    border: 3px solid var(--pixel-dark);
+    background: var(--lavender-mid);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    transition: all 0.12s;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-email:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+
+  .contact-sub { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; max-width: 26rem; margin: 0 auto; font-weight: 600; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #A122C0;
+    border-top: 4px solid var(--pixel-dark);
+    padding: 1.25rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
+  .footer-brand img { height: 28px; filter: drop-shadow(2px 2px 0 var(--pink)); }
+  .footer-brand span { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--yellow); letter-spacing: 0.08em; line-height: 1.8; }
+
+  .footer-hits {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.5rem;
+    color: var(--yellow);
+    letter-spacing: 0.08em;
+    padding: 0.4rem 0.75rem;
+    border: 2px solid var(--yellow);
+    background: rgba(0,0,0,0.2);
+    transition: all 0.3s;
+  }
+  .footer-hits:hover { background: rgba(255,229,102,0.15); border-color: var(--teal); color: var(--teal); }
+  .footer-hits[data-found="true"] { background: rgba(63,187,158,0.2); border-color: var(--teal); color: var(--teal); letter-spacing: 0.05em; }
+
+  .footer-links { display: flex; gap: 1.25rem; }
+  .footer-links a { font-family: 'Nunito', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 700; transition: color 0.15s; }
+  .footer-links a:hover { color: var(--yellow); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .gameboy-wrap { width: 280px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+    .specimen-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-art { order: -1; }
+  }
+
+  @media (max-width: 600px) {
+    .specimen-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-inner { padding: 0.75rem 1rem; }
+    .nav-logo-text { font-size: 0.7rem; }
+    .section-wrap { padding: 3rem 1rem; }
+  }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(18px); animation: up 0.7s ease forwards; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.25s; }
+  .d3 { animation-delay: 0.4s; }
+  .d4 { animation-delay: 0.55s; }
+  @keyframes up { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top">
+      <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX ghost logo" />
+      <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#work">Featured</a></li>
+      <li><a href="#artifacts">Scrapbook</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="resume.pdf" class="nav-cv" target="_blank" rel="noopener">CV ↗</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <!-- floating pixel decorations -->
+  <span class="pixel-deco" style="top:12%;left:6%;animation-delay:0s;">🎮</span>
+  <span class="pixel-deco" style="top:20%;right:8%;animation-delay:1s;font-size:1.4rem;">💿</span>
+  <span class="pixel-deco" style="bottom:30%;left:4%;animation-delay:2s;font-size:1.2rem;">📼</span>
+  <span class="pixel-deco" style="top:65%;right:6%;animation-delay:0.5s;font-size:1.3rem;">💾</span>
+  <span class="pixel-deco" style="bottom:15%;right:15%;animation-delay:1.5s;font-size:1rem;">⚡</span>
+  <span class="pixel-deco" style="top:40%;left:3%;animation-delay:3s;font-size:1rem;">🌟</span>
+
+  <div class="hero-layout">
+    <div class="hero-text">
+      <div class="hero-badge reveal">▶ PRESS START // SAN JOSE, CA</div>
+      <h1 class="hero-name">
+        <span class="line1 reveal d1">Stacy</span>
+        <span class="line2 reveal d2">Tomasi</span>
+      </h1>
+      <p class="hero-tagline reveal d3">Professionally obsessed with why things don't work.</p>
+      <p class="hero-role reveal d3">UX Designer &amp; Usability Tester</p>
+      <div class="hero-cta reveal d4">
+        <a href="#work" class="btn btn-primary">▶ View Work</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+
+    <div class="hero-art reveal d2">
+      <div class="gameboy-wrap">
+        <div class="gameboy">
+          <div class="gb-led"></div>
+          <div class="gb-label">TOMIUX COLOR</div>
+          <div class="gb-screen-bezel">
+            <div class="gb-screen">
+              <div class="screen-title">TOMIUX<br/>PORTFOLIO</div>
+              <div class="screen-mascot">🐙</div>
+              <div class="screen-health">HP ████████ 100</div>
+            </div>
+          </div>
+          <div class="gb-controls">
+            <div class="dpad">
+              <div class="dpad-h"></div>
+              <div class="dpad-v"></div>
+              <div class="dpad-center"></div>
+            </div>
+            <div class="gb-buttons">
+              <div class="gb-btn gb-btn-b">B</div>
+              <div class="gb-btn gb-btn-a">A</div>
+            </div>
+          </div>
+          <div class="gb-start-sel">
+            <div class="gb-mini-btn"></div>
+            <div class="gb-mini-btn"></div>
+          </div>
+          <div class="gb-speaker">
+            <div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div>
+            <div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div>
+            <div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div>
+          </div>
+        </div>
+        <div class="gb-sticker gb-sticker-1">★ NEW ★</div>
+        <div class="gb-sticker gb-sticker-2">LEVEL UP</div>
+        <div class="gb-sticker gb-sticker-3">PLAYER 1</div>
+        <div class="gb-sticker gb-sticker-4">EXTRA LIFE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- WORK -->
+<div class="section-bg-white" style="position:relative;z-index:1;">
+  <div class="section-wrap" id="work">
+    <div class="section-header">
+      <span class="section-badge">01 // FEATURED</span>
+      <h2 class="section-title">Featured <span class="accent">Work</span></h2>
+    </div>
+    <div class="work-grid">
+      <article class="work-card">
+        <div class="work-thumb p1">🍝</div>
+        <div class="work-card-body">
+          <div class="work-meta"><span class="work-year">2025</span><span class="work-tag">INTERACTION</span></div>
+          <h3 class="work-title">Meatball</h3>
+          <p class="work-desc">Case study description coming soon.</p>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="work-thumb p2">🔒</div>
+        <div class="work-card-body">
+          <div class="work-meta"><span class="work-year">2024</span><span class="work-tag">IxD</span></div>
+          <h3 class="work-title">August Smart Lock</h3>
+          <p class="work-desc">Case study description coming soon.</p>
+        </div>
+      </article>
+      <article class="work-card">
+        <div class="work-thumb p3">⭐</div>
+        <div class="work-card-body">
+          <div class="work-meta"><span class="work-year">2024</span><span class="work-tag">UX RESEARCH</span></div>
+          <h3 class="work-title">Yelp Usability Study</h3>
+          <p class="work-desc">Case study description coming soon.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- ARTIFACTS -->
+<div class="section-bg-soft" style="position:relative;z-index:1;">
+  <div class="section-wrap" id="artifacts">
+    <div class="section-header">
+      <span class="section-badge">02 // THE SCRAPBOOK</span>
+      <h2 class="section-title">The <span class="accent2">Scrapbook</span></h2>
+    </div>
+    <p class="artifacts-intro">
+      Cut out. Glued in. Never forgotten. Each entry is a real specimen of <em>interaction design gone wrong</em> — collected from the wild, preserved in plastic, and labeled for posterity. Most Likely to Make You Rage Quit.
+    </p>
+    <div class="specimen-grid">
+      <div class="specimen"><span class="specimen-num">№ 001</span><div class="specimen-icon">✕</div><span class="specimen-name">The Runaway X</span><span class="specimen-tag">CLOSE-BUTTON</span></div>
+      <div class="specimen"><span class="specimen-num">№ 002</span><div class="specimen-icon">◐</div><span class="specimen-name">Eternal Spinner</span><span class="specimen-tag">LOADER</span></div>
+      <div class="specimen"><span class="specimen-num">№ 003</span><div class="specimen-icon">⎌</div><span class="specimen-name">The Un-Undoable</span><span class="specimen-tag">DESTRUCTIVE</span></div>
+      <div class="specimen"><span class="specimen-num">№ 004</span><div class="specimen-icon">☑</div><span class="specimen-name">Consent Trap</span><span class="specimen-tag">DARK PATTERN</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 005</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 006</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 007</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 008</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 009</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 010</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 011</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 012</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 013</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 014</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 015</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+      <div class="specimen empty"><span class="specimen-num">№ 016</span><div class="specimen-icon">·</div><span class="specimen-name">Awaiting specimen</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- ABOUT -->
+<div class="section-bg-white" style="position:relative;z-index:1;">
+  <div class="section-wrap" id="about">
+    <div class="section-header">
+      <span class="section-badge">03 // PLAYER PROFILE</span>
+      <h2 class="section-title">About / <span class="accent">Résumé</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-top"></div>
+        <div class="about-card-header">
+          <span>PLAYER 1 // ID-001</span>
+          <span>2026 ★★★</span>
+        </div>
+        <div class="about-portrait">
+          <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX ghost mascot" />
+        </div>
+        <div class="about-stats">
+          <div class="stat-row"><span class="stat-label">Name</span><span class="stat-value">Stacy Tomasi</span></div>
+          <div class="stat-row"><span class="stat-label">Location</span><span class="stat-value">San Jose, CA</span></div>
+          <div class="stat-row"><span class="stat-label">Degree</span><span class="stat-value">MS UX · Kent State</span></div>
+          <div class="stat-row"><span class="stat-label">Focus</span><span class="stat-value">Interaction Design</span></div>
+          <div class="stat-row"><span class="stat-label">Status</span><span class="stat-value open">● OPEN TO WORK</span></div>
+        </div>
+      </div>
+      <div class="about-content">
+        <p class="about-lead">Hi — I'm Stacy, an <span class="hl">interaction designer</span> who believes the best interfaces work like good conversations.</p>
+        <p class="about-body"><span class="about-placeholder">[ Short intro paragraph ]</span></p>
+        <p class="about-body"><span class="about-placeholder">[ Your IxD philosophy ]</span></p>
+        <div class="contact-links">
+          <a href="mailto:hello@tomiux.com" class="contact-link">✉ Email</a>
+          <a href="#" target="_blank" rel="noopener" class="contact-link">↗ LinkedIn</a>
+          <a href="resume.pdf" target="_blank" rel="noopener" class="contact-link">↗ Download CV</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- CONTACT -->
+<div class="section-bg-soft" style="position:relative;z-index:1;">
+  <div class="section-wrap" id="contact">
+    <div class="section-header">
+      <span class="section-badge">04 // EXTRA LIFE</span>
+      <h2 class="section-title">Get in <span class="accent">Touch</span></h2>
+    </div>
+    <div class="contact-pod">
+      <div class="contact-signal"><span class="signal-dot"></span> SIGNAL OPEN — TRANSMISSIONS WELCOME</div>
+      <h3 class="contact-headline">Let's make something<br/><span class="accent">worth noticing.</span></h3>
+      <a href="mailto:hello@tomiux.com" class="contact-email">✉ hello@tomiux.com</a>
+      <p class="contact-sub">Whether it's a project, a question, or just a good IxD debate — I'm here.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX" />
+    <span>© 2026 · STACY TOMASI<br/>TOMIUX · ALL RIGHTS RESERVED</span>
+  </div>
+  <div class="footer-hits" title="you found it 👻" onclick="this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'" style="cursor:pointer;">SCORE: <span>∞</span></div>
+  <div class="footer-links">
+    <a href="mailto:hello@tomiux.com">Email</a>
+    <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="resume.pdf" target="_blank" rel="noopener">CV</a>
+  </div>
+</footer>
+
+</body>
+</html>
