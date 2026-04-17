@@ -154,11 +154,12 @@
   .hero {
     position: relative;
     min-height: 100vh;
+    padding-top: 70px;
     display: flex;
     align-items: center;
     overflow: hidden;
     z-index: 1;
-    padding: 4rem 0 3rem;
+    padding: 2rem 0 2rem;
     background:
       radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.25) 0%, transparent 50%),
       radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%),
@@ -333,11 +334,11 @@
   .gb-screen-bezel::before {
     content: 'DOT-MATRIX WITH STEREO SOUND';
     position: absolute;
-    top: -1.4rem; left: 0;
+    top: -2rem; left: 0;
     font-family: 'Press Start 2P', monospace;
-    font-size: 0.32rem;
+    font-size: 0.3rem;
     color: #9b70d8;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     white-space: nowrap;
     text-shadow: 0px 1px 0px rgba(255,255,255,0.5), 0px -1px 0px rgba(0,0,0,0.2);
   }
@@ -368,16 +369,16 @@
 
   .screen-title {
     font-family: 'Press Start 2P', monospace;
-    font-size: 0.45rem;
+    font-size: 0.7rem;
     color: #0a2820;
     letter-spacing: 0.05em;
-    line-height: 1.8;
+    line-height: 2;
     text-align: center;
     z-index: 1;
   }
 
   .screen-mascot {
-    font-size: 2rem;
+    font-size: 3.5rem;
     z-index: 1;
     animation: screenBob 2s ease-in-out infinite;
   }
@@ -389,7 +390,7 @@
 
   .screen-health {
     font-family: 'Press Start 2P', monospace;
-    font-size: 0.38rem;
+    font-size: 0.6rem;
     color: #0a2820;
     letter-spacing: 0.05em;
     z-index: 1;
@@ -414,8 +415,9 @@
     font-size: 0.5rem;
     color: #8850b0;
     letter-spacing: 0.1em;
-    text-align: center;
-    margin-bottom: 0.85rem;
+    text-align: right;
+    margin-bottom: 0.5rem;
+    padding-right: 0.5rem;
     text-shadow:
       0px 1px 0px rgba(255,255,255,0.6),
       0px -1px 0px rgba(0,0,0,0.25),
@@ -999,7 +1001,25 @@
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="#top">
-      <img src="Ghost_Logo_Tomi_UX.svg" alt="TomiUX ghost logo" />
+      <svg width="38" height="44" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+        <path d="M20,55 Q20,15 60,15 Q100,15 100,55 L100,110 Q100,110 88,100 Q76,90 72,100 Q68,110 60,110 Q52,110 48,100 Q44,90 32,100 Q20,110 20,110 Z" fill="#A122C0" stroke="#0a0520" stroke-width="4" stroke-linejoin="round"/>
+        <ellipse cx="42" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
+        <ellipse cx="78" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
+        <circle cx="44" cy="60" r="6" fill="#0a0520"/>
+        <circle cx="80" cy="60" r="6" fill="#0a0520"/>
+        <circle cx="46" cy="57" r="2.5" fill="white"/>
+        <circle cx="82" cy="57" r="2.5" fill="white"/>
+        <rect x="26" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
+        <rect x="27" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
+        <rect x="62" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
+        <rect x="63" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
+        <rect x="57" y="56" width="6" height="4" rx="1" fill="#0a0520"/>
+        <rect x="14" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
+        <rect x="92" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
+        <rect x="30" y="53" width="8" height="4" rx="2" fill="white" opacity="0.4"/>
+        <rect x="66" y="53" width="8" height="4" rx="2" fill="white" opacity="0.4"/>
+        <path d="M46,82 Q60,92 74,82" fill="none" stroke="#0a0520" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
       <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>
     </a>
     <ul class="nav-links">
@@ -1167,7 +1187,25 @@
           <span>2026 ★★★</span>
         </div>
         <div class="about-portrait">
-          <img src="Ghost_Logo_Tomi_UX.svg" alt="TomiUX ghost mascot" />
+          <svg width="140" height="163" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20,55 Q20,15 60,15 Q100,15 100,55 L100,110 Q100,110 88,100 Q76,90 72,100 Q68,110 60,110 Q52,110 48,100 Q44,90 32,100 Q20,110 20,110 Z" fill="#A122C0" stroke="#0a0520" stroke-width="4" stroke-linejoin="round"/>
+            <ellipse cx="42" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
+            <ellipse cx="78" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
+            <circle cx="44" cy="60" r="6" fill="#0a0520"/>
+            <circle cx="80" cy="60" r="6" fill="#0a0520"/>
+            <circle cx="46" cy="57" r="2.5" fill="white"/>
+            <circle cx="82" cy="57" r="2.5" fill="white"/>
+            <rect x="26" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
+            <rect x="27" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
+            <rect x="62" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
+            <rect x="63" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
+            <rect x="57" y="56" width="6" height="4" rx="1" fill="#0a0520"/>
+            <rect x="14" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
+            <rect x="92" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
+            <rect x="30" y="53" width="8" height="4" rx="2" fill="white" opacity="0.4"/>
+            <rect x="66" y="53" width="8" height="4" rx="2" fill="white" opacity="0.4"/>
+            <path d="M46,82 Q60,92 74,82" fill="none" stroke="#0a0520" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
         </div>
         <div class="about-stats">
           <div class="stat-row"><span class="stat-label">Name</span><span class="stat-value">Stacy Tomasi</span></div>
@@ -1211,7 +1249,20 @@
 
 <footer>
   <div class="footer-brand">
-    <img src="Ghost_Logo_Tomi_UX.svg" alt="TomiUX" />
+    <svg width="28" height="33" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+      <path d="M20,55 Q20,15 60,15 Q100,15 100,55 L100,110 Q100,110 88,100 Q76,90 72,100 Q68,110 60,110 Q52,110 48,100 Q44,90 32,100 Q20,110 20,110 Z" fill="#A122C0" stroke="#0a0520" stroke-width="4"/>
+      <ellipse cx="42" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
+      <ellipse cx="78" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
+      <circle cx="44" cy="60" r="6" fill="#0a0520"/>
+      <circle cx="80" cy="60" r="6" fill="#0a0520"/>
+      <rect x="26" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
+      <rect x="27" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
+      <rect x="62" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
+      <rect x="63" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
+      <rect x="57" y="56" width="6" height="4" rx="1" fill="#0a0520"/>
+      <rect x="14" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
+      <rect x="92" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
+    </svg>
     <span>© 2026 · STACY TOMASI<br/>TOMIUX · ALL RIGHTS RESERVED</span>
   </div>
   <div class="footer-hits" title="you found it 👻" onclick="this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'" style="cursor:pointer;">SCORE: <span>∞</span></div>
