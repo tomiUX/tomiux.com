@@ -228,7 +228,7 @@
   /* tractor beam — comes down from the UFO into the scene */
   .tractor-beam {
     position: absolute;
-    top: 19%;
+    top: 30%;
     left: 50%;
     transform: translateX(-50%);
     width: min(520px, 80vw);
@@ -312,20 +312,15 @@
   }
 
   /* ===== THE ABDUCTEE — silhouette standing in the beam ===== */
-  .abductee {
+.abductee {
     position: absolute;
     bottom: 22vh;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
-    height: 130px;
+    width: 140px;
+    height: 90px;
     z-index: 7;
     animation: lift 5s ease-in-out infinite;
-  }
-
-  @keyframes lift {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-12px); }
   }
 
   .abductee svg { width: 100%; height: auto; }
@@ -1334,7 +1329,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
-    <li><a href="#collection">Collection</a></li>
+    <li><a href="#collection">Artifacts</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="resume.pdf" class="resume-btn" target="_blank" rel="noopener">CV ↗</a></li>
@@ -1416,49 +1411,43 @@
   <div class="particle" style="left: 49%; top: 72%; --start-x: -3px; animation-duration: 3.1s; animation-delay: 1s;"></div>
 
   <!-- YOU — standing in the beam, being lifted -->
-  <div class="abductee">
-    <svg viewBox="0 0 80 130" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="figure" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#E4F89E"/>
-          <stop offset="0.5" stop-color="#6BDDD7"/>
-          <stop offset="1" stop-color="#370EA8" stop-opacity="0.6"/>
-        </linearGradient>
-      </defs>
-      <!-- head -->
-      <circle cx="40" cy="22" r="12" fill="url(#figure)" opacity="0.9"/>
-      <!-- body -->
-      <path d="M 28 36 Q 40 34 52 36 L 50 85 Q 40 88 30 85 Z" fill="url(#figure)" opacity="0.85"/>
-      <!-- arms raised -->
-      <path d="M 28 40 Q 18 50 14 70 Q 18 72 20 52 Q 24 44 30 44 Z" fill="url(#figure)" opacity="0.75"/>
-      <path d="M 52 40 Q 62 50 66 70 Q 62 72 60 52 Q 56 44 50 44 Z" fill="url(#figure)" opacity="0.75"/>
-      <!-- legs -->
-      <path d="M 32 80 L 30 120 L 36 120 L 38 82 Z" fill="url(#figure)" opacity="0.85"/>
-      <path d="M 42 82 L 44 120 L 50 120 L 48 80 Z" fill="url(#figure)" opacity="0.85"/>
-    </svg>
-  </div>
-
-  <!-- hero copy on the left -->
-  <div class="hero-content">
-    <div class="hero-eyebrow reveal"><span class="dot"></span> UX / IxD · San Jose</div>
-    <h1 class="hero-name">
-      <span class="stacy reveal d1">Stacy</span>
-      <span class="tomasi reveal d2">Tomasi</span>
-    </h1>
-    <p class="tagline reveal d3">
-      Professionally obsessed with why things don't work.<br/>
-      <span class="tagline-sub">UX Designer &amp; Usability Tester</span>
-    </p>
-    <div class="hero-cta reveal d4">
-      <a href="#work" class="btn btn-primary">Beam me up →</a>
-      <a href="#contact" class="btn btn-secondary">Get in touch</a>
-    </div>
-  </div>
-
-  <!-- the ground -->
-  <div class="ground">
-    <div class="ground-grid"></div>
-  </div>
+<div class="abductee">
+  <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="cow" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#E4F89E"/>
+        <stop offset="0.5" stop-color="#6BDDD7"/>
+        <stop offset="1" stop-color="#370EA8" stop-opacity="0.7"/>
+      </linearGradient>
+    </defs>
+    <!-- body -->
+    <ellipse cx="40" cy="48" rx="22" ry="16" fill="url(#cow)" opacity="0.9"/>
+    <!-- head -->
+    <ellipse cx="60" cy="40" rx="13" ry="11" fill="url(#cow)" opacity="0.9"/>
+    <!-- snout -->
+    <ellipse cx="70" cy="43" rx="6" ry="4" fill="url(#cow)" opacity="0.8"/>
+    <circle cx="68" cy="43" r="1.2" fill="#370EA8" opacity="0.7"/>
+    <circle cx="72" cy="43" r="1.2" fill="#370EA8" opacity="0.7"/>
+    <!-- ear -->
+    <ellipse cx="54" cy="31" rx="4" ry="6" fill="url(#cow)" opacity="0.85" transform="rotate(-20 54 31)"/>
+    <!-- eye -->
+    <circle cx="63" cy="37" r="2" fill="#050818" opacity="0.8"/>
+    <circle cx="63.7" cy="36.3" r="0.6" fill="white" opacity="0.9"/>
+    <!-- horns -->
+    <path d="M56 32 Q53 24 57 22" stroke="#6BDDD7" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M60 30 Q59 22 63 21" stroke="#6BDDD7" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- legs -->
+    <rect x="24" y="60" width="5" height="14" rx="2" fill="url(#cow)" opacity="0.85"/>
+    <rect x="33" y="61" width="5" height="13" rx="2" fill="url(#cow)" opacity="0.85"/>
+    <rect x="44" y="61" width="5" height="13" rx="2" fill="url(#cow)" opacity="0.85"/>
+    <rect x="53" y="60" width="5" height="14" rx="2" fill="url(#cow)" opacity="0.85"/>
+    <!-- tail -->
+    <path d="M18 46 Q10 44 12 38 Q14 34 18 36" stroke="#6BDDD7" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- spots -->
+    <ellipse cx="35" cy="44" rx="6" ry="5" fill="#370EA8" opacity="0.3"/>
+    <ellipse cx="48" cy="52" rx="4" ry="3" fill="#370EA8" opacity="0.25"/>
+  </svg>
+</div>
 </section>
 
 <!-- =========================================================
