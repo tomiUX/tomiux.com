@@ -153,8 +153,7 @@
   /* ===== HERO ===== */
   .hero {
     position: relative;
-    min-height: 100vh;
-    padding-top: 70px;
+    min-height: calc(100vh - 65px);
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -194,6 +193,7 @@
     gap: 4rem;
     align-items: center;
     width: 100%;
+    min-height: calc(100vh - 130px);
   }
 
   /* ===== HERO TEXT ===== */
@@ -1001,25 +1001,7 @@
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="#top">
-      <svg width="38" height="44" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-        <path d="M20,55 Q20,15 60,15 Q100,15 100,55 L100,110 Q100,110 88,100 Q76,90 72,100 Q68,110 60,110 Q52,110 48,100 Q44,90 32,100 Q20,110 20,110 Z" fill="#A122C0" stroke="#0a0520" stroke-width="4" stroke-linejoin="round"/>
-        <ellipse cx="42" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
-        <ellipse cx="78" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
-        <circle cx="44" cy="60" r="6" fill="#0a0520"/>
-        <circle cx="80" cy="60" r="6" fill="#0a0520"/>
-        <circle cx="46" cy="57" r="2.5" fill="white"/>
-        <circle cx="82" cy="57" r="2.5" fill="white"/>
-        <rect x="26" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
-        <rect x="27" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
-        <rect x="62" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
-        <rect x="63" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
-        <rect x="57" y="56" width="6" height="4" rx="1" fill="#0a0520"/>
-        <rect x="14" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
-        <rect x="92" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
-        <rect x="30" y="53" width="8" height="4" rx="2" fill="white" opacity="0.4"/>
-        <rect x="66" y="53" width="8" height="4" rx="2" fill="white" opacity="0.4"/>
-        <path d="M46,82 Q60,92 74,82" fill="none" stroke="#0a0520" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
+<img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX ghost logo" style="height:44px;width:auto;filter:drop-shadow(2px 2px 0 #0a0520);" />
       <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>
     </a>
     <ul class="nav-links">
@@ -1187,25 +1169,7 @@
           <span>2026 ★★★</span>
         </div>
         <div class="about-portrait">
-          <svg width="140" height="163" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20,55 Q20,15 60,15 Q100,15 100,55 L100,110 Q100,110 88,100 Q76,90 72,100 Q68,110 60,110 Q52,110 48,100 Q44,90 32,100 Q20,110 20,110 Z" fill="#A122C0" stroke="#0a0520" stroke-width="4" stroke-linejoin="round"/>
-            <ellipse cx="42" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
-            <ellipse cx="78" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
-            <circle cx="44" cy="60" r="6" fill="#0a0520"/>
-            <circle cx="80" cy="60" r="6" fill="#0a0520"/>
-            <circle cx="46" cy="57" r="2.5" fill="white"/>
-            <circle cx="82" cy="57" r="2.5" fill="white"/>
-            <rect x="26" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
-            <rect x="27" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
-            <rect x="62" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
-            <rect x="63" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
-            <rect x="57" y="56" width="6" height="4" rx="1" fill="#0a0520"/>
-            <rect x="14" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
-            <rect x="92" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
-            <rect x="30" y="53" width="8" height="4" rx="2" fill="white" opacity="0.4"/>
-            <rect x="66" y="53" width="8" height="4" rx="2" fill="white" opacity="0.4"/>
-            <path d="M46,82 Q60,92 74,82" fill="none" stroke="#0a0520" stroke-width="2.5" stroke-linecap="round"/>
-          </svg>
+          <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX ghost" style="width:140px;height:auto;filter:drop-shadow(3px 3px 0 #A122C0);" />
         </div>
         <div class="about-stats">
           <div class="stat-row"><span class="stat-label">Name</span><span class="stat-value">Stacy Tomasi</span></div>
@@ -1249,20 +1213,7 @@
 
 <footer>
   <div class="footer-brand">
-    <svg width="28" height="33" viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-      <path d="M20,55 Q20,15 60,15 Q100,15 100,55 L100,110 Q100,110 88,100 Q76,90 72,100 Q68,110 60,110 Q52,110 48,100 Q44,90 32,100 Q20,110 20,110 Z" fill="#A122C0" stroke="#0a0520" stroke-width="4"/>
-      <ellipse cx="42" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
-      <ellipse cx="78" cy="58" rx="11" ry="13" fill="white" stroke="#0a0520" stroke-width="2"/>
-      <circle cx="44" cy="60" r="6" fill="#0a0520"/>
-      <circle cx="80" cy="60" r="6" fill="#0a0520"/>
-      <rect x="26" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
-      <rect x="27" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
-      <rect x="62" y="50" width="32" height="20" rx="4" fill="#0a0520"/>
-      <rect x="63" y="51" width="30" height="18" rx="3" fill="#3FBB9E" opacity="0.85"/>
-      <rect x="57" y="56" width="6" height="4" rx="1" fill="#0a0520"/>
-      <rect x="14" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
-      <rect x="92" y="54" width="14" height="4" rx="2" fill="#0a0520"/>
-    </svg>
+    <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX" style="height:28px;width:auto;" />
     <span>© 2026 · STACY TOMASI<br/>TOMIUX · ALL RIGHTS RESERVED</span>
   </div>
   <div class="footer-hits" title="you found it 👻" onclick="this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'" style="cursor:pointer;">SCORE: <span>∞</span></div>
