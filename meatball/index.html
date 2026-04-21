@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meatball — TomiUX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lavender-bg: #f0e8ff; --lavender-mid: #c8a8f0; --lavender-dark: #9b70d8;
+    --pink: #ff6eb4; --hot-pink: #ff2d9b; --baby-pink: #ffb3d9;
+    --teal: #3FBB9E; --mint: #91EBD3; --yellow: #ffe566; --orange: #ff8c42;
+    --blue: #6bb8ff; --baby-blue: #b3d9ff; --purple: #A122C0;
+    --lime: #c8ff6b; --red: #ff5252; --white: #ffffff;
+    --text: #1a0a3e; --text-mid: #4a1878; --text-light: #8850b0;
+    --pixel-dark: #0a0520;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--lavender-bg); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(253,248,255,0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 4px solid var(--pixel-dark); box-shadow: 0 4px 0 var(--lavender-dark); }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem; }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .nav-logo img { height: 40px; width: auto; filter: drop-shadow(2px 2px 0 var(--purple)); }
+  .nav-logo-text { font-family: 'Press Start 2P', monospace; font-size: 1rem; line-height: 1; }
+  .logo-tomi { color: #A122C0; } .logo-ux { color: #3FBB9E; }
+  .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
+  .nav-links a { font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-mid); text-decoration: none; padding: 0.45rem 0.9rem; border-radius: 6px; transition: all 0.15s; }
+  .nav-links a:hover { background: var(--lavender-mid); color: var(--purple); }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a::after { content: ' ▾'; font-size: 0.6rem; opacity: 0.7; }
+  .dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: rgba(253,248,255,0.98); border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); border-radius: 8px; min-width: 200px; z-index: 200; overflow: hidden; }
+  .nav-dropdown:hover .dropdown-menu, .nav-dropdown:focus-within .dropdown-menu { display: block; }
+  .dropdown-menu a { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem !important; border-radius: 0 !important; border-bottom: 2px solid var(--lavender-mid); font-size: 0.75rem !important; color: var(--text-mid) !important; white-space: nowrap; }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a:hover, .dropdown-menu a.active-item { background: var(--lavender-mid) !important; color: var(--purple) !important; }
+  .dropdown-tag { font-family: 'Press Start 2P', monospace; font-size: 0.35rem; padding: 0.15rem 0.4rem; border: 1.5px solid var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; }
+  .nav-cv { background: #A122C0 !important; color: white !important; border: 3px solid var(--pixel-dark) !important; box-shadow: 3px 3px 0 var(--pixel-dark) !important; border-radius: 6px !important; }
+  .nav-cv:hover { transform: translate(-1px,-1px) !important; box-shadow: 4px 4px 0 var(--pixel-dark) !important; background: var(--hot-pink) !important; }
+
+  /* CASE STUDY LAYOUT */
+  .case-hero {
+    background: linear-gradient(135deg, #ffb3d9 0%, #c8a8f0 100%);
+    border-bottom: 4px solid var(--pixel-dark);
+    padding: 5rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .case-hero::before {
+    content: '🍝';
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(6rem, 15vw, 12rem);
+    opacity: 0.15;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .case-hero-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+  .case-back { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--text-mid); text-decoration: none; letter-spacing: 0.08em; margin-bottom: 2rem; transition: color 0.15s; }
+  .case-back:hover { color: var(--purple); }
+  .case-badge { display: inline-block; font-family: 'Press Start 2P', monospace; font-size: 0.5rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; margin-bottom: 1.25rem; }
+  .case-title { font-family: 'Lilita One', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); color: var(--text); line-height: 0.95; margin-bottom: 1.25rem; -webkit-text-stroke: 2px var(--pixel-dark); text-shadow: 4px 4px 0 rgba(0,0,0,0.1); }
+  .case-tagline { font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--text-mid); max-width: 600px; line-height: 1.65; font-weight: 700; margin-bottom: 2rem; }
+  .case-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .case-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+  .case-meta-label { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--text-light); letter-spacing: 0.08em; text-transform: uppercase; }
+  .case-meta-value { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--text); }
+
+  .pixel-divider { height: 12px; background: repeating-linear-gradient(90deg, #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px, #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px, #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px); border-top: 3px solid var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); }
+
+  .case-body { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+
+  .coming-soon-block {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    border-radius: 12px;
+    padding: 4rem 3rem;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .coming-soon-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 8px; background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 16.66%, var(--yellow) 16.66%, var(--yellow) 33.33%, var(--teal) 33.33%, var(--teal) 50%, var(--purple) 50%, var(--purple) 66.66%, var(--orange) 66.66%, var(--orange) 83.33%, var(--blue) 83.33%, var(--blue) 100%); }
+  .coming-soon-emoji { font-size: 3rem; margin-bottom: 1rem; display: block; }
+  .coming-soon-label { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--hot-pink); letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .coming-soon-text { font-family: 'Nunito', sans-serif; font-size: 0.92rem; color: var(--text-mid); line-height: 1.7; font-weight: 600; }
+
+  .btn { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.12s; cursor: pointer; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+  .btn-primary { background: #A122C0; color: white; }
+  .btn-primary:hover { background: var(--hot-pink); }
+
+  footer { background: #A122C0; border-top: 4px solid var(--pixel-dark); padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
+  .footer-brand img { height: 28px; filter: drop-shadow(2px 2px 0 var(--pink)); }
+  .footer-brand span { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--yellow); letter-spacing: 0.08em; line-height: 1.8; }
+  .footer-links { display: flex; gap: 1.25rem; }
+  .footer-links a { font-family: 'Nunito', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 700; transition: color 0.15s; }
+  .footer-links a:hover { color: var(--yellow); }
+
+  @media (max-width: 600px) {
+    .nav-inner { padding: 0.75rem 1rem; }
+    .nav-logo-text { font-size: 0.7rem; }
+    .case-hero { padding: 3rem 1rem 2.5rem; }
+    .case-body { padding: 3rem 1rem; }
+    .coming-soon-block { padding: 3rem 1.5rem; }
+    .dropdown-menu { left: auto; right: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX" />
+      <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="index.html#work">Featured</a>
+        <div class="dropdown-menu">
+          <a href="meatball.html" class="active-item"><span class="dropdown-tag">IxD</span> Meatball</a>
+          <a href="august.html" class=""><span class="dropdown-tag">IxD</span> August Smart Lock</a>
+          <a href="philz.html" class=""><span class="dropdown-tag">RESEARCH</span> Philz Usability Study</a>
+        </div>
+      </li>
+      <li><a href="playground.html">Playground</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="resume.pdf" class="nav-cv" target="_blank" rel="noopener">CV ↗</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="case-hero">
+  <div class="case-hero-inner">
+    <a href="index.html#work" class="case-back">← Back to Featured Work</a>
+    <div class="case-badge">PASSION PROJECT // 2025</div>
+    <h1 class="case-title">Meatball</h1>
+    <p class="case-tagline">What's for dinner? A question so simple, so universally dreaded, it deserved a real answer.</p>
+    <div class="case-meta">
+      <div class="case-meta-item">
+        <span class="case-meta-label">Type</span>
+        <span class="case-meta-value">INTERACTION DESIGN</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Year</span>
+        <span class="case-meta-value">2025</span>
+      </div>
+      <div class="case-meta-item">
+        <span class="case-meta-label">Status</span>
+        <span class="case-meta-value">Case Study Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<div class="case-body">
+  <div class="coming-soon-block">
+    <span class="coming-soon-emoji">🍝</span>
+    <div class="coming-soon-label">// LOADING CASE STUDY...</div>
+    <p class="coming-soon-text">
+      This case study is currently being documented. Check back soon for the full write-up including research, process, and outcomes.
+    </p>
+    <br/><br/>
+    <a href="index.html#work" class="btn btn-primary">← Back to Featured Work</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX" />
+    <span>© 2026 · STACY TOMASI<br/>TOMIUX · ALL RIGHTS RESERVED</span>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:hello@tomiux.com">Email</a>
+    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="resume.pdf" target="_blank" rel="noopener">CV</a>
+  </div>
+</footer>
+
+</body>
+</html>
