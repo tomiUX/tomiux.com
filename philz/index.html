@@ -83,59 +83,24 @@
   }
 
   .nav-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.75rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem;
   }
-
   .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    text-decoration: none;
+    font-family: 'Press Start 2P', monospace; font-size: 1rem;
+    text-decoration: none; line-height: 1;
   }
-
-  .nav-logo-text {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 1rem;
-    line-height: 1;
-  }
-  .logo-tomi { color: #A122C0; }
-  .logo-ux { color: #3FBB9E; }
-
-  .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
-
-  .nav-links a {
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-mid);
-    text-decoration: none;
-    padding: 0.45rem 0.9rem;
-    border-radius: 6px;
-    transition: all 0.15s;
-  }
-
-  .nav-links a:hover { background: var(--lavender-mid); color: var(--purple); }
-
+  .logo-tomi { color: #A122C0; text-shadow: 2px 2px 0 rgba(115,23,136,0.3); }
+  .logo-ux   { color: #3FBB9E; text-shadow: 2px 2px 0 rgba(63,187,158,0.3); }
   .nav-back {
-    background: #A122C0 !important;
-    color: white !important;
-    border: 3px solid var(--pixel-dark) !important;
-    box-shadow: 3px 3px 0 var(--pixel-dark) !important;
-    border-radius: 6px !important;
+    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none;
+    background: #A122C0; color: white;
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    transition: all 0.12s;
   }
-  .nav-back:hover {
-    transform: translate(-1px,-1px) !important;
-    box-shadow: 4px 4px 0 var(--pixel-dark) !important;
-    background: var(--hot-pink) !important;
-    color: white !important;
-  }
+  .nav-back:hover { background: var(--hot-pink); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--pixel-dark); }
 
   /* ===== PIXEL DIVIDER ===== */
   .pixel-divider {
@@ -1029,36 +994,11 @@
   .btn-brown:hover { background: var(--philz-rust); }
 
   /* ===== FOOTER ===== */
-  footer {
-    background: #A122C0;
-    border-top: 4px solid var(--pixel-dark);
-    padding: 1.25rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-brand span {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.45rem;
-    color: var(--yellow);
-    letter-spacing: 0.08em;
-    line-height: 1.8;
-  }
-
-  .footer-links { display: flex; gap: 1.25rem; }
-  .footer-links a {
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.8);
-    text-decoration: none;
-    font-weight: 700;
-    transition: color 0.15s;
-  }
+  footer { background: var(--purple); border-top: 4px solid var(--pixel-dark); padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+  .footer-brand { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--mint); letter-spacing: 0.06em; line-height: 2; }
+  .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--yellow); letter-spacing: 0.1em; cursor: pointer; }
+  .footer-links { display: flex; gap: 1rem; }
+  .footer-links a { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--mint); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
   .footer-links a:hover { color: var(--yellow); }
 
   /* ===== SECTION BG ALTERNATION ===== */
@@ -1206,16 +1146,8 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" href="index.html">
-      <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="index.html#work">Featured</a></li>
-      <li><a href="index.html#playground">Playground</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-      <li><a href="resume.pdf" class="nav-back" target="_blank" rel="noopener">CV ↗</a></li>
-    </ul>
+    <a class="nav-logo" href="https://tomiux.com"><span class="logo-tomi">TOMI</span><span class="logo-ux">UX</span></a>
+    <a class="nav-back" href="https://tomiux.com/#work">← Back to Work</a>
   </div>
 </nav>
 
@@ -1809,19 +1741,18 @@
 
     <!-- Back CTA -->
     <div class="back-cta">
-      <a href="index.html#work" class="btn btn-brown">← Back to Featured Work</a>
+      <a href="https://tomiux.com/#work" class="btn btn-brown">← Back to Featured Work</a>
     </div>
   </div>
 </div>
 
 <footer>
-  <div class="footer-brand">
-    <span>© 2026 · STACY TOMASI<br/>TOMIUX · ALL RIGHTS RESERVED</span>
-  </div>
+  <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
+  <div class="footer-hits" title="you found it 👻" onclick="this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'">SCORE: <span>∞</span></div>
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
     <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="resume.pdf" target="_blank" rel="noopener">CV</a>
+    <a href="https://tomiux.com/#work">← Work</a>
   </div>
 </footer>
 
