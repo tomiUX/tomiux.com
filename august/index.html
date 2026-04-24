@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>August Home // TomiUX Case Study 🔒</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lavender-bg: #f0e8ff;
+    --lavender-mid: #c8a8f0;
+    --lavender-dark: #9b70d8;
+    --pink: #ff6eb4;
+    --hot-pink: #ff2d9b;
+    --baby-pink: #ffb3d9;
+    --teal: #3FBB9E;
+    --mint: #91EBD3;
+    --yellow: #ffe566;
+    --orange: #ff8c42;
+    --blue: #6bb8ff;
+    --baby-blue: #b3d9ff;
+    --purple: #A122C0;
+    --lime: #c8ff6b;
+    --red: #ff5252;
+    --white: #ffffff;
+    --offwhite: #fdf8ff;
+    --text: #1a0a3e;
+    --text-mid: #4a1878;
+    --text-light: #8850b0;
+    --pixel-dark: #0a0520;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--lavender-bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image:
+      radial-gradient(3px 3px at 12% 8%, var(--pink), transparent),
+      radial-gradient(2px 2px at 28% 22%, var(--teal), transparent),
+      radial-gradient(3px 3px at 45% 5%, var(--yellow), transparent),
+      radial-gradient(2px 2px at 62% 18%, var(--purple), transparent),
+      radial-gradient(3px 3px at 78% 10%, var(--orange), transparent),
+      radial-gradient(2px 2px at 92% 25%, var(--teal), transparent),
+      radial-gradient(3px 3px at 15% 45%, var(--yellow), transparent),
+      radial-gradient(2px 2px at 35% 60%, var(--pink), transparent),
+      radial-gradient(3px 3px at 55% 55%, var(--blue), transparent),
+      radial-gradient(2px 2px at 72% 48%, var(--lime), transparent),
+      radial-gradient(3px 3px at 88% 65%, var(--hot-pink), transparent),
+      radial-gradient(2px 2px at 8% 78%, var(--teal), transparent),
+      radial-gradient(3px 3px at 25% 88%, var(--purple), transparent),
+      radial-gradient(2px 2px at 48% 80%, var(--orange), transparent),
+      radial-gradient(3px 3px at 68% 92%, var(--pink), transparent),
+      radial-gradient(2px 2px at 85% 82%, var(--yellow), transparent);
+    background-size: 300px 300px;
+    animation: bgShimmer 8s ease-in-out infinite alternate;
+  }
+  @keyframes bgShimmer { 0% { opacity: 0.08; } 100% { opacity: 0.18; } }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253,248,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 4px solid var(--pixel-dark);
+    box-shadow: 0 4px 0 var(--lavender-dark);
+  }
+  .nav-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem;
+  }
+  .nav-logo {
+    font-family: 'Press Start 2P', monospace; font-size: 1rem;
+    text-decoration: none; line-height: 1;
+  }
+  .logo-tomi { color: #A122C0; text-shadow: 2px 2px 0 rgba(115,23,136,0.3); }
+  .logo-ux   { color: #3FBB9E; text-shadow: 2px 2px 0 rgba(63,187,158,0.3); }
+  .nav-back {
+    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none;
+    background: #A122C0; color: white;
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    transition: all 0.12s;
+  }
+  .nav-back:hover { background: var(--hot-pink); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--pixel-dark); }
+
+  /* PIXEL DIVIDER — exact from index.html */
+  .pixel-divider {
+    height: 12px;
+    background: repeating-linear-gradient(90deg,
+      #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px,
+      #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px,
+      #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px,
+      #3FBB9E 120px, #3FBB9E 140px);
+    border-top: 3px solid var(--pixel-dark);
+    border-bottom: 3px solid var(--pixel-dark);
+    position: relative; z-index: 1;
+  }
+
+  /* SECTION WRAPPERS */
+  .section-bg-white { background: var(--white); position: relative; z-index: 1; }
+  .section-bg-soft {
+    background:
+      radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%),
+      var(--lavender-bg);
+    position: relative; z-index: 1;
+  }
+  .section-wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; position: relative; z-index: 1; }
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .section-badge {
+    font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
+    padding: 0.4rem 0.75rem; background: var(--yellow);
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap;
+  }
+  .section-title {
+    font-family: 'Lilita One', sans-serif; font-size: clamp(2rem, 4.5vw, 3.2rem);
+    color: var(--text); flex: 1; line-height: 1;
+    -webkit-text-stroke: 1.5px var(--pixel-dark); text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+  }
+  .section-title .accent  { color: var(--purple); }
+  .section-title .accent2 { color: var(--hot-pink); }
+
+  /* HERO */
+  .hero {
+    position: relative; z-index: 1; overflow: hidden;
+    padding: 4rem 2rem 3.5rem; text-align: center;
+    background:
+      radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 90%, rgba(155,89,255,0.2) 0%, transparent 50%),
+      var(--lavender-bg);
+    border-bottom: 4px solid var(--pixel-dark);
+  }
+  .hero-badge {
+    display: inline-block; padding: 0.4rem 1rem; background: var(--yellow);
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
+    color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.5rem;
+  }
+  .hero-name { font-family: 'Lilita One', sans-serif; font-size: clamp(3rem, 9vw, 6rem); line-height: 0.9; margin-bottom: 1.25rem; }
+  .hero-name .line1 { display: block; color: var(--purple); -webkit-text-stroke: 2px var(--pixel-dark); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
+  .hero-name .line2 { display: block; color: var(--teal); -webkit-text-stroke: 2px var(--pixel-dark); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
+  .hero-role { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--hot-pink); letter-spacing: 0.08em; margin-bottom: 2rem; line-height: 1.8; }
+  .hero-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+  .meta-tag { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; letter-spacing: 0.05em; padding: 0.35rem 0.7rem; border: 2px solid var(--pixel-dark); background: var(--white); color: var(--text-mid); line-height: 1.8; }
+  .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.12s;
+    border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark);
+  }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+  .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
+  .btn-primary { background: #A122C0; color: white; }
+  .btn-primary:hover { background: var(--hot-pink); }
+  .btn-secondary { background: var(--white); color: var(--purple); }
+  .btn-secondary:hover { background: var(--lavender-mid); }
+
+  /* PROCESS CARDS */
+  .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; }
+  .process-card {
+    background: var(--white); border-radius: 12px;
+    border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark);
+    overflow: hidden; transition: all 0.12s;
+  }
+  .process-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
+  .process-card-top { height: 10px; }
+  .p-pink { background: var(--pink); } .p-yellow { background: var(--yellow); }
+  .p-purple { background: var(--purple); } .p-teal { background: var(--teal); }
+  .process-card-body { padding: 1.25rem; }
+  .card-num { font-family: 'Press Start 2P', monospace; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .c-pink { color: var(--pink); } .c-yellow { color: #b07d00; }
+  .c-purple { color: var(--purple); } .c-teal { color: var(--teal); }
+  .card-badge {
+    font-family: 'Press Start 2P', monospace; font-size: 0.38rem;
+    padding: 0.2rem 0.5rem; border: 2px solid var(--pixel-dark);
+    display: inline-block; margin-bottom: 0.75rem;
+  }
+  .badge-pink { background: var(--baby-pink); color: var(--pixel-dark); }
+  .badge-yellow { background: var(--yellow); color: var(--pixel-dark); }
+  .badge-purple { background: var(--lavender-mid); color: var(--pixel-dark); }
+  .badge-teal { background: var(--mint); color: var(--pixel-dark); }
+  .card-title { font-family: 'Lilita One', sans-serif; font-size: 1rem; color: var(--text); -webkit-text-stroke: 0.5px var(--pixel-dark); margin-bottom: 0.5rem; }
+  .card-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-light); font-weight: 600; }
+
+  /* PROBLEM */
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .pull-quote { font-family: 'Lilita One', sans-serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--purple); -webkit-text-stroke: 0.5px var(--pixel-dark); border-left: 6px solid var(--teal); padding-left: 1.25rem; margin-bottom: 1.25rem; line-height: 1.3; }
+  .body-text { font-size: 0.9rem; line-height: 1.8; color: var(--text-mid); font-weight: 600; margin-bottom: 0.85rem; }
+  .sub-label { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; letter-spacing: 0.1em; color: var(--hot-pink); margin-bottom: 1rem; }
+  .insight-list { list-style: none; }
+  .insight-list li { font-size: 0.82rem; font-weight: 700; color: var(--text-mid); padding: 0.6rem 0; border-bottom: 2px solid var(--mint); display: flex; gap: 0.75rem; align-items: flex-start; line-height: 1.5; }
+  .insight-list li::before { content: '▶'; color: var(--teal); flex-shrink: 0; font-size: 0.6rem; margin-top: 3px; }
+
+  /* USER CARDS */
+  .users-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 1.25rem; }
+  .user-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; transition: all 0.12s; }
+  .user-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
+  .user-card-header { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; letter-spacing: 0.08em; padding: 0.4rem 0.75rem; color: var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); }
+  .uh-teal { background: var(--teal); } .uh-blue { background: var(--baby-blue); }
+  .uh-mint { background: var(--mint); } .uh-pink { background: var(--baby-pink); }
+  .uh-yellow { background: var(--yellow); } .uh-purple { background: var(--lavender-mid); }
+  .user-card-body { padding: 1rem; }
+  .user-icon { font-size: 1.75rem; display: block; margin-bottom: 0.5rem; }
+  .user-name { font-family: 'Lilita One', sans-serif; font-size: 0.95rem; color: var(--text); -webkit-text-stroke: 0.5px var(--pixel-dark); margin-bottom: 0.35rem; }
+  .user-desc { font-size: 0.75rem; line-height: 1.6; color: var(--text-light); font-weight: 600; }
+
+  /* DESIGN DECISIONS */
+  .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .decision-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; }
+  .decision-card::before {
+    content: ''; display: block; height: 6px;
+    background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 20%, var(--yellow) 20%, var(--yellow) 40%, var(--teal) 40%, var(--teal) 60%, var(--purple) 60%, var(--purple) 80%, var(--orange) 80%, var(--orange) 100%);
+  }
+  .decision-card-body { padding: 1.25rem; }
+  .decision-principle { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; letter-spacing: 0.08em; color: var(--teal); margin-bottom: 0.5rem; }
+  .decision-title { font-family: 'Lilita One', sans-serif; font-size: 1rem; color: var(--purple); -webkit-text-stroke: 0.5px var(--pixel-dark); margin-bottom: 0.5rem; }
+  .decision-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-light); font-weight: 600; }
+
+  /* STAT ROW */
+  .stat-row-outer { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; margin-bottom: 2rem; }
+  .stat-cell { padding: 2rem 1rem; text-align: center; border-right: 3px solid var(--pixel-dark); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-family: 'Press Start 2P', monospace; font-size: clamp(1.2rem, 3vw, 1.8rem); color: var(--purple); display: block; margin-bottom: 0.5rem; text-shadow: 3px 3px 0 rgba(161,34,192,0.25); }
+  .stat-label { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; letter-spacing: 0.08em; color: var(--text-light); line-height: 1.8; }
+
+  /* TAKEAWAY */
+  .takeaway { background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; padding: 2.5rem; position: relative; }
+  .takeaway::before { content: '★'; font-family: 'Press Start 2P', monospace; font-size: 2.5rem; position: absolute; top: -1rem; left: 1.5rem; color: var(--purple); text-shadow: 3px 3px 0 var(--pixel-dark); }
+  .takeaway-text { font-family: 'Lilita One', sans-serif; font-size: clamp(1rem, 2vw, 1.35rem); color: var(--pixel-dark); line-height: 1.4; margin-bottom: 0.75rem; }
+  .takeaway-attr { font-size: 0.78rem; font-weight: 700; color: rgba(10,5,32,0.55); }
+
+  /* FOOTER */
+  footer { background: var(--purple); border-top: 4px solid var(--pixel-dark); padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+  .footer-brand { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--mint); letter-spacing: 0.06em; line-height: 2; }
+  .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--yellow); letter-spacing: 0.1em; cursor: pointer; }
+  .footer-links { display: flex; gap: 1rem; }
+  .footer-links a { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--mint); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
+  .footer-links a:hover { color: var(--yellow); }
+
+  @media (max-width: 700px) {
+    .problem-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .users-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .process-grid, .users-grid, .decisions-grid { grid-template-columns: 1fr; }
+    .stat-row-outer { grid-template-columns: 1fr; }
+    .stat-cell { border-right: none; border-bottom: 3px solid var(--pixel-dark); }
+    .stat-cell:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://tomiux.com"><span class="logo-tomi">TOMI</span><span class="logo-ux">UX</span></a>
+    <a class="nav-back" href="https://tomiux.com/#work">← Back to Work</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🔒 CASE STUDY — IxD</div>
+  <h1 class="hero-name">
+    <span class="line1">AUGUST</span>
+    <span class="line2">HOME</span>
+  </h1>
+  <p class="hero-role">Smart Lock UX · End-to-End Design Process</p>
+  <div class="hero-meta">
+    <span class="meta-tag">ROLE: UX DESIGNER</span>
+    <span class="meta-tag">TOOLS: PAPER · FIGMA · LOVABLE</span>
+    <span class="meta-tag">YEAR: SPRING 2026</span>
+    <span class="meta-tag">COURSE: UX 60503</span>
+  </div>
+  <div class="hero-cta">
+    <a href="https://august-home.lovable.app" target="_blank" rel="noopener" class="btn btn-primary">▶ View Live Prototype</a>
+    <a href="#process" class="btn btn-secondary">↓ See the Process</a>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- PROCESS -->
+<div class="section-bg-white" id="process">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge">01 // PROCESS</span>
+      <h2 class="section-title">From sketch to <span class="accent">working product</span></h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-card-top p-pink"></div>
+        <div class="process-card-body">
+          <div class="card-num c-pink">01</div>
+          <span class="card-badge badge-pink">LOW FIDELITY</span>
+          <p class="card-title">Paper Prototype</p>
+          <p class="card-body">Mapped core task flows — locking, unlocking, adding a guest — on paper. Ran usability tests to expose navigation problems before touching any digital tools.</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-card-top p-yellow"></div>
+        <div class="process-card-body">
+          <div class="card-num c-yellow">02</div>
+          <span class="card-badge badge-yellow">PEER FEEDBACK</span>
+          <p class="card-title">Iteration</p>
+          <p class="card-body">Peer critique revealed the permission hierarchy wasn't obvious. Restructured the guest access flow and redesigned how different access types are communicated.</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-card-top p-purple"></div>
+        <div class="process-card-body">
+          <div class="card-num c-purple">03</div>
+          <span class="card-badge badge-purple">INTERACTIVE</span>
+          <p class="card-title">Figma Prototype</p>
+          <p class="card-body">Translated paper into a clickable Figma prototype applying Norman's principles — clear affordances, immediate feedback, natural mapping — to every element.</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <div class="process-card-top p-teal"></div>
+        <div class="process-card-body">
+          <div class="card-num c-teal">04</div>
+          <span class="card-badge badge-teal">PRODUCTION</span>
+          <p class="card-title">Live App</p>
+          <p class="card-body">Built a fully functional prototype in Lovable with real conditional logic, role-based permissions, and a responsive mobile layout.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- LIVE PROTOTYPE EMBED -->
+<div class="section-bg-white">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge">★ // LIVE PROTOTYPE</span>
+      <h2 class="section-title">Try it <span class="accent">yourself</span></h2>
+    </div>
+    <div style="border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; background: var(--pixel-dark);">
+      <div style="background: var(--pixel-dark); padding: 0.6rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 3px solid var(--pixel-dark);">
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--red);display:inline-block;border:2px solid rgba(0,0,0,0.3);"></span>
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--yellow);display:inline-block;border:2px solid rgba(0,0,0,0.3);"></span>
+        <span style="width:10px;height:10px;border-radius:50%;background:var(--teal);display:inline-block;border:2px solid rgba(0,0,0,0.3);"></span>
+        <span style="font-family:'Press Start 2P',monospace;font-size:0.35rem;color:rgba(255,255,255,0.4);margin-left:0.5rem;letter-spacing:0.05em;">august-home.lovable.app</span>
+      </div>
+      <iframe
+        src="https://august-home.lovable.app"
+        width="100%"
+        height="700px"
+        style="display:block; border:none;"
+        title="August Home live prototype"
+        loading="lazy">
+      </iframe>
+    </div>
+    <p style="font-family:'Press Start 2P',monospace;font-size:0.38rem;color:var(--text-light);text-align:center;margin-top:1rem;letter-spacing:0.05em;">
+      ↑ FULLY INTERACTIVE · <a href="https://august-home.lovable.app" target="_blank" rel="noopener" style="color:var(--purple);text-decoration:none;">OPEN IN NEW TAB ↗</a>
+    </p>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- PROBLEM -->
+<div class="section-bg-soft">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge">02 // THE PROBLEM</span>
+      <h2 class="section-title">One lock, <span class="accent2">many kinds of trust</span></h2>
+    </div>
+    <div class="problem-grid">
+      <div>
+        <p class="pull-quote">August Home works great for one owner. Real life has six kinds of users.</p>
+        <p class="body-text">The existing August app is built around a single homeowner. But real usage is messier — a house cleaner on Tuesdays, a dog walker at noon, an Airbnb guest at 3pm, family members, and a neighbor with emergency access. Each relationship carries a different level of trust.</p>
+        <p class="body-text">This project explored how August's permission and access model could be redesigned to handle all of them intuitively — without requiring the owner to think like a system admin.</p>
+      </div>
+      <div>
+        <p class="sub-label">// RESEARCH INSIGHTS</p>
+        <ul class="insight-list">
+          <li>Users couldn't distinguish permanent access from time-limited guest access in the existing app</li>
+          <li>Paper testing showed "add guest" was buried — elevated to a primary action in the redesign</li>
+          <li>The owner vs. guest mental model needed to be established in onboarding, not discovered mid-use</li>
+          <li>Multi-step permission setup spiked cognitive load — introduced progressive disclosure</li>
+          <li>Lock/unlock feedback needed to be immediate and unambiguous across all permission levels</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- USERS -->
+<div class="section-bg-white">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge">03 // WHO USES IT</span>
+      <h2 class="section-title">One app, <span class="accent">six user types</span></h2>
+    </div>
+    <div class="users-grid">
+      <div class="user-card">
+        <div class="user-card-header uh-teal">PLAYER 1 — ADMIN</div>
+        <div class="user-card-body">
+          <span class="user-icon">🏠</span>
+          <p class="user-name">Homeowner</p>
+          <p class="user-desc">Full admin access. Manages all locks, users, schedules, and permissions from one dashboard.</p>
+        </div>
+      </div>
+      <div class="user-card">
+        <div class="user-card-header uh-blue">TRUSTED ACCESS</div>
+        <div class="user-card-body">
+          <span class="user-icon">👨‍👩‍👧</span>
+          <p class="user-name">Family Member</p>
+          <p class="user-desc">Permanent trusted access. May manage guest schedules depending on what the owner allows.</p>
+        </div>
+      </div>
+      <div class="user-card">
+        <div class="user-card-header uh-mint">RECURRING GUEST</div>
+        <div class="user-card-body">
+          <span class="user-icon">🧹</span>
+          <p class="user-name">House Cleaner</p>
+          <p class="user-desc">Recurring weekly access. Time-restricted. Cannot add others or view entry history.</p>
+        </div>
+      </div>
+      <div class="user-card">
+        <div class="user-card-header uh-mint">RECURRING GUEST</div>
+        <div class="user-card-body">
+          <span class="user-icon">🐕</span>
+          <p class="user-name">Dog Walker</p>
+          <p class="user-desc">Daily time-window access. Owner is notified on every entry and exit.</p>
+        </div>
+      </div>
+      <div class="user-card">
+        <div class="user-card-header uh-pink">TEMP GUEST</div>
+        <div class="user-card-body">
+          <span class="user-icon">🏨</span>
+          <p class="user-name">Airbnb Guest</p>
+          <p class="user-desc">Date-range access that expires automatically. No extension without owner approval.</p>
+        </div>
+      </div>
+      <div class="user-card">
+        <div class="user-card-header uh-yellow">EMERGENCY</div>
+        <div class="user-card-body">
+          <span class="user-icon">🔑</span>
+          <p class="user-name">Neighbor</p>
+          <p class="user-desc">Emergency-only access. Requires owner confirmation before the lock responds.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- DESIGN DECISIONS -->
+<div class="section-bg-soft">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge">04 // DESIGN DECISIONS</span>
+      <h2 class="section-title">Course principles, <span class="accent">applied</span></h2>
+    </div>
+    <div class="decisions-grid">
+      <div class="decision-card">
+        <div class="decision-card-body">
+          <p class="decision-principle">NORMAN — AFFORDANCES</p>
+          <p class="decision-title">Lock state is unmissable</p>
+          <p class="decision-body">The lock/unlock button uses size, color, and icon together — never color alone. Any user at any permission level instantly knows the state of every lock they can access.</p>
+        </div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-body">
+          <p class="decision-principle">COGNITIVE DESIGN — PROGRESSIVE DISCLOSURE</p>
+          <p class="decision-title">Who → When → Where</p>
+          <p class="decision-body">Adding a guest follows a strict order. You choose who before you configure timing before you select which locks. This reduces cognitive load and prevents accidental over-permissioning.</p>
+        </div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-body">
+          <p class="decision-principle">NIELSEN — RECOGNITION OVER RECALL</p>
+          <p class="decision-title">Roles are pre-defined</p>
+          <p class="decision-body">Instead of building permissions from scratch, owners pick from named templates: Cleaner, Walker, Guest. Each has visible, adjustable defaults — not a blank slate to memorize.</p>
+        </div>
+      </div>
+      <div class="decision-card">
+        <div class="decision-card-body">
+          <p class="decision-principle">NORMAN — FEEDBACK</p>
+          <p class="decision-title">Every action confirms itself</p>
+          <p class="decision-body">Locking, inviting, revoking — every action produces immediate inline confirmation. The invite button stays disabled until all required fields are complete, preventing empty submissions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- OUTCOMES -->
+<div class="section-bg-white">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge">05 // OUTCOMES</span>
+      <h2 class="section-title">What got <span class="accent">built</span></h2>
+    </div>
+    <div class="stat-row-outer">
+      <div class="stat-cell">
+        <span class="stat-num">4</span>
+        <span class="stat-label">PROTOTYPE<br/>STAGES</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">6</span>
+        <span class="stat-label">USER<br/>TYPES</span>
+      </div>
+      <div class="stat-cell">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">SCORE — ALL<br/>ASSIGNMENTS</span>
+      </div>
+    </div>
+    <div class="takeaway">
+      <p class="takeaway-text">"AI is a powerful execution tool, not a design thinking partner. It builds quickly when given precise, informed direction — but the direction has to come from the designer."</p>
+      <p class="takeaway-attr">— UX 60503 Final Reflection, Spring 2026</p>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<footer>
+  <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
+  <div class="footer-hits" title="you found it 👻" onclick="this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'">SCORE: <span>∞</span></div>
+  <div class="footer-links">
+    <a href="mailto:hello@tomiux.com">Email</a>
+    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://tomiux.com/#work">← Work</a>
+  </div>
+</footer>
+
+</body>
+</html>
