@@ -70,7 +70,33 @@
     background-size: 300px 300px;
   }
 
-  /* ===== NAV handled by /assets/nav.js ===== */
+  /* ===== NAV ===== */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(253,248,255,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 4px solid var(--pixel-dark);
+    box-shadow: 0 4px 0 var(--lavender-dark);
+  }
+  .nav-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem;
+  }
+  .nav-logo {
+    font-family: 'Press Start 2P', monospace; font-size: 1rem;
+    text-decoration: none; line-height: 1;
+  }
+  .logo-tomi { color: #A122C0; text-shadow: 2px 2px 0 rgba(115,23,136,0.3); }
+  .logo-ux   { color: #3FBB9E; text-shadow: 2px 2px 0 rgba(63,187,158,0.3); }
+  .nav-back {
+    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none;
+    background: #A122C0; color: white;
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    transition: all 0.12s;
+  }
+  .nav-back:hover { background: var(--hot-pink); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--pixel-dark); }
 
   /* ===== PIXEL DIVIDER ===== */
   .pixel-divider {
