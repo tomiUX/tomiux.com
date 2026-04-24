@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Philz Coffee Usability Study // TomiUX 🎮</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lavender-bg: #f0e8ff;
+    --lavender-mid: #c8a8f0;
+    --lavender-dark: #9b70d8;
+    --pink: #ff6eb4;
+    --hot-pink: #ff2d9b;
+    --baby-pink: #ffb3d9;
+    --teal: #3FBB9E;
+    --mint: #91EBD3;
+    --yellow: #ffe566;
+    --orange: #ff8c42;
+    --blue: #6bb8ff;
+    --baby-blue: #b3d9ff;
+    --purple: #A122C0;
+    --lime: #c8ff6b;
+    --red: #ff5252;
+    --white: #ffffff;
+    --offwhite: #fdf8ff;
+    --text: #1a0a3e;
+    --text-mid: #4a1878;
+    --text-light: #8850b0;
+    --pixel-dark: #0a0520;
+
+    /* Philz palette: warm amber, not mud */
+    --philz-brown: #A122C0;   /* use site purple as primary anchor */
+    --philz-gold: #ff8c42;    /* site orange = warm coffee accent */
+    --philz-cream: #fff8f0;   /* barely-there warm white */
+    --philz-rust: #ff6eb4;    /* site pink for contrast pops */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--lavender-bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    background-image:
+      radial-gradient(3px 3px at 12% 8%, var(--pink), transparent),
+      radial-gradient(2px 2px at 28% 22%, var(--teal), transparent),
+      radial-gradient(3px 3px at 45% 5%, var(--yellow), transparent),
+      radial-gradient(2px 2px at 62% 18%, var(--purple), transparent),
+      radial-gradient(3px 3px at 78% 10%, var(--orange), transparent),
+      radial-gradient(2px 2px at 92% 25%, var(--teal), transparent),
+      radial-gradient(3px 3px at 15% 45%, var(--yellow), transparent),
+      radial-gradient(2px 2px at 35% 60%, var(--pink), transparent),
+      radial-gradient(3px 3px at 55% 55%, var(--blue), transparent),
+      radial-gradient(2px 2px at 72% 48%, var(--lime), transparent),
+      radial-gradient(3px 3px at 88% 65%, var(--hot-pink), transparent);
+    background-size: 300px 300px;
+  }
+
+  /* ===== NAV handled by /assets/nav.js ===== */
+
+  /* ===== PIXEL DIVIDER ===== */
+  .pixel-divider {
+    height: 12px;
+    background: repeating-linear-gradient(90deg,
+      #3FBB9E 0px, #3FBB9E 20px,
+      #ff6eb4 20px, #ff6eb4 40px,
+      #A122C0 40px, #A122C0 60px,
+      #ffe566 60px, #ffe566 80px,
+      #91EBD3 80px, #91EBD3 100px,
+      #ff8c42 100px, #ff8c42 120px,
+      #3FBB9E 120px, #3FBB9E 140px
+    );
+    border-top: 3px solid var(--pixel-dark);
+    border-bottom: 3px solid var(--pixel-dark);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== HERO ===== */
+  .case-hero {
+    position: relative;
+    z-index: 1;
+    background:
+      radial-gradient(ellipse at 0% 60%, rgba(200,137,44,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 100% 20%, rgba(255,140,66,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(155,89,255,0.15) 0%, transparent 50%),
+      var(--lavender-bg);
+    padding: 4rem 2rem 3rem;
+    border-bottom: 4px solid var(--pixel-dark);
+  }
+
+  .case-hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .case-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--pixel-dark);
+    background: var(--philz-gold);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 3px 3px 0 var(--pixel-dark);
+    padding: 0.4rem 0.8rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .case-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 0.9;
+    margin-bottom: 0.75rem;
+    -webkit-text-stroke: 2px var(--pixel-dark);
+  }
+
+  .case-title .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.2); }
+  .case-title .line2 { display: block; color: var(--orange); text-shadow: 4px 4px 0 rgba(255,140,66,0.2); }
+
+  .case-subtitle {
+    font-size: 1rem;
+    color: var(--text-mid);
+    font-weight: 700;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .case-meta-pills {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .pill {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    border: 2.5px solid var(--pixel-dark);
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+  }
+
+  .pill-brown { background: var(--philz-brown); color: var(--philz-cream); }
+  .pill-gold { background: var(--philz-gold); color: var(--pixel-dark); }
+  .pill-purple { background: var(--purple); color: white; }
+  .pill-teal { background: var(--teal); color: var(--pixel-dark); }
+
+  /* hero stats card */
+  .hero-stat-card {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .stat-card-header {
+    background: var(--purple);
+    padding: 0.7rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stat-card-header span {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: white;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+  }
+
+  .stat-cell {
+    padding: 1.1rem 1.25rem;
+    border-right: 2px solid var(--lavender-mid);
+    border-bottom: 2px solid var(--lavender-mid);
+    text-align: center;
+  }
+  .stat-cell:nth-child(2n) { border-right: none; }
+  .stat-cell:nth-child(3), .stat-cell:nth-child(4) { border-bottom: none; }
+
+  .stat-number {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 2.4rem;
+    line-height: 1;
+    -webkit-text-stroke: 1.5px var(--pixel-dark);
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-label-sm {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  .n12 { color: var(--purple); }
+  .n48 { color: var(--orange); }
+  .n50 { color: var(--red); }
+  .n100 { color: var(--teal); }
+
+  /* ===== WRAPPER ===== */
+  .content-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-badge {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.75rem;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 3px 3px 0 var(--pixel-dark);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .badge-brown { background: var(--philz-brown); color: var(--philz-cream); }
+  .badge-gold { background: var(--philz-gold); color: var(--pixel-dark); }
+  .badge-purple { background: var(--purple); color: white; }
+  .badge-teal { background: var(--teal); color: var(--pixel-dark); }
+  .badge-pink { background: var(--hot-pink); color: white; }
+  .badge-yellow { background: var(--yellow); color: var(--pixel-dark); }
+
+  .section-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1;
+    -webkit-text-stroke: 1.5px var(--pixel-dark);
+    text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+  }
+
+  /* ===== OVERVIEW BLOCK ===== */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .overview-card {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 5px 5px 0 var(--pixel-dark);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .overview-card-top {
+    height: 8px;
+    background: repeating-linear-gradient(90deg,
+      var(--purple) 0, var(--purple) 25%,
+      var(--orange) 25%, var(--orange) 50%,
+      var(--pink) 50%, var(--pink) 75%,
+      var(--teal) 75%, var(--teal) 100%
+    );
+  }
+
+  .overview-card-body { padding: 1.25rem 1.5rem; }
+
+  .overview-card-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .overview-card-text {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    font-weight: 600;
+  }
+
+  /* ===== METHOD TABLE ===== */
+  .method-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 5px 5px 0 var(--pixel-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--white);
+    margin-bottom: 3rem;
+  }
+
+  .method-table th {
+    background: var(--purple);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.8rem 1.25rem;
+    text-align: left;
+    border-right: 2px solid rgba(255,255,255,0.15);
+  }
+
+  .method-table td {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--text-mid);
+    padding: 0.9rem 1.25rem;
+    border-bottom: 2px solid var(--lavender-mid);
+    border-right: 2px solid var(--lavender-mid);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+
+  .method-table tr:last-child td { border-bottom: none; }
+  .method-table td:last-child, .method-table th:last-child { border-right: none; }
+
+  .method-table .label-col {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    color: var(--orange);
+    background: rgba(255,140,66,0.06);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    width: 160px;
+  }
+
+  .footnote {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-style: italic;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-left: 3px solid var(--orange);
+    background: rgba(255,140,66,0.06);
+  }
+
+  /* ===== TASK SCENARIOS ===== */
+  .task-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .task-card {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    border-radius: 10px;
+    padding: 1.25rem;
+    position: relative;
+  }
+
+  .task-num {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.7rem;
+    color: white;
+    background: var(--purple);
+    padding: 0.3rem 0.6rem;
+    border: 2px solid var(--pixel-dark);
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+
+  .task-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.1rem;
+    color: var(--purple);
+    -webkit-text-stroke: 0.5px var(--pixel-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .task-desc {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .task-success-criteria {
+    font-size: 0.76rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    font-weight: 700;
+    background: var(--lavender-bg);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    border-left: 3px solid var(--orange);
+  }
+
+  /* ===== RESULTS TABLE ===== */
+  .results-wrap {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .results-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .results-table th {
+    background: var(--purple);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    padding: 0.9rem 1.25rem;
+    text-align: center;
+    border-right: 2px solid rgba(255,255,255,0.12);
+  }
+
+  .results-table th:first-child { text-align: left; }
+  .results-table th:last-child { border-right: none; }
+
+  .results-table td {
+    padding: 0.85rem 1.25rem;
+    border-bottom: 2px solid var(--lavender-mid);
+    border-right: 2px solid var(--lavender-mid);
+    text-align: center;
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--text-mid);
+  }
+
+  .results-table td:first-child { text-align: left; }
+  .results-table td:last-child { border-right: none; }
+  .results-table tr:last-child td { border-bottom: none; }
+
+  .results-table tr:hover td { background: rgba(255,140,66,0.05); }
+
+  .task-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.82rem;
+  }
+
+  .friction-chip {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    border: 2px solid var(--pixel-dark);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    font-weight: 900;
+  }
+
+  .friction-none { background: #d4f5e9; color: #1a6b4a; }
+  .friction-high { background: #ffe5e5; color: #cc0000; }
+  .friction-med { background: #fff5cc; color: #7a5c00; }
+
+  /* ===== THEMES ===== */
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .theme-card {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.12s;
+  }
+
+  .theme-card:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+
+  .theme-card-top {
+    padding: 0.6rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .theme-icon { font-size: 1.1rem; }
+
+  .theme-card-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+
+  .theme-t1 .theme-card-top { background: var(--purple); }
+  .theme-t2 .theme-card-top { background: var(--hot-pink); }
+  .theme-t3 .theme-card-top { background: var(--teal); }
+  .theme-t4 .theme-card-top { background: var(--orange); }
+  .theme-t4 .theme-card-label { color: var(--pixel-dark); }
+  .theme-t4 .theme-icon { filter: brightness(0.2); }
+
+  .theme-card-body { padding: 1rem 1.1rem 1.1rem; }
+
+  .theme-card-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.05rem;
+    color: var(--text);
+    -webkit-text-stroke: 0.5px var(--pixel-dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .theme-card-text {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .theme-stat {
+    font-size: 0.76rem;
+    color: var(--text-light);
+    font-weight: 700;
+    background: var(--lavender-bg);
+    border-radius: 4px;
+    padding: 0.4rem 0.7rem;
+    display: inline-block;
+    border: 1.5px solid var(--lavender-mid);
+  }
+
+  /* ===== QUOTE WALL ===== */
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .quote-card {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 3px 3px 0 var(--pixel-dark);
+    border-radius: 8px;
+    padding: 1.1rem 1.25rem;
+    position: relative;
+  }
+
+  .quote-category {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .quote-text {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.65;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+  .quote-text::before { content: '"'; color: var(--orange); font-size: 1.5rem; line-height: 0; vertical-align: -0.5rem; margin-right: 0.2rem; font-style: normal; }
+  .quote-text::after { content: '"'; color: var(--orange); font-size: 1.5rem; line-height: 0; vertical-align: -0.5rem; margin-left: 0.2rem; font-style: normal; }
+
+  .quote-sentiment {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--text-light);
+  }
+
+  .sent-positive { color: var(--teal); }
+  .sent-negative { color: var(--red); }
+  .sent-balanced { color: var(--philz-gold); }
+
+  /* ===== UI DISCONNECT SLIDES ===== */
+  .disconnect-card {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .disconnect-header {
+    background: var(--purple);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .disconnect-num {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.7rem;
+    color: var(--yellow);
+    letter-spacing: 0.08em;
+    background: rgba(255,229,102,0.15);
+    padding: 0.3rem 0.6rem;
+    border: 1.5px solid rgba(255,229,102,0.4);
+  }
+
+  .disconnect-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.3rem;
+    color: white;
+    -webkit-text-stroke: 0.5px rgba(255,255,255,0.3);
+  }
+
+  .disconnect-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .disconnect-side {
+    padding: 1.5rem;
+    border-right: 3px solid var(--lavender-mid);
+  }
+
+  .disconnect-side:last-child { border-right: none; }
+
+  .disconnect-side-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    display: inline-block;
+    border: 2px solid var(--pixel-dark);
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+  }
+
+  .label-designed { background: var(--philz-gold); color: var(--pixel-dark); }
+  .label-users { background: var(--red); color: white; }
+
+  .disconnect-text {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+    font-weight: 600;
+  }
+
+  .behavior-list {
+    list-style: none;
+    margin-top: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .behavior-list li {
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    background: var(--lavender-bg);
+    border-left: 3px solid var(--red);
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* ===== RECOMMENDATIONS ===== */
+  .rec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .rec-card {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.12s;
+  }
+
+  .rec-card:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+
+  .rec-card-top {
+    padding: 0.8rem 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .rec-priority {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.5rem;
+    border: 2px solid var(--pixel-dark);
+  }
+
+  .priority-p1 { background: var(--red); color: white; }
+  .priority-p2 { background: var(--philz-gold); color: var(--pixel-dark); }
+
+  .rec-card-icon { font-size: 1.4rem; }
+
+  .rec-t1 .rec-card-top { background: #ffeef8; }
+  .rec-t2 .rec-card-top { background: #ffeef8; }
+  .rec-t3 .rec-card-top { background: #fff3e0; }
+
+  .rec-card-body { padding: 1rem 1.1rem 1.25rem; }
+
+  .rec-card-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.05rem;
+    color: var(--purple);
+    -webkit-text-stroke: 0.5px var(--pixel-dark);
+    margin-bottom: 0.65rem;
+  }
+
+  .rec-item-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .rec-item-list li {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    font-weight: 700;
+    line-height: 1.5;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .rec-item-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+  }
+
+  /* ===== MODERATOR GUIDE CALLOUT ===== */
+  .guide-callout {
+    background: linear-gradient(135deg, var(--lavender-bg), var(--offwhite));
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .guide-callout::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(90deg,
+      var(--purple) 0, var(--purple) 25%,
+      var(--orange) 25%, var(--orange) 50%,
+      var(--pink) 50%, var(--pink) 75%,
+      var(--teal) 75%, var(--teal) 100%
+    );
+  }
+
+  .guide-callout-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .guide-callout-title {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.6rem;
+    color: var(--purple);
+    -webkit-text-stroke: 1px var(--pixel-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .guide-callout-text {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    font-weight: 700;
+    max-width: 60ch;
+  }
+
+  .guide-script-block {
+    background: rgba(161,34,192,0.06);
+    border: 2px dashed var(--purple);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  .guide-practices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .practice-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 0.3rem 0.75rem;
+    border: 2px solid var(--purple);
+    border-radius: 4px;
+    background: rgba(161,34,192,0.08);
+    color: var(--purple);
+  }
+
+  /* ===== LIMITATIONS CALLOUT ===== */
+  .limitation-box {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    border-left: 8px solid var(--orange);
+    margin-bottom: 2rem;
+  }
+
+  .limitation-box-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    color: var(--orange);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .limitation-box-text {
+    font-size: 0.84rem;
+    color: var(--text-mid);
+    font-weight: 700;
+    line-height: 1.65;
+  }
+
+  /* ===== TAKEAWAY BAR ===== */
+  .takeaway-bar {
+    background: var(--purple);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    color: white;
+    margin-bottom: 2rem;
+  }
+
+  .takeaway-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    color: var(--yellow);
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .takeaway-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .takeaway-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .takeaway-num {
+    font-family: 'Lilita One', sans-serif;
+    font-size: 1.8rem;
+    color: var(--yellow);
+    line-height: 1;
+    -webkit-text-stroke: 1px var(--pixel-dark);
+    min-width: 2rem;
+    text-align: center;
+  }
+
+  .takeaway-text {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.92);
+    font-weight: 700;
+    line-height: 1.6;
+    padding-top: 0.2rem;
+  }
+
+  /* ===== BACK BUTTON ===== */
+  .back-cta {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 3px dashed var(--lavender-mid);
+  }
+
+  .btn {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.85rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.12s;
+    cursor: pointer;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+  }
+
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+  .btn-brown { background: var(--philz-brown); color: var(--philz-cream); }
+  .btn-brown:hover { background: var(--philz-rust); }
+
+  /* ===== FOOTER ===== */
+  footer { background: var(--purple); border-top: 4px solid var(--pixel-dark); padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+  .footer-brand { font-family: 'Nunito', sans-serif;
+    font-weight: 900; font-size: 0.72rem; color: var(--mint); letter-spacing: 0.06em; line-height: 2; }
+  .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--yellow); letter-spacing: 0.1em; cursor: pointer; }
+  .footer-links { display: flex; gap: 1rem; }
+  .footer-links a { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--mint); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
+  .footer-links a:hover { color: var(--yellow); }
+
+  /* ===== SECTION BG ALTERNATION ===== */
+  .bg-white { background: var(--white); position: relative; z-index: 1; }
+  .bg-soft {
+    background:
+      radial-gradient(ellipse at 0% 50%, rgba(200,137,44,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 100% 50%, rgba(63,187,158,0.1) 0%, transparent 60%),
+      var(--lavender-bg);
+    position: relative; z-index: 1;
+  }
+
+  /* ===== PRIOR EVALUATION / HEURISTICS ===== */
+  .prior-eval-intro {
+    font-size: 0.92rem;
+    color: var(--text-mid);
+    font-weight: 700;
+    line-height: 1.75;
+    max-width: 72ch;
+    margin-bottom: 2.5rem;
+  }
+
+  .prior-eval-intro em {
+    color: var(--teal);
+    font-style: normal;
+    font-weight: 900;
+  }
+
+  .heuristic-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .heuristic-col {
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 5px 5px 0 var(--pixel-dark);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .heuristic-col-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1.25rem;
+  }
+
+  .heuristic-col-good .heuristic-col-header { background: var(--teal); }
+  .heuristic-col-bad .heuristic-col-header { background: var(--hot-pink); }
+
+  .heuristic-col-icon {
+    font-size: 1rem;
+    font-weight: 900;
+    color: white;
+  }
+
+  .heuristic-col-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: white;
+  }
+
+  .heuristic-items {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .heuristic-item { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .heuristic-tag {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    padding: 0.25rem 0.6rem;
+    border: 2px solid var(--pixel-dark);
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .heuristic-tag-good { background: #d4f5e9; color: #1a6b4a; }
+  .heuristic-tag-bad { background: #ffe5f0; color: #b3005a; }
+
+  .heuristic-text {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    font-weight: 600;
+    line-height: 1.65;
+  }
+
+  .prior-eval-callout {
+    background: var(--purple);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    border-radius: 12px;
+    padding: 1.75rem 2rem;
+  }
+
+  .prior-eval-callout-label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    color: var(--yellow);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+
+  .prior-eval-callout-text {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.92);
+    font-weight: 700;
+    line-height: 1.7;
+    max-width: 80ch;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .case-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .overview-grid { grid-template-columns: 1fr; }
+    .task-grid { grid-template-columns: 1fr; }
+    .heuristic-split { grid-template-columns: 1fr; }
+    .themes-grid { grid-template-columns: 1fr; }
+    .quote-grid { grid-template-columns: 1fr; }
+    .disconnect-body { grid-template-columns: 1fr; }
+    .disconnect-side { border-right: none; border-bottom: 3px solid var(--lavender-mid); }
+    .rec-grid { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* reveal animations */
+  .reveal { opacity: 0; transform: translateY(16px); animation: up 0.6s ease forwards; }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.25s; }
+  .d3 { animation-delay: 0.4s; }
+  @keyframes up { to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<script src="../assets/nav.js"></script>
+
+<!-- CASE STUDY HERO -->
+<section class="case-hero">
+  <div class="case-hero-inner">
+    <div>
+      <div class="case-eyebrow reveal">☕ UX RESEARCH // USABILITY TESTING</div>
+      <h1 class="case-title">
+        <span class="line1 reveal d1">Philz Coffee</span>
+        <span class="line2 reveal d2">Usability Study</span>
+      </h1>
+      <p class="case-subtitle reveal d2">A moderated usability study of the Philz Coffee mobile app with 12 first-time users, uncovering where Philz's signature conversational interface delights and where it trips people up.</p>
+      <div class="case-meta-pills reveal d3">
+        <span class="pill pill-brown">Moderated Testing</span>
+        <span class="pill pill-gold">12 Participants</span>
+        <span class="pill pill-purple">iOS &amp; Android</span>
+        <span class="pill pill-teal">UX Eval Fundamentals</span>
+      </div>
+      </div>
+    </div>
+
+    <div class="hero-stat-card reveal d2">
+      <div class="stat-card-header">
+        <span>STUDY AT A GLANCE</span>
+        <span>☕</span>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-number n12">12</div>
+          <div class="stat-label-sm">Participants<br/>Observed</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number n48">48</div>
+          <div class="stat-label-sm">Scored Task<br/>Attempts</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number n50">50%</div>
+          <div class="stat-label-sm">Affordance<br/>Friction Rate</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number n100">100%</div>
+          <div class="stat-label-sm">Location<br/>Task Success</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider"></div>
+
+<!-- OVERVIEW -->
+<div class="bg-white">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-brown">01 // OVERVIEW</span>
+      <h2 class="section-title" style="color:var(--purple);-webkit-text-stroke:1.5px var(--pixel-dark);">The Study</h2>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="overview-card-top"></div>
+        <div class="overview-card-body">
+          <div class="overview-card-title">What We Were Testing</div>
+          <p class="overview-card-text">The Philz Coffee app uses an unconventional, conversational interface. Ordering feels more like speaking to a barista than tapping a menu. That's a deliberate brand choice. But does it hold up when a first-time user sits down with it alone? This study evaluated learnability, gesture comprehension, and task completion for new users across four core ordering tasks.</p>
+        </div>
+      </div>
+      <div class="overview-card">
+        <div class="overview-card-top"></div>
+        <div class="overview-card-body">
+          <div class="overview-card-title">Why It Matters</div>
+          <p class="overview-card-text">Philz built something distinctive: an ordering experience that mirrors their in-café warmth. The risk is that when the design model doesn't match users' mobile mental models, charm becomes friction. The goal here was to measure that gap precisely, so recommendations could be surgical rather than generic "make it more standard."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <span class="section-badge badge-gold">02 // METHOD</span>
+      <h2 class="section-title" style="color:var(--orange);-webkit-text-stroke:1.5px var(--pixel-dark);">How We Did It</h2>
+    </div>
+
+    <table class="method-table">
+      <thead>
+        <tr>
+          <th style="width:150px;">PARAMETER</th>
+          <th>DETAILS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label-col">Method</td>
+          <td>Moderated usability sessions (in-person and remote), conducted by 6 members of "Group 2." Each member reviewed sessions and synthesized findings collectively.</td>
+        </tr>
+        <tr>
+          <td class="label-col">App Tested</td>
+          <td>Philz Coffee App (iOS and Android)</td>
+        </tr>
+        <tr>
+          <td class="label-col">Participants</td>
+          <td>15 sessions recorded; 12 usable for analysis. Participant profile: regular coffee or tea drinkers who had never or rarely used the Philz app.</td>
+        </tr>
+        <tr>
+          <td class="label-col">Tasks</td>
+          <td>4 core scenarios: store/location selection, coffee customization with modifiers, tea selection + special instructions, cart editing and checkout.</td>
+        </tr>
+        <tr>
+          <td class="label-col">Scoring</td>
+          <td>Each task rated: <strong>Success</strong> / <strong>Success with Difficulty</strong> / <strong>Did Not Succeed</strong>. Gesture log tracked specific interaction behaviors (map vs. search, tap-to-edit recognition, swipe-to-remove attempts).</td>
+        </tr>
+        <tr>
+          <td class="label-col">Goal</td>
+          <td>Assess learnability, gesture comprehension, and task completion for first-time users. Identify friction points specific to Philz's conversational UI model.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="limitation-box">
+      <div class="limitation-box-label">⚠ STUDY LIMITATION</div>
+      <p class="limitation-box-text">Inconsistent script adherence and participant prompting across 5 moderators likely inflated task success rates. Results should be read as conservative estimates of friction; the real numbers may be higher. This is a direct argument for standardized moderation protocols in future rounds.</p>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- TASK SCENARIOS + MODERATOR GUIDE -->
+<div class="bg-soft">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-gold">03 // TASKS</span>
+      <h2 class="section-title" style="color:var(--purple);-webkit-text-stroke:1.5px var(--pixel-dark);">Task Scenarios</h2>
+    </div>
+
+    <div class="task-grid">
+      <div class="task-card">
+        <div class="task-num">TASK 1</div>
+        <div class="task-title">📍 Select a Pickup Location</div>
+        <p class="task-desc">Select a pick-up location in San Francisco, CA (closed stores acceptable).</p>
+        <div class="task-success-criteria">✓ Success: Uses search or map to find and select any SF location within reasonable time.</div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">TASK 2</div>
+        <div class="task-title">☕ Add Coffee w/ Modifiers</div>
+        <p class="task-desc">Add a medium "Oatmeal Cookie Cold Brew" with light almond milk and sweet honey. All three modifiers required.</p>
+        <div class="task-success-criteria">✓ Success: Correct drink with all three modifiers (medium, light, almond milk, sweet, honey).</div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">TASK 3</div>
+        <div class="task-title">🍵 Add Tea + Special Instructions</div>
+        <p class="task-desc">Add any tea of choice, then add a special instruction: "Please do not use the teabag for brewing, use a mesh/filter to avoid microplastics."</p>
+        <div class="task-success-criteria">✓ Success: Tea added; special instructions field located and used.</div>
+      </div>
+      <div class="task-card">
+        <div class="task-num">TASK 4</div>
+        <div class="task-title">🛒 Edit Cart &amp; Checkout</div>
+        <p class="task-desc">Remove the cold brew from cart, add a second identical tea, then proceed to checkout. Stop at payment details.</p>
+        <div class="task-success-criteria">✓ Success: Cold brew removed, tea quantity changed to 2, reached payment screen.</div>
+      </div>
+    </div>
+
+    <!-- Moderator Guide Callout -->
+    <div class="section-header" style="margin-top:1rem;">
+      <span class="section-badge badge-brown">ARTIFACT</span>
+      <h2 class="section-title" style="color:var(--purple);-webkit-text-stroke:1.5px var(--pixel-dark);">Moderator's Guide</h2>
+    </div>
+
+    <div class="guide-callout">
+      <div class="guide-callout-label">📋 MODERATION PROTOCOL</div>
+      <div class="guide-callout-title">Test the app. Not the person.</div>
+      <p class="guide-callout-text">The moderator script was designed to establish a low-pressure environment and encourage authentic think-aloud behavior. Moderators were instructed not to guide, confirm, or correct. Observe and document only.</p>
+
+      <div class="guide-script-block">
+        "Thank you for helping me today. We are testing the Philz Coffee app to see how easy it is for new users to navigate. Please think out loud as much as possible: tell me what you are looking at, what you're trying to do, and if anything surprises you. I am testing the app, not you, so there are no wrong answers."
+      </div>
+
+      <div class="guide-practices" style="margin-top:1.25rem;">
+        <div class="guide-callout-label" style="width:100%;margin-bottom:0.5rem;">MODERATOR BEST PRACTICES</div>
+        <span class="practice-tag">Do not guide or correct</span>
+        <span class="practice-tag">Encourage think-aloud</span>
+        <span class="practice-tag">Allow productive struggle</span>
+        <span class="practice-tag">Avoid confirming correct actions</span>
+        <span class="practice-tag">Record hesitation moments</span>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <div class="guide-callout-label">GESTURE LOG: TRACKED PER PARTICIPANT</div>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:0.5rem;">
+          <div style="background:rgba(161,34,192,0.07);border:2px solid var(--purple);border-radius:6px;padding:0.6rem 1rem;font-size:0.78rem;font-weight:700;color:var(--purple);">🗺 Map vs. Search bar in Task 1</div>
+          <div style="background:rgba(161,34,192,0.07);border:2px solid var(--purple);border-radius:6px;padding:0.6rem 1rem;font-size:0.78rem;font-weight:700;color:var(--purple);">👆 Recognized underlined text as tappable?</div>
+          <div style="background:rgba(161,34,192,0.07);border:2px solid var(--purple);border-radius:6px;padding:0.6rem 1rem;font-size:0.78rem;font-weight:700;color:var(--purple);">👈 Tried swipe-left to remove item?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- WHAT PHILZ GETS RIGHT -->
+<div class="bg-white">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-teal">04 // PRIOR EVALUATION</span>
+      <h2 class="section-title" style="color:var(--teal);-webkit-text-stroke:1.5px var(--pixel-dark);">What Philz Gets Right</h2>
+    </div>
+
+    <div class="prior-eval-intro">
+      <p>Before the moderated usability study, I evaluated both the Philz and Starbucks apps against Nielsen's 10 Usability Heuristics in my Interaction Design course (60503, Prof. Andy Vitale). That work established something important: Philz's conversational interface isn't just a liability. Parts of it are genuinely well-executed. The usability study findings hit harder when you understand what the design is <em>trying</em> to do.</p>
+    </div>
+
+    <div class="heuristic-split">
+      <div class="heuristic-col heuristic-col-good">
+        <div class="heuristic-col-header">
+          <span class="heuristic-col-icon">✓</span>
+          <span class="heuristic-col-label">Where Philz Succeeds</span>
+        </div>
+        <div class="heuristic-items">
+          <div class="heuristic-item">
+            <div class="heuristic-tag heuristic-tag-good">Visibility of System Status</div>
+            <p class="heuristic-text">The add-to-cart button delivers one of the more delightful feedback moments in any food ordering app. It reads "I'll Try It!" before the action, then transitions to "YAY!" after the item is added. It's a small interaction, but it confirms the action immediately and in a voice that matches the brand. Users know it worked.</p>
+          </div>
+          <div class="heuristic-item">
+            <div class="heuristic-tag heuristic-tag-good">Match Between System and Real World</div>
+            <p class="heuristic-text">The conversational sentence structure mirrors how you'd actually speak to a Philz barista. For users who are already Philz fans, this feels native and warm. The language is intentional, not accidental, and it succeeds at reinforcing the brand's in-café personality.</p>
+          </div>
+          <div class="heuristic-item">
+            <div class="heuristic-tag heuristic-tag-good">Aesthetic and Minimalist Design</div>
+            <p class="heuristic-text">The ordering screen is uncluttered. There are no competing calls to action, no promotional noise, no loyalty point banners fighting for attention mid-order. Several participants noted the interface looked "cute" and "simple" on first impression.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="heuristic-col heuristic-col-bad">
+        <div class="heuristic-col-header">
+          <span class="heuristic-col-icon">✕</span>
+          <span class="heuristic-col-label">Where It Breaks Down</span>
+        </div>
+        <div class="heuristic-items">
+          <div class="heuristic-item">
+            <div class="heuristic-tag heuristic-tag-bad">User Control and Freedom</div>
+            <p class="heuristic-text">Starbucks allows order cancellation post-placement. Philz does not. Once an order is submitted, users have no exit. In a heuristic evaluation this is a clear failure of user control; in a live usability session, it's the kind of thing that would cause real anxiety.</p>
+          </div>
+          <div class="heuristic-item">
+            <div class="heuristic-tag heuristic-tag-bad">Consistency and Standards</div>
+            <p class="heuristic-text">Underlined text on the web means a link. In native apps, tappable elements typically look like buttons, chips, or labeled controls. Philz's underlined modifier words violate this convention so thoroughly that 5 of 12 participants in the usability study never discovered them without struggle.</p>
+          </div>
+          <div class="heuristic-item">
+            <div class="heuristic-tag heuristic-tag-bad">Error Prevention</div>
+            <p class="heuristic-text">The Special Instructions field silently caps input with no character counter and no warning. This isn't just a usability failure; it's an error prevention failure. Users believe they've communicated a preference when they haven't. For someone with a dietary restriction, that gap matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prior-eval-callout">
+      <div class="prior-eval-callout-label">THE TENSION</div>
+      <p class="prior-eval-callout-text">Philz's design is trying to do something real: bring the warmth of their café into a mobile experience. That's a legitimate design goal, and in places it works. The problem is that a handful of execution decisions — underlined modifiers as interactive elements, no character counter, a carousel that obscures the full menu — undermine the experience for anyone who isn't already a Philz regular. The usability study quantified exactly where those breakdowns happen.</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- RESULTS -->
+<div class="bg-white">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-purple">05 // RESULTS</span>
+      <h2 class="section-title" style="color:var(--purple);-webkit-text-stroke:1.5px var(--pixel-dark);">What Happened</h2>
+    </div>
+
+    <div class="results-wrap">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>TASK</th>
+            <th>DESCRIPTION</th>
+            <th>✓ SUCCESS</th>
+            <th>⚡ DIFFICULTIES</th>
+            <th>✕ FAIL</th>
+            <th>FRICTION RATE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="task-label">Task 1</span></td>
+            <td style="text-align:left;">Select pickup location</td>
+            <td>12</td>
+            <td>0</td>
+            <td>0</td>
+            <td><span class="friction-chip friction-none">0%</span></td>
+          </tr>
+          <tr>
+            <td><span class="task-label">Task 2</span></td>
+            <td style="text-align:left;">Add coffee with modifiers</td>
+            <td>6</td>
+            <td>5</td>
+            <td>1</td>
+            <td><span class="friction-chip friction-high">50%</span></td>
+          </tr>
+          <tr>
+            <td><span class="task-label">Task 3</span></td>
+            <td style="text-align:left;">Add tea with special instruction</td>
+            <td>9</td>
+            <td>3</td>
+            <td>0</td>
+            <td><span class="friction-chip friction-med">25%</span></td>
+          </tr>
+          <tr>
+            <td><span class="task-label">Task 4</span></td>
+            <td style="text-align:left;">Remove coffee, duplicate tea, checkout</td>
+            <td>7</td>
+            <td>4</td>
+            <td>1</td>
+            <td><span class="friction-chip friction-high">42%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Takeaway bar -->
+    <div class="takeaway-bar">
+      <div class="takeaway-label">★ KEY TAKEAWAYS</div>
+      <div class="takeaway-items">
+        <div class="takeaway-item">
+          <div class="takeaway-num">1</div>
+          <div class="takeaway-text"><strong>Modifier affordance:</strong> 50% of participants had difficulty noticing or interacting with beverage modifiers. Philz's tappable underlined words were invisible to users who expected dropdowns or tap-through images.</div>
+        </div>
+        <div class="takeaway-item">
+          <div class="takeaway-num">2</div>
+          <div class="takeaway-text"><strong>Special Instructions:</strong> 25% of participants struggled with the character limit in the special instructions text field, with no counter shown and no feedback when the limit was hit.</div>
+        </div>
+        <div class="takeaway-item">
+          <div class="takeaway-num">3</div>
+          <div class="takeaway-text"><strong>Cart modifier:</strong> 42% of participants didn't notice the item count button in the cart that allows quantity changes. It's a hidden path that bypasses the need to start over.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- THEMES -->
+<div class="bg-soft">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-teal">06 // THEMES</span>
+      <h2 class="section-title" style="color:var(--teal);-webkit-text-stroke:1.5px var(--pixel-dark);">Friction Patterns</h2>
+    </div>
+
+    <div class="themes-grid">
+      <div class="theme-card theme-t1">
+        <div class="theme-card-top">
+          <span class="theme-icon">👆</span>
+          <span class="theme-card-label">GESTURE &amp; AFFORDANCE MISMATCH</span>
+        </div>
+        <div class="theme-card-body">
+          <div class="theme-card-title">The Invisible Interface</div>
+          <p class="theme-card-text">Users' default mobile behaviors (tapping images, expecting dropdown menus) didn't match Philz's interaction model. Tappable underlined words were read as static text or decorative styling, not buttons.</p>
+          <span class="theme-stat">Only 7 of 12 users noticed modifiable text immediately</span>
+        </div>
+      </div>
+
+      <div class="theme-card theme-t2">
+        <div class="theme-card-top">
+          <span class="theme-icon">💬</span>
+          <span class="theme-card-label">TERMINOLOGY CONFUSION</span>
+        </div>
+        <div class="theme-card-body">
+          <div class="theme-card-title">What Is "Creamy"?</div>
+          <p class="theme-card-text">Modifier labels like "creamy," "light," and "sweet" are evocative but ambiguous. Without scale anchors or definitions, participants slowed down, second-guessed, and asked aloud what amounts these corresponded to.</p>
+          <span class="theme-stat">"What is the quantity of 'creamy'?" (direct participant quote)</span>
+        </div>
+      </div>
+
+      <div class="theme-card theme-t3">
+        <div class="theme-card-top">
+          <span class="theme-icon">🔍</span>
+          <span class="theme-card-label">DISCOVERY VS. DEFAULT PATHS</span>
+        </div>
+        <div class="theme-card-body">
+          <div class="theme-card-title">The Carousel Trap</div>
+          <p class="theme-card-text">The default "Recommended" carousel view presented an infinite scroll of featured items. Users seeking a specific drink expected search, not endless horizontal browsing. Three users couldn't find the full menu without help.</p>
+          <span class="theme-stat">3 users couldn't find full menu immediately</span>
+        </div>
+      </div>
+
+      <div class="theme-card theme-t4">
+        <div class="theme-card-top">
+          <span class="theme-icon">📝</span>
+          <span class="theme-card-label">SPECIAL INSTRUCTIONS CONSTRAINTS</span>
+        </div>
+        <div class="theme-card-body">
+          <div class="theme-card-title">Silent Character Limit</div>
+          <p class="theme-card-text">The Special Instructions field enforces a character limit but shows no counter and gives no feedback when the limit is hit. Users continued typing, unaware their request was being silently truncated.</p>
+          <span class="theme-stat">"Nothing pops up showing I've run out of space."</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- USER VOICE -->
+<div class="bg-white">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-pink">07 // USER VOICE</span>
+      <h2 class="section-title" style="color:var(--hot-pink);-webkit-text-stroke:1.5px var(--pixel-dark);">In Their Words</h2>
+    </div>
+
+    <div class="quote-grid">
+      <div class="quote-card">
+        <div class="quote-category">ONBOARDING</div>
+        <p class="quote-text">The first two steps kind of lock you out of doing anything else, which I don't love. What if I wanted to make an order really quick? You just want to get to it.</p>
+        <div class="quote-sentiment sent-negative">😤 Frustrated</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-category">MENU NAVIGATION</div>
+        <p class="quote-text">Do they not have a search? That to me is a problem.</p>
+        <div class="quote-sentiment sent-negative">😤 Frustrated</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-category">CUSTOMIZATION</div>
+        <p class="quote-text">Those are underlined, looks like hyperlinks. Looks like I'm supposed to click and edit them, but nowhere does it tell me to do that.</p>
+        <div class="quote-sentiment sent-balanced">🤔 Confused</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-category">MODIFIER LANGUAGE</div>
+        <p class="quote-text">The adjectives, I understand from a branding standpoint make it look cute, but it's very difficult for ordering a drink. 'Creamy' and 'Almond Milk' don't make sense together.</p>
+        <div class="quote-sentiment sent-balanced">🤔 Mixed</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-category">SPECIAL INSTRUCTIONS</div>
+        <p class="quote-text">Oh, I'm out of characters! I can't type anymore. Nothing pops up on the screen showing that I've ran out of space in the text box, so I keep unknowingly typing.</p>
+        <div class="quote-sentiment sent-negative">😤 Frustrated</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-category">OVERALL SENTIMENT</div>
+        <p class="quote-text">I know the same things that cause confusion also help to keep it clean. I like the set up if you know what you are doing. After the first time you would know.</p>
+        <div class="quote-sentiment sent-balanced">⚖️ Balanced</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-category">DESIGN PREFERENCE</div>
+        <p class="quote-text">I much prefer to use checkboxes and radio buttons. I don't understand the difference between: sweet, medium, and light. Does 'sweet' just mean a lot?</p>
+        <div class="quote-sentiment sent-balanced">🤔 Curious</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-category">FIRST IMPRESSION</div>
+        <p class="quote-text">I like the intro, looks very cute. Looks pretty simple to use.</p>
+        <div class="quote-sentiment sent-positive">😊 Positive</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- UI DISCONNECTS -->
+<div class="bg-soft">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-purple">08 // UI DISCONNECTS</span>
+      <h2 class="section-title" style="color:var(--purple);-webkit-text-stroke:1.5px var(--pixel-dark);">What Philz Built vs. What Users Did</h2>
+    </div>
+
+    <!-- Task 2 -->
+    <div class="disconnect-card">
+      <div class="disconnect-header">
+        <span class="disconnect-num">TASK 2</span>
+        <span class="disconnect-title">Hidden Customization</span>
+      </div>
+      <div class="disconnect-body">
+        <div class="disconnect-side">
+          <span class="disconnect-side-label label-designed">WHAT PHILZ DESIGNED</span>
+          <p class="disconnect-text">A conversational sentence structured like a verbal order: "I'll have a <u>large</u>, with <u>creamy oat milk</u> and <u>sweet sugar</u>, iced." Tappable, underlined, bolded words allow the user to modify size, milk type, and sweetener inline — an extension of Philz's in-café voice.</p>
+        </div>
+        <div class="disconnect-side">
+          <span class="disconnect-side-label label-users">WHAT USERS DID INSTEAD</span>
+          <ul class="behavior-list">
+            <li>Tapped the product image, expecting a tap-through</li>
+            <li>Opened Special Instructions instead of modifiers</li>
+            <li>Added to cart and tried to edit using the cart's "Edit" button</li>
+            <li>Did not recognize underlined/bold words as interactive</li>
+            <li>Discovered modifiers by accident, only after extended exploration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task 1 -->
+    <div class="disconnect-card">
+      <div class="disconnect-header">
+        <span class="disconnect-num">TASK 1</span>
+        <span class="disconnect-title">Location Ambiguity</span>
+      </div>
+      <div class="disconnect-body">
+        <div class="disconnect-side">
+          <span class="disconnect-side-label label-designed">THE ISSUE</span>
+          <p class="disconnect-text">Region-based store labels ("San Francisco" vs. "South San Francisco") are ambiguous in a scrollable list. All 12 participants confirmed a store without verifying the full address — only 3 were familiar enough with the area to recognize store names by neighborhood.</p>
+          <br/><p class="disconnect-text" style="color:var(--red);">Notable: Corte Madera — ~30 minutes north — was grouped under the San Francisco region.</p>
+        </div>
+        <div class="disconnect-side">
+          <span class="disconnect-side-label label-designed">RECOMMENDATION</span>
+          <p class="disconnect-text">Show full address and city tag prominently in the store list. Correct geographic groupings so regional labels are accurate (Corte Madera ≠ San Francisco). Consider distance from current location as a default sort.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task 4 -->
+    <div class="disconnect-card">
+      <div class="disconnect-header">
+        <span class="disconnect-num">TASK 4</span>
+        <span class="disconnect-title">Quantity Controls</span>
+      </div>
+      <div class="disconnect-body">
+        <div class="disconnect-side">
+          <span class="disconnect-side-label label-designed">WHAT PHILZ DESIGNED</span>
+          <p class="disconnect-text">Tapping the down-arrow on the quantity "1" in the cart opens a bottom drawer — a modal sheet that slides up from the bottom of the screen with stepper controls (+/-) and a "Choose Quantity" confirmation button.</p>
+        </div>
+        <div class="disconnect-side">
+          <span class="disconnect-side-label label-users">WHAT USERS EXPECTED</span>
+          <p class="disconnect-text">A classic dropdown selector or inline +/- stepper — standard patterns that are immediately recognizable. The bottom drawer was a surprise behavior that many participants didn't discover, leading to failed or abandoned attempts at quantity modification.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<!-- RECOMMENDATIONS -->
+<div class="bg-white">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-yellow">09 // RECOMMENDATIONS</span>
+      <h2 class="section-title" style="color:var(--purple);-webkit-text-stroke:1.5px var(--pixel-dark);">What to Fix</h2>
+    </div>
+
+    <div class="rec-grid">
+      <div class="rec-card rec-t1">
+        <div class="rec-card-top">
+          <span class="rec-priority priority-p1">P1 · HIGH</span>
+          <span class="rec-card-icon">☕</span>
+        </div>
+        <div class="rec-card-body">
+          <div class="rec-card-title">Modifier Affordance</div>
+          <ul class="rec-item-list">
+            <li>Add a caret / edit icon next to tappable words</li>
+            <li>Show a one-time first-run tooltip: "Tap words to customize"</li>
+            <li>Better visually distinguish modifiers from static text using weight and color</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rec-card rec-t2">
+        <div class="rec-card-top">
+          <span class="rec-priority priority-p1">P1 · HIGH</span>
+          <span class="rec-card-icon">🔍</span>
+        </div>
+        <div class="rec-card-body">
+          <div class="rec-card-title">Clarify Modifier Language</div>
+          <ul class="rec-item-list">
+            <li>Replace creamy/light/sweet with standard scales or numeric labels</li>
+            <li>Add microcopy explaining each level (e.g., "creamy = ¾ cream")</li>
+            <li>Show a plain-language summary of selected modifiers before adding to cart</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rec-card rec-t3">
+        <div class="rec-card-top">
+          <span class="rec-priority priority-p2">P2 · MEDIUM</span>
+          <span class="rec-card-icon">📱</span>
+        </div>
+        <div class="rec-card-body">
+          <div class="rec-card-title">UX Improvements</div>
+          <ul class="rec-item-list">
+            <li>Stop the "Recommended" carousel from infinite scroll; end with a "See All" card</li>
+            <li>Show character count in the Special Instructions field</li>
+            <li>Implement a standard stepper UI directly on the cart line item</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back CTA -->
+    <div class="back-cta">
+      <a href="https://tomiux.com/#work" class="btn btn-brown">← Back to Featured Work</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
+  <div class="footer-hits" title="you found it 👻" onclick="this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'">SCORE: <span>∞</span></div>
+  <div class="footer-links">
+    <a href="mailto:hello@tomiux.com">Email</a>
+    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://tomiux.com/#work">← Work</a>
+  </div>
+</footer>
+
+</body>
+</html>
