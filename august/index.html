@@ -394,7 +394,7 @@
             <span class="back-label bl-teal">PRODUCTION</span>
             <p class="back-title">Live App</p>
             <p class="back-body">Built a fully functional prototype in Lovable with real conditional logic, role-based permissions, and a responsive mobile layout.</p>
-            <a href="#prototype" class="back-link" onclick="event.stopPropagation(); document.getElementById('prototype').scrollIntoView({behavior:'smooth'});">🎮 PLAY WITH DEMO ↓</a>
+            <button class="back-link" onclick="event.stopPropagation(); setTimeout(function(){ document.getElementById('prototype').scrollIntoView({behavior:'smooth'}); }, 50);" style="background:none;border:none;border-bottom:2px solid var(--purple);padding-bottom:1px;cursor:pointer;">🎮 PLAY WITH DEMO ↓</button>
             <span class="back-flip" onclick="event.stopPropagation();this.closest('.level-card').classList.remove('flipped')">↩ FLIP BACK</span>
           </div>
         </div>
