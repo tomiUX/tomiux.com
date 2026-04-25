@@ -217,32 +217,58 @@
   }
 
   .hero-badge {
-    display: inline-block; padding: 0.4rem 1rem; background: var(--yellow);
+    display: inline-block; padding: 0.5rem 1.1rem; background: var(--yellow);
     border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
-    font-family: 'Press Start 2P', monospace; font-size: 0.55rem;
-    color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.5rem;
+    font-family: 'Press Start 2P', monospace; font-size: 0.6rem;
+    color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.75rem;
   }
 
   .hero-name {
     font-family: 'Unbounded', sans-serif; font-weight: 900;
     font-size: clamp(3rem, 7.5vw, 5.5rem); line-height: 0.95;
-    margin-bottom: 1rem; letter-spacing: -0.02em;
-    /* Stroke around large display text — paint-order keeps the fill on top of the stroke */
-    -webkit-text-stroke: 2px var(--pixel-dark);
+    margin-bottom: 1.25rem; letter-spacing: -0.02em;
+    /* Heavier stroke (7px) for playful chunkiness.
+       paint-order keeps the fill on top of the stroke (no eaten letterforms). */
+    -webkit-text-stroke: 7px var(--pixel-dark);
     paint-order: stroke fill;
   }
-  .hero-name .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
-  .hero-name .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
+  /* Stacked-offset shadows = chunky extruded-3D effect. Three layers stepping
+     out diagonally, all hard-edged, no blur. Same hard-shadow vocabulary as
+     the buttons/cards but turned up — the name is allowed to be the loudest
+     element on the page because it IS the name. */
+  .hero-name .line1 {
+    display: block; color: var(--purple);
+    text-shadow:
+      4px 4px 0 var(--pixel-dark),
+      8px 8px 0 var(--pixel-dark),
+      12px 12px 0 var(--pixel-dark);
+  }
+  .hero-name .line2 {
+    display: block; color: var(--teal);
+    text-shadow:
+      4px 4px 0 var(--pixel-dark),
+      8px 8px 0 var(--pixel-dark),
+      12px 12px 0 var(--pixel-dark);
+  }
 
-  .hero-tagline { font-size: 1rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 0.35rem; font-weight: 700; }
+  /* Tagline = lede statement, sized up to 1.25rem so it doesn't read as body copy.
+     This is the line that has to carry the personality. */
+  .hero-tagline {
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
+    font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+    color: var(--text); line-height: 1.45;
+    margin-top: 0.5rem; margin-bottom: 0.85rem;
+    letter-spacing: -0.005em;
+  }
   /* Was Press Start 2P at 0.55rem in --hot-pink — failed contrast on lavender bg.
      Switched to Nunito 1.05rem 900 in --hot-pink-deep (4.5:1 AA) with a thin
-     dark stroke to anchor the letters visually. */
+     dark stroke to anchor the letters visually. Now tucked tight under the
+     tagline as a clear subtitle rather than a competing element. */
   .hero-role {
     font-family: 'Nunito', sans-serif; font-weight: 900;
-    font-size: 1.05rem; color: var(--hot-pink-deep);
-    letter-spacing: 0.04em; text-transform: uppercase;
-    margin-bottom: 2rem; line-height: 1.5;
+    font-size: 1rem; color: var(--hot-pink-deep);
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-bottom: 2.25rem; line-height: 1.4;
     -webkit-text-stroke: 0.5px var(--pixel-dark);
     paint-order: stroke fill;
   }
@@ -314,9 +340,11 @@
     paint-order: stroke fill;
   }
   .section-title .accent { color: var(--purple); }
-  /* Was --hot-pink (#ff2d9b) — ~3.3:1 on light bg, failed AA. Switched to deep
-     variant which clears 4.5:1 AA. The stroke also gives extra visual anchor. */
-  .section-title .accent2 { color: var(--hot-pink-deep); }
+  /* Bright hot-pink fill on the stroked section titles. The 1.5px dark stroke
+     above gives the letterforms their contrast against the background; the
+     fill color is then free to be the brand bright pink. Reserved
+     --hot-pink-deep for small-text uses that don't have a stroke. */
+  .section-title .accent2 { color: var(--hot-pink); }
 
   /* ===== WORK CARDS ===== */
   .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
@@ -379,17 +407,26 @@
   .about-card-header span { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: #0a0520; letter-spacing: 0.08em; }
   .about-portrait { padding: 1.5rem; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, rgba(255,179,217,0.3), var(--lavender-bg) 70%); min-height: 170px; border-bottom: 3px solid var(--pixel-dark); }
   .about-portrait img { width: 120px; filter: drop-shadow(3px 3px 0 var(--purple)); }
-  .about-stats { padding: 0; }
+  .about-stats { padding: 0; margin: 0; }
   .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 0.65rem 1rem; border-bottom: 2px solid var(--lavender-mid); font-size: 0.78rem; }
   .stat-row:last-child { border-bottom: none; }
-  .stat-label { color: var(--text-light); font-weight: 700; font-size: 0.75rem; }
-  .stat-value { color: var(--text); font-weight: 800; text-align: right; }
+  .stat-label { color: var(--text-light); font-weight: 700; font-size: 0.75rem; margin: 0; }
+  .stat-value { color: var(--text); font-weight: 800; text-align: right; margin: 0; }
   .stat-value.open { color: #0e7a5f; }
 
   .about-lead { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text); line-height: 1.4; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
   .about-lead .hl { color: var(--purple); }
   .about-lead .hl2 { color: #0e7a5f; }
   .about-body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 1.25rem; font-weight: 600; }
+  /* Coined-term highlight — subtle visual cue that these are names Stacy
+     gave the things, not random quoted phrases. Thin pink underline +
+     bumped weight reads as 'I named this' without yelling. */
+  .about-body .coined {
+    font-weight: 800; color: var(--text);
+    border-bottom: 2px solid var(--hot-pink);
+    padding-bottom: 0.05em;
+  }
+  .about-body .hl { font-weight: 800; color: var(--purple); }
   .about-placeholder { display: inline-block; padding: 0.15em 0.5em; background: rgba(255,45,155,0.06); border: 2px dashed var(--pink); border-radius: 4px; color: var(--hot-pink-deep); font-style: italic; }
 
   .contact-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.5rem; border-top: 3px dashed var(--lavender-mid); }
@@ -512,8 +549,8 @@
         <span class="line1 reveal d1">Stacy</span>
         <span class="line2 reveal d2">Tomasi</span>
       </h1>
-      <p class="hero-tagline reveal d3">Designing things that work. Fixing things that don't.</p>
-      <p class="hero-role reveal d3">UX Designer &amp; Usability Tester</p>
+      <p class="hero-tagline reveal d3">Resident button pusher. Designer of cause and effect.</p>
+      <p class="hero-role reveal d3">Interaction Design · UX · Usability</p>
       <div class="hero-cta reveal d4">
         <a href="#work" class="btn btn-primary">▶ Featured Work</a>
         <a href="#about" class="btn btn-secondary">▶ About Me</a>
@@ -687,20 +724,20 @@
           <span>2026 ★★★</span>
         </div>
         <div class="about-portrait">
-          <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX mascot" style="width:140px;height:auto;filter:drop-shadow(3px 3px 0 #A122C0);" />
+          <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="" aria-hidden="true" style="width:140px;height:auto;filter:drop-shadow(3px 3px 0 #A122C0);" />
         </div>
-        <div class="about-stats">
-          <div class="stat-row"><span class="stat-label">Name</span><span class="stat-value">Stacy Tomasi</span></div>
-          <div class="stat-row"><span class="stat-label">Location</span><span class="stat-value">San Jose, CA</span></div>
-          <div class="stat-row"><span class="stat-label">Degree</span><span class="stat-value">MS UX · Kent State</span></div>
-          <div class="stat-row"><span class="stat-label">Focus</span><span class="stat-value">Interaction Design</span></div>
-          <div class="stat-row"><span class="stat-label">Status</span><span class="stat-value open">● Open to Work</span></div>
-        </div>
+        <dl class="about-stats">
+          <div class="stat-row"><dt class="stat-label">Name</dt><dd class="stat-value">Stacy Tomasi</dd></div>
+          <div class="stat-row"><dt class="stat-label">Location</dt><dd class="stat-value">San Jose, CA</dd></div>
+          <div class="stat-row"><dt class="stat-label">Degree</dt><dd class="stat-value">MS UX · Kent State</dd></div>
+          <div class="stat-row"><dt class="stat-label">Focus</dt><dd class="stat-value">Interaction Design</dd></div>
+          <div class="stat-row"><dt class="stat-label">Status</dt><dd class="stat-value open">● Open to Work</dd></div>
+        </dl>
       </div>
       <div class="about-content">
         <p class="about-lead">Hi, I'm Stacy. Bad UX makes me irrationally angry, and I can't unsee it. So I became an <span class="hl">interaction designer</span> and <span class="hl2">usability tester</span>. Turns out this is a whole career and I can get paid to be annoyed instead of doing it for free.</p>
-        <p class="about-body"><span class="about-placeholder">[ Short intro paragraph ]</span></p>
-        <p class="about-body"><span class="about-placeholder">[ Your IxD philosophy ]</span></p>
+        <p class="about-body">What I bring is a low tolerance for friction and a high tolerance for sitting with the problem. I don't ship a fix until I can explain why the original wasn't working — not just where it broke, but what assumption made it break. That habit is why my redesigns hold up when someone asks "why this and not that." Bonus: I will absolutely name the problem. (<span class="coined">UI Disconnect</span>. <span class="coined">Four Seasons, not Motel 6</span>. If it doesn't have a name yet, I'll give it one.)</p>
+        <p class="about-body">Figma, paper prototyping, usability testing (moderated and unmoderated), accessibility audits, heuristic evaluation, cognitive walkthroughs. WCAG, NN/g heuristics, Apple HIG, Material. But the real value I bring is <span class="hl">translation</span> — turning research into design decisions, design decisions into developer-ready specs, and specs into something a stakeholder can actually approve.</p>
         <div class="contact-links">
           <a href="mailto:hello@tomiux.com" class="contact-link">✉ Email</a>
           <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" class="contact-link" aria-label="LinkedIn profile (opens in new tab)">↗ LinkedIn</a>
@@ -755,13 +792,17 @@
     btn.setAttribute('aria-expanded', 'true');
     menuItems[0].focus();
   }
-  function closeMenu() {
+  // returnFocus: when true, send keyboard focus back to the trigger button.
+  // We only want this on keyboard-initiated close (Escape, Tab) — not on
+  // outside clicks, because focusing the trigger triggers the :focus-within
+  // CSS rule, which would immediately reopen the menu we just closed.
+  function closeMenu(returnFocus) {
     menu.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
-    btn.focus();
+    if (returnFocus) btn.focus();
   }
 
-  btn.addEventListener('click', () => menu.classList.contains('open') ? closeMenu() : openMenu());
+  btn.addEventListener('click', () => menu.classList.contains('open') ? closeMenu(false) : openMenu());
   btn.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openMenu(); }
   });
@@ -769,9 +810,9 @@
     const idx = menuItems.indexOf(document.activeElement);
     if (e.key === 'ArrowDown') { e.preventDefault(); menuItems[(idx + 1) % menuItems.length].focus(); }
     if (e.key === 'ArrowUp')   { e.preventDefault(); menuItems[(idx - 1 + menuItems.length) % menuItems.length].focus(); }
-    if (e.key === 'Escape' || e.key === 'Tab') { closeMenu(); }
+    if (e.key === 'Escape' || e.key === 'Tab') { closeMenu(true); }
   });
-  document.addEventListener('click', (e) => { if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu(); });
+  document.addEventListener('click', (e) => { if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu(false); });
 
   // ===== EASTER EGG — native <button> handles Enter/Space via click automatically (WCAG 2.1.1) =====
   const egg = document.getElementById('footer-easter-egg');
