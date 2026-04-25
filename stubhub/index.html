@@ -1,1 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StubHub Annotations // TomiUX ♿</title>
+<style>
+  :root {
+    --lavender-bg: #f0e8ff;
+    --lavender-mid: #c8a8f0;
+    --lavender-dark: #9b70d8;
+    --pink: #ff6eb4;
+    --hot-pink: #ff2d9b;
+    --baby-pink: #ffb3d9;
+    --teal: #3FBB9E;
+    --mint: #91EBD3;
+    --yellow: #ffe566;
+    --orange: #ff8c42;
+    --blue: #6bb8ff;
+    --baby-blue: #b3d9ff;
+    --purple: #A122C0;
+    --lime: #c8ff6b;
+    --red: #ff5252;
+    --white: #ffffff;
+    --offwhite: #fdf8ff;
+    --text: #1a0a3e;
+    --text-mid: #4a1878;
+    --text-light: #6a3090;
+    --pixel-dark: #0a0520;
+  }
 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body { font-family: 'Nunito', sans-serif; background: var(--lavender-bg); color: var(--text); overflow-x: hidden; }
+
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.12;
+    background-image: radial-gradient(3px 3px at 12% 8%, var(--pink), transparent), radial-gradient(2px 2px at 28% 22%, var(--teal), transparent), radial-gradient(3px 3px at 45% 5%, var(--yellow), transparent), radial-gradient(2px 2px at 62% 18%, var(--purple), transparent), radial-gradient(3px 3px at 78% 10%, var(--orange), transparent), radial-gradient(2px 2px at 92% 25%, var(--teal), transparent), radial-gradient(3px 3px at 15% 45%, var(--yellow), transparent), radial-gradient(2px 2px at 35% 60%, var(--pink), transparent), radial-gradient(3px 3px at 55% 55%, var(--blue), transparent), radial-gradient(2px 2px at 72% 48%, var(--lime), transparent), radial-gradient(3px 3px at 88% 65%, var(--hot-pink), transparent), radial-gradient(2px 2px at 8% 78%, var(--teal), transparent), radial-gradient(3px 3px at 25% 88%, var(--purple), transparent), radial-gradient(2px 2px at 48% 80%, var(--orange), transparent), radial-gradient(3px 3px at 68% 92%, var(--pink), transparent), radial-gradient(2px 2px at 85% 82%, var(--yellow), transparent);
+    background-size: 300px 300px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) { body::before { animation: bgShimmer 8s ease-in-out infinite alternate; } }
+  @keyframes bgShimmer { 0% { opacity: 0.08; } 100% { opacity: 0.18; } }
+
+  /* PIXEL DIVIDER */
+  .pixel-divider { height: 12px; background: repeating-linear-gradient(90deg, #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px, #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px, #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px, #3FBB9E 120px, #3FBB9E 140px); border-top: 3px solid var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); position: relative; z-index: 1; }
+
+  /* SECTION WRAPPERS */
+  .section-bg-white { background: var(--white); position: relative; z-index: 1; }
+  .section-bg-soft { background: radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%), radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%), var(--lavender-bg); position: relative; z-index: 1; }
+  .section-wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; position: relative; z-index: 1; }
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .section-badge { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
+  .section-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--text); flex: 1; line-height: 1.05; letter-spacing: -0.02em; }
+  .section-title .accent { color: var(--purple); }
+  .section-title .accent2 { color: var(--hot-pink); }
+
+  /* HERO */
+  .hero { position: relative; z-index: 1; overflow: hidden; padding: 4rem 2rem 3.5rem; text-align: center; background: radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.25) 0%, transparent 50%), radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(155,89,255,0.2) 0%, transparent 50%), var(--lavender-bg); border-bottom: 4px solid var(--pixel-dark); }
+  .hero-badge { display: inline-block; padding: 0.4rem 1rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.5rem; }
+  .hero-name { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 7vw, 5rem); line-height: 0.95; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+  .hero-name .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
+  .hero-name .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
+  .hero-role { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: var(--purple); letter-spacing: 0.08em; margin-bottom: 2rem; line-height: 1.8; font-weight: bold; }
+  .hero-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+  .meta-tag { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.05em; padding: 0.35rem 0.7rem; border: 2px solid var(--pixel-dark); background: var(--white); color: var(--text-mid); line-height: 1.8; }
+  .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; }
+
+  .btn { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.12s; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); cursor: pointer; }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+  .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
+  .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+  .btn-primary { background: #A122C0; color: white; }
+  .btn-primary:hover { background: var(--hot-pink); }
+  .btn-secondary { background: var(--white); color: var(--purple); }
+  .btn-secondary:hover { background: var(--lavender-mid); }
+
+  /* OVERVIEW / PROBLEM SPLIT */
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .pull-quote { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1rem, 2vw, 1.3rem); color: var(--purple); border-left: 6px solid var(--teal); padding-left: 1.25rem; margin-bottom: 1.25rem; line-height: 1.4; letter-spacing: -0.01em; }
+  .body-text { font-size: 0.9rem; line-height: 1.8; color: var(--text-mid); font-weight: 600; margin-bottom: 0.85rem; }
+  .sub-label { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--purple); margin-bottom: 1rem; font-weight: bold; }
+  .insight-list { list-style: none; }
+  .insight-list li { font-size: 0.82rem; font-weight: 700; color: var(--text-mid); padding: 0.6rem 0; border-bottom: 2px solid var(--mint); display: flex; gap: 0.75rem; align-items: flex-start; line-height: 1.5; }
+  .insight-list li::before { content: '▶'; color: var(--teal); flex-shrink: 0; font-size: 0.6rem; margin-top: 3px; }
+
+  /* METHOD CARDS — annotation framework */
+  .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2.5rem; }
+  .method-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; transition: all 0.12s; }
+  .method-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
+  .method-card-top { height: 10px; }
+  .m-pink { background: var(--pink); } .m-yellow { background: var(--yellow); } .m-teal { background: var(--teal); }
+  .method-card-body { padding: 1.5rem 1.25rem 1.25rem; }
+  .method-letter { font-family: 'Press Start 2P', monospace; font-size: 1.1rem; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+  .ml-pink { color: var(--pink); } .ml-yellow { color: #8a5e00; } .ml-teal { color: var(--teal); }
+  .method-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text); margin-bottom: 0.6rem; letter-spacing: -0.01em; }
+  .method-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-light); font-weight: 600; }
+
+  /* POUR ROW */
+  .pour-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .pour-cell { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); border-radius: 10px; padding: 1.1rem 1rem; text-align: center; }
+  .pour-letter { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 2.2rem; line-height: 1; margin-bottom: 0.4rem; letter-spacing: -0.04em; }
+  .pour-letter.p1 { color: var(--purple); }
+  .pour-letter.p2 { color: var(--hot-pink); }
+  .pour-letter.p3 { color: var(--teal); }
+  .pour-letter.p4 { color: var(--orange); }
+  .pour-name { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.06em; color: var(--text); margin-bottom: 0.5rem; }
+  .pour-count { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.05em; color: var(--text-light); }
+
+  /* STAT ROW */
+  .stat-row-outer { display: grid; grid-template-columns: repeat(3, 1fr); background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; margin-bottom: 3rem; }
+  .stat-cell { padding: 2rem 1rem; text-align: center; border-right: 3px solid var(--pixel-dark); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-family: 'Press Start 2P', monospace; font-size: clamp(1.2rem, 3vw, 1.8rem); color: var(--purple); display: block; margin-bottom: 0.5rem; text-shadow: 3px 3px 0 rgba(161,34,192,0.25); }
+  .stat-label { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--text-light); line-height: 1.8; }
+
+  /* ANNOTATION CARDS — the 10 issues */
+  .annotation-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .annotation-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; transition: all 0.12s; display: flex; flex-direction: column; }
+  .annotation-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
+  .annotation-header { background: var(--pixel-dark); padding: 0.85rem 1.1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; border-bottom: 3px solid var(--pixel-dark); }
+  .annotation-num { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: var(--yellow); letter-spacing: 0.05em; flex-shrink: 0; }
+  .annotation-pour { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-left: auto; }
+  .pour-tag { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; padding: 0.25rem 0.5rem; border: 2px solid var(--pixel-dark); letter-spacing: 0.05em; color: var(--pixel-dark); }
+  .pour-tag.tag-p { background: var(--lavender-mid); }
+  .pour-tag.tag-o { background: var(--mint); }
+  .pour-tag.tag-u { background: var(--baby-pink); }
+  .pour-tag.tag-r { background: var(--baby-blue); }
+  .annotation-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.85rem; }
+  .annotation-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--purple); line-height: 1.3; letter-spacing: -0.01em; }
+  .annotation-block { padding: 0.75rem 0.85rem; border-radius: 6px; border: 2px solid var(--pixel-dark); }
+  .ab-problem { background: rgba(255,82,82,0.1); border-color: var(--red); }
+  .ab-spec { background: rgba(255,229,102,0.25); border-color: #c9a800; }
+  .ab-fix { background: rgba(63,187,158,0.15); border-color: var(--teal); }
+  .annotation-block-label { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; letter-spacing: 0.08em; margin-bottom: 0.4rem; display: block; }
+  .ab-problem .annotation-block-label { color: #b71c1c; }
+  .ab-spec .annotation-block-label { color: #6b5400; }
+  .ab-fix .annotation-block-label { color: #1a6b56; }
+  .annotation-block p { font-size: 0.78rem; line-height: 1.55; color: var(--text-mid); font-weight: 600; }
+
+  /* PATTERN CARDS — the themes */
+  .pattern-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .pattern-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; }
+  .pattern-card::before { content: ''; display: block; height: 6px; background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 20%, var(--yellow) 20%, var(--yellow) 40%, var(--teal) 40%, var(--teal) 60%, var(--purple) 60%, var(--purple) 80%, var(--orange) 80%, var(--orange) 100%); }
+  .pattern-card-body { padding: 1.4rem 1.25rem; }
+  .pattern-label { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: var(--teal); margin-bottom: 0.6rem; }
+  .pattern-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1rem; color: var(--purple); margin-bottom: 0.6rem; letter-spacing: -0.01em; line-height: 1.25; }
+  .pattern-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-light); font-weight: 600; }
+  .pattern-refs { margin-top: 0.75rem; font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--purple); letter-spacing: 0.05em; font-weight: bold; }
+
+  /* RECOMMENDATIONS */
+  .rec-list { display: grid; gap: 1.25rem; }
+  .rec-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; padding: 1.5rem 1.5rem 1.5rem 5rem; position: relative; }
+  .rec-card::before { content: attr(data-num); position: absolute; left: 1.25rem; top: 1.25rem; width: 2.75rem; height: 2.75rem; background: var(--purple); color: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Press Start 2P', monospace; font-size: 0.85rem; }
+  .rec-priority { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.08em; padding: 0.25rem 0.5rem; border: 2px solid var(--pixel-dark); display: inline-block; margin-bottom: 0.6rem; background: var(--yellow); color: var(--pixel-dark); }
+  .rec-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  .rec-body { font-size: 0.85rem; line-height: 1.65; color: var(--text-mid); font-weight: 600; }
+
+  /* TAKEAWAY */
+  .takeaway { background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; padding: 2.75rem 2.5rem 2.5rem; position: relative; margin-top: 1rem; }
+  .takeaway::before { content: '★'; font-family: 'Press Start 2P', monospace; font-size: 2.5rem; position: absolute; top: -1rem; left: 1.5rem; color: var(--purple); text-shadow: 3px 3px 0 var(--pixel-dark); }
+  .takeaway-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(0.95rem, 1.8vw, 1.2rem); color: var(--pixel-dark); line-height: 1.5; margin-bottom: 0.85rem; letter-spacing: -0.01em; }
+  .takeaway-attr { font-size: 0.78rem; font-weight: 700; color: rgba(10,5,32,0.6); }
+
+  /* FOOTER */
+  footer { background: var(--purple); border-top: 4px solid var(--pixel-dark); padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+  .footer-brand { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--mint); letter-spacing: 0.06em; line-height: 2; }
+  .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--yellow); letter-spacing: 0.1em; cursor: pointer; padding: 0.4rem 0.75rem; border: 2px solid var(--yellow); background: rgba(0,0,0,0.2); border-radius: 4px; transition: all 0.3s; }
+  .footer-hits:hover, .footer-hits:focus-visible { background: rgba(255,229,102,0.15); border-color: var(--mint); color: var(--mint); }
+  .footer-hits:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+  .footer-links { display: flex; gap: 1rem; }
+  .footer-links a { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--mint); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
+  .footer-links a:hover { color: var(--yellow); }
+  .footer-links a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; color: var(--yellow); border-radius: 2px; }
+
+  @media (max-width: 900px) {
+    .method-grid { grid-template-columns: 1fr; }
+    .pour-row { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 700px) {
+    .problem-grid { grid-template-columns: 1fr; }
+    .annotation-list { grid-template-columns: 1fr; }
+    .pattern-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .stat-row-outer { grid-template-columns: 1fr; }
+    .stat-cell { border-right: none; border-bottom: 3px solid var(--pixel-dark); }
+    .stat-cell:last-child { border-bottom: none; }
+    .pour-row { grid-template-columns: 1fr 1fr; }
+    .rec-card { padding: 4.5rem 1.25rem 1.25rem; }
+    .rec-card::before { top: 1rem; left: 1rem; }
+  }
+</style>
+<script src="/assets/nav.js" defer></script>
+</head>
+<body>
+
+<main id="main-content">
+
+<!-- HERO -->
+<section class="hero" aria-label="StubHub accessibility annotations case study">
+  <div class="hero-badge" aria-hidden="true">♿ CASE STUDY · ACCESSIBILITY</div>
+  <h1 class="hero-name">
+    <span class="line1">STUBHUB</span>
+    <span class="line2">ANNOTATIONS</span>
+  </h1>
+  <p class="hero-role">Accessibility Annotations for Developer Handoff</p>
+  <div class="hero-meta" aria-label="Project details">
+    <span class="meta-tag">ROLE: UX DESIGNER</span>
+    <span class="meta-tag">TOOLS: CANVA · WCAG 2.1 AA</span>
+    <span class="meta-tag">YEAR: SPRING 2026</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#findings" class="btn btn-primary">▶ See the Annotations</a>
+    <a href="#method" class="btn btn-secondary">↓ Annotation Framework</a>
+  </div>
+</section>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- OVERVIEW -->
+<div class="section-bg-white">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">01 // OVERVIEW</span>
+      <h2 class="section-title">Accessibility is a <span class="accent">design deliverable</span>, not a developer guess</h2>
+    </div>
+    <div class="problem-grid">
+      <div>
+        <p class="pull-quote">When designers don't specify accessibility intent, developers fill the gap — and they fill it wrong.</p>
+        <p class="body-text">StubHub's mobile checkout flow is built. It works for sighted mouse users. But across six screens of the purchase path, screen reader users get partial labels, keyboard users lose focus mid-flow, and color-blind users miss urgency cues entirely.</p>
+        <p class="body-text">None of these are developer mistakes. They are design specification gaps. The icons were never marked decorative or meaningful. The buttons were never given accessible names. The error messages were never tied to their fields. Every issue traces back to a missing line in the design handoff.</p>
+        <p class="body-text">This project annotates ten of those gaps, alongside what should have been specified before any code was written.</p>
+      </div>
+      <div>
+        <p class="sub-label">// WHAT THE ANNOTATIONS COVER</p>
+        <ul class="insight-list">
+          <li>Six screens across the StubHub event purchase flow on iOS</li>
+          <li>Ten distinct accessibility failures, each mapped to a WCAG POUR principle</li>
+          <li>Three layers per annotation: the user impact, the design specification gap, and the fix</li>
+          <li>Patterns that recur across the flow: icons without intent, color-only meaning, missing focus management</li>
+          <li>Design-time deliverables that would have prevented every issue documented</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- METHOD -->
+<div class="section-bg-soft" id="method">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">02 // METHOD</span>
+      <h2 class="section-title">Three layers per <span class="accent2">annotation</span></h2>
+    </div>
+    <p class="body-text" style="margin-bottom: 2rem; max-width: 760px;">Each annotation follows the same three-block structure. The pattern forces every gap to be examined from the user, the designer, and the developer perspective, so the fix isn't just code. It's a specification the design system should have carried from the start.</p>
+    <div class="method-grid">
+      <div class="method-card">
+        <div class="method-card-top m-pink" aria-hidden="true"></div>
+        <div class="method-card-body">
+          <div class="method-letter ml-pink" aria-hidden="true">A</div>
+          <p class="method-title">The Problem</p>
+          <p class="method-body">What the user actually experiences. Screen reader silence, keyboard traps, missing context: the failure described from the user's seat, not the inspector panel.</p>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-card-top m-yellow" aria-hidden="true"></div>
+        <div class="method-card-body">
+          <div class="method-letter ml-yellow" aria-hidden="true">B</div>
+          <p class="method-title">What Should Have Been Explicit</p>
+          <p class="method-body">The design specification gap. What the designer needed to mark up at design time: labels, roles, focus order, error semantics, so the developer was never guessing.</p>
+        </div>
+      </div>
+      <div class="method-card">
+        <div class="method-card-top m-teal" aria-hidden="true"></div>
+        <div class="method-card-body">
+          <div class="method-letter ml-teal" aria-hidden="true">C</div>
+          <p class="method-title">The A11Y Fix</p>
+          <p class="method-body">The remediation a developer can implement directly: WCAG-aligned attributes, semantic HTML, focus management, and accessible names with full context.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="sub-label" style="margin-top: 1rem;">// POUR PRINCIPLES TOUCHED ACROSS THE FLOW</p>
+    <div class="pour-row" role="list" aria-label="WCAG POUR principle counts">
+      <div class="pour-cell" role="listitem">
+        <div class="pour-letter p1" aria-hidden="true">P</div>
+        <div class="pour-name">PERCEIVABLE</div>
+        <div class="pour-count">4 ANNOTATIONS</div>
+      </div>
+      <div class="pour-cell" role="listitem">
+        <div class="pour-letter p2" aria-hidden="true">O</div>
+        <div class="pour-name">OPERABLE</div>
+        <div class="pour-count">2 ANNOTATIONS</div>
+      </div>
+      <div class="pour-cell" role="listitem">
+        <div class="pour-letter p3" aria-hidden="true">U</div>
+        <div class="pour-name">UNDERSTANDABLE</div>
+        <div class="pour-count">6 ANNOTATIONS</div>
+      </div>
+      <div class="pour-cell" role="listitem">
+        <div class="pour-letter p4" aria-hidden="true">R</div>
+        <div class="pour-name">ROBUST</div>
+        <div class="pour-count">3 ANNOTATIONS</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- FINDINGS — the 10 annotations -->
+<div class="section-bg-white" id="findings">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">03 // FINDINGS</span>
+      <h2 class="section-title">Ten gaps across the <span class="accent">purchase flow</span></h2>
+    </div>
+
+    <div class="stat-row-outer">
+      <div class="stat-cell"><span class="stat-num">10</span><span class="stat-label">A11Y<br/>ANNOTATIONS</span></div>
+      <div class="stat-cell"><span class="stat-num">6</span><span class="stat-label">SCREENS<br/>AUDITED</span></div>
+      <div class="stat-cell"><span class="stat-num">4/4</span><span class="stat-label">POUR PRINCIPLES<br/>TOUCHED</span></div>
+    </div>
+
+    <ol class="annotation-list" aria-label="Ten StubHub accessibility annotations">
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #1</span>
+          <span class="annotation-pour" aria-label="POUR: Perceivable, Robust">
+            <span class="pour-tag tag-p">P</span><span class="pour-tag tag-r">R</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Search Field Missing Persistent Label</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>Screen reader users hear no label when landing on the search field because the only text is a placeholder that disappears on typing.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>The design must specify a persistent visible label associated with the search input. Placeholder text is not a label.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>Each search field must have a persistent visible label associated with the input. For example: a <code>label</code> element reading "Search" placed above the input and linked via <code>for/id</code>. Placeholder text alone is not sufficient.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #2</span>
+          <span class="annotation-pour" aria-label="POUR: Perceivable">
+            <span class="pour-tag tag-p">P</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Decorative vs Meaningful Icon Not Specified</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>Screen reader users get no description of the ticket icon because the attribute points to <code>title</code> and <code>desc</code> elements that do not exist in the code.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>The design must specify whether this icon is decorative or meaningful. If meaningful, the exact accessible label text must be provided. Without that, the developer attempted accessibility but did so incorrectly.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>If decorative, hide it from screen readers entirely. If meaningful, give it an accessible name. For example: a <code>title</code> element inside the SVG with a description like "Ticket price icon" so screen readers can identify it.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #3</span>
+          <span class="annotation-pour" aria-label="POUR: Understandable">
+            <span class="pour-tag tag-u">U</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Continue Button Missing Context</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>Screen reader users hear only "Continue" with no indication that this button acknowledges a fee disclosure or where it navigates next.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>The design must specify a descriptive accessible name for every button that reflects its purpose. "Continue" alone is not sufficient when the action has a specific meaning in context.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>The button's accessible name must include its purpose. For example: "Continue to event tickets that include all fees." The visible "Continue" label can remain, but the accessible name must carry full context.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #4</span>
+          <span class="annotation-pour" aria-label="POUR: Understandable">
+            <span class="pour-tag tag-u">U</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Ticket Price Button Missing Event Context</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>Screen reader users navigating by button hear "From $247" repeated for every event, with no indication of which event the button applies to.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>Every repeated action button needs a unique accessible name that includes the event it acts on. A hover tooltip was designed for context, but tooltips are only available to mouse users, so keyboard and touch users never see it. Context that exists for some users must be available to all.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>Each ticket button needs an accessible name that includes the event. For example: <code>aria-label="Get tickets for Qatar vs Switzerland, June 13, Levi's Stadium, from $247"</code>. The visible label "From $247" can remain.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #5</span>
+          <span class="annotation-pour" aria-label="POUR: Understandable, Robust">
+            <span class="pour-tag tag-u">U</span><span class="pour-tag tag-r">R</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Status Badges Missing Context</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>Screen reader users hear "Hottest event" and "Best value" with no indication of what criteria determine these labels or what they mean in the context of buying tickets.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>The design must specify the full accessible name for every status badge, not just the visible shorthand, plus the correct role for each badge type. The developer used <code>role="term"</code> (intended for glossary definitions, not status indicators) and badge icons were left unnamed.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>Each badge needs an accessible name that includes context. For example: <code>aria-label="Hottest event: high demand, prices may increase"</code>. Mark badge icons <code>aria-hidden="true"</code> since the text label conveys the meaning. Replace <code>role="term"</code> with an appropriate status role.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #6</span>
+          <span class="annotation-pour" aria-label="POUR: Understandable, Robust">
+            <span class="pour-tag tag-u">U</span><span class="pour-tag tag-r">R</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Modal Title Missing Heading Structure</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>Screen reader users navigating by headings cannot find or identify the modal's purpose because "How many tickets?" is styled visually as a heading but coded as a plain <code>div</code> with no heading role.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>Every modal needs a defined heading level specified in the design. "How many tickets?" is the title of this modal and should have been annotated as an H1 or H2. Without that, the developer styled it visually but never marked it as a real heading.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>Mark "How many tickets?" with an actual <code>h1</code> or <code>h2</code> element inside the modal so screen reader users can identify the modal's purpose when navigating by headings.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #7</span>
+          <span class="annotation-pour" aria-label="POUR: Perceivable">
+            <span class="pour-tag tag-p">P</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Color Used to Convey Urgency</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>Screen reader users and users who cannot perceive color miss the urgency of "4 tickets sold for this event" because the message relies on pink text and a fire emoji to communicate importance.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>The design must specify that urgency or emphasis cannot be conveyed through color or emoji alone. Any message requiring user attention must be marked up so its importance is communicated without relying on visual styling.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>The urgency message must be marked up so screen readers announce it automatically when it appears. The fire emoji needs an accessible name or must be hidden from screen readers if the surrounding text already conveys urgency.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #8</span>
+          <span class="annotation-pour" aria-label="POUR: Operable">
+            <span class="pour-tag tag-o">O</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Auto-Appearing Modal Missing Focus Management</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>Keyboard users lose their place when this modal appears automatically mid-purchase flow because focus is not moved to the modal, and the triggering element is not defined.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>The design must specify that any modal appearing automatically must immediately receive focus when it opens. Without this, the developer had no guidance on focus behavior, leaving keyboard users stranded when the modal appears unexpectedly.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>When this modal opens automatically, focus must move immediately to the first interactive element or the modal heading. Focus should land on the "Continue" button or "Hey there!" heading on open, and return to the triggering element on close.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #9</span>
+          <span class="annotation-pour" aria-label="POUR: Perceivable, Understandable">
+            <span class="pour-tag tag-p">P</span><span class="pour-tag tag-u">U</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Error State Not Announced to Screen Readers</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>The error message "Please enter a valid email address" is visible as red text but is not announced to screen reader users. It has no programmatic connection to the input field and no live announcement role.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>The design must specify that the error message requires a programmatic connection to its field, not just visual placement near it. Red color and red border alone cannot communicate an error state to users who cannot perceive color.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>The email field must be marked invalid when an error occurs, and the error message must be announced automatically when it appears. The message must be associated with the input so screen readers connect the two. Red border and red text alone are not sufficient.</p>
+          </div>
+        </div>
+      </li>
+
+      <li class="annotation-card">
+        <div class="annotation-header">
+          <span class="annotation-num" aria-hidden="true">AA #10</span>
+          <span class="annotation-pour" aria-label="POUR: Understandable, Operable">
+            <span class="pour-tag tag-u">U</span><span class="pour-tag tag-o">O</span>
+          </span>
+        </div>
+        <div class="annotation-body">
+          <p class="annotation-title">Disabled Button Provides No Explanation</p>
+          <div class="annotation-block ab-problem">
+            <span class="annotation-block-label">PROBLEM</span>
+            <p>Keyboard users tab to the "Continue" button and receive no information about why it is disabled or what action is needed to enable it. They are left with no path forward.</p>
+          </div>
+          <div class="annotation-block ab-spec">
+            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
+            <p>The design must specify what conditions disable a button and what message communicates that state to all users. A visually greyed-out button is not sufficient. The reason for the disabled state must be defined at design time.</p>
+          </div>
+          <div class="annotation-block ab-fix">
+            <span class="annotation-block-label">A11Y FIX</span>
+            <p>The disabled Continue button must communicate why it is unavailable to all users. For example: "Continue is unavailable until a valid email address is entered." That way, keyboard and screen reader users understand what action is needed.</p>
+          </div>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- PATTERNS -->
+<div class="section-bg-soft">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">04 // PATTERNS</span>
+      <h2 class="section-title">Four failure modes, <span class="accent2">recurring</span></h2>
+    </div>
+    <p class="body-text" style="margin-bottom: 2.5rem; max-width: 760px;">The ten annotations are not ten unrelated bugs. They cluster into four design-time omissions that repeat across the flow. Naming the patterns matters more than fixing one instance, because a pattern fix scales.</p>
+    <div class="pattern-grid">
+      <div class="pattern-card">
+        <div class="pattern-card-body">
+          <p class="pattern-label">PATTERN 01</p>
+          <p class="pattern-title">Icons without intent</p>
+          <p class="pattern-body">Icons appear throughout the flow with no design-time decision about whether they are decorative or meaningful. Developers guess — sometimes hiding important icons, sometimes labeling decorative ones. Every icon needs that flag set in the design file.</p>
+          <p class="pattern-refs">↳ AA #2 · AA #5 · AA #7</p>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-card-body">
+          <p class="pattern-label">PATTERN 02</p>
+          <p class="pattern-title">Color carrying the meaning alone</p>
+          <p class="pattern-body">Urgency, error states, and disabled states all rely on color as the only signal. WCAG 1.4.1 — Use of Color — is violated repeatedly. Every state change needs a non-color companion: text, icon shape, programmatic role, or announcement.</p>
+          <p class="pattern-refs">↳ AA #7 · AA #9 · AA #10</p>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-card-body">
+          <p class="pattern-label">PATTERN 03</p>
+          <p class="pattern-title">Visible labels that aren't accessible names</p>
+          <p class="pattern-body">"Continue", "From $247", "Hottest event" — short visible labels work for sighted users with full screen context, but strip out everything a screen reader needs to disambiguate. The accessible name must carry the full context the visual layout implies.</p>
+          <p class="pattern-refs">↳ AA #1 · AA #3 · AA #4 · AA #5</p>
+        </div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-card-body">
+          <p class="pattern-label">PATTERN 04</p>
+          <p class="pattern-title">Focus and structure left undefined</p>
+          <p class="pattern-body">Modal headings, auto-appearing dialogs, and disabled-state messaging all skip the keyboard and assistive tech path. Focus management and heading structure are not afterthoughts — they are first-class design specifications, on equal footing with layout and color.</p>
+          <p class="pattern-refs">↳ AA #6 · AA #8 · AA #10</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- RECOMMENDATIONS -->
+<div class="section-bg-white">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">05 // RECOMMENDATIONS</span>
+      <h2 class="section-title">Design-time deliverables that <span class="accent">close the gap</span></h2>
+    </div>
+    <div class="rec-list">
+      <div class="rec-card" data-num="01">
+        <span class="rec-priority">HIGH PRIORITY</span>
+        <p class="rec-title">Add an a11y annotation layer to the Figma component library</p>
+        <p class="rec-body">Every interactive component in the design system should ship with its accessible name pattern, role, focus order, and decorative-vs-meaningful flag visible in the file. Annotations are not extra work — they are the spec. If a component cannot be annotated, it cannot ship.</p>
+      </div>
+      <div class="rec-card" data-num="02">
+        <span class="rec-priority">HIGH PRIORITY</span>
+        <p class="rec-title">Define an "accessible name" requirement on every button and badge token</p>
+        <p class="rec-body">Tokens for buttons, badges, and status indicators must include both the visible label and the accessible name as separate fields. The pattern of "Continue", "From $247", and "Hottest event" repeats across the flow because the design system never separated the two. Make it impossible to forget.</p>
+      </div>
+      <div class="rec-card" data-num="03">
+        <span class="rec-priority">MEDIUM PRIORITY</span>
+        <p class="rec-title">Specify focus behavior for every modal and dialog at design time</p>
+        <p class="rec-body">Auto-appearing modals, success states, and error dialogs need a focus-management spec attached to the artboard: where focus lands on open, where it returns on close, what gets the heading role. Developers should not be inferring this from screenshots.</p>
+      </div>
+      <div class="rec-card" data-num="04">
+        <span class="rec-priority">MEDIUM PRIORITY</span>
+        <p class="rec-title">Pair every color-coded state with a non-color signal in the spec</p>
+        <p class="rec-body">Disabled states, error states, urgency cues, and status indicators must carry a second channel — text, icon shape, role, or live region — defined at design time. WCAG 1.4.1 cannot be remediated in QA. It has to be designed in.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- TAKEAWAY -->
+<div class="section-bg-soft">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">06 // TAKEAWAY</span>
+      <h2 class="section-title">The fix isn't <span class="accent">code</span>. It's the <span class="accent2">handoff</span>.</h2>
+    </div>
+    <div class="takeaway">
+      <p class="takeaway-text">"Every accessibility failure I annotated traced back to a missing line in the design spec. Developers were not being lazy — they were being asked to invent semantics that the design file should have carried. Accessibility is not a remediation phase. It is a design deliverable."</p>
+      <p class="takeaway-attr">— Stacy Tomasi · UX 60504 Accessibility &amp; Universal Design · Spring 2026</p>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+</main>
+
+<footer>
+  <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
+  <div class="footer-hits" tabindex="0" role="button" aria-label="Secret score counter" title="you found it 👻" id="footer-easter-egg">SCORE: <span aria-hidden="true">∞</span></div>
+  <div class="footer-links">
+    <a href="mailto:hello@tomiux.com">Email</a>
+    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
+    <a href="https://tomiux.com/#work">← Work</a>
+  </div>
+</footer>
+
+<script>
+  const egg = document.getElementById('footer-easter-egg');
+  function activateEgg() { egg.setAttribute('data-found','true'); egg.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'; egg.setAttribute('aria-label','Konami code accepted!'); }
+  egg.addEventListener('click', activateEgg);
+  egg.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); } });
+</script>
+
+</body>
+</html>
