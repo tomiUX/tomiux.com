@@ -6,7 +6,7 @@
 <title>August Home // TomiUX Case Study 🔒</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --lavender-bg: #f0e8ff;
@@ -28,189 +28,94 @@
     --offwhite: #fdf8ff;
     --text: #1a0a3e;
     --text-mid: #4a1878;
-    --text-light: #8850b0;
+    --text-light: #6a3090;
     --pixel-dark: #0a0520;
   }
+
+  /* ===== SKIP LINK (WCAG 2.4.1) ===== */
+  .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--purple); color: white; padding: 0.75rem 1.25rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; text-decoration: none; border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); z-index: 9999; border-radius: 0 0 8px 8px; }
+  .skip-link:focus { top: 0; }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--lavender-bg);
-    color: var(--text);
-    overflow-x: hidden;
-  }
+  body { font-family: 'Nunito', sans-serif; background: var(--lavender-bg); color: var(--text); overflow-x: hidden; }
 
   body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-    opacity: 0.12;
-    background-image:
-      radial-gradient(3px 3px at 12% 8%, var(--pink), transparent),
-      radial-gradient(2px 2px at 28% 22%, var(--teal), transparent),
-      radial-gradient(3px 3px at 45% 5%, var(--yellow), transparent),
-      radial-gradient(2px 2px at 62% 18%, var(--purple), transparent),
-      radial-gradient(3px 3px at 78% 10%, var(--orange), transparent),
-      radial-gradient(2px 2px at 92% 25%, var(--teal), transparent),
-      radial-gradient(3px 3px at 15% 45%, var(--yellow), transparent),
-      radial-gradient(2px 2px at 35% 60%, var(--pink), transparent),
-      radial-gradient(3px 3px at 55% 55%, var(--blue), transparent),
-      radial-gradient(2px 2px at 72% 48%, var(--lime), transparent),
-      radial-gradient(3px 3px at 88% 65%, var(--hot-pink), transparent),
-      radial-gradient(2px 2px at 8% 78%, var(--teal), transparent),
-      radial-gradient(3px 3px at 25% 88%, var(--purple), transparent),
-      radial-gradient(2px 2px at 48% 80%, var(--orange), transparent),
-      radial-gradient(3px 3px at 68% 92%, var(--pink), transparent),
-      radial-gradient(2px 2px at 85% 82%, var(--yellow), transparent);
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.12;
+    background-image: radial-gradient(3px 3px at 12% 8%, var(--pink), transparent), radial-gradient(2px 2px at 28% 22%, var(--teal), transparent), radial-gradient(3px 3px at 45% 5%, var(--yellow), transparent), radial-gradient(2px 2px at 62% 18%, var(--purple), transparent), radial-gradient(3px 3px at 78% 10%, var(--orange), transparent), radial-gradient(2px 2px at 92% 25%, var(--teal), transparent), radial-gradient(3px 3px at 15% 45%, var(--yellow), transparent), radial-gradient(2px 2px at 35% 60%, var(--pink), transparent), radial-gradient(3px 3px at 55% 55%, var(--blue), transparent), radial-gradient(2px 2px at 72% 48%, var(--lime), transparent), radial-gradient(3px 3px at 88% 65%, var(--hot-pink), transparent), radial-gradient(2px 2px at 8% 78%, var(--teal), transparent), radial-gradient(3px 3px at 25% 88%, var(--purple), transparent), radial-gradient(2px 2px at 48% 80%, var(--orange), transparent), radial-gradient(3px 3px at 68% 92%, var(--pink), transparent), radial-gradient(2px 2px at 85% 82%, var(--yellow), transparent);
     background-size: 300px 300px;
-    animation: bgShimmer 8s ease-in-out infinite alternate;
   }
+
+  @media (prefers-reduced-motion: no-preference) { body::before { animation: bgShimmer 8s ease-in-out infinite alternate; } }
   @keyframes bgShimmer { 0% { opacity: 0.08; } 100% { opacity: 0.18; } }
 
   /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(253,248,255,0.92);
-    backdrop-filter: blur(16px);
-    border-bottom: 4px solid var(--pixel-dark);
-    box-shadow: 0 4px 0 var(--lavender-dark);
-  }
-  .nav-inner {
-    display: flex; justify-content: space-between; align-items: center;
-    max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem;
-  }
-  .nav-logo {
-    font-family: 'Press Start 2P', monospace; font-size: 1rem;
-    text-decoration: none; line-height: 1;
-  }
-  .logo-tomi { color: #A122C0; text-shadow: 2px 2px 0 rgba(115,23,136,0.3); }
-  .logo-ux   { color: #3FBB9E; text-shadow: 2px 2px 0 rgba(63,187,158,0.3); }
-  .nav-back {
-    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none;
-    background: #A122C0; color: white;
-    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
-    transition: all 0.12s;
-  }
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(253,248,255,0.92); backdrop-filter: blur(16px); border-bottom: 4px solid var(--pixel-dark); box-shadow: 0 4px 0 var(--lavender-dark); }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem; }
+  .nav-logo { font-family: 'Press Start 2P', monospace; font-size: 1rem; text-decoration: none; line-height: 1; }
+  .logo-tomi { color: #A122C0; }
+  .logo-ux { color: #3FBB9E; }
+  .nav-logo:focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; border-radius: 4px; }
+  .nav-back { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none; background: #A122C0; color: white; border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); transition: all 0.12s; }
   .nav-back:hover { background: var(--hot-pink); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--pixel-dark); }
+  .nav-back:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 
-  /* PIXEL DIVIDER, exact from index.html */
-  .pixel-divider {
-    height: 12px;
-    background: repeating-linear-gradient(90deg,
-      #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px,
-      #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px,
-      #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px,
-      #3FBB9E 120px, #3FBB9E 140px);
-    border-top: 3px solid var(--pixel-dark);
-    border-bottom: 3px solid var(--pixel-dark);
-    position: relative; z-index: 1;
-  }
+  /* PIXEL DIVIDER */
+  .pixel-divider { height: 12px; background: repeating-linear-gradient(90deg, #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px, #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px, #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px, #3FBB9E 120px, #3FBB9E 140px); border-top: 3px solid var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); position: relative; z-index: 1; }
 
   /* SECTION WRAPPERS */
   .section-bg-white { background: var(--white); position: relative; z-index: 1; }
-  .section-bg-soft {
-    background:
-      radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%),
-      radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%),
-      var(--lavender-bg);
-    position: relative; z-index: 1;
-  }
+  .section-bg-soft { background: radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%), radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%), var(--lavender-bg); position: relative; z-index: 1; }
   .section-wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; position: relative; z-index: 1; }
   .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
-  .section-badge {
-    font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
-    padding: 0.4rem 0.75rem; background: var(--yellow);
-    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
-    color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap;
-  }
-  .section-title {
-    font-family: 'Lilita One', sans-serif; font-size: clamp(2rem, 4.5vw, 3.2rem);
-    color: var(--text); flex: 1; line-height: 1;
-    -webkit-text-stroke: 1.5px var(--pixel-dark); text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
-  }
-  .section-title .accent  { color: var(--purple); }
+  .section-badge { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
+  .section-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--text); flex: 1; line-height: 1.05; letter-spacing: -0.02em; }
+  .section-title .accent { color: var(--purple); }
   .section-title .accent2 { color: var(--hot-pink); }
 
   /* HERO */
-  .hero {
-    position: relative; z-index: 1; overflow: hidden;
-    padding: 4rem 2rem 3.5rem; text-align: center;
-    background:
-      radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.25) 0%, transparent 50%),
-      radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 90%, rgba(155,89,255,0.2) 0%, transparent 50%),
-      var(--lavender-bg);
-    border-bottom: 4px solid var(--pixel-dark);
-  }
-  .hero-badge {
-    display: inline-block; padding: 0.4rem 1rem; background: var(--yellow);
-    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
-    font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
-    color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.5rem;
-  }
-  .hero-name { font-family: 'Lilita One', sans-serif; font-size: clamp(3rem, 9vw, 6rem); line-height: 0.9; margin-bottom: 1.25rem; }
-  .hero-name .line1 { display: block; color: var(--purple); -webkit-text-stroke: 2px var(--pixel-dark); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
-  .hero-name .line2 { display: block; color: var(--teal); -webkit-text-stroke: 2px var(--pixel-dark); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
+  .hero { position: relative; z-index: 1; overflow: hidden; padding: 4rem 2rem 3.5rem; text-align: center; background: radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.25) 0%, transparent 50%), radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(155,89,255,0.2) 0%, transparent 50%), var(--lavender-bg); border-bottom: 4px solid var(--pixel-dark); }
+  .hero-badge { display: inline-block; padding: 0.4rem 1rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.5rem; }
+  .hero-name { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 7vw, 5rem); line-height: 0.95; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+  .hero-name .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
+  .hero-name .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
   .hero-role { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--hot-pink); letter-spacing: 0.08em; margin-bottom: 2rem; line-height: 1.8; }
   .hero-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
-  .meta-tag { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; letter-spacing: 0.05em; padding: 0.35rem 0.7rem; border: 2px solid var(--pixel-dark); background: var(--white); color: var(--text-mid); line-height: 1.8; }
+  .meta-tag { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; letter-spacing: 0.05em; padding: 0.35rem 0.7rem; border: 2px solid var(--pixel-dark); background: var(--white); color: var(--text-mid); line-height: 1.8; }
   .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; }
-  .btn {
-    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.12s;
-    border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark);
-  }
+
+  .btn { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.12s; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); }
   .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
   .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
+  .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
   .btn-primary { background: #A122C0; color: white; }
   .btn-primary:hover { background: var(--hot-pink); }
   .btn-secondary { background: var(--white); color: var(--purple); }
   .btn-secondary:hover { background: var(--lavender-mid); }
-.back-cta {
-  text-align: center;
-  padding-top: 2rem;
-  border-top: 3px dashed var(--lavender-mid);
-}
+
   /* PROCESS CARDS */
   .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; }
-  .process-card {
-    background: var(--white); border-radius: 12px;
-    border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark);
-    overflow: hidden; transition: all 0.12s;
-  }
+  .process-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; transition: all 0.12s; }
   .process-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
   .process-card-top { height: 10px; }
   .p-pink { background: var(--pink); } .p-yellow { background: var(--yellow); }
   .p-purple { background: var(--purple); } .p-teal { background: var(--teal); }
   .process-card-body { padding: 1.25rem; }
   .card-num { font-family: 'Press Start 2P', monospace; font-size: 1.2rem; margin-bottom: 0.5rem; }
-  .c-pink { color: var(--pink); } .c-yellow { color: #b07d00; }
+  .c-pink { color: var(--pink); } .c-yellow { color: #8a5e00; }
   .c-purple { color: var(--purple); } .c-teal { color: var(--teal); }
-  .card-badge {
-    font-family: 'Press Start 2P', monospace; font-size: 0.38rem;
-    padding: 0.2rem 0.5rem; border: 2px solid var(--pixel-dark);
-    display: inline-block; margin-bottom: 0.75rem;
-  }
-  .badge-pink { background: var(--baby-pink); color: var(--pixel-dark); }
-  .badge-yellow { background: var(--yellow); color: var(--pixel-dark); }
-  .badge-purple { background: var(--lavender-mid); color: var(--pixel-dark); }
-  .badge-teal { background: var(--mint); color: var(--pixel-dark); }
-  .card-title { font-family: 'Lilita One', sans-serif; font-size: 1rem; color: var(--text); -webkit-text-stroke: 0.5px var(--pixel-dark); margin-bottom: 0.5rem; }
+  .card-badge { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; padding: 0.2rem 0.5rem; border: 2px solid var(--pixel-dark); display: inline-block; margin-bottom: 0.75rem; }
+  .badge-pink { background: var(--baby-pink); color: var(--pixel-dark); } .badge-yellow { background: var(--yellow); color: var(--pixel-dark); }
+  .badge-purple { background: var(--lavender-mid); color: var(--pixel-dark); } .badge-teal { background: var(--mint); color: var(--pixel-dark); }
+  .card-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
   .card-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-light); font-weight: 600; }
 
   /* PROBLEM */
   .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-  .pull-quote { font-family: 'Lilita One', sans-serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); color: var(--purple); -webkit-text-stroke: 0.5px var(--pixel-dark); border-left: 6px solid var(--teal); padding-left: 1.25rem; margin-bottom: 1.25rem; line-height: 1.3; }
+  .pull-quote { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1rem, 2vw, 1.3rem); color: var(--purple); border-left: 6px solid var(--teal); padding-left: 1.25rem; margin-bottom: 1.25rem; line-height: 1.4; letter-spacing: -0.01em; }
   .body-text { font-size: 0.9rem; line-height: 1.8; color: var(--text-mid); font-weight: 600; margin-bottom: 0.85rem; }
-  .sub-label { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; letter-spacing: 0.1em; color: var(--hot-pink); margin-bottom: 1rem; }
+  .sub-label { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; letter-spacing: 0.1em; color: var(--hot-pink); margin-bottom: 1rem; }
   .insight-list { list-style: none; }
   .insight-list li { font-size: 0.82rem; font-weight: 700; color: var(--text-mid); padding: 0.6rem 0; border-bottom: 2px solid var(--mint); display: flex; gap: 0.75rem; align-items: flex-start; line-height: 1.5; }
   .insight-list li::before { content: '▶'; color: var(--teal); flex-shrink: 0; font-size: 0.6rem; margin-top: 3px; }
@@ -219,25 +124,22 @@
   .users-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 1.25rem; }
   .user-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; transition: all 0.12s; }
   .user-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
-  .user-card-header { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; letter-spacing: 0.08em; padding: 0.4rem 0.75rem; color: var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); }
+  .user-card-header { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; letter-spacing: 0.08em; padding: 0.4rem 0.75rem; color: var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); }
   .uh-teal { background: var(--teal); } .uh-blue { background: var(--baby-blue); }
   .uh-mint { background: var(--mint); } .uh-pink { background: var(--baby-pink); }
   .uh-yellow { background: var(--yellow); } .uh-purple { background: var(--lavender-mid); }
   .user-card-body { padding: 1rem; }
   .user-icon { font-size: 1.75rem; display: block; margin-bottom: 0.5rem; }
-  .user-name { font-family: 'Lilita One', sans-serif; font-size: 0.95rem; color: var(--text); -webkit-text-stroke: 0.5px var(--pixel-dark); margin-bottom: 0.35rem; }
+  .user-name { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--text); margin-bottom: 0.35rem; letter-spacing: -0.01em; }
   .user-desc { font-size: 0.75rem; line-height: 1.6; color: var(--text-light); font-weight: 600; }
 
   /* DESIGN DECISIONS */
   .decisions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
   .decision-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; }
-  .decision-card::before {
-    content: ''; display: block; height: 6px;
-    background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 20%, var(--yellow) 20%, var(--yellow) 40%, var(--teal) 40%, var(--teal) 60%, var(--purple) 60%, var(--purple) 80%, var(--orange) 80%, var(--orange) 100%);
-  }
+  .decision-card::before { content: ''; display: block; height: 6px; background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 20%, var(--yellow) 20%, var(--yellow) 40%, var(--teal) 40%, var(--teal) 60%, var(--purple) 60%, var(--purple) 80%, var(--orange) 80%, var(--orange) 100%); }
   .decision-card-body { padding: 1.25rem; }
-  .decision-principle { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; letter-spacing: 0.08em; color: var(--teal); margin-bottom: 0.5rem; }
-  .decision-title { font-family: 'Lilita One', sans-serif; font-size: 1rem; color: var(--purple); -webkit-text-stroke: 0.5px var(--pixel-dark); margin-bottom: 0.5rem; }
+  .decision-principle { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; letter-spacing: 0.08em; color: var(--teal); margin-bottom: 0.5rem; }
+  .decision-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--purple); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
   .decision-body { font-size: 0.82rem; line-height: 1.6; color: var(--text-light); font-weight: 600; }
 
   /* STAT ROW */
@@ -245,217 +147,134 @@
   .stat-cell { padding: 2rem 1rem; text-align: center; border-right: 3px solid var(--pixel-dark); }
   .stat-cell:last-child { border-right: none; }
   .stat-num { font-family: 'Press Start 2P', monospace; font-size: clamp(1.2rem, 3vw, 1.8rem); color: var(--purple); display: block; margin-bottom: 0.5rem; text-shadow: 3px 3px 0 rgba(161,34,192,0.25); }
-  .stat-label { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; letter-spacing: 0.08em; color: var(--text-light); line-height: 1.8; }
+  .stat-label { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; letter-spacing: 0.08em; color: var(--text-light); line-height: 1.8; }
 
   /* TAKEAWAY */
   .takeaway { background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; padding: 2.5rem; position: relative; }
   .takeaway::before { content: '★'; font-family: 'Press Start 2P', monospace; font-size: 2.5rem; position: absolute; top: -1rem; left: 1.5rem; color: var(--purple); text-shadow: 3px 3px 0 var(--pixel-dark); }
-  .takeaway-text { font-family: 'Lilita One', sans-serif; font-size: clamp(1rem, 2vw, 1.35rem); color: var(--pixel-dark); line-height: 1.4; margin-bottom: 0.75rem; }
-  .takeaway-attr { font-size: 0.78rem; font-weight: 700; color: rgba(10,5,32,0.55); }
+  .takeaway-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(0.9rem, 1.8vw, 1.15rem); color: var(--pixel-dark); line-height: 1.5; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
+  .takeaway-attr { font-size: 0.78rem; font-weight: 700; color: rgba(10,5,32,0.6); }
 
   /* FOOTER */
   footer { background: var(--purple); border-top: 4px solid var(--pixel-dark); padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
-  .footer-brand { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--mint); letter-spacing: 0.06em; line-height: 2; }
-  .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--yellow); letter-spacing: 0.1em; cursor: pointer; }
+  .footer-brand { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--mint); letter-spacing: 0.06em; line-height: 2; }
+  .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--yellow); letter-spacing: 0.1em; cursor: pointer; padding: 0.4rem 0.75rem; border: 2px solid var(--yellow); background: rgba(0,0,0,0.2); border-radius: 4px; transition: all 0.3s; }
+  .footer-hits:hover, .footer-hits:focus-visible { background: rgba(255,229,102,0.15); border-color: var(--mint); color: var(--mint); }
+  .footer-hits:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
   .footer-links { display: flex; gap: 1rem; }
   .footer-links a { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--mint); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
   .footer-links a:hover { color: var(--yellow); }
+  .footer-links a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; color: var(--yellow); border-radius: 2px; }
 
-  @media (max-width: 700px) {
-    .problem-grid { grid-template-columns: 1fr; }
-    .process-grid { grid-template-columns: 1fr 1fr; }
-    .users-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 480px) {
-    .process-grid, .users-grid, .decisions-grid { grid-template-columns: 1fr; }
-    .stat-row-outer { grid-template-columns: 1fr; }
-    .stat-cell { border-right: none; border-bottom: 3px solid var(--pixel-dark); }
-    .stat-cell:last-child { border-bottom: none; }
-  }
+  @media (max-width: 700px) { .problem-grid { grid-template-columns: 1fr; } .process-grid { grid-template-columns: 1fr 1fr; } .users-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .process-grid, .users-grid, .decisions-grid { grid-template-columns: 1fr; } .stat-row-outer { grid-template-columns: 1fr; } .stat-cell { border-right: none; border-bottom: 3px solid var(--pixel-dark); } .stat-cell:last-child { border-bottom: none; } }
 </style>
 </head>
 <body>
-<script src="../assets/nav.js"></script>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://tomiux.com" aria-label="TomiUX — home"><span class="logo-tomi">TOMI</span><span class="logo-ux">UX</span></a>
+    <a class="nav-back" href="https://tomiux.com/#work">← Back to Work</a>
+  </div>
+</nav>
+
+<main id="main-content">
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-badge">🔒 Interaction Design Case Study</div>
+<section class="hero" aria-label="August Smart Lock case study">
+  <div class="hero-badge" aria-hidden="true">🔒 CASE STUDY — IxD</div>
   <h1 class="hero-name">
     <span class="line1">AUGUST</span>
     <span class="line2">HOME</span>
   </h1>
   <p class="hero-role">Smart Lock UX · End-to-End Design Process</p>
-  <div class="hero-meta">
+  <div class="hero-meta" aria-label="Project details">
     <span class="meta-tag">ROLE: UX DESIGNER</span>
     <span class="meta-tag">TOOLS: PAPER · FIGMA · LOVABLE</span>
+    <span class="meta-tag">YEAR: SPRING 2026</span>
+    <span class="meta-tag">COURSE: UX 60503</span>
   </div>
-  <div class="hero-cta" style="margin-bottom: 3rem;">
-    <a href="javascript:void(0)" onclick="document.getElementById('prototype').scrollIntoView({behavior:'smooth'})" class="btn btn-primary">🎮 Play With Demo</a>
+  <div class="hero-cta">
+    <a href="https://august-home.lovable.app" target="_blank" rel="noopener" class="btn btn-primary" aria-label="View live prototype (opens in new tab)">▶ View Live Prototype</a>
     <a href="#process" class="btn btn-secondary">↓ See the Process</a>
   </div>
 </section>
 
-<div class="pixel-divider"></div>
+<div class="pixel-divider" aria-hidden="true"></div>
 
 <!-- PROCESS -->
 <div class="section-bg-white" id="process">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge">01 // PROCESS</span>
+      <span class="section-badge" aria-hidden="true">01 // PROCESS</span>
       <h2 class="section-title">From sketch to <span class="accent">working product</span></h2>
     </div>
-    <p style="font-family:'Press Start 2P',monospace;font-size:0.45rem;color:var(--text-light);text-align:center;margin-bottom:2rem;letter-spacing:0.08em;">▶ TAP ANY LEVEL TO UNLOCK</p>
-
-    <style>
-      .level-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1.25rem; }
-      .level-card { perspective: 1000px; height: 260px; cursor: pointer; }
-      .level-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.55s cubic-bezier(0.4,0,0.2,1); transform-style: preserve-3d; }
-      .level-card.flipped .level-card-inner { transform: rotateY(180deg); }
-      .level-front, .level-back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; display: flex; flex-direction: column; }
-      .level-back { transform: rotateY(180deg); background: var(--white); padding: 1.25rem; justify-content: flex-start; gap: 0.5rem; }
-      .level-front { align-items: center; justify-content: center; gap: 0.5rem; }
-      .lf-1 { background: linear-gradient(145deg, var(--baby-pink), var(--lavender-mid)); }
-      .lf-2 { background: linear-gradient(145deg, var(--yellow), var(--baby-pink)); }
-      .lf-3 { background: linear-gradient(145deg, var(--lavender-mid), var(--baby-blue)); }
-      .lf-4 { background: linear-gradient(145deg, var(--mint), var(--teal)); }
-      .level-num { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; letter-spacing: 0.1em; color: var(--pixel-dark); opacity: 0.7; }
-      .level-title { font-family: 'Lilita One', sans-serif; font-size: 1.4rem; color: var(--pixel-dark); -webkit-text-stroke: 0.5px var(--pixel-dark); text-align: center; padding: 0 1rem; line-height: 1.2; }
-      .level-tap { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--pixel-dark); opacity: 0.6; letter-spacing: 0.08em; animation: blink 1.2s step-start infinite; }
-      @keyframes blink { 0%,100% { opacity: 0.6; } 50% { opacity: 0; } }
-      .back-label { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; border: 2px solid var(--pixel-dark); display: inline-block; margin-bottom: 0.25rem; }
-      .bl-pink   { background: var(--baby-pink); color: var(--pixel-dark); }
-      .bl-yellow { background: var(--yellow);    color: var(--pixel-dark); }
-      .bl-purple { background: var(--lavender-mid); color: var(--pixel-dark); }
-      .bl-teal   { background: var(--mint);      color: var(--pixel-dark); }
-      .back-title { font-family: 'Lilita One', sans-serif; font-size: 1rem; color: var(--text); -webkit-text-stroke: 0.5px var(--pixel-dark); }
-      .back-body  { font-size: 0.8rem; line-height: 1.6; color: var(--text-light); font-weight: 600; flex: 1; }
-      .back-link  { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--purple); text-decoration: none; letter-spacing: 0.05em; border-bottom: 2px solid var(--purple); padding-bottom: 1px; align-self: flex-start; }
-      .back-link:hover { color: var(--hot-pink); border-color: var(--hot-pink); }
-      .back-flip  { font-family: 'Press Start 2P', monospace; font-size: 0.35rem; color: var(--text-light); letter-spacing: 0.05em; align-self: flex-end; cursor: pointer; opacity: 0.6; }
-    </style>
-
-    <div class="level-grid">
-      <div class="level-card" onclick="this.classList.toggle('flipped')">
-        <div class="level-card-inner">
-          <div class="level-front lf-1">
-            <span class="level-num">LEVEL 1</span>
-            <span class="level-title">Paper Prototype</span>
-            <span class="level-tap">▶ TAP TO UNLOCK</span>
-          </div>
-          <div class="level-back">
-            <span class="back-label bl-pink">LOW FIDELITY</span>
-            <p class="back-title">Paper Prototype</p>
-            <p class="back-body">Mapped core task flows, locking, unlocking, and adding a guest. All on paper. Ran usability tests to expose navigation problems before touching any digital tools.</p>
-            <a href="https://drive.google.com/file/d/1ovtN-9CSX-ZTS6jtjiuBHJ9pZxAiSa3v/view?usp=sharing" target="_blank" rel="noopener" class="back-link" onclick="event.stopPropagation()">VIEW PAPER PROTOTYPE ↗</a>
-            <span class="back-flip" onclick="event.stopPropagation();this.closest('.level-card').classList.remove('flipped')">↩ FLIP BACK</span>
-          </div>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-card-top p-pink" aria-hidden="true"></div>
+        <div class="process-card-body">
+          <div class="card-num c-pink" aria-hidden="true">01</div>
+          <span class="card-badge badge-pink">LOW FIDELITY</span>
+          <p class="card-title">Paper Prototype</p>
+          <p class="card-body">Mapped core task flows — locking, unlocking, adding a guest — on paper. Ran usability tests to expose navigation problems before touching any digital tools.</p>
         </div>
       </div>
-      <div class="level-card" onclick="this.classList.toggle('flipped')">
-        <div class="level-card-inner">
-          <div class="level-front lf-2">
-            <span class="level-num">LEVEL 2</span>
-            <span class="level-title">Iteration</span>
-            <span class="level-tap">▶ TAP TO UNLOCK</span>
-          </div>
-          <div class="level-back">
-            <span class="back-label bl-yellow">PEER FEEDBACK</span>
-            <p class="back-title">Iteration</p>
-            <p class="back-body">Peer critique revealed the permission hierarchy wasn't obvious. Restructured the guest access flow and redesigned how different access types are communicated.</p>
-            <a href="https://drive.google.com/file/d/1VfUqFZd6RddrpV9nJWLZU695e-M9ROUU/view?usp=sharing" target="_blank" rel="noopener" class="back-link" onclick="event.stopPropagation()">VIEW ITERATION ↗</a>
-            <span class="back-flip" onclick="event.stopPropagation();this.closest('.level-card').classList.remove('flipped')">↩ FLIP BACK</span>
-          </div>
+      <div class="process-card">
+        <div class="process-card-top p-yellow" aria-hidden="true"></div>
+        <div class="process-card-body">
+          <div class="card-num c-yellow" aria-hidden="true">02</div>
+          <span class="card-badge badge-yellow">PEER FEEDBACK</span>
+          <p class="card-title">Iteration</p>
+          <p class="card-body">Peer critique revealed the permission hierarchy wasn't obvious. Restructured the guest access flow and redesigned how different access types are communicated.</p>
         </div>
       </div>
-      <div class="level-card" onclick="this.classList.toggle('flipped')">
-        <div class="level-card-inner">
-          <div class="level-front lf-3">
-            <span class="level-num">LEVEL 3</span>
-            <span class="level-title">Figma Prototype</span>
-            <span class="level-tap">▶ TAP TO UNLOCK</span>
-          </div>
-          <div class="level-back">
-            <span class="back-label bl-purple">INTERACTIVE</span>
-            <p class="back-title">Figma Prototype</p>
-            <p class="back-body">Translated paper into a clickable Figma prototype applying Norman's principles: clear affordances, immediate feedback, and natural mapping.</p>
-            <a href="https://www.figma.com/proto/bIcHQwB5AvsFfsWIMZraqB/August-App?node-id=156-9171&t=P5C8tVWp5P3L8Cg3-1&desktop-link-click-timestamp=1777000980202&desktop-ul-exp-bucket=po&starting-point-node-id=156%3A9171" target="_blank" rel="noopener" class="back-link">VIEW FIGMA PROTOTYPE ↗</a>
-            <span class="back-flip" onclick="event.stopPropagation();this.closest('.level-card').classList.remove('flipped')">↩ FLIP BACK</span>
-          </div>
+      <div class="process-card">
+        <div class="process-card-top p-purple" aria-hidden="true"></div>
+        <div class="process-card-body">
+          <div class="card-num c-purple" aria-hidden="true">03</div>
+          <span class="card-badge badge-purple">INTERACTIVE</span>
+          <p class="card-title">Figma Prototype</p>
+          <p class="card-body">Translated paper into a clickable Figma prototype applying Norman's principles — clear affordances, immediate feedback, natural mapping — to every element.</p>
         </div>
       </div>
-      <div class="level-card" onclick="this.classList.toggle('flipped')">
-        <div class="level-card-inner">
-          <div class="level-front lf-4">
-            <span class="level-num">⚔️ BOSS LEVEL</span>
-            <span class="level-title">Live App</span>
-            <span class="level-tap">▶ TAP TO UNLOCK</span>
-          </div>
-          <div class="level-back">
-            <span class="back-label bl-teal">PRODUCTION</span>
-            <p class="back-title">Live App</p>
-            <p class="back-body">Built a fully functional prototype in Lovable with real conditional logic, role-based permissions, and a responsive mobile layout.</p>
-            <button class="back-link" onclick="event.stopPropagation();document.getElementById('prototype').scrollIntoView({behavior:'smooth'});" style="background:none;border:none;border-bottom:2px solid var(--purple);padding-bottom:1px;cursor:pointer;font-family:'Press Start 2P',monospace;font-size:0.38rem;color:var(--purple);letter-spacing:0.05em;">🎮 PLAY WITH DEMO ↓</button>
-            <span class="back-flip" onclick="event.stopPropagation();this.closest('.level-card').classList.remove('flipped')">↩ FLIP BACK</span>
-          </div>
+      <div class="process-card">
+        <div class="process-card-top p-teal" aria-hidden="true"></div>
+        <div class="process-card-body">
+          <div class="card-num c-teal" aria-hidden="true">04</div>
+          <span class="card-badge badge-teal">PRODUCTION</span>
+          <p class="card-title">Live App</p>
+          <p class="card-body">Built a fully functional prototype in Lovable with real conditional logic, role-based permissions, and a responsive mobile layout.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="pixel-divider"></div>
-
-<!-- LIVE PROTOTYPE EMBED -->
-<div class="section-bg-white" id="prototype">
-  <div class="section-wrap">
-    <div class="section-header">
-      <span class="section-badge">★ // LIVE PROTOTYPE</span>
-      <h2 class="section-title">Try it <span class="accent">yourself</span></h2>
-    </div>
-    <div style="max-width: 430px; margin: 0 auto; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden;">
-      <div style="background: var(--lavender-mid); padding: 0.6rem 1rem; display: flex; align-items: center; gap: 0.5rem; border-bottom: 3px solid var(--pixel-dark);">
-        <span style="width:10px;height:10px;border-radius:50%;background:var(--red);display:inline-block;border:2px solid rgba(0,0,0,0.2);"></span>
-        <span style="width:10px;height:10px;border-radius:50%;background:var(--yellow);display:inline-block;border:2px solid rgba(0,0,0,0.2);"></span>
-        <span style="width:10px;height:10px;border-radius:50%;background:var(--teal);display:inline-block;border:2px solid rgba(0,0,0,0.2);"></span>
-        <span style="font-family:'Press Start 2P',monospace;font-size:0.35rem;color:var(--pixel-dark);margin-left:0.5rem;letter-spacing:0.05em;">august-home.lovable.app</span>
-      </div>
-      <iframe
-        src="https://august-home.lovable.app"
-        width="100%"
-        height="900px"
-        style="display:block; border:none;"
-        title="August Home live prototype"
-        loading="lazy">
-      </iframe>
-    </div>
-    <p style="font-family:'Press Start 2P',monospace;font-size:0.38rem;color:var(--text-light);text-align:center;margin-top:1rem;letter-spacing:0.05em;">
-      ↑ FULLY INTERACTIVE · <a href="https://august-home.lovable.app" target="_blank" rel="noopener" style="color:var(--purple);text-decoration:none;">OPEN IN NEW TAB ↗</a>
-    </p>
-  </div>
-</div>
-
-<div class="pixel-divider"></div>
+<div class="pixel-divider" aria-hidden="true"></div>
 
 <!-- PROBLEM -->
 <div class="section-bg-soft">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge">02 // THE PROBLEM</span>
+      <span class="section-badge" aria-hidden="true">02 // THE PROBLEM</span>
       <h2 class="section-title">One lock, <span class="accent2">many kinds of trust</span></h2>
     </div>
     <div class="problem-grid">
       <div>
         <p class="pull-quote">August Home works great for one owner. Real life has six kinds of users.</p>
-        <p class="body-text">The existing August app is built around a single homeowner. But real usage is messier, a house cleaner on Tuesdays, a dog walker at noon, an Airbnb guest at 3pm, family members, and a neighbor with emergency access. Each relationship carries a different level of trust.</p>
-        <p class="body-text">This project explored how August's permission and access model could be redesigned to handle all of them intuitively, without requiring the owner to think like a system admin.</p>
+        <p class="body-text">The existing August app is built around a single homeowner. But real usage is messier — a house cleaner on Tuesdays, a dog walker at noon, an Airbnb guest at 3pm, family members, and a neighbor with emergency access. Each relationship carries a different level of trust.</p>
+        <p class="body-text">This project explored how August's permission and access model could be redesigned to handle all of them intuitively — without requiring the owner to think like a system admin.</p>
       </div>
       <div>
         <p class="sub-label">// RESEARCH INSIGHTS</p>
         <ul class="insight-list">
           <li>Users couldn't distinguish permanent access from time-limited guest access in the existing app</li>
-          <li>Paper testing showed "add guest" was buried. It was elevated to a primary action in the redesign.</li>
+          <li>Paper testing showed "add guest" was buried — elevated to a primary action in the redesign</li>
           <li>The owner vs. guest mental model needed to be established in onboarding, not discovered mid-use</li>
-          <li>Multi-step permission setup spiked cognitive load. Progressive disclosure was introduced to fix this.</li>
+          <li>Multi-step permission setup spiked cognitive load — introduced progressive disclosure</li>
           <li>Lock/unlock feedback needed to be immediate and unambiguous across all permission levels</li>
         </ul>
       </div>
@@ -463,165 +282,127 @@
   </div>
 </div>
 
-<div class="pixel-divider"></div>
+<div class="pixel-divider" aria-hidden="true"></div>
 
 <!-- USERS -->
 <div class="section-bg-white">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge">03 // WHO USES IT</span>
+      <span class="section-badge" aria-hidden="true">03 // WHO USES IT</span>
       <h2 class="section-title">One app, <span class="accent">six user types</span></h2>
     </div>
     <div class="users-grid">
       <div class="user-card">
-        <div class="user-card-header uh-teal">PLAYER 1, ADMIN</div>
-        <div class="user-card-body">
-          <span class="user-icon">🏠</span>
-          <p class="user-name">Homeowner</p>
-          <p class="user-desc">Full admin access. Manages all locks, users, schedules, and permissions from one dashboard.</p>
-        </div>
+        <div class="user-card-header uh-teal">PLAYER 1 — ADMIN</div>
+        <div class="user-card-body"><span class="user-icon" aria-hidden="true">🏠</span><p class="user-name">Homeowner</p><p class="user-desc">Full admin access. Manages all locks, users, schedules, and permissions from one dashboard.</p></div>
       </div>
       <div class="user-card">
         <div class="user-card-header uh-blue">TRUSTED ACCESS</div>
-        <div class="user-card-body">
-          <span class="user-icon">👨‍👩‍👧</span>
-          <p class="user-name">Family Member</p>
-          <p class="user-desc">Permanent trusted access. May manage guest schedules depending on what the owner allows.</p>
-        </div>
+        <div class="user-card-body"><span class="user-icon" aria-hidden="true">👨‍👩‍👧</span><p class="user-name">Family Member</p><p class="user-desc">Permanent trusted access. May manage guest schedules depending on what the owner allows.</p></div>
       </div>
       <div class="user-card">
         <div class="user-card-header uh-mint">RECURRING GUEST</div>
-        <div class="user-card-body">
-          <span class="user-icon">🧹</span>
-          <p class="user-name">House Cleaner</p>
-          <p class="user-desc">Recurring weekly access. Time-restricted. Cannot add others or view entry history.</p>
-        </div>
+        <div class="user-card-body"><span class="user-icon" aria-hidden="true">🧹</span><p class="user-name">House Cleaner</p><p class="user-desc">Recurring weekly access. Time-restricted. Cannot add others or view entry history.</p></div>
       </div>
       <div class="user-card">
         <div class="user-card-header uh-mint">RECURRING GUEST</div>
-        <div class="user-card-body">
-          <span class="user-icon">🐕</span>
-          <p class="user-name">Dog Walker</p>
-          <p class="user-desc">Daily time-window access. Owner is notified on every entry and exit.</p>
-        </div>
+        <div class="user-card-body"><span class="user-icon" aria-hidden="true">🐕</span><p class="user-name">Dog Walker</p><p class="user-desc">Daily time-window access. Owner is notified on every entry and exit.</p></div>
       </div>
       <div class="user-card">
         <div class="user-card-header uh-pink">TEMP GUEST</div>
-        <div class="user-card-body">
-          <span class="user-icon">🏨</span>
-          <p class="user-name">Airbnb Guest</p>
-          <p class="user-desc">Date-range access that expires automatically. No extension without owner approval.</p>
-        </div>
+        <div class="user-card-body"><span class="user-icon" aria-hidden="true">🏨</span><p class="user-name">Airbnb Guest</p><p class="user-desc">Date-range access that expires automatically. No extension without owner approval.</p></div>
       </div>
       <div class="user-card">
         <div class="user-card-header uh-yellow">EMERGENCY</div>
-        <div class="user-card-body">
-          <span class="user-icon">🔑</span>
-          <p class="user-name">Neighbor</p>
-          <p class="user-desc">An owner can grant access from anywhere in just a few taps. In an emergency, that kind of control matters.</p>
-        </div>
+        <div class="user-card-body"><span class="user-icon" aria-hidden="true">🔑</span><p class="user-name">Neighbor</p><p class="user-desc">Emergency-only access. Requires owner confirmation before the lock responds.</p></div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="pixel-divider"></div>
+<div class="pixel-divider" aria-hidden="true"></div>
 
 <!-- DESIGN DECISIONS -->
 <div class="section-bg-soft">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge">04 // DESIGN DECISIONS</span>
+      <span class="section-badge" aria-hidden="true">04 // DESIGN DECISIONS</span>
       <h2 class="section-title">Course principles, <span class="accent">applied</span></h2>
     </div>
     <div class="decisions-grid">
       <div class="decision-card">
         <div class="decision-card-body">
-          <p class="decision-principle">NORMAN, AFFORDANCES</p>
+          <p class="decision-principle">NORMAN — AFFORDANCES</p>
           <p class="decision-title">Lock state is unmissable</p>
-          <p class="decision-body">The lock/unlock button uses size, color, and icon together, never color alone. Any user at any permission level instantly knows the state of every lock they can access.</p>
+          <p class="decision-body">The lock/unlock button uses size, color, and icon together — never color alone. Any user at any permission level instantly knows the state of every lock they can access.</p>
         </div>
       </div>
       <div class="decision-card">
         <div class="decision-card-body">
-          <p class="decision-principle">COGNITIVE DESIGN, PROGRESSIVE DISCLOSURE</p>
+          <p class="decision-principle">COGNITIVE DESIGN — PROGRESSIVE DISCLOSURE</p>
           <p class="decision-title">Who → When → Where</p>
           <p class="decision-body">Adding a guest follows a strict order. You choose who before you configure timing before you select which locks. This reduces cognitive load and prevents accidental over-permissioning.</p>
         </div>
       </div>
       <div class="decision-card">
         <div class="decision-card-body">
-          <p class="decision-principle">NIELSEN, RECOGNITION OVER RECALL</p>
+          <p class="decision-principle">NIELSEN — RECOGNITION OVER RECALL</p>
           <p class="decision-title">Roles are pre-defined</p>
-          <p class="decision-body">Instead of building permissions from scratch, owners pick from named templates: Cleaner, Walker, Guest. Each has visible, adjustable defaults, not a blank slate to memorize.</p>
+          <p class="decision-body">Instead of building permissions from scratch, owners pick from named templates: Cleaner, Walker, Guest. Each has visible, adjustable defaults — not a blank slate to memorize.</p>
         </div>
       </div>
       <div class="decision-card">
         <div class="decision-card-body">
-          <p class="decision-principle">NORMAN, FEEDBACK</p>
+          <p class="decision-principle">NORMAN — FEEDBACK</p>
           <p class="decision-title">Every action confirms itself</p>
-          <p class="decision-body">Locking, inviting, and revoking each produce immediate inline confirmation. The invite button stays disabled until all required fields are complete, preventing empty submissions.</p>
+          <p class="decision-body">Locking, inviting, revoking — every action produces immediate inline confirmation. The invite button stays disabled until all required fields are complete, preventing empty submissions.</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="pixel-divider"></div>
+<div class="pixel-divider" aria-hidden="true"></div>
 
 <!-- OUTCOMES -->
 <div class="section-bg-white">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge">05 // OUTCOMES</span>
+      <span class="section-badge" aria-hidden="true">05 // OUTCOMES</span>
       <h2 class="section-title">What got <span class="accent">built</span></h2>
     </div>
     <div class="stat-row-outer">
-      <div class="stat-cell">
-        <span class="stat-num">4</span>
-        <span class="stat-label">PROTOTYPE<br/>STAGES</span>
-      </div>
-      <div class="stat-cell">
-        <span class="stat-num">6</span>
-        <span class="stat-label">USER<br/>TYPES</span>
-      </div>
-      <div class="stat-cell">
-        <span class="stat-num">100%</span>
-        <span class="stat-label">SCORE, ALL<br/>ASSIGNMENTS</span>
-      </div>
+      <div class="stat-cell"><span class="stat-num">4</span><span class="stat-label">PROTOTYPE<br/>STAGES</span></div>
+      <div class="stat-cell"><span class="stat-num">6</span><span class="stat-label">USER<br/>TYPES</span></div>
+      <div class="stat-cell"><span class="stat-num">100%</span><span class="stat-label">SCORE — ALL<br/>ASSIGNMENTS</span></div>
     </div>
     <div class="takeaway">
-      <p class="takeaway-text">"AI is a powerful execution tool, not a design thinking partner. It builds quickly when given precise, informed direction, but the direction has to come from the designer."</p>
-      <p class="takeaway-attr">Stacy Tomasi, UX 60503 Fundamentals of Interaction Design, Spring 2026</p>
+      <p class="takeaway-text">"AI is a powerful execution tool, not a design thinking partner. It builds quickly when given precise, informed direction — but the direction has to come from the designer."</p>
+      <p class="takeaway-attr">— UX 60503 Final Reflection, Spring 2026</p>
     </div>
   </div>
 </div>
 
-<div class="back-cta">
-  <a href="https://tomiux.com/#work" class="btn btn-primary">← Back to Featured Work</a>
-</div>
+<div class="pixel-divider" aria-hidden="true"></div>
 
-<div class="pixel-divider"></div>
+</main>
 
 <footer>
   <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
-  <div class="footer-hits" title="you found it 👻" onclick="this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'">SCORE: <span>∞</span></div>
+  <div class="footer-hits" tabindex="0" role="button" aria-label="Secret score counter" title="you found it 👻" id="footer-easter-egg">SCORE: <span>∞</span></div>
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
-    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
     <a href="https://tomiux.com/#work">← Work</a>
   </div>
 </footer>
 
 <script>
-function goToPrototype(e) {
-  e.stopPropagation();
-  e.preventDefault();
-  var target = document.getElementById('prototype');
-  if (target) {
-    target.scrollIntoView({ behavior: 'smooth' });
-  }
-}
+  const egg = document.getElementById('footer-easter-egg');
+  function activateEgg() { egg.setAttribute('data-found','true'); egg.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'; egg.setAttribute('aria-label','Konami code accepted!'); }
+  egg.addEventListener('click', activateEgg);
+  egg.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); } });
 </script>
+
 </body>
 </html>
