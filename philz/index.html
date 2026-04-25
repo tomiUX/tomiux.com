@@ -6,7 +6,7 @@
 <title>Philz Coffee Usability Study // TomiUX 🎮</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --lavender-bg: #f0e8ff;
@@ -28,7 +28,7 @@
     --offwhite: #fdf8ff;
     --text: #1a0a3e;
     --text-mid: #4a1878;
-    --text-light: #8850b0;
+    --text-light: #6a3090;
     --pixel-dark: #0a0520;
 
     /* Philz palette: warm amber, not mud */
@@ -37,6 +37,10 @@
     --philz-cream: #fff8f0;   /* barely-there warm white */
     --philz-rust: #ff6eb4;    /* site pink for contrast pops */
   }
+
+  /* ===== SKIP LINK (WCAG 2.4.1) ===== */
+  .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--purple); color: white; padding: 0.75rem 1.25rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; text-decoration: none; border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); z-index: 9999; border-radius: 0 0 8px 8px; }
+  .skip-link:focus { top: 0; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -70,35 +74,10 @@
     background-size: 300px 300px;
   }
 
-  /* ===== NAV ===== */
-  nav {
-    position: sticky; top: 0; z-index: 9999;
-    display: block;
-    background: rgba(253,248,255,0.95);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 4px solid var(--pixel-dark);
-    box-shadow: 0 4px 0 var(--lavender-dark);
-  }
-  .nav-inner {
-    display: flex; justify-content: space-between; align-items: center;
-    max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem;
-  }
-  .nav-logo {
-    font-family: 'Press Start 2P', monospace; font-size: 1rem;
-    text-decoration: none; line-height: 1;
-  }
-  .logo-tomi { color: #A122C0; text-shadow: 2px 2px 0 rgba(115,23,136,0.3); }
-  .logo-ux   { color: #3FBB9E; text-shadow: 2px 2px 0 rgba(63,187,158,0.3); }
-  .nav-back {
-    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem;
-    text-transform: uppercase; letter-spacing: 0.08em;
-    padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none;
-    background: #A122C0; color: white;
-    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
-    transition: all 0.12s;
-  }
-  .nav-back:hover { background: var(--hot-pink); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--pixel-dark); }
+  @media (prefers-reduced-motion: no-preference) { body::before { animation: bgShimmer 8s ease-in-out infinite alternate; } }
+  @keyframes bgShimmer { 0% { opacity: 0.07; } 100% { opacity: 0.15; } }
+
+  /* ===== NAV handled by /assets/nav.js ===== */
 
   /* ===== PIXEL DIVIDER ===== */
   .pixel-divider {
@@ -157,11 +136,11 @@
   }
 
   .case-title {
-    font-family: 'Lilita One', sans-serif;
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: clamp(2.8rem, 6vw, 5rem);
     line-height: 0.9;
     margin-bottom: 0.75rem;
-    -webkit-text-stroke: 2px var(--pixel-dark);
+    
   }
 
   .case-title .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.2); }
@@ -241,10 +220,10 @@
   .stat-cell:nth-child(3), .stat-cell:nth-child(4) { border-bottom: none; }
 
   .stat-number {
-    font-family: 'Lilita One', sans-serif;
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: 2.4rem;
     line-height: 1;
-    -webkit-text-stroke: 1.5px var(--pixel-dark);
+    
     margin-bottom: 0.25rem;
   }
 
@@ -298,10 +277,10 @@
   .badge-yellow { background: var(--yellow); color: var(--pixel-dark); }
 
   .section-title {
-    font-family: 'Lilita One', sans-serif;
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     line-height: 1;
-    -webkit-text-stroke: 1.5px var(--pixel-dark);
+    
     text-shadow: 3px 3px 0 rgba(0,0,0,0.1);
   }
 
@@ -441,10 +420,10 @@
   }
 
   .task-title {
-    font-family: 'Lilita One', sans-serif;
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: 1.1rem;
     color: var(--purple);
-    -webkit-text-stroke: 0.5px var(--pixel-dark);
+    
     margin-bottom: 0.5rem;
   }
 
@@ -580,10 +559,10 @@
   .theme-card-body { padding: 1rem 1.1rem 1.1rem; }
 
   .theme-card-title {
-    font-family: 'Lilita One', sans-serif;
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: 1.05rem;
     color: var(--text);
-    -webkit-text-stroke: 0.5px var(--pixel-dark);
+    
     margin-bottom: 0.5rem;
   }
 
@@ -688,7 +667,7 @@
   }
 
   .disconnect-title {
-    font-family: 'Lilita One', sans-serif;
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: 1.3rem;
     color: white;
     -webkit-text-stroke: 0.5px rgba(255,255,255,0.3);
@@ -794,10 +773,10 @@
   .rec-card-body { padding: 1rem 1.1rem 1.25rem; }
 
   .rec-card-title {
-    font-family: 'Lilita One', sans-serif;
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: 1.05rem;
     color: var(--purple);
-    -webkit-text-stroke: 0.5px var(--pixel-dark);
+    
     margin-bottom: 0.65rem;
   }
 
@@ -859,10 +838,10 @@
   }
 
   .guide-callout-title {
-    font-family: 'Lilita One', sans-serif;
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: 1.6rem;
     color: var(--purple);
-    -webkit-text-stroke: 1px var(--pixel-dark);
+    
     margin-bottom: 0.75rem;
   }
 
@@ -964,11 +943,11 @@
   }
 
   .takeaway-num {
-    font-family: 'Lilita One', sans-serif;
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: 1.8rem;
     color: var(--yellow);
     line-height: 1;
-    -webkit-text-stroke: 1px var(--pixel-dark);
+    
     min-width: 2rem;
     text-align: center;
   }
@@ -1154,23 +1133,38 @@
     .stat-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  /* reveal animations */
-  .reveal { opacity: 0; transform: translateY(16px); animation: up 0.6s ease forwards; }
+  /* reveal animations — only run when motion is OK (WCAG 2.3.3) */
+  .reveal { opacity: 0; transform: translateY(16px); }
   .d1 { animation-delay: 0.1s; }
   .d2 { animation-delay: 0.25s; }
   .d3 { animation-delay: 0.4s; }
   @keyframes up { to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: no-preference) { .reveal { animation: up 0.6s ease forwards; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+  /* Focus styles (WCAG 2.4.7) */
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; border-radius: 4px; }
+  .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+
+  /* Footer focus styles */
+  .footer-hits { border-radius: 4px; }
+  .footer-hits:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; color: var(--mint); border-color: var(--mint); background: rgba(255,229,102,0.15); }
+  .footer-links a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; color: var(--yellow); }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<script src="../assets/nav.js"></script>
+<!-- SKIP LINK (WCAG 2.4.1) -->
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- NAV injected by nav.js -->
+<main id="main-content">
+
 <!-- CASE STUDY HERO -->
-<section class="case-hero">
+<section class="case-hero" aria-label="Philz Coffee usability study">
   <div class="case-hero-inner">
     <div>
-      <div class="case-eyebrow reveal">☕ UX RESEARCH // USABILITY TESTING</div>
+      <div class="case-eyebrow reveal"><span aria-hidden="true">☕</span> UX RESEARCH // USABILITY TESTING</div>
       <h1 class="case-title">
         <span class="line1 reveal d1">Philz Coffee</span>
         <span class="line2 reveal d2">Usability Study</span>
@@ -1759,15 +1753,31 @@
   </div>
 </div>
 
+</main>
+
 <footer>
   <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
-  <div class="footer-hits" title="you found it 👻" onclick="this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'">SCORE: <span>∞</span></div>
+  <div
+    class="footer-hits"
+    tabindex="0"
+    role="button"
+    aria-label="Secret score counter"
+    title="you found it 👻"
+    id="footer-easter-egg"
+  >SCORE: <span>∞</span></div>
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
-    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
     <a href="https://tomiux.com/#work">← Work</a>
   </div>
 </footer>
+
+<script>
+  const egg = document.getElementById('footer-easter-egg');
+  function activateEgg() { egg.setAttribute('data-found','true'); egg.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'; egg.setAttribute('aria-label','Konami code accepted!'); }
+  egg.addEventListener('click', activateEgg);
+  egg.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); } });
+</script>
 
 </body>
 </html>
