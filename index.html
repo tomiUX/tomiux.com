@@ -334,13 +334,21 @@
   .section-bg-soft { background: radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%), radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%), var(--lavender-bg); }
   .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
  .section-badge { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 5px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
-  .section-title {
+.section-title {
     font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--text);
     flex: 1; line-height: 1.05; letter-spacing: -0.02em;
-    /* Stroke for large section headers */
-    -webkit-text-stroke: 1.5px var(--pixel-dark);
+    /* Stroke for large section headers — same vocabulary as hero-name,
+       scaled down so the hero stays loudest */
+    -webkit-text-stroke: 3px var(--pixel-dark);
     paint-order: stroke fill;
+  }
+  .section-title .accent,
+  .section-title .accent2 {
+    text-shadow:
+      2px 2px 0 var(--pixel-dark),
+      4px 4px 0 var(--pixel-dark),
+      6px 6px 0 var(--pixel-dark);
   }
   .section-title .accent { color: var(--purple); }
   /* Bright hot-pink fill on the stroked section titles. The 1.5px dark stroke
