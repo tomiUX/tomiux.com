@@ -408,6 +408,37 @@
   .specimen-icon { font-size: 2.2rem; flex: 1; display: flex; align-items: center; }
   .specimen-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.78rem; color: var(--text); text-align: center; line-height: 1.3; }
   .specimen-tag { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--purple); letter-spacing: 0.1em; text-transform: uppercase; }
+  /* Pending specimens - real brands, case studies in progress */
+  .specimen-pending .specimen-tag {
+    background: var(--yellow);
+    color: var(--pixel-dark);
+    padding: 0.2rem 0.5rem;
+    border: 2px solid var(--pixel-dark);
+    border-radius: 3px;
+  }
+  .specimen-pending::after {
+    content: '👀 case study in progress';
+    position: absolute;
+    bottom: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--pixel-dark);
+    color: var(--yellow);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.45rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s, bottom 0.15s;
+    z-index: 10;
+  }
+  .specimen-pending:hover::after,
+  .specimen-pending:focus-visible::after {
+    opacity: 1;
+    bottom: -40px;
+  }
   .playground-cta { text-align: center; margin-top: 2.5rem; }
 
   /* ===== ABOUT ===== */
@@ -681,36 +712,55 @@
       Here's who got sent to the nurse's office, and how I slapped on a <em style="background:var(--yellow);color:var(--pixel-dark);font-style:normal;font-weight:900;padding:0.1em 0.4em;border-radius:4px;border:2px solid var(--pixel-dark);">band-aid</em>.
     </p>
     <div class="specimen-grid">
-      <!-- Active specimens: <button> elements with full keyboard access (WCAG 4.1.2) -->
-      <button class="specimen" aria-label="The Runaway X — close button pattern, coming soon">
+      <!-- Brand buttons - case studies coming soon (WCAG 4.1.2 keyboard access) -->
+      <button class="specimen specimen-pending" aria-label="Chipotle case study, coming soon">
         <span class="specimen-num" aria-hidden="true">№ 001</span>
-        <div class="specimen-icon" aria-hidden="true">✕</div>
-        <span class="specimen-name">The Runaway X</span>
-        <span class="specimen-tag">Close-button</span>
+        <div class="specimen-icon" aria-hidden="true">🌯</div>
+        <span class="specimen-name">Chipotle</span>
+        <span class="specimen-tag">Coming Soon</span>
       </button>
-      <button class="specimen" aria-label="Eternal Spinner — loader pattern, coming soon">
+      <button class="specimen specimen-pending" aria-label="Domino's case study, coming soon">
         <span class="specimen-num" aria-hidden="true">№ 002</span>
-        <div class="specimen-icon" aria-hidden="true">◐</div>
-        <span class="specimen-name">Eternal Spinner</span>
-        <span class="specimen-tag">Loader</span>
+        <div class="specimen-icon" aria-hidden="true">🍕</div>
+        <span class="specimen-name">Domino's</span>
+        <span class="specimen-tag">Coming Soon</span>
       </button>
-      <button class="specimen" aria-label="The Un-Undoable — destructive action pattern, coming soon">
+      <button class="specimen specimen-pending" aria-label="Yelp case study, coming soon">
         <span class="specimen-num" aria-hidden="true">№ 003</span>
-        <div class="specimen-icon" aria-hidden="true">⎌</div>
-        <span class="specimen-name">The Un-Undoable</span>
-        <span class="specimen-tag">Destructive</span>
+        <div class="specimen-icon" aria-hidden="true">⭐</div>
+        <span class="specimen-name">Yelp</span>
+        <span class="specimen-tag">Coming Soon</span>
       </button>
-      <button class="specimen" aria-label="Consent Trap — dark pattern, coming soon">
+      <button class="specimen specimen-pending" aria-label="Temu case study, coming soon">
         <span class="specimen-num" aria-hidden="true">№ 004</span>
-        <div class="specimen-icon" aria-hidden="true">☑</div>
-        <span class="specimen-name">Consent Trap</span>
-        <span class="specimen-tag">Dark Pattern</span>
+        <div class="specimen-icon" aria-hidden="true">🛒</div>
+        <span class="specimen-name">Temu</span>
+        <span class="specimen-tag">Coming Soon</span>
       </button>
-      <!-- Placeholder slots — aria-hidden, non-interactive -->
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 005</span><div class="specimen-icon">·</div><span class="specimen-name">Coming soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 006</span><div class="specimen-icon">·</div><span class="specimen-name">Coming soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 007</span><div class="specimen-icon">·</div><span class="specimen-name">Coming soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 008</span><div class="specimen-icon">·</div><span class="specimen-name">Coming soon</span></div>
+      <button class="specimen specimen-pending" aria-label="Palm Street case study, coming soon">
+        <span class="specimen-num" aria-hidden="true">№ 005</span>
+        <div class="specimen-icon" aria-hidden="true">🌴</div>
+        <span class="specimen-name">Palm Street</span>
+        <span class="specimen-tag">Coming Soon</span>
+      </button>
+      <button class="specimen specimen-pending" aria-label="Starbucks case study, coming soon">
+        <span class="specimen-num" aria-hidden="true">№ 006</span>
+        <div class="specimen-icon" aria-hidden="true">☕</div>
+        <span class="specimen-name">Starbucks</span>
+        <span class="specimen-tag">Coming Soon</span>
+      </button>
+      <button class="specimen specimen-pending" aria-label="Portland Leather case study, coming soon">
+        <span class="specimen-num" aria-hidden="true">№ 007</span>
+        <div class="specimen-icon" aria-hidden="true">👜</div>
+        <span class="specimen-name">Portland Leather</span>
+        <span class="specimen-tag">Coming Soon</span>
+      </button>
+      <button class="specimen specimen-pending" aria-label="Planta case study, coming soon">
+        <span class="specimen-num" aria-hidden="true">№ 008</span>
+        <div class="specimen-icon" aria-hidden="true">🌱</div>
+        <span class="specimen-name">Planta</span>
+        <span class="specimen-tag">Coming Soon</span>
+      </button>
     </div>
     <div class="playground-cta">
       <a href="playground.html" class="btn btn-primary" style="display:inline-flex;">▶ Enter Playground</a>
