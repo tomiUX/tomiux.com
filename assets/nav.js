@@ -171,7 +171,7 @@
     '      <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="nav-featured-btn">Featured</button>',
     '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu">',
     '        <a href="https://tomiux.com/august/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">IxD</span> August Smart Lock</a>',
-    '        <a href="https://tomiux.com/philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">RESEARCH</span> Philz Coffee</a>',
+    '        <a href="https://tomiux.com/philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">USABILITY TESTING</span> Philz Coffee</a>',
     '        <a href="https://tomiux.com/yelp/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">RESEARCH</span> Yelp Usability Study</a>',
     '        <a href="https://tomiux.com/coursera/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> Coursera Cognitive Audit</a>',
     '        <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> StubHub Annotations</a>',
