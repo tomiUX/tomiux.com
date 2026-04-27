@@ -103,8 +103,9 @@
       top: -10px; height: 10px; background: transparent;
     }
     #tomiux-nav .dropdown-menu.open { display: block; }
-    #tomiux-nav .nav-dropdown:hover .dropdown-menu,
-    #tomiux-nav .nav-dropdown:focus-within .dropdown-menu { display: block; }
+
+    /* NOTE: No CSS :hover rule here — JS handles all open/close logic
+       to prevent the menu from getting stuck open after clicking to close. */
 
     #tomiux-nav .dropdown-menu a {
       display: flex !important; align-items: center; gap: 0.5rem;
