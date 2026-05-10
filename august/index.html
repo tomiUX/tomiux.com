@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+<script src="../assets/nav.js"></script>
 <style>
   :root {
     --lavender-bg: #f0e8ff;
@@ -40,10 +41,6 @@
     --pixel-dark: #0a0520;
   }
 
-  /* ===== SKIP LINK (WCAG 2.4.1) ===== */
-  .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--purple); color: white; padding: 0.75rem 1.25rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem; text-decoration: none; border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); z-index: 9999; border-radius: 0 0 8px 8px; }
-  .skip-link:focus { top: 0; }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
@@ -57,17 +54,6 @@
 
   @media (prefers-reduced-motion: no-preference) { body::before { animation: bgShimmer 8s ease-in-out infinite alternate; } }
   @keyframes bgShimmer { 0% { opacity: 0.08; } 100% { opacity: 0.18; } }
-
-  /* NAV */
-  nav { position: sticky; top: 0; z-index: 100; background: rgba(253,248,255,0.92); backdrop-filter: blur(16px); border-bottom: 4px solid var(--pixel-dark); box-shadow: 0 4px 0 var(--lavender-dark); }
-  .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem; }
-  .nav-logo { font-family: 'Press Start 2P', monospace; font-size: 1rem; text-decoration: none; line-height: 1; }
-  .logo-tomi { color: #A122C0; }
-  .logo-ux { color: #3FBB9E; }
-  .nav-logo:focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; border-radius: 4px; }
-  .nav-back { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.45rem 1rem; border-radius: 6px; text-decoration: none; background: #A122C0; color: white; border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); transition: all 0.12s; }
-  .nav-back:hover { background: var(--hot-pink); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--pixel-dark); }
-  .nav-back:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 
   /* PIXEL DIVIDER */
   .pixel-divider { height: 12px; background: repeating-linear-gradient(90deg, #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px, #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px, #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px, #3FBB9E 120px, #3FBB9E 140px); border-top: 3px solid var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); position: relative; z-index: 1; }
@@ -126,7 +112,7 @@
   .sub-label { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; letter-spacing: 0.1em; color: var(--hot-pink); margin-bottom: 1rem; }
   .insight-list { list-style: none; }
   .insight-list li { font-size: 0.82rem; font-weight: 700; color: var(--text-mid); padding: 0.6rem 0; border-bottom: 2px solid var(--mint); display: flex; gap: 0.75rem; align-items: flex-start; line-height: 1.5; }
-  .insight-list li::before { content: '▶'; color: var(--teal); flex-shrink: 0; font-size: 0.6rem; margin-top: 3px; }
+  .insight-list li::before { content: '\25B6'; color: var(--teal); flex-shrink: 0; font-size: 0.6rem; margin-top: 3px; }
 
   /* USER CARDS */
   .users-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); gap: 1.25rem; }
@@ -159,7 +145,7 @@
 
   /* TAKEAWAY */
   .takeaway { background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; padding: 2.5rem; position: relative; }
-  .takeaway::before { content: '★'; font-family: 'Press Start 2P', monospace; font-size: 2.5rem; position: absolute; top: -1rem; left: 1.5rem; color: var(--purple); text-shadow: 3px 3px 0 var(--pixel-dark); }
+  .takeaway::before { content: '\2605'; font-family: 'Press Start 2P', monospace; font-size: 2.5rem; position: absolute; top: -1rem; left: 1.5rem; color: var(--purple); text-shadow: 3px 3px 0 var(--pixel-dark); }
   .takeaway-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(0.9rem, 1.8vw, 1.15rem); color: var(--pixel-dark); line-height: 1.5; margin-bottom: 0.75rem; letter-spacing: -0.01em; }
   .takeaway-attr { font-size: 0.78rem; font-weight: 700; color: rgba(10,5,32,0.6); }
 
@@ -177,12 +163,10 @@
   @media (max-width: 700px) { .problem-grid { grid-template-columns: 1fr; } .process-grid { grid-template-columns: 1fr 1fr; } .users-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px) { .process-grid, .users-grid, .decisions-grid { grid-template-columns: 1fr; } .stat-row-outer { grid-template-columns: 1fr; } .stat-cell { border-right: none; border-bottom: 3px solid var(--pixel-dark); } .stat-cell:last-child { border-bottom: none; } }
 </style>
-  <script src="../assets/nav.js"></script>
 </head>
 <body>
 
-<a class="skip-link" href="#main-content">Skip to main content</a>
-
+<!-- NAV injected by nav.js -->
 <main id="main-content">
 
 <!-- HERO -->
@@ -199,7 +183,7 @@
     <span class="meta-tag">YEAR: SPRING 2026</span>
   </div>
   <div class="hero-cta">
-<a href="#prototype-embed" class="btn btn-primary" aria-label="Jump to interactive prototype">▶ Play with the Prototype</a>
+    <a href="#prototype-embed" class="btn btn-primary" aria-label="Jump to interactive prototype">▶ Play with the Prototype</a>
     <a href="#design-decisions" class="btn btn-secondary">↓ Design Decisions</a>
   </div>
 </section>
@@ -252,20 +236,20 @@
       </div>
     </div>
     <!-- PROTOTYPE EMBED -->
-<div id="prototype-embed" style="margin-top: 2.5rem;">
-  <p class="sub-label" style="margin-bottom: 1rem;">// LIVE PROTOTYPE</p>
-   <div style="border: 3px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; background: var(--white); max-width: 420px; margin: 0 auto;">
-    <iframe
-    src="https://august-home.lovable.app"
-      width="100%"
-      height="900"
-      style="display: block; border: none;"
-      title="August Home app — live interactive prototype"
-      loading="lazy"
-      allow="fullscreen"
-    ></iframe>
-  </div>
-</div>
+    <div id="prototype-embed" style="margin-top: 2.5rem;">
+      <p class="sub-label" style="margin-bottom: 1rem;">// LIVE PROTOTYPE</p>
+      <div style="border: 3px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; background: var(--white); max-width: 420px; margin: 0 auto;">
+        <iframe
+          src="https://august-home.lovable.app"
+          width="100%"
+          height="900"
+          style="display: block; border: none;"
+          title="August Home app — live interactive prototype"
+          loading="lazy"
+          allow="fullscreen"
+        ></iframe>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -339,8 +323,7 @@
 <div class="pixel-divider" aria-hidden="true"></div>
 
 <!-- DESIGN DECISIONS -->
-  <div class="section-bg-soft" id="design-decisions">
-<div class="section-bg-soft">
+<div class="section-bg-soft" id="design-decisions">
   <div class="section-wrap">
     <div class="section-header">
       <span class="section-badge" aria-hidden="true">04 // DESIGN DECISIONS</span>
