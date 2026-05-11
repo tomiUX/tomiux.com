@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPSDXNNFGW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-GPSDXNNFGW");
+  </script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Yelp Usability Study // TomiUX 🎮</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+<script src="../assets/nav.js"></script>
 <style>
   :root {
     --lavender-bg: #f0e8ff;
@@ -35,16 +44,6 @@
     --yelp-red: #F53838;
     --yelp-red-soft: #fff0f0;
   }
-
-  /* ===== SKIP LINK (WCAG 2.4.1) ===== */
-  .skip-link {
-    position: absolute; top: -100%; left: 1rem;
-    background: var(--purple); color: white;
-    padding: 0.75rem 1.25rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.9rem;
-    text-decoration: none; border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
-    z-index: 9999; border-radius: 0 0 8px 8px;
-  }
-  .skip-link:focus { top: 0; }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -287,15 +286,10 @@
     .disconnect-side:last-child { border-bottom: none; }
   }
 </style>
-<script src="../assets/nav.js"></script>
-   </head>
+</head>
 <body>
 
-<!-- SKIP LINK (WCAG 2.4.1) -->
-<a class="skip-link" href="#main-content">Skip to main content</a>
-
-
-
+<!-- NAV injected by nav.js -->
 <main id="main-content">
 
 <!-- HERO -->
@@ -317,7 +311,7 @@
     <div class="hero-stat-card">
       <div class="stat-card-header">
         <span>STUDY METRICS</span>
-        <span aria-hidden="true">⭐</span><span class="sr-only"> YELP.COM</span>
+        <span aria-hidden="true">⭐</span>
       </div>
       <div class="stat-grid">
         <div class="stat-cell">
@@ -697,7 +691,7 @@
     <div class="rec-grid">
       <div class="rec-card rec-t1">
         <div class="rec-card-top">
-          <span class="rec-priority priority-p1">P1 · HIGH IMPACT</span>
+          <span class="rec-priority">P1 · HIGH IMPACT</span>
           <span class="rec-card-icon" aria-hidden="true">🔍</span>
         </div>
         <div class="rec-card-body">
@@ -713,7 +707,7 @@
 
       <div class="rec-card rec-t2">
         <div class="rec-card-top">
-          <span class="rec-priority priority-p1">P1 · HIGH IMPACT</span>
+          <span class="rec-priority">P1 · HIGH IMPACT</span>
           <span class="rec-card-icon" aria-hidden="true">🎛️</span>
         </div>
         <div class="rec-card-body">
@@ -729,7 +723,7 @@
 
       <div class="rec-card rec-t3">
         <div class="rec-card-top">
-          <span class="rec-priority priority-p3">P2 · MEDIUM</span>
+          <span class="rec-priority">P2 · MEDIUM</span>
           <span class="rec-card-icon" aria-hidden="true">🎯</span>
         </div>
         <div class="rec-card-body">
@@ -745,7 +739,7 @@
     </div>
 
     <div class="back-cta">
-      <a href="index.html#work" class="btn btn-red">← Back to Featured Work</a>
+      <a href="https://tomiux.com/#work" class="btn btn-red">← Back to Featured Work</a>
     </div>
   </div>
 </div>
@@ -765,7 +759,7 @@
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
     <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
-    <a href="index.html#work">← Work</a>
+    <a href="https://tomiux.com/#work">← Work</a>
   </div>
 </footer>
 
