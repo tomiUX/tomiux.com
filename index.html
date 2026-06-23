@@ -141,7 +141,7 @@
   .nav-links a:hover { background: var(--lavender-mid); color: var(--purple); }
   .nav-links a:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; background: var(--lavender-mid); color: var(--purple); }
 
-  /* Dropdown trigger — <button> for keyboard access (WCAG 2.1.1) */
+  /* Dropdown trigger */
   .nav-dropdown { position: relative; }
   .nav-dropdown-btn {
     font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 800;
@@ -204,6 +204,11 @@
   .nav-hamburger:hover { background: var(--lavender-mid); color: var(--purple); }
   .nav-hamburger:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; }
 
+  /* ===== MOBILE CV BANNER — hidden on desktop ===== */
+  .mobile-cv-banner {
+    display: none;
+  }
+
   /* ===== HERO ===== */
   .hero {
     position: relative; min-height: auto; display: flex; align-items: center;
@@ -249,8 +254,9 @@
     padding: 0.4rem 0.85rem;
     border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark);
     border-radius: 6px;
+    white-space: nowrap;
   }
-  .cred-sep { color: var(--text-light); opacity: 0.6; font-weight: 700; }
+  .cred-sep { color: var(--text-light); opacity: 0.6; font-weight: 700; flex-shrink: 0; }
 
   .hero-name {
     font-family: 'Unbounded', sans-serif; font-weight: 900;
@@ -306,6 +312,8 @@
   .btn-primary:hover { background: var(--hot-pink); }
   .btn-secondary { background: var(--white); color: var(--purple); }
   .btn-secondary:hover { background: var(--lavender-mid); }
+  .btn-cv { background: var(--yellow); color: var(--pixel-dark); }
+  .btn-cv:hover { background: var(--orange); color: var(--white); }
 
   /* ===== GAME BOY ===== */
   .hero-art { display: flex; align-items: center; justify-content: center; position: relative; }
@@ -318,9 +326,9 @@
   .gameboy { background: linear-gradient(160deg, #e8d5f5 0%, #d4b8f0 40%, #c4a0e8 100%); border: 4px solid var(--pixel-dark); border-radius: 12px 12px 40px 12px; padding: 1.25rem 1.25rem 2rem; box-shadow: 6px 6px 0 var(--pixel-dark), 0 20px 50px rgba(155,89,255,0.25); position: relative; }
   .gb-screen-bezel { background: var(--pixel-dark); border-radius: 8px 8px 20px 8px; padding: 0.85rem; margin-bottom: 1rem; position: relative; }
   .gb-screen-bezel::before { content: 'DOT-MATRIX WITH STEREO SOUND'; position: absolute; top: -2rem; left: 0; font-family: 'Press Start 2P', monospace; font-size: 0.35rem; color: #9b70d8; letter-spacing: 0.06em; white-space: nowrap; }
-  .gb-screen { background: #91EBD3; border: 2px solid #1a1a1a; border-radius: 4px; aspect-ratio: 10/9; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.25rem; overflow: hidden; position: relative; }
+  .gb-screen { background: #91EBD3; border: 2px solid #1a1a1a; border-radius: 4px; aspect-ratio: 10/9; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.5rem; overflow: hidden; position: relative; }
   .gb-screen::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 3px); pointer-events: none; z-index: 2; }
-  .screen-title { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #0a2820; letter-spacing: 0.05em; line-height: 2; text-align: center; z-index: 1; }
+  .screen-title { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #0a2820; letter-spacing: 0.05em; line-height: 1.8; text-align: center; z-index: 1; }
   .screen-mascot { z-index: 1; display: flex; align-items: center; justify-content: center; }
   .screen-health { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: #0a2820; letter-spacing: 0.05em; z-index: 1; }
   .gb-led { position: absolute; top: 1rem; right: 1.2rem; width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 6px var(--red); }
@@ -521,12 +529,11 @@
     .dropdown-menu { left: auto; right: 0; }
   }
 
-  /* ===== MOBILE — hamburger nav kicks in ===== */
+  /* ===== MOBILE ===== */
   @media (max-width: 680px) {
-    /* Show the hamburger button */
+    /* Hamburger */
     .nav-hamburger { display: block; }
 
-    /* Hide the nav links by default; show when .mobile-open is toggled */
     .nav-links {
       display: none;
       position: absolute;
@@ -541,41 +548,48 @@
     }
     .nav-links.mobile-open { display: flex; }
     .nav-links li { width: 100%; }
-
-    /* Full-width tap targets */
     .nav-links a,
     .nav-dropdown-btn {
-      display: block;
-      width: 100%;
-      padding: 0.85rem 1.25rem;
-      font-size: 0.85rem;
-      border-radius: 0;
-      text-align: left;
-      box-sizing: border-box;
+      display: block; width: 100%;
+      padding: 0.85rem 1.25rem; font-size: 0.85rem;
+      border-radius: 0; text-align: left; box-sizing: border-box;
     }
-
-    /* Dropdown becomes inline — no absolute positioning */
     .nav-dropdown { position: static; }
     .dropdown-menu {
-      position: static;
-      display: none;
-      box-shadow: none;
-      border: none;
-      border-radius: 0;
+      position: static; display: none;
+      box-shadow: none; border: none; border-radius: 0;
       border-left: 4px solid var(--purple);
-      margin-left: 1.25rem;
-      background: transparent;
+      margin-left: 1.25rem; background: transparent;
     }
-    /* On mobile, dropdown opens via .open class only (no :hover) */
     .nav-dropdown:hover .dropdown-menu { display: none; }
     .nav-dropdown:focus-within .dropdown-menu { display: none; }
     .dropdown-menu.open { display: block; }
     .dropdown-menu a { white-space: normal; font-size: 0.8rem; padding: 0.65rem 1rem; }
     .nav-dropdown-btn::after { float: right; }
-
-    /* Nav bar layout */
     .nav-inner { padding: 0.75rem 1rem; }
     .nav-logo-text { font-size: 0.75rem; }
+
+    /* Mobile CV banner — shown only on mobile */
+    .mobile-cv-banner {
+      display: block;
+      background: var(--white);
+      border-bottom: 4px solid var(--pixel-dark);
+      padding: 0.85rem 1.25rem;
+      position: relative; z-index: 1;
+    }
+    .mobile-cv-banner a {
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      width: 100%;
+      font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.9rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--pixel-dark); text-decoration: none;
+      background: var(--yellow);
+      border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark);
+      border-radius: 8px; padding: 0.85rem 1.5rem;
+      transition: all 0.12s;
+    }
+    .mobile-cv-banner a:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+    .mobile-cv-banner a:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
 
     /* Hero */
     .hero-layout { min-height: auto; padding: 0 1.25rem; gap: 2rem; }
@@ -585,13 +599,15 @@
       text-shadow: 3px 3px 0 var(--pixel-dark), 6px 6px 0 var(--pixel-dark);
     }
 
+    /* Credential pill — prevent overlap */
+    .hero-credentials { font-size: 0.95rem; gap: 0.4rem; }
+    .cred-pill { font-size: 0.78rem; padding: 0.35rem 0.65rem; }
+
     /* Sections */
     .section-wrap { padding: 3rem 1rem; }
     .work-grid { grid-template-columns: 1fr; gap: 1rem; }
     .specimen-grid { grid-template-columns: repeat(2, 1fr); }
     .about-grid { gap: 2rem; }
-
-    /* Contact pod — less padding on narrow screens */
     .contact-pod { padding: 2.5rem 1.25rem; }
     .contact-signal { font-size: 0.65rem; letter-spacing: 0.08em; }
   }
@@ -601,6 +617,7 @@
     .nav-logo-text { font-size: 0.65rem; }
     .specimen-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-badge { font-size: 0.45rem; }
+    .cred-pill { font-size: 0.7rem; }
   }
 
   .reveal { opacity: 0; transform: translateY(18px); }
@@ -642,6 +659,13 @@
   </div>
 </nav>
 
+<!-- MOBILE CV BANNER — visible only on mobile, sits just below the nav -->
+<div class="mobile-cv-banner" aria-label="Quick access to CV">
+  <a href="assets/Stacy-Tomasi-UX-Designer-Resume.pdf" target="_blank" rel="noopener" aria-label="Download CV (opens in new tab)">
+    ↗ Download CV
+  </a>
+</div>
+
 <main id="main-content">
 
 <!-- HERO -->
@@ -670,6 +694,7 @@
       <div class="hero-cta reveal d4">
         <a href="#work" class="btn btn-primary">▶ Featured Work</a>
         <a href="#about" class="btn btn-secondary">▶ About Me</a>
+        <a href="assets/Stacy-Tomasi-UX-Designer-Resume.pdf" class="btn btn-cv" target="_blank" rel="noopener" aria-label="Download CV (opens in new tab)">↗ CV</a>
       </div>
     </div>
 
@@ -914,7 +939,7 @@
 </footer>
 
 <script>
-  // ===== MOBILE HAMBURGER NAV =====
+  // ===== MOBILE HAMBURGER =====
   const hamburger = document.getElementById('nav-hamburger-btn');
   const navList = document.getElementById('nav-links-list');
 
@@ -924,8 +949,6 @@
     hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
     hamburger.textContent = isOpen ? '✕' : '☰';
   });
-
-  // Close mobile nav when any link is tapped
   navList.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navList.classList.remove('mobile-open');
