@@ -14,7 +14,7 @@
     --lavender-dark: #9b70d8;
     --pink: #ff6eb4;
     --hot-pink: #ff2d9b;
-    --hot-pink-deep: #b8167d; /* WCAG AA on light lavender bg (4.5:1+) for small text */
+    --hot-pink-deep: #b8167d;
     --baby-pink: #ffb3d9;
     --teal: #3FBB9E;
     --mint: #91EBD3;
@@ -121,6 +121,7 @@
   .nav-inner {
     display: flex; justify-content: space-between; align-items: center;
     max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem;
+    position: relative;
   }
 
   .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
@@ -159,15 +160,11 @@
     box-shadow: 4px 4px 0 var(--pixel-dark); border-radius: 8px;
     min-width: 200px; z-index: 200; overflow: visible;
   }
-  /* Invisible bridge over the 8px gap so hover doesn't break when the cursor
-     travels from the trigger button down into the menu items. The menu used to
-     close mid-traverse — now the bridge keeps :hover alive across the gap. */
   .dropdown-menu::before {
     content: ''; position: absolute; left: 0; right: 0;
     top: -10px; height: 10px; background: transparent;
   }
   .dropdown-menu.open { display: block; }
-  /* Open on hover OR keyboard focus anywhere in the dropdown wrapper */
   .nav-dropdown:hover .dropdown-menu,
   .nav-dropdown:focus-within .dropdown-menu { display: block; }
 
@@ -193,6 +190,19 @@
   }
   .nav-cv:hover { transform: translate(-1px,-1px) !important; box-shadow: 4px 4px 0 var(--pixel-dark) !important; background: var(--hot-pink) !important; }
   .nav-cv:focus-visible { outline: 3px solid var(--yellow) !important; outline-offset: 3px !important; }
+
+  /* ===== HAMBURGER — hidden on desktop ===== */
+  .nav-hamburger {
+    display: none;
+    background: none; border: 3px solid var(--pixel-dark);
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+    border-radius: 6px; cursor: pointer;
+    padding: 0.3rem 0.5rem;
+    color: var(--text-mid); font-size: 1.2rem; line-height: 1;
+    transition: all 0.12s;
+  }
+  .nav-hamburger:hover { background: var(--lavender-mid); color: var(--purple); }
+  .nav-hamburger:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; }
 
   /* ===== HERO ===== */
   .hero {
@@ -222,41 +232,33 @@
     font-family: 'Press Start 2P', monospace; font-size: 0.6rem;
     color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.75rem;
   }
-/* Credentials line — sits directly under the name, above the personality
-     tagline. Pill treatment makes "MS UX Candidate" read as a credential
-     badge, not body copy. Resets the reviewer's mental rubric from
-     "working designer" to "advanced student". */
+
   .hero-credentials {
     font-family: 'Nunito', sans-serif; font-weight: 700;
-    font-size: 1.1rem;                    /* was 0.95rem — Kent State text bumped up */
+    font-size: 1.1rem;
     color: var(--text-mid);
     margin-top: 0.25rem; margin-bottom: 1.25rem;
-    display: flex; align-items: center; gap: 0.6rem;   /* was 0.5rem — small breathing room bump */
+    display: flex; align-items: center; gap: 0.6rem;
     flex-wrap: wrap; letter-spacing: 0.01em;
   }
   .cred-pill {
     display: inline-block; background: var(--teal); color: var(--pixel-dark);
     font-family: 'Nunito', sans-serif; font-weight: 900;
-    font-size: 0.9rem;                    /* was 0.78rem — pill grows with the line */
+    font-size: 0.9rem;
     letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 0.4rem 0.85rem;              /* was 0.3rem 0.7rem — padding scales with text */
+    padding: 0.4rem 0.85rem;
     border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark);
     border-radius: 6px;
   }
   .cred-sep { color: var(--text-light); opacity: 0.6; font-weight: 700; }
+
   .hero-name {
     font-family: 'Unbounded', sans-serif; font-weight: 900;
     font-size: clamp(3rem, 7.5vw, 5.5rem); line-height: 0.95;
     margin-bottom: 1.25rem; letter-spacing: -0.02em;
-    /* Heavier stroke (7px) for playful chunkiness.
-       paint-order keeps the fill on top of the stroke (no eaten letterforms). */
     -webkit-text-stroke: 7px var(--pixel-dark);
     paint-order: stroke fill;
   }
-  /* Stacked-offset shadows = chunky extruded-3D effect. Three layers stepping
-     out diagonally, all hard-edged, no blur. Same hard-shadow vocabulary as
-     the buttons/cards but turned up — the name is allowed to be the loudest
-     element on the page because it IS the name. */
   .hero-name .line1 {
     display: block; color: var(--purple);
     text-shadow:
@@ -272,10 +274,6 @@
       12px 12px 0 var(--pixel-dark);
   }
 
-  /* Tagline = lede statement, sized up to 1.25rem so it doesn't read as body copy.
-     This is the line that has to carry the personality. text-wrap: balance lets
-     the browser distribute lines evenly when wrapping; the explicit <br> in the
-     markup forces the structural break at the period (two parallel fragments). */
   .hero-tagline {
     font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: clamp(1.05rem, 1.6vw, 1.25rem);
@@ -284,10 +282,6 @@
     letter-spacing: -0.005em;
     text-wrap: balance;
   }
-  /* Was Press Start 2P at 0.55rem in --hot-pink — failed contrast on lavender bg.
-     Switched to Nunito 1.05rem 900 in --hot-pink-deep (4.5:1 AA) with a thin
-     dark stroke to anchor the letters visually. Now tucked tight under the
-     tagline as a clear subtitle rather than a competing element. */
   .hero-role {
     font-family: 'Nunito', sans-serif; font-weight: 900;
     font-size: 1rem; color: var(--hot-pink-deep);
@@ -354,13 +348,11 @@
   .section-bg-white { background: var(--white); }
   .section-bg-soft { background: radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%), radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%), var(--lavender-bg); }
   .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
- .section-badge { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 5px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
-.section-title {
+  .section-badge { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 5px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
+  .section-title {
     font-family: 'Unbounded', sans-serif; font-weight: 700;
     font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--text);
     flex: 1; line-height: 1.05; letter-spacing: -0.02em;
-    /* Stroke for large section headers — same vocabulary as hero-name,
-       scaled down so the hero stays loudest */
     -webkit-text-stroke: 3px var(--pixel-dark);
     paint-order: stroke fill;
   }
@@ -372,10 +364,6 @@
       6px 6px 0 var(--pixel-dark);
   }
   .section-title .accent { color: var(--purple); }
-  /* Bright hot-pink fill on the stroked section titles. The 1.5px dark stroke
-     above gives the letterforms their contrast against the background; the
-     fill color is then free to be the brand bright pink. Reserved
-     --hot-pink-deep for small-text uses that don't have a stroke. */
   .section-title .accent2 { color: var(--hot-pink); }
 
   /* ===== WORK CARDS ===== */
@@ -407,7 +395,6 @@
   .artifacts-intro { font-size: 0.92rem; color: var(--text-mid); max-width: 46rem; margin: 0 auto 2.5rem; text-align: center; line-height: 1.7; font-weight: 700; }
   .specimen-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 
-  /* Active specimens = <button> (WCAG 4.1.2) */
   .specimen {
     background: var(--white); border-radius: 8px; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark);
     padding: 1rem 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
@@ -419,7 +406,6 @@
   .specimen:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
   .specimen:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--pixel-dark); }
 
-  /* Coming-soon specimen placeholders — non-interactive divs */
   .specimen.coming-soon { opacity: 0.4; box-shadow: 3px 3px 0 var(--pixel-dark); border-style: dashed; cursor: default; pointer-events: none; }
   .specimen.coming-soon::before { opacity: 0.3; }
   .specimen.coming-soon .specimen-icon { font-size: 1.2rem; opacity: 0.4; }
@@ -429,7 +415,6 @@
   .specimen-icon { font-size: 2.2rem; flex: 1; display: flex; align-items: center; }
   .specimen-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.78rem; color: var(--text); text-align: center; line-height: 1.3; }
   .specimen-tag { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--purple); letter-spacing: 0.1em; text-transform: uppercase; }
-  /* Pending specimens - real brands, case studies in progress */
   .specimen-pending .specimen-tag {
     background: var(--yellow);
     color: var(--pixel-dark);
@@ -481,14 +466,7 @@
   .about-lead .hl { color: var(--purple); }
   .about-lead .hl2 { color: #0e7a5f; }
   .about-body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 1.25rem; font-weight: 600; }
-  /* Coined-term highlight — subtle visual cue that these are names Stacy
-     gave the things, not random quoted phrases. Thin pink underline +
-     bumped weight reads as 'I named this' without yelling. */
-  .about-body .coined {
-    font-weight: 800; color: var(--text);
-    border-bottom: 2px solid var(--hot-pink);
-    padding-bottom: 0.05em;
-  }
+  .about-body .coined { font-weight: 800; color: var(--text); border-bottom: 2px solid var(--hot-pink); padding-bottom: 0.05em; }
   .about-body .hl { font-weight: 800; color: var(--purple); }
   .about-placeholder { display: inline-block; padding: 0.15em 0.5em; background: rgba(255,45,155,0.06); border: 2px dashed var(--pink); border-radius: 4px; color: var(--hot-pink-deep); font-style: italic; }
 
@@ -500,13 +478,10 @@
   /* ===== CONTACT ===== */
   .contact-pod { background: var(--white); border-radius: 16px; border: 3px solid var(--pixel-dark); box-shadow: 8px 8px 0 var(--pixel-dark); padding: 4rem 3rem; text-align: center; position: relative; overflow: hidden; max-width: 680px; margin: 0 auto; }
   .contact-pod::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 10px; background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 16.66%, var(--yellow) 16.66%, var(--yellow) 33.33%, var(--teal) 33.33%, var(--teal) 50%, var(--purple) 50%, var(--purple) 66.66%, var(--orange) 66.66%, var(--orange) 83.33%, var(--blue) 83.33%, var(--blue) 100%); }
-  /* Was 0.55rem — too small to read. Bumped to 0.85rem so the pixel font breathes. */
   .contact-signal { font-family: 'Press Start 2P', monospace; font-size: 0.85rem; color: #0a5a45; letter-spacing: 0.12em; display: flex; align-items: center; justify-content: center; gap: 0.7rem; margin-bottom: 1.75rem; }
   .signal-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
   .contact-headline { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3.5vw, 2.4rem); color: var(--text); line-height: 1.2; margin-bottom: 1.75rem; letter-spacing: -0.02em; }
   .contact-headline .accent { color: var(--purple); }
-  /* Was purple text on lavender-mid (#A122C0 on #c8a8f0) — ~3.3:1, failed AA.
-     Now white text on purple bg — ~7.7:1, well clear of AAA. */
   .contact-email {
     display: inline-flex; align-items: center; gap: 0.6rem;
     font-family: 'Nunito', sans-serif; font-weight: 800;
@@ -519,8 +494,6 @@
   }
   .contact-email:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); background: var(--hot-pink-deep); color: var(--white); }
   .contact-email:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
-  /* Was 0.85rem — bumped +4pt-equivalent to ~1.05rem. Also tightened to text-mid
-     (4a1878) for stronger contrast vs the lighter text-light. */
   .contact-sub { font-size: 1.05rem; color: var(--text-mid); line-height: 1.6; max-width: 30rem; margin: 0 auto; font-weight: 700; }
 
   /* ===== FOOTER ===== */
@@ -541,19 +514,93 @@
   @media (max-width: 900px) {
     .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
     .gameboy-wrap { width: 280px; }
-    .work-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr 1fr; }
     .about-grid { grid-template-columns: 1fr; }
     .specimen-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-art { order: -1; }
     .dropdown-menu { left: auto; right: 0; }
   }
-  @media (max-width: 600px) {
-    .specimen-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ===== MOBILE — hamburger nav kicks in ===== */
+  @media (max-width: 680px) {
+    /* Show the hamburger button */
+    .nav-hamburger { display: block; }
+
+    /* Hide the nav links by default; show when .mobile-open is toggled */
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: rgba(253,248,255,0.98);
+      border-bottom: 4px solid var(--pixel-dark);
+      box-shadow: 0 6px 0 var(--lavender-dark);
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 0;
+      z-index: 200;
+    }
+    .nav-links.mobile-open { display: flex; }
+    .nav-links li { width: 100%; }
+
+    /* Full-width tap targets */
+    .nav-links a,
+    .nav-dropdown-btn {
+      display: block;
+      width: 100%;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.85rem;
+      border-radius: 0;
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    /* Dropdown becomes inline — no absolute positioning */
+    .nav-dropdown { position: static; }
+    .dropdown-menu {
+      position: static;
+      display: none;
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      border-left: 4px solid var(--purple);
+      margin-left: 1.25rem;
+      background: transparent;
+    }
+    /* On mobile, dropdown opens via .open class only (no :hover) */
+    .nav-dropdown:hover .dropdown-menu { display: none; }
+    .nav-dropdown:focus-within .dropdown-menu { display: none; }
+    .dropdown-menu.open { display: block; }
+    .dropdown-menu a { white-space: normal; font-size: 0.8rem; padding: 0.65rem 1rem; }
+    .nav-dropdown-btn::after { float: right; }
+
+    /* Nav bar layout */
     .nav-inner { padding: 0.75rem 1rem; }
-    .nav-logo-text { font-size: 0.7rem; }
+    .nav-logo-text { font-size: 0.75rem; }
+
+    /* Hero */
+    .hero-layout { min-height: auto; padding: 0 1.25rem; gap: 2rem; }
+    .gameboy-wrap { width: 240px; }
+    .hero-name { -webkit-text-stroke: 4px var(--pixel-dark); }
+    .hero-name .line1, .hero-name .line2 {
+      text-shadow: 3px 3px 0 var(--pixel-dark), 6px 6px 0 var(--pixel-dark);
+    }
+
+    /* Sections */
     .section-wrap { padding: 3rem 1rem; }
-    .nav-links { gap: 0; }
-    .nav-links a { padding: 0.45rem 0.6rem; font-size: 0.7rem; }
+    .work-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .specimen-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { gap: 2rem; }
+
+    /* Contact pod — less padding on narrow screens */
+    .contact-pod { padding: 2.5rem 1.25rem; }
+    .contact-signal { font-size: 0.65rem; letter-spacing: 0.08em; }
+  }
+
+  @media (max-width: 400px) {
+    .gameboy-wrap { width: 200px; }
+    .nav-logo-text { font-size: 0.65rem; }
+    .specimen-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-badge { font-size: 0.45rem; }
   }
 
   .reveal { opacity: 0; transform: translateY(18px); }
@@ -575,7 +622,8 @@
       <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="" aria-hidden="true" style="height:44px;width:auto;filter:drop-shadow(2px 2px 0 #0a0520);" />
       <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>
     </a>
-    <ul class="nav-links" role="list">
+    <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links-list">☰</button>
+    <ul class="nav-links" role="list" id="nav-links-list">
       <li class="nav-dropdown">
         <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="featured-menu-btn">Featured</button>
         <div class="dropdown-menu" role="menu" aria-labelledby="featured-menu-btn" id="featured-menu">
@@ -686,7 +734,7 @@
           <p class="work-desc">Moderated usability study of the Philz Coffee mobile app. Uncovered a critical "UI Disconnect" where users failed to recognize interactive elements — and mapped a path to fix it.</p>
         </div>
       </a>
-     <a href="stubhub/" class="work-card">
+      <a href="stubhub/" class="work-card">
         <div class="work-thumb p3" aria-hidden="true">♿</div>
         <div class="work-card-body">
           <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">Accessibility</span></div>
@@ -738,7 +786,6 @@
       Here's who got sent to the nurse's office, and how I slapped on a <em style="background:var(--yellow);color:var(--pixel-dark);font-style:normal;font-weight:900;padding:0.1em 0.4em;border-radius:4px;border:2px solid var(--pixel-dark);">band-aid</em>.
     </p>
     <div class="specimen-grid">
-      <!-- Brand buttons - case studies coming soon (WCAG 4.1.2 keyboard access) -->
       <button class="specimen specimen-pending" aria-label="Chipotle case study, coming soon">
         <span class="specimen-num" aria-hidden="true">№ 001</span>
         <div class="specimen-icon" aria-hidden="true">🌯</div>
@@ -788,7 +835,6 @@
         <span class="specimen-tag">Coming Soon</span>
       </button>
     </div>
-
   </div>
 </div>
 
@@ -820,7 +866,7 @@
         </dl>
       </div>
       <div class="about-content">
-     <p class="about-lead">Hi, I'm Stacy. Bad UX makes me irrationally angry, and I can't unsee it. So I'm becoming an <span class="hl">interaction designer</span> and <span class="hl2">usability tester</span>, because apparently this is a whole career, and I'd rather get paid to be annoyed than keep doing it for free.</p>
+        <p class="about-lead">Hi, I'm Stacy. Bad UX makes me irrationally angry, and I can't unsee it. So I'm becoming an <span class="hl">interaction designer</span> and <span class="hl2">usability tester</span>, because apparently this is a whole career, and I'd rather get paid to be annoyed than keep doing it for free.</p>
         <p class="about-body">My method? Equal parts curious, stupid, and brave. Push the red button, break things apart, put them back together. Grew up on innovation and duct tape. I learn by doing, I'm rooted in logic, and I fly by gut. Don't give me a long presentation on the problem. Hand me the broken thing, say "this doesn't make sense," and let me get consumed by the puzzle of figuring it out.</p>
         <p class="about-body">I'm the one who shows up with the red pen. I'll find the mistakes, help you fix them, and tell you when your fly is down. Respectfully.</p>
         <p class="about-body" style="font-style: italic; opacity: 0.85;">Toolkit: Figma, usability testing, accessibility audits, heuristic evaluation, WCAG, NN/g, Apple HIG, Material, Buffy the Vampire Slayer trivia.</p>
@@ -868,6 +914,27 @@
 </footer>
 
 <script>
+  // ===== MOBILE HAMBURGER NAV =====
+  const hamburger = document.getElementById('nav-hamburger-btn');
+  const navList = document.getElementById('nav-links-list');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = navList.classList.toggle('mobile-open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    hamburger.textContent = isOpen ? '✕' : '☰';
+  });
+
+  // Close mobile nav when any link is tapped
+  navList.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navList.classList.remove('mobile-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open navigation menu');
+      hamburger.textContent = '☰';
+    });
+  });
+
   // ===== DROPDOWN KEYBOARD ACCESSIBILITY (WCAG 2.1.1) =====
   const btn = document.getElementById('featured-menu-btn');
   const menu = document.getElementById('featured-menu');
@@ -878,10 +945,6 @@
     btn.setAttribute('aria-expanded', 'true');
     menuItems[0].focus();
   }
-  // returnFocus: when true, send keyboard focus back to the trigger button.
-  // We only want this on keyboard-initiated close (Escape, Tab) — not on
-  // outside clicks, because focusing the trigger triggers the :focus-within
-  // CSS rule, which would immediately reopen the menu we just closed.
   function closeMenu(returnFocus) {
     menu.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
@@ -900,7 +963,7 @@
   });
   document.addEventListener('click', (e) => { if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu(false); });
 
-  // ===== EASTER EGG — native <button> handles Enter/Space via click automatically (WCAG 2.1.1) =====
+  // ===== EASTER EGG =====
   const egg = document.getElementById('footer-easter-egg');
   function activateEgg() {
     egg.setAttribute('data-found', 'true');
@@ -910,10 +973,9 @@
   }
   egg.addEventListener('click', activateEgg);
 
-  // ===== SPECIMEN PLACEHOLDER INTERACTION =====
+  // ===== SPECIMEN INTERACTION =====
   document.querySelectorAll('.specimen:not(.coming-soon)').forEach(card => {
     card.addEventListener('click', () => {
-      // Routes to individual specimen pages when ready
       const name = card.querySelector('.specimen-name').textContent;
       console.log('Opening:', name);
     });
