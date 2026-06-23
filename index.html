@@ -953,6 +953,9 @@
       hamburger.setAttribute('aria-expanded', 'false');
       hamburger.setAttribute('aria-label', 'Open navigation menu');
       hamburger.textContent = '☰';
+      // Also close the Featured dropdown if it was open
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
     });
   });
 
@@ -961,15 +964,20 @@
   const menu = document.getElementById('featured-menu');
   const menuItems = [...menu.querySelectorAll('[role="menuitem"]')];
 
+  function isMobileNav() {
+    return window.innerWidth <= 680;
+  }
+
   function openMenu() {
     menu.classList.add('open');
     btn.setAttribute('aria-expanded', 'true');
-    menuItems[0].focus();
+    // On mobile the menu is static/inline — don't steal focus away from it
+    if (!isMobileNav()) menuItems[0].focus();
   }
   function closeMenu(returnFocus) {
     menu.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
-    if (returnFocus) btn.focus();
+    if (returnFocus && !isMobileNav()) btn.focus();
   }
 
   btn.addEventListener('click', () => menu.classList.contains('open') ? closeMenu(false) : openMenu());
@@ -982,7 +990,10 @@
     if (e.key === 'ArrowUp')   { e.preventDefault(); menuItems[(idx - 1 + menuItems.length) % menuItems.length].focus(); }
     if (e.key === 'Escape' || e.key === 'Tab') { closeMenu(true); }
   });
-  document.addEventListener('click', (e) => { if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu(false); });
+  // Close dropdown on outside click (desktop only — mobile nav handles its own close)
+  document.addEventListener('click', (e) => {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu(false);
+  });
 
   // ===== EASTER EGG =====
   const egg = document.getElementById('footer-easter-egg');
