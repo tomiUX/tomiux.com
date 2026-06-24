@@ -588,7 +588,9 @@
 
     /* Mobile CV banner — shown only on mobile */
     .mobile-cv-banner {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
       background: var(--white);
       border-bottom: 4px solid var(--pixel-dark);
       padding: 0.85rem 1.25rem;
@@ -607,6 +609,14 @@
     }
     .mobile-cv-banner a:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
     .mobile-cv-banner a:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+    .mobile-cv-linkedin {
+      background: var(--purple) !important;
+      color: white !important;
+    }
+    .mobile-cv-linkedin:hover { background: var(--hot-pink) !important; }
+
+    /* Hide floating emoji decorations on mobile */
+    .pixel-deco { display: none; }
 
     /* Hero */
     .hero-layout { min-height: auto; padding: 0 1.25rem; gap: 2rem; }
@@ -676,10 +686,13 @@
   </div>
 </nav>
 
-<!-- MOBILE CV BANNER — visible only on mobile, sits just below the nav -->
-<div class="mobile-cv-banner" aria-label="Quick access to CV">
+<!-- MOBILE CV + LINKEDIN BANNERS — visible only on mobile, sits just below the nav -->
+<div class="mobile-cv-banner" aria-label="Quick access to CV and LinkedIn">
   <a href="assets/Stacy-Tomasi-UX-Designer-Resume.pdf" target="_blank" rel="noopener" aria-label="Download CV (opens in new tab)">
     ↗ Download CV
+  </a>
+  <a href="linkedin://in/stacytomasi" ontouchstart="" onclick="setTimeout(function(){ window.location='https://www.linkedin.com/in/stacytomasi/'; }, 500); return false;" class="mobile-cv-linkedin" aria-label="View LinkedIn profile (opens LinkedIn app)">
+    ↗ LinkedIn
   </a>
 </div>
 
