@@ -92,7 +92,6 @@
   /* WCAG 2.3.3 — animations only run when user has no motion preference */
   @media (prefers-reduced-motion: no-preference) {
     body::before { animation: bgShimmer 8s ease-in-out infinite alternate; }
-    .pixel-deco { animation: floatPx 4s ease-in-out infinite; }
     .gb-led { animation: ledBlink 2s ease-in-out infinite; }
     .signal-dot { animation: pulse 1.4s ease-in-out infinite; }
     .screen-mascot img { animation: screenBob 2s ease-in-out infinite; }
@@ -221,11 +220,6 @@
       radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%),
       radial-gradient(ellipse at 50% 90%, rgba(155,89,255,0.2) 0%, transparent 50%),
       var(--lavender-bg);
-  }
-
-  .pixel-deco {
-    position: absolute; pointer-events: none; z-index: 0;
-    font-size: 1.8rem; opacity: 0.6; filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.15));
   }
 
   .hero-layout {
@@ -616,7 +610,6 @@
     .mobile-cv-linkedin:hover { background: var(--hot-pink) !important; }
 
     /* Hide floating emoji decorations on mobile */
-    .pixel-deco { display: none; }
 
     /* Hero */
     .hero-layout { min-height: auto; padding: 0 1.25rem; gap: 2rem; }
@@ -700,13 +693,6 @@
 
 <!-- HERO -->
 <section class="hero" id="top" aria-label="Introduction">
-  <span class="pixel-deco" style="top:12%;left:6%;animation-delay:0s;" aria-hidden="true">🎮</span>
-  <span class="pixel-deco" style="top:20%;right:8%;animation-delay:1s;font-size:1.4rem;" aria-hidden="true">💿</span>
-  <span class="pixel-deco" style="bottom:30%;left:4%;animation-delay:2s;font-size:1.2rem;" aria-hidden="true">📼</span>
-  <span class="pixel-deco" style="top:65%;right:6%;animation-delay:0.5s;font-size:1.3rem;" aria-hidden="true">💾</span>
-  <span class="pixel-deco" style="bottom:15%;right:15%;animation-delay:1.5s;font-size:1rem;" aria-hidden="true">⚡</span>
-  <span class="pixel-deco" style="top:40%;left:3%;animation-delay:3s;font-size:1rem;" aria-hidden="true">🌟</span>
-
   <div class="hero-layout">
     <div class="hero-text">
       <div class="hero-badge reveal" aria-hidden="true">★ UX DESIGNER // SAN JOSE, CA</div>
