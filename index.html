@@ -222,6 +222,9 @@
   .hero-name .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
 
   .hero-tagline { font-size: 1rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 0.35rem; font-weight: 700; }
+  .hero-credentials { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text-mid); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; letter-spacing: 0.01em; }
+  .cred-pill { display: inline-block; background: var(--teal); color: var(--pixel-dark); font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.4rem 0.85rem; border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 6px; white-space: nowrap; }
+  .cred-sep { color: var(--text-light); opacity: 0.6; font-weight: 700; flex-shrink: 0; }
   .hero-role { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--hot-pink); letter-spacing: 0.08em; margin-bottom: 2rem; line-height: 1.8; }
   .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
 
@@ -467,7 +470,12 @@
         <span class="line2 reveal d2">Tomasi</span>
       </h1>
       <p class="hero-tagline reveal d3">Designing things that work. Fixing things that don't.</p>
-      <p class="hero-role reveal d3">Interaction Design · Usability Auditing · UX Analysis</p>
+      <p class="hero-credentials reveal d3">
+        <span class="cred-pill">MS UX Candidate</span>
+        <span class="cred-sep">·</span>
+        Kent State '26
+      </p>
+      <p class="hero-role reveal d3">Designing it. Auditing it. Fixing it.</p>
       <div class="hero-cta reveal d4">
         <a href="#work" class="btn btn-primary">▶ Featured Work</a>
         <a href="#about" class="btn btn-secondary">▶ About Me</a>
