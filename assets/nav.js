@@ -85,7 +85,7 @@
       cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
       transition: all 0.15s;
     }
-    #tomiux-nav .nav-dropdown-btn::after { content: '\\25BE'; font-size: 0.6rem; opacity: 0.7; }
+    #tomiux-nav .nav-dropdown-btn::after { content: '\25BE'; font-size: 0.6rem; opacity: 0.7; }
     #tomiux-nav .nav-dropdown-btn:hover { background: #c8a8f0; color: #A122C0; }
     #tomiux-nav .nav-dropdown-btn:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; background: #c8a8f0; color: #A122C0; }
 
@@ -94,18 +94,11 @@
       top: calc(100% + 8px); left: 0;
       background: rgba(253,248,255,0.98);
       border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520;
-      border-radius: 8px; min-width: 220px; z-index: 200; overflow: visible;
-    }
-    /* Invisible bridge across the 8px gap so the menu doesn't close when the
-       cursor crosses from the trigger button down to the menu items. */
-    #tomiux-nav .dropdown-menu::before {
-      content: ''; position: absolute; left: 0; right: 0;
-      top: -10px; height: 10px; background: transparent;
+      border-radius: 8px; min-width: 220px; z-index: 200; overflow: hidden;
     }
     #tomiux-nav .dropdown-menu.open { display: block; }
-
-    /* NOTE: No CSS :hover rule here — JS handles all open/close logic
-       to prevent the menu from getting stuck open after clicking to close. */
+    #tomiux-nav:hover .dropdown-menu { display: block; }
+    #tomiux-nav .nav-dropdown:hover .dropdown-menu { display: block; }
 
     #tomiux-nav .dropdown-menu a {
       display: flex !important; align-items: center; gap: 0.5rem;
@@ -171,13 +164,13 @@
     '      <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="nav-featured-btn">Featured</button>',
     '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu">',
     '        <a href="https://tomiux.com/august/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">IxD</span> August Smart Lock</a>',
-    '        <a href="https://tomiux.com/philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">USABILITY TESTING</span> Philz Coffee</a>',
+    '        <a href="https://tomiux.com/philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">RESEARCH</span> Philz Coffee</a>',
     '        <a href="https://tomiux.com/yelp/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">RESEARCH</span> Yelp Usability Study</a>',
     '        <a href="https://tomiux.com/coursera/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> Coursera Cognitive Audit</a>',
     '        <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> StubHub Annotations</a>',
     '      </div>',
     '    </li>',
-    '    <li><a href="https://tomiux.com/#playground">Playground</a></li>',
+    '    <li><a href="https://tomiux.com/#extra-credit">Extra Credit</a></li>',
     '    <li><a href="https://tomiux.com/#about">About</a></li>',
     '    <li><a href="https://tomiux.com/#contact">Contact</a></li>',
     '    <li><a href="https://tomiux.com/resume.pdf" class="nav-cv" target="_blank" rel="noopener" aria-label="Download CV (opens in new tab)">CV \u2197</a></li>',
@@ -190,6 +183,7 @@
     document.body.insertBefore(nav, document.body.firstChild);
     document.body.insertBefore(skipLink, document.body.firstChild);
 
+    // Ensure main content target exists for skip link
     if (!document.getElementById('main-content')) {
       const main = document.querySelector('main') || document.querySelector('section');
       if (main && !main.id) main.id = 'main-content';
