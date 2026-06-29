@@ -91,18 +91,18 @@
 
     #tomiux-nav .dropdown-menu {
       display: none; position: absolute;
-      top: calc(100% + 8px); left: 0;
+      top: 100%; left: 0;
+      padding-top: 8px;
+      background: transparent;
+      border: none; box-shadow: none;
+      min-width: 220px; z-index: 200; overflow: visible;
+    }
+    #tomiux-nav .dropdown-menu-inner {
       background: rgba(253,248,255,0.98);
       border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520;
-      border-radius: 8px; min-width: 220px; z-index: 200; overflow: visible;
+      border-radius: 8px; overflow: hidden;
     }
     #tomiux-nav .dropdown-menu.open { display: block; }
-    /* Invisible bridge across the gap so mouse doesn't leave the wrapper
-       when travelling from the button down to the menu items */
-    #tomiux-nav .dropdown-menu::before {
-      content: ''; position: absolute; left: 0; right: 0;
-      top: -10px; height: 10px; background: transparent;
-    }
 
     #tomiux-nav .dropdown-menu a {
       display: flex !important; align-items: center; gap: 0.5rem;
@@ -166,13 +166,13 @@
     '  <ul class="nav-links" role="list">',
     '    <li class="nav-dropdown">',
     '      <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="nav-featured-btn">Featured</button>',
-    '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu">',
+    '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu"><div class="dropdown-menu-inner">',
     '        <a href="https://tomiux.com/august/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">IxD</span> August Smart Lock</a>',
     '        <a href="https://tomiux.com/philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">RESEARCH</span> Philz Coffee</a>',
     '        <a href="https://tomiux.com/yelp/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">RESEARCH</span> Yelp Usability Study</a>',
     '        <a href="https://tomiux.com/coursera/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> Coursera Cognitive Audit</a>',
     '        <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> StubHub Annotations</a>',
-    '      </div>',
+    '      </div></div>',
     '    </li>',
     '    <li><a href="https://tomiux.com/#extra-credit">Extra Credit</a></li>',
     '    <li><a href="https://tomiux.com/#about">About</a></li>',
@@ -220,6 +220,21 @@
 
     // Keep menu open when clicking inside it
     menu.addEventListener('click', (e) => e.stopPropagation());
+
+    // Hover with delay — prevents snap-close when mouse moves from button to menu
+    let closeTimer = null;
+
+    function scheduleClose() {
+      closeTimer = setTimeout(() => closeMenu(false), 120);
+    }
+    function cancelClose() {
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    }
+
+    btn.addEventListener('mouseenter', () => { cancelClose(); openMenu(false); });
+    btn.addEventListener('mouseleave', scheduleClose);
+    menu.addEventListener('mouseenter', cancelClose);
+    menu.addEventListener('mouseleave', scheduleClose);
 
     // Keyboard
     btn.addEventListener('keydown', (e) => {
