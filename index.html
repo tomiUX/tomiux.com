@@ -139,7 +139,6 @@
   .nav-links a:hover { background: var(--lavender-mid); color: var(--purple); }
   .nav-links a:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; background: var(--lavender-mid); color: var(--purple); }
 
-  /* Dropdown trigger — <button> for keyboard access (WCAG 2.1.1) */
   .nav-dropdown { position: relative; }
   .nav-dropdown-btn {
     font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 800;
@@ -185,8 +184,7 @@
 
   /* ===== HERO ===== */
   .hero {
-    position: relative; min-height: auto; display: flex; align-items: center;
-    overflow: hidden; z-index: 1; padding: 2rem 0 2rem;
+    position: relative; z-index: 1; padding: 5rem 2rem 4.5rem;
     background:
       radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.25) 0%, transparent 50%),
       radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%),
@@ -194,37 +192,29 @@
       var(--lavender-bg);
   }
 
-  .pixel-deco {
-    position: absolute; pointer-events: none; z-index: 0;
-    font-size: 1.8rem; opacity: 0.6; filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.15));
-  }
-
   .hero-layout {
-    position: relative; z-index: 2; max-width: 1200px; margin: 0 auto;
-    padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr;
-    gap: 4rem; align-items: center; width: 100%; min-height: calc(100vh - 130px);
+    position: relative; z-index: 2; max-width: 860px; margin: 0 auto;
   }
 
   .hero-badge {
     display: inline-block; padding: 0.4rem 1rem; background: var(--yellow);
     border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
     font-family: 'Press Start 2P', monospace; font-size: 0.55rem;
-    color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.5rem;
+    color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.75rem;
   }
 
   .hero-name {
     font-family: 'Unbounded', sans-serif; font-weight: 900;
-    font-size: clamp(3rem, 7.5vw, 5.5rem); line-height: 0.95;
-    margin-bottom: 1rem; letter-spacing: -0.02em;
+    font-size: clamp(3.5rem, 9vw, 7rem); line-height: 0.92;
+    margin-bottom: 1.5rem; letter-spacing: -0.03em;
   }
   .hero-name .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
   .hero-name .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
 
-  .hero-tagline { font-size: 1rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 0.35rem; font-weight: 700; }
-  .hero-credentials { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text-mid); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; letter-spacing: 0.01em; }
+  .hero-tagline { font-size: 1.15rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 0.5rem; font-weight: 700; }
+  .hero-credentials { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text-mid); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; letter-spacing: 0.01em; }
   .cred-pill { display: inline-block; background: var(--teal); color: var(--pixel-dark); font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.4rem 0.85rem; border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 6px; white-space: nowrap; }
   .cred-sep { color: var(--text-light); opacity: 0.6; font-weight: 700; flex-shrink: 0; }
-  .hero-role { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--hot-pink); letter-spacing: 0.08em; margin-bottom: 2rem; line-height: 1.8; }
   .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; }
 
   .btn {
@@ -242,39 +232,6 @@
   .btn-secondary { background: var(--white); color: var(--purple); }
   .btn-secondary:hover { background: var(--lavender-mid); }
 
-  /* ===== GAME BOY ===== */
-  .hero-art { display: flex; align-items: center; justify-content: center; position: relative; }
-  .gameboy-wrap { position: relative; width: 360px; }
-  .gb-sticker { position: absolute; font-size: 0.65rem; font-family: 'Nunito', sans-serif; font-weight: 900; padding: 0.3rem 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); z-index: 10; }
-  .gb-sticker-1 { top: -1.5rem; right: -1rem; background: var(--yellow); color: var(--pixel-dark); transform: rotate(8deg); }
-  .gb-sticker-2 { bottom: 2rem; left: -2rem; background: var(--pink); color: white; transform: rotate(-6deg); }
-  .gb-sticker-3 { top: 3rem; left: -2.5rem; background: var(--teal); color: var(--pixel-dark); transform: rotate(-3deg); font-size: 0.6rem; }
-  .gb-sticker-4 { bottom: -1rem; right: -1.5rem; background: var(--lime); color: var(--pixel-dark); transform: rotate(5deg); font-size: 0.58rem; }
-  .gameboy { background: linear-gradient(160deg, #e8d5f5 0%, #d4b8f0 40%, #c4a0e8 100%); border: 4px solid var(--pixel-dark); border-radius: 12px 12px 40px 12px; padding: 1.25rem 1.25rem 2rem; box-shadow: 6px 6px 0 var(--pixel-dark), 0 20px 50px rgba(155,89,255,0.25); position: relative; }
-  .gb-screen-bezel { background: var(--pixel-dark); border-radius: 8px 8px 20px 8px; padding: 0.85rem; margin-bottom: 1rem; position: relative; }
-  .gb-screen-bezel::before { content: 'DOT-MATRIX WITH STEREO SOUND'; position: absolute; top: -2rem; left: 0; font-family: 'Press Start 2P', monospace; font-size: 0.35rem; color: #9b70d8; letter-spacing: 0.06em; white-space: nowrap; }
-  .gb-screen { background: #91EBD3; border: 2px solid #1a1a1a; border-radius: 4px; aspect-ratio: 10/9; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 0.25rem; overflow: hidden; position: relative; }
-  .gb-screen::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 3px); pointer-events: none; z-index: 2; }
-  .screen-title { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: #0a2820; letter-spacing: 0.05em; line-height: 2; text-align: center; z-index: 1; }
-  .screen-mascot { z-index: 1; display: flex; align-items: center; justify-content: center; }
-  .screen-health { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: #0a2820; letter-spacing: 0.05em; z-index: 1; }
-  .gb-led { position: absolute; top: 1rem; right: 1.2rem; width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 6px var(--red); }
-  .gb-label { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: #8850b0; letter-spacing: 0.1em; text-align: right; margin-bottom: 0.5rem; padding-right: 0.5rem; }
-  .gb-controls { display: flex; justify-content: space-between; align-items: center; padding: 0 0.5rem; }
-  .dpad { width: 64px; height: 64px; position: relative; }
-  .dpad-h, .dpad-v { position: absolute; background: var(--pixel-dark); border-radius: 3px; }
-  .dpad-h { top: 33%; left: 0; right: 0; height: 34%; }
-  .dpad-v { left: 33%; top: 0; bottom: 0; width: 34%; }
-  .dpad-center { position: absolute; top: 33%; left: 33%; right: 33%; bottom: 33%; background: var(--pixel-dark); border-radius: 2px; }
-  .gb-buttons { display: flex; gap: 0.5rem; align-items: center; }
-  .gb-btn { width: 28px; height: 28px; border-radius: 50%; border: 3px solid var(--pixel-dark); display: flex; align-items: center; justify-content: center; font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--white); font-weight: bold; box-shadow: 2px 2px 0 var(--pixel-dark); }
-  .gb-btn-b { background: #A122C0; }
-  .gb-btn-a { background: var(--red); }
-  .gb-start-sel { position: absolute; bottom: 3.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; }
-  .gb-mini-btn { width: 32px; height: 8px; background: var(--lavender-dark); border: 2px solid var(--pixel-dark); border-radius: 4px; }
-  .gb-speaker { position: absolute; bottom: 1.25rem; right: 1.25rem; display: grid; grid-template-columns: repeat(4, 6px); gap: 3px; }
-  .gb-hole { width: 5px; height: 5px; border-radius: 50%; background: var(--pixel-dark); opacity: 0.6; }
-
   /* ===== DIVIDER ===== */
   .pixel-divider { height: 12px; background: repeating-linear-gradient(90deg, #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px, #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px, #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px, #3FBB9E 120px, #3FBB9E 140px); border-top: 3px solid var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); position: relative; z-index: 1; }
 
@@ -288,31 +245,52 @@
   .section-title .accent { color: var(--purple); }
   .section-title .accent2 { color: var(--hot-pink); }
 
-  /* ===== WORK CARDS ===== */
-  .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .work-card { background: var(--white); border-radius: 12px; overflow: hidden; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); transition: all 0.12s; cursor: pointer; text-decoration: none; display: block; color: inherit; }
-  .work-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
-  .work-card:active { transform: translate(2px,2px); box-shadow: 3px 3px 0 var(--pixel-dark); }
-  .work-card:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
-  .work-thumb { aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; font-size: 3rem; position: relative; border-bottom: 3px solid var(--pixel-dark); }
-  .work-thumb.p1 { background: linear-gradient(135deg, var(--baby-pink), var(--lavender-mid), var(--baby-blue)); }
-  .work-thumb.p2 { background: linear-gradient(135deg, var(--baby-blue), var(--mint), var(--lavender-mid)); }
-  .work-thumb.p3 { background: linear-gradient(135deg, var(--yellow), var(--baby-pink), var(--lavender-mid)); }
-  .work-thumb.p4 { background: linear-gradient(135deg, var(--mint), var(--baby-blue), var(--teal)); }
-  .work-thumb.p5 { background: linear-gradient(135deg, var(--lavender-mid), var(--baby-pink), var(--hot-pink)); }
-  .work-thumb.p6 { background: linear-gradient(135deg, var(--mint), var(--yellow), var(--orange)); }
-  .work-thumb.p-locked { background: linear-gradient(135deg, #d4c5e8, #b8a8d0, #9b90b8); }
-  .work-card.coming-soon { opacity: 0.6; cursor: default; pointer-events: none; }
-  .coming-soon-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Press Start 2P', monospace; font-size: 0.5rem; background: var(--pixel-dark); color: var(--yellow); padding: 0.4rem 0.75rem; letter-spacing: 0.1em; white-space: nowrap; border: 2px solid var(--yellow); box-shadow: 2px 2px 0 rgba(0,0,0,0.4); }
-  .work-thumb::after { content: 'VIEW CASE STUDY ▶'; position: absolute; inset: 0; background: rgba(10,5,32,0.75); display: flex; align-items: center; justify-content: center; font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--yellow); letter-spacing: 0.1em; opacity: 0; transition: opacity 0.15s; }
-  .work-card:hover .work-thumb::after { opacity: 1; }
-  .work-card:focus-visible .work-thumb::after { opacity: 1; }
-  .work-card-body { padding: 1.1rem; }
-  .work-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
-  .work-year { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--text-light); }
-  .work-tag { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.15rem 0.5rem; background: #A122C0; color: white; border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 4px; }
-  .work-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.35rem; letter-spacing: -0.01em; line-height: 1.2; }
-  .work-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; font-weight: 600; }
+  /* ===== WORK CARDS — OPTION C (tight cards) ===== */
+  .work-grid { display: flex; flex-direction: column; gap: 0.6rem; }
+
+  .work-card {
+    background: var(--white);
+    border-radius: 10px;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    transition: all 0.12s;
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1rem 1.25rem;
+    color: inherit;
+  }
+  .work-card:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--pixel-dark); background: var(--offwhite); }
+  .work-card:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
+  .work-card:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--pixel-dark); }
+
+  .work-card.coming-soon { opacity: 0.5; cursor: default; pointer-events: none; border-style: dashed; box-shadow: 3px 3px 0 var(--pixel-dark); }
+
+  /* Color block replaces emoji thumb */
+  .work-color { width: 48px; height: 48px; border-radius: 8px; border: 2px solid var(--pixel-dark); flex-shrink: 0; }
+  .wc1 { background: linear-gradient(135deg, var(--mint), var(--teal)); }
+  .wc2 { background: linear-gradient(135deg, var(--lavender-mid), var(--hot-pink)); }
+  .wc3 { background: linear-gradient(135deg, var(--mint), var(--orange)); }
+  .wc4 { background: linear-gradient(135deg, var(--baby-pink), var(--lavender-mid)); }
+  .wc5 { background: linear-gradient(135deg, var(--baby-blue), var(--lavender-mid)); }
+  .wc6 { background: linear-gradient(135deg, var(--yellow), var(--baby-pink)); }
+  .wc7 { background: linear-gradient(135deg, var(--baby-blue), var(--purple)); }
+  .wc8 { background: linear-gradient(135deg, var(--yellow), var(--orange)); }
+  .wc9 { background: linear-gradient(135deg, var(--mint), var(--blue)); }
+
+  .work-card-body { min-width: 0; }
+  .work-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 0.2rem; letter-spacing: -0.01em; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .work-desc { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .work-card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; flex-shrink: 0; }
+  .work-tag { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: var(--purple); color: white; border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 4px; white-space: nowrap; }
+  .work-year { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--text-light); }
+  .work-arrow { font-size: 0.9rem; color: var(--lavender-dark); transition: color 0.12s; }
+  .work-card:hover .work-arrow { color: var(--purple); }
+  .work-card.coming-soon .work-arrow { display: none; }
+  .work-coming-label { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; color: var(--text-light); letter-spacing: 0.06em; }
 
   /* ===== EXTRA CREDIT / SPECIMEN CARDS ===== */
   .artifacts-intro { font-size: 0.92rem; color: var(--text-mid); max-width: 46rem; margin: 0 auto 2.5rem; text-align: center; line-height: 1.7; font-weight: 700; }
@@ -453,7 +431,6 @@
   .about-lead .hl { color: var(--purple); }
   .about-lead .hl2 { color: #0e7a5f; }
   .about-body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 1.25rem; font-weight: 600; }
-  .about-placeholder { display: inline-block; padding: 0.15em 0.5em; background: rgba(255,45,155,0.06); border: 2px dashed var(--pink); border-radius: 4px; color: var(--hot-pink); font-style: italic; }
 
   .contact-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.5rem; border-top: 3px dashed var(--lavender-mid); }
   .contact-link { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1rem; background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); border-radius: 6px; font-family: 'Nunito', sans-serif; font-size: 0.78rem; font-weight: 800; color: var(--purple); text-decoration: none; transition: all 0.12s; }
@@ -488,15 +465,17 @@
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
-    .hero-layout { grid-template-columns: 1fr; gap: 3rem; }
-    .gameboy-wrap { width: 280px; }
-    .work-grid { grid-template-columns: 1fr; }
-    .about-grid { grid-template-columns: 1fr; }
     .specimen-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero-art { order: -1; }
     .dropdown-menu { left: auto; right: 0; }
     .passion-card-body { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.75rem; }
     .passion-visual { font-size: 5rem; max-width: 200px; margin: 0 auto; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .work-card { grid-template-columns: 40px 1fr; gap: 0.85rem; }
+    .work-card-right { display: none; }
+    .work-color { width: 40px; height: 40px; }
+    .work-title { font-size: 0.82rem; white-space: normal; }
   }
   @media (max-width: 600px) {
     .specimen-grid { grid-template-columns: repeat(2, 1fr); }
@@ -505,6 +484,7 @@
     .section-wrap { padding: 3rem 1rem; }
     .nav-links { gap: 0; }
     .nav-links a { padding: 0.45rem 0.6rem; font-size: 0.7rem; }
+    .hero { padding: 3.5rem 1.25rem 3rem; }
   }
 
   .reveal { opacity: 0; transform: translateY(18px); }
@@ -536,6 +516,9 @@
           <a href="https://tomiux.com/coursera/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">COGNITIVE</span> Coursera Cognitive Audit</a>
           <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">ANNOTATIONS</span> StubHub Annotations</a>
           <a href="https://tomiux.com/npr/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">WCAG</span> NPR.org Audit</a>
+          <a href="https://tomiux.com/pottery-barn/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">HEURISTIC</span> Pottery Barn</a>
+          <a href="https://tomiux.com/starbucks-philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">HEURISTIC</span> Starbucks vs. Philz</a>
+          <a href="https://tomiux.com/blue-nile/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">USABILITY</span> Blue Nile vs. Brilliant Earth</a>
         </div>
       </li>
       <li><a href="#extra-credit">Extra Credit</a></li>
@@ -569,39 +552,6 @@
         <a href="#about" class="btn btn-secondary">▶ About Me</a>
       </div>
     </div>
-
-    <div class="hero-art reveal d2" aria-hidden="true">
-      <div class="gameboy-wrap">
-        <div class="gameboy">
-          <div class="gb-led"></div>
-          <div class="gb-label">TOMIUX COLOR</div>
-          <div class="gb-screen-bezel">
-            <div class="gb-screen">
-              <div class="screen-title">TOMIUX<br/>PORTFOLIO</div>
-              <div class="screen-mascot"><img src="assets/ghost_logo.png" alt="" style="width:90px;height:auto;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 6px rgba(255,255,255,0.8)) drop-shadow(2px 2px 0 rgba(0,0,0,0.3));" /></div>
-              <div class="screen-health">HP ████████ 100</div>
-            </div>
-          </div>
-          <div class="gb-controls">
-            <div class="dpad"><div class="dpad-h"></div><div class="dpad-v"></div><div class="dpad-center"></div></div>
-            <div class="gb-buttons">
-              <div class="gb-btn gb-btn-b">B</div>
-              <div class="gb-btn gb-btn-a">A</div>
-            </div>
-          </div>
-          <div class="gb-start-sel"><div class="gb-mini-btn"></div><div class="gb-mini-btn"></div></div>
-          <div class="gb-speaker">
-            <div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div>
-            <div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div>
-            <div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div><div class="gb-hole"></div>
-          </div>
-        </div>
-        <div class="gb-sticker gb-sticker-1" aria-hidden="true">★ NEW ★</div>
-        <div class="gb-sticker gb-sticker-2" aria-hidden="true">LEVEL UP</div>
-        <div class="gb-sticker gb-sticker-3" aria-hidden="true">PLAYER 1</div>
-        <div class="gb-sticker gb-sticker-4" aria-hidden="true">EXTRA LIFE</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -615,54 +565,124 @@
       <h2 class="section-title"><span style="color:#A122C0;">Featured</span> <span class="accent">Work</span></h2>
     </div>
     <div class="work-grid">
+
       <a href="https://tomiux.com/coursera/" class="work-card">
-        <div class="work-thumb p4" aria-hidden="true">🧠</div>
+        <div class="work-color wc1" aria-hidden="true"></div>
         <div class="work-card-body">
-          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">Cognitive Audit</span></div>
-          <h3 class="work-title">Coursera Cognitive Audit</h3>
-          <p class="work-desc">Cognitive accessibility audit of Coursera's web and mobile platforms — introducing original frameworks: the cognitive budget, Search Tax, and Interaction Tax.</p>
+          <p class="work-title">Coursera Cognitive Audit</p>
+          <p class="work-desc">Cognitive accessibility audit of Coursera's web and mobile platforms, introducing original frameworks: the cognitive budget, Search Tax, and Interaction Tax.</p>
+        </div>
+        <div class="work-card-right">
+          <span class="work-tag">Cognitive Audit</span>
+          <span class="work-year">2026</span>
+          <span class="work-arrow" aria-hidden="true">→</span>
         </div>
       </a>
+
       <a href="https://tomiux.com/stubhub/" class="work-card">
-        <div class="work-thumb p5" aria-hidden="true">♿</div>
+        <div class="work-color wc2" aria-hidden="true"></div>
         <div class="work-card-body">
-          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">A11Y Annotations</span></div>
-          <h3 class="work-title">StubHub A11y Annotations</h3>
-          <p class="work-desc">Accessibility annotation set for StubHub, written for developer handoff. Applied WCAG 2.1 standards to real product screens with actionable, implementation-ready specs.</p>
+          <p class="work-title">StubHub A11y Annotations</p>
+          <p class="work-desc">Accessibility annotation set for StubHub written for developer handoff. Applied WCAG 2.1 standards to real product screens with actionable, implementation-ready specs.</p>
+        </div>
+        <div class="work-card-right">
+          <span class="work-tag">A11Y</span>
+          <span class="work-year">2026</span>
+          <span class="work-arrow" aria-hidden="true">→</span>
         </div>
       </a>
+
       <a href="https://tomiux.com/npr/" class="work-card">
-        <div class="work-thumb p6" aria-hidden="true">📻</div>
+        <div class="work-color wc3" aria-hidden="true"></div>
         <div class="work-card-body">
-          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">WCAG Audit</span></div>
-          <h3 class="work-title">NPR.org Accessibility Audit</h3>
-          <p class="work-desc">WCAG 2.1 Level A &amp; AA conformance audit of NPR.org formatted in the VPAT 2.5Rev structure. Two page types, twelve pages of findings, and one significant pattern nobody talks about.</p>
+          <p class="work-title">NPR.org Accessibility Audit</p>
+          <p class="work-desc">WCAG 2.1 Level A &amp; AA conformance audit of NPR.org formatted in the VPAT 2.5Rev structure. Two page types, twelve pages of findings.</p>
+        </div>
+        <div class="work-card-right">
+          <span class="work-tag">WCAG Audit</span>
+          <span class="work-year">2026</span>
+          <span class="work-arrow" aria-hidden="true">→</span>
         </div>
       </a>
+
       <a href="https://tomiux.com/august/" class="work-card">
-        <div class="work-thumb p1" aria-hidden="true">🔒</div>
+        <div class="work-color wc4" aria-hidden="true"></div>
         <div class="work-card-body">
-          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">IxD</span></div>
-          <h3 class="work-title">August Smart Lock</h3>
-          <p class="work-desc">Redesigned the guest access and device-switching flow for a smart lock app — physical paper prototype to polished Figma prototype in one semester.</p>
+          <p class="work-title">August Smart Lock</p>
+          <p class="work-desc">Redesigned the guest access and device-switching flow for a smart lock app, from physical paper prototype to polished Figma prototype in one semester.</p>
+        </div>
+        <div class="work-card-right">
+          <span class="work-tag">IxD</span>
+          <span class="work-year">2026</span>
+          <span class="work-arrow" aria-hidden="true">→</span>
         </div>
       </a>
+
       <a href="https://tomiux.com/philz/" class="work-card">
-        <div class="work-thumb p2" aria-hidden="true">☕</div>
+        <div class="work-color wc5" aria-hidden="true"></div>
         <div class="work-card-body">
-          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">Usability</span></div>
-          <h3 class="work-title">Philz Coffee</h3>
-          <p class="work-desc">Moderated usability study of the Philz Coffee mobile app. Uncovered a critical "UI Disconnect" where users failed to recognize interactive elements — and mapped a path to fix it.</p>
+          <p class="work-title">Philz Coffee</p>
+          <p class="work-desc">Moderated usability study of the Philz Coffee mobile app. Uncovered a critical UI Disconnect where users failed to recognize interactive elements and mapped a path to fix it.</p>
+        </div>
+        <div class="work-card-right">
+          <span class="work-tag">Usability</span>
+          <span class="work-year">2026</span>
+          <span class="work-arrow" aria-hidden="true">→</span>
         </div>
       </a>
+
       <a href="https://tomiux.com/yelp/" class="work-card">
-        <div class="work-thumb p3" aria-hidden="true">⭐</div>
+        <div class="work-color wc6" aria-hidden="true"></div>
         <div class="work-card-body">
-          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">UX Research</span></div>
-          <h3 class="work-title">Yelp Usability Study</h3>
+          <p class="work-title">Yelp Usability Study</p>
           <p class="work-desc">Unmoderated usability study evaluating Yelp's core discovery and decision-making flows. Identified friction patterns across real task scenarios.</p>
         </div>
+        <div class="work-card-right">
+          <span class="work-tag">UX Research</span>
+          <span class="work-year">2026</span>
+          <span class="work-arrow" aria-hidden="true">→</span>
+        </div>
       </a>
+
+      <a href="https://tomiux.com/pottery-barn/" class="work-card">
+        <div class="work-color wc7" aria-hidden="true"></div>
+        <div class="work-card-body">
+          <p class="work-title">Pottery Barn</p>
+          <p class="work-desc">Ten-heuristic audit of PotteryBarn.com focused on shopping for a leather armchair. Clean design hiding a silent checkout failure and a material selection problem with no in-context fix.</p>
+        </div>
+        <div class="work-card-right">
+          <span class="work-tag">Heuristic Eval</span>
+          <span class="work-year">2026</span>
+          <span class="work-arrow" aria-hidden="true">→</span>
+        </div>
+      </a>
+
+      <a href="https://tomiux.com/starbucks-philz/" class="work-card coming-soon" aria-disabled="true">
+        <div class="work-color wc8" aria-hidden="true"></div>
+        <div class="work-card-body">
+          <p class="work-title">Starbucks vs. Philz</p>
+          <p class="work-desc">Comparative heuristic evaluation of two coffee mobile apps. Same ten heuristics, two very different approaches to ordering, and a clear winner on usability.</p>
+        </div>
+        <div class="work-card-right">
+          <span class="work-tag">Heuristic Eval</span>
+          <span class="work-year">2026</span>
+          <span class="work-coming-label">Coming soon</span>
+        </div>
+      </a>
+
+      <a href="https://tomiux.com/blue-nile/" class="work-card coming-soon" aria-disabled="true">
+        <div class="work-color wc9" aria-hidden="true"></div>
+        <div class="work-card-body">
+          <p class="work-title">Blue Nile vs. Brilliant Earth</p>
+          <p class="work-desc">Comparative usability study of two fine jewelry e-commerce sites. High-stakes purchase decisions, low tolerance for friction, two sites with very different ideas about trust.</p>
+        </div>
+        <div class="work-card-right">
+          <span class="work-tag">Usability</span>
+          <span class="work-year">2026</span>
+          <span class="work-coming-label">Coming soon</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </div>
@@ -676,9 +696,7 @@
       <span class="section-badge" aria-hidden="true">02 // EXTRA CREDIT</span>
       <h2 class="section-title"><span class="accent2">Mini</span> <span class="accent2">Reports</span></h2>
     </div>
-    <p class="artifacts-intro">
-      Unsolicited feedback. Report attached.
-    </p>
+    <p class="artifacts-intro">Unsolicited feedback. Report attached.</p>
     <div class="specimen-grid">
       <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 001</span><div class="specimen-icon">·</div><span class="specimen-name">Kent State Instagram</span><span class="specimen-tag">Coming Soon</span></div>
       <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 002</span><div class="specimen-icon">·</div><span class="specimen-name">AllTheHomes.com</span><span class="specimen-tag">Coming Soon</span></div>
@@ -789,7 +807,7 @@
     <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="" aria-hidden="true" style="height:28px;width:auto;" />
     <span>© 2026 · STACY TOMASI<br/>TOMIUX · ALL RIGHTS RESERVED</span>
   </div>
-  <div class="footer-hits" tabindex="0" role="button" aria-label="Secret score counter" title="you found it 👻" id="footer-easter-egg">SCORE: <span>∞</span></div>
+  <div class="footer-hits" tabindex="0" role="button" aria-label="Secret score counter" title="you found it 👻" id="footer-easter-egg">SCORE: <span aria-hidden="true">∞</span></div>
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
     <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
@@ -835,14 +853,6 @@
   }
   egg.addEventListener('click', activateEgg);
   egg.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); } });
-
-  // ===== SPECIMEN PLACEHOLDER INTERACTION =====
-  document.querySelectorAll('.specimen:not(.coming-soon)').forEach(card => {
-    card.addEventListener('click', () => {
-      const name = card.querySelector('.specimen-name').textContent;
-      console.log('Opening:', name);
-    });
-  });
 </script>
 
 </body>
