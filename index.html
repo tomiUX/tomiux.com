@@ -159,7 +159,6 @@
     min-width: 200px; z-index: 200; overflow: hidden;
   }
   .dropdown-menu.open { display: block; }
-  /* hover handled by JS — no CSS hover rule here */
 
   .dropdown-menu a {
     display: flex; align-items: center; gap: 0.5rem;
@@ -301,6 +300,7 @@
   .work-thumb.p3 { background: linear-gradient(135deg, var(--yellow), var(--baby-pink), var(--lavender-mid)); }
   .work-thumb.p4 { background: linear-gradient(135deg, var(--mint), var(--baby-blue), var(--teal)); }
   .work-thumb.p5 { background: linear-gradient(135deg, var(--lavender-mid), var(--baby-pink), var(--hot-pink)); }
+  .work-thumb.p6 { background: linear-gradient(135deg, var(--mint), var(--yellow), var(--orange)); }
   .work-thumb.p-locked { background: linear-gradient(135deg, #d4c5e8, #b8a8d0, #9b90b8); }
   .work-card.coming-soon { opacity: 0.6; cursor: default; pointer-events: none; }
   .coming-soon-badge { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-family: 'Press Start 2P', monospace; font-size: 0.5rem; background: var(--pixel-dark); color: var(--yellow); padding: 0.4rem 0.75rem; letter-spacing: 0.1em; white-space: nowrap; border: 2px solid var(--yellow); box-shadow: 2px 2px 0 rgba(0,0,0,0.4); }
@@ -314,11 +314,10 @@
   .work-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.35rem; letter-spacing: -0.01em; line-height: 1.2; }
   .work-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; font-weight: 600; }
 
-  /* ===== PLAYGROUND / SPECIMEN CARDS ===== */
+  /* ===== EXTRA CREDIT / SPECIMEN CARDS ===== */
   .artifacts-intro { font-size: 0.92rem; color: var(--text-mid); max-width: 46rem; margin: 0 auto 2.5rem; text-align: center; line-height: 1.7; font-weight: 700; }
   .specimen-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
 
-  /* Active specimens = <button> (WCAG 4.1.2) */
   .specimen {
     background: var(--white); border-radius: 8px; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark);
     padding: 1rem 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
@@ -330,7 +329,6 @@
   .specimen:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
   .specimen:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--pixel-dark); }
 
-  /* Coming-soon specimen placeholders — non-interactive divs */
   .specimen.coming-soon { opacity: 0.4; box-shadow: 3px 3px 0 var(--pixel-dark); border-style: dashed; cursor: default; pointer-events: none; }
   .specimen.coming-soon::before { opacity: 0.3; }
   .specimen.coming-soon .specimen-icon { font-size: 1.2rem; opacity: 0.4; }
@@ -341,6 +339,100 @@
   .specimen-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.78rem; color: var(--text); text-align: center; line-height: 1.3; }
   .specimen-tag { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--purple); letter-spacing: 0.1em; text-transform: uppercase; }
   .playground-cta { text-align: center; margin-top: 2.5rem; }
+
+  /* ===== PASSION PROJECT ===== */
+  .passion-card {
+    background: var(--white);
+    border-radius: 12px;
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 8px 8px 0 var(--pixel-dark);
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .passion-card-top {
+    height: 12px;
+    background: repeating-linear-gradient(90deg,
+      var(--teal) 0, var(--teal) 16.66%,
+      var(--mint) 16.66%, var(--mint) 33.33%,
+      var(--yellow) 33.33%, var(--yellow) 50%,
+      var(--orange) 50%, var(--orange) 66.66%,
+      var(--pink) 66.66%, var(--pink) 83.33%,
+      var(--purple) 83.33%, var(--purple) 100%);
+  }
+  .passion-card-header {
+    background: var(--mint);
+    padding: 0.65rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--pixel-dark);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .passion-card-header span {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.5rem;
+    color: var(--pixel-dark);
+    letter-spacing: 0.08em;
+  }
+  .passion-card-body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    padding: 2.5rem 2rem;
+    align-items: center;
+  }
+  .passion-visual {
+    font-size: 7rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--mint), var(--yellow), var(--orange));
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    border-radius: 12px;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .passion-content { display: flex; flex-direction: column; gap: 0.6rem; }
+  .passion-tagline {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    color: var(--hot-pink);
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+  }
+  .passion-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--teal);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-shadow: 3px 3px 0 rgba(63,187,158,0.25);
+  }
+  .passion-desc {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    font-weight: 600;
+  }
+  .passion-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+    padding-top: 1rem;
+    border-top: 2px dashed var(--lavender-mid);
+  }
+  .passion-status-item {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 0.82rem;
+    color: var(--text-mid);
+  }
 
   /* ===== ABOUT ===== */
   .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: start; }
@@ -403,6 +495,8 @@
     .specimen-grid { grid-template-columns: repeat(2, 1fr); }
     .hero-art { order: -1; }
     .dropdown-menu { left: auto; right: 0; }
+    .passion-card-body { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.75rem; }
+    .passion-visual { font-size: 5rem; max-width: 200px; margin: 0 auto; }
   }
   @media (max-width: 600px) {
     .specimen-grid { grid-template-columns: repeat(2, 1fr); }
@@ -439,11 +533,13 @@
           <a href="https://tomiux.com/august/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">IxD</span> August Smart Lock</a>
           <a href="https://tomiux.com/philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">USABILITY</span> Philz Coffee</a>
           <a href="https://tomiux.com/yelp/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">RESEARCH</span> Yelp Usability Study</a>
-          <a href="https://tomiux.com/coursera/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> Coursera Cognitive Audit</a>
-          <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> StubHub Annotations</a>
+          <a href="https://tomiux.com/coursera/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">COGNITIVE</span> Coursera Cognitive Audit</a>
+          <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">ANNOTATIONS</span> StubHub Annotations</a>
+          <a href="https://tomiux.com/npr/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">WCAG</span> NPR.org Audit</a>
         </div>
       </li>
       <li><a href="#extra-credit">Extra Credit</a></li>
+      <li><a href="#passion-project">Passion Project</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="resume.pdf" class="nav-cv" target="_blank" rel="noopener" aria-label="Download CV (opens in new tab)">CV ↗</a></li>
@@ -546,7 +642,7 @@
       <a href="https://tomiux.com/coursera/" class="work-card">
         <div class="work-thumb p4" aria-hidden="true">🧠</div>
         <div class="work-card-body">
-          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">Accessibility</span></div>
+          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">Cognitive Audit</span></div>
           <h3 class="work-title">Coursera Cognitive Audit</h3>
           <p class="work-desc">Cognitive accessibility audit of Coursera's web and mobile platforms — introducing original frameworks: the cognitive budget, Search Tax, and Interaction Tax.</p>
         </div>
@@ -554,28 +650,26 @@
       <a href="https://tomiux.com/stubhub/" class="work-card">
         <div class="work-thumb p5" aria-hidden="true">♿</div>
         <div class="work-card-body">
-          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">Accessibility</span></div>
+          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">A11Y Annotations</span></div>
           <h3 class="work-title">StubHub A11y Annotations</h3>
           <p class="work-desc">Accessibility annotation set for StubHub, written for developer handoff. Applied WCAG 2.1 standards to real product screens with actionable, implementation-ready specs.</p>
         </div>
       </a>
-      <div class="work-card coming-soon" aria-label="Meatball — master's capstone, in progress">
-        <div class="work-thumb p-locked" style="position:relative;" aria-hidden="true">
-          <div class="coming-soon-badge">🔐 IN PROGRESS</div>
-        </div>
+      <a href="https://tomiux.com/npr/" class="work-card">
+        <div class="work-thumb p6" aria-hidden="true">📻</div>
         <div class="work-card-body">
-          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag" style="background:var(--text-light);">MS Project</span></div>
-          <h3 class="work-title" style="color:var(--text-light);">Meatball</h3>
-          <p class="work-desc">Master's capstone in progress. Check back when it's ready — it's worth the wait.</p>
+          <div class="work-meta"><span class="work-year">2026</span><span class="work-tag">WCAG Audit</span></div>
+          <h3 class="work-title">NPR.org Accessibility Audit</h3>
+          <p class="work-desc">WCAG 2.1 Level A &amp; AA conformance audit of NPR.org formatted in the VPAT 2.5Rev structure. Two page types, twelve pages of findings, and one significant pattern nobody talks about.</p>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>
 
 <div class="pixel-divider" aria-hidden="true"></div>
 
-<!-- MINI REPORTS PREVIEW -->
+<!-- EXTRA CREDIT -->
 <div class="section-bg-soft" style="position:relative;z-index:1;">
   <div class="section-wrap" id="extra-credit">
     <div class="section-header">
@@ -586,15 +680,13 @@
       Unsolicited feedback. Report attached.
     </p>
     <div class="specimen-grid">
-      <!-- Placeholder slots — aria-hidden, non-interactive -->
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 001</span><div class="specimen-icon">·</div><span class="specimen-name">NPR.org VPAT</span><span class="specimen-tag">Coming Soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 002</span><div class="specimen-icon">·</div><span class="specimen-name">Kent State Instagram</span><span class="specimen-tag">Coming Soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 003</span><div class="specimen-icon">·</div><span class="specimen-name">AllTheHomes.com</span><span class="specimen-tag">Coming Soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 004</span><div class="specimen-icon">·</div><span class="specimen-name">Temu</span><span class="specimen-tag">Coming Soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 005</span><div class="specimen-icon">·</div><span class="specimen-name">Palmstreet</span><span class="specimen-tag">Coming Soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 006</span><div class="specimen-icon">·</div><span class="specimen-name">Planta</span><span class="specimen-tag">Coming Soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 007</span><div class="specimen-icon">·</div><span class="specimen-name">Portland Leather</span><span class="specimen-tag">Coming Soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 008</span><div class="specimen-icon">·</div><span class="specimen-name">Wedding Seating App</span><span class="specimen-tag">Coming Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 001</span><div class="specimen-icon">·</div><span class="specimen-name">Kent State Instagram</span><span class="specimen-tag">Coming Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 002</span><div class="specimen-icon">·</div><span class="specimen-name">AllTheHomes.com</span><span class="specimen-tag">Coming Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 003</span><div class="specimen-icon">·</div><span class="specimen-name">Temu</span><span class="specimen-tag">Coming Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 004</span><div class="specimen-icon">·</div><span class="specimen-name">Palmstreet</span><span class="specimen-tag">Coming Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 005</span><div class="specimen-icon">·</div><span class="specimen-name">Planta</span><span class="specimen-tag">Coming Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 006</span><div class="specimen-icon">·</div><span class="specimen-name">Portland Leather</span><span class="specimen-tag">Coming Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 007</span><div class="specimen-icon">·</div><span class="specimen-name">Wedding Seating App</span><span class="specimen-tag">Coming Soon</span></div>
     </div>
     <div class="playground-cta">
       <a href="https://tomiux.com/extra-credit/" class="btn btn-primary" style="display:inline-flex;">▶ SEE THE WORK</a>
@@ -604,11 +696,44 @@
 
 <div class="pixel-divider" aria-hidden="true"></div>
 
-<!-- ABOUT -->
+<!-- PASSION PROJECT -->
 <div class="section-bg-white" style="position:relative;z-index:1;">
+  <div class="section-wrap" id="passion-project">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">03 // PASSION PROJECT</span>
+      <h2 class="section-title" style="color:var(--teal);">The Meatball Project</h2>
+    </div>
+    <div class="passion-card">
+      <div class="passion-card-top" aria-hidden="true"></div>
+      <div class="passion-card-header">
+        <span>MEATBALL // CAPSTONE</span>
+        <span>● IN ACTIVE DEVELOPMENT</span>
+      </div>
+      <div class="passion-card-body">
+        <div class="passion-visual" aria-hidden="true">🍝</div>
+        <div class="passion-content">
+          <p class="passion-tagline">Swipe together. Eat together.</p>
+          <h3 class="passion-title">Meatball</h3>
+          <p class="passion-desc">A group decision-making tool for the question that ends friendships: where should we eat? Meatball helps groups land on a restaurant they all actually want, instead of the one nobody hated enough to veto.</p>
+          <p class="passion-desc">Grounded in the Abilene Paradox — the group dynamic where everyone ends up at a choice nobody actually wanted, because each person assumed someone else preferred it.</p>
+          <div class="passion-status">
+            <span class="passion-status-item">✓ Lo-fi prototype complete</span>
+            <span class="passion-status-item">⟳ Hi-fi user testing in progress</span>
+            <span class="passion-status-item">◯ Full case study coming when it ships</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- ABOUT -->
+<div class="section-bg-soft" style="position:relative;z-index:1;">
   <div class="section-wrap" id="about">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">03 // PLAYER PROFILE</span>
+      <span class="section-badge" aria-hidden="true">04 // PLAYER PROFILE</span>
       <h2 class="section-title"><span style="color:#ff2d9b;">About /</span> <span style="color:#ff2d9b;">Résumé</span></h2>
     </div>
     <div class="about-grid">
@@ -647,10 +772,10 @@
 <div class="pixel-divider" aria-hidden="true"></div>
 
 <!-- CONTACT -->
-<div class="section-bg-soft" style="position:relative;z-index:1;">
+<div class="section-bg-white" style="position:relative;z-index:1;">
   <div class="section-wrap" id="contact">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">04 // EXTRA LIFE</span>
+      <span class="section-badge" aria-hidden="true">05 // EXTRA LIFE</span>
       <h2 class="section-title"><span class="accent">Get in</span> <span class="accent">Touch</span></h2>
     </div>
     <div class="contact-pod">
@@ -719,7 +844,6 @@
   // ===== SPECIMEN PLACEHOLDER INTERACTION =====
   document.querySelectorAll('.specimen:not(.coming-soon)').forEach(card => {
     card.addEventListener('click', () => {
-      // Routes to individual specimen pages when ready
       const name = card.querySelector('.specimen-name').textContent;
       console.log('Opening:', name);
     });
