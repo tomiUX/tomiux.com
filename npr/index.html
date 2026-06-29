@@ -1,478 +1,609 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NPR.org Accessibility Audit // TomiUX ♿</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Nunito:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      /* Light palette — subtle lavender white tied to tomiux purple */
-      --bg:       #faf7ff;
-      --ink:      #0a0520;
-      --muted:    #6b5b8a;
-      --card-bg:  #f1ecfa;
-      --rule:     rgba(161, 34, 192, 0.18);
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GPSDXNNFGW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-GPSDXNNFGW");
+  </script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NPR.org Accessibility Audit // TomiUX ♿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+<script src="../assets/nav.js"></script>
+<style>
+  :root {
+    --lavender-bg: #f0e8ff;
+    --lavender-mid: #c8a8f0;
+    --lavender-dark: #9b70d8;
+    --pink: #ff6eb4;
+    --hot-pink: #ff2d9b;
+    --baby-pink: #ffb3d9;
+    --teal: #3FBB9E;
+    --mint: #91EBD3;
+    --yellow: #ffe566;
+    --orange: #ff8c42;
+    --blue: #6bb8ff;
+    --baby-blue: #b3d9ff;
+    --purple: #A122C0;
+    --lime: #c8ff6b;
+    --red: #ff5252;
+    --white: #ffffff;
+    --offwhite: #fdf8ff;
+    --text: #1a0a3e;
+    --text-mid: #4a1878;
+    --text-light: #6a3090;
+    --pixel-dark: #0a0520;
+  }
 
-      /* Brand accents (unchanged where they work; darkened for body-size text) */
-      --teal:        #2a9c84;
-      --teal-bright: #3FBB9E;
-      --purple:      #A122C0;
-      --pink:        #ff6eb4;
-      --pink-text:   #c2185b;
-      --yellow-text: #a16207;
-      --yellow-fill: #ffe566;
-      --orange:      #ff8c42;
-      --orange-text: #c2410c;
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-      --font-display: 'Unbounded', sans-serif;
-      --font-body:    'Nunito', sans-serif;
-      --font-pixel:   'Press Start 2P', monospace;
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 1.05rem; line-height: 1.8; }
-    .wrap { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
-    .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--ink); color: var(--bg); padding: .5rem 1rem; font-family: var(--font-display); font-size: .75rem; font-weight: 700; text-decoration: none; border-radius: 4px; z-index: 9999; }
-    .skip-link:focus { top: 1rem; }
-    #nav-wrapper { min-height: 64px; }
+  body { font-family: 'Nunito', sans-serif; background: var(--lavender-bg); color: var(--text); overflow-x: hidden; }
 
-    /* HERO */
-    .hero { padding: 4rem 0 3rem; border-bottom: 1px solid var(--rule); }
-    .hero__eyebrow { font-family: var(--font-pixel); font-size: .55rem; color: var(--teal); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.25rem; }
-    .hero__title { font-family: var(--font-display); font-size: clamp(1.8rem,5vw,3rem); font-weight: 900; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1.25rem; text-transform: uppercase; color: var(--ink); }
-    .hero__sub { font-size: 1rem; color: var(--muted); max-width: 580px; margin-bottom: 2.5rem; }
-    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-    .btn { font-family: var(--font-display); font-size: .7rem; font-weight: 700; padding: .65rem 1.4rem; border-radius: 4px; text-decoration: none; display: inline-block; transition: opacity .2s; }
-    .btn:hover { opacity: .85; }
-    .btn--teal { background: var(--ink); color: var(--bg); }
-    .btn--ghost { border: 1px solid var(--rule); color: var(--muted); }
-    .btn--ghost:hover { border-color: var(--ink); color: var(--ink); opacity: 1; }
-    .meta-row { display: flex; flex-wrap: wrap; gap: 2rem; border-top: 1px solid var(--rule); padding-top: 1.5rem; }
-    .meta-label { font-family: var(--font-pixel); font-size: .45rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; display: block; margin-bottom: .2rem; }
-    .meta-value { font-family: var(--font-display); font-size: .7rem; font-weight: 700; color: var(--ink); }
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.12;
+    background-image: radial-gradient(3px 3px at 12% 8%, var(--pink), transparent), radial-gradient(2px 2px at 28% 22%, var(--teal), transparent), radial-gradient(3px 3px at 45% 5%, var(--yellow), transparent), radial-gradient(2px 2px at 62% 18%, var(--purple), transparent), radial-gradient(3px 3px at 78% 10%, var(--orange), transparent), radial-gradient(2px 2px at 92% 25%, var(--teal), transparent), radial-gradient(3px 3px at 15% 45%, var(--yellow), transparent), radial-gradient(2px 2px at 35% 60%, var(--pink), transparent), radial-gradient(3px 3px at 55% 55%, var(--blue), transparent), radial-gradient(2px 2px at 72% 48%, var(--lime), transparent), radial-gradient(3px 3px at 88% 65%, var(--hot-pink), transparent), radial-gradient(2px 2px at 8% 78%, var(--teal), transparent), radial-gradient(3px 3px at 25% 88%, var(--purple), transparent), radial-gradient(2px 2px at 48% 80%, var(--orange), transparent), radial-gradient(3px 3px at 68% 92%, var(--pink), transparent), radial-gradient(2px 2px at 85% 82%, var(--yellow), transparent);
+    background-size: 300px 300px;
+  }
 
-    /* SECTIONS */
-    .cs-section { padding: 4rem 0; border-bottom: 1px solid var(--rule); }
-    .section-number { font-family: var(--font-pixel); font-size: .5rem; color: var(--teal); letter-spacing: .1em; margin-bottom: .5rem; display: block; }
-    h2 { font-family: var(--font-display); font-size: clamp(1.2rem,3vw,1.6rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: -.01em; color: var(--ink); }
+  @media (prefers-reduced-motion: no-preference) { body::before { animation: bgShimmer 8s ease-in-out infinite alternate; } }
+  @keyframes bgShimmer { 0% { opacity: 0.08; } 100% { opacity: 0.18; } }
 
-    /* GLANCE BOX */
-    .glance { border: 1px solid var(--rule); background: var(--card-bg); border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; }
-    .glance__label { font-family: var(--font-pixel); font-size: .45rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem; }
-    .glance__grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 1rem; }
-    .glance__item-label { font-family: var(--font-pixel); font-size: .42rem; color: var(--muted); display: block; margin-bottom: .2rem; }
-    .glance__item-value { font-size: .88rem; font-weight: 700; color: var(--ink); }
+  /* PIXEL DIVIDER */
+  .pixel-divider { height: 12px; background: repeating-linear-gradient(90deg, #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px, #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px, #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px, #3FBB9E 120px, #3FBB9E 140px); border-top: 3px solid var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); position: relative; z-index: 1; }
 
-    /* BODY TEXT */
-    .body-text p { color: #2d1e4a; margin-bottom: 1rem; }
-    .body-text p:last-child { margin-bottom: 0; }
-    .body-text strong { color: var(--ink); }
+  /* SECTION WRAPPERS */
+  .section-bg-white { background: var(--white); position: relative; z-index: 1; }
+  .section-bg-soft { background: radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%), radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%), var(--lavender-bg); position: relative; z-index: 1; }
+  .section-wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; position: relative; z-index: 1; }
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .section-badge { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
+  .section-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--text); flex: 1; line-height: 1.05; letter-spacing: -0.02em; }
+  .section-title .accent { color: var(--purple); }
+  .section-title .accent2 { color: var(--hot-pink); }
 
-    /* CALLOUT */
-    .callout { border-left: 3px solid var(--pink); background: rgba(255,110,180,.1); border-radius: 0 6px 6px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; color: #2d1e4a; font-size: .95rem; }
-    .callout strong { color: var(--ink); }
-    .callout--teal { border-left-color: var(--teal); background: rgba(63,187,158,.1); }
+  /* HERO */
+  .hero { position: relative; z-index: 1; overflow: hidden; padding: 4rem 2rem 3.5rem; text-align: center; background: radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.25) 0%, transparent 50%), radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(155,89,255,0.2) 0%, transparent 50%), var(--lavender-bg); border-bottom: 4px solid var(--pixel-dark); }
+  .hero-badge { display: inline-block; padding: 0.4rem 1rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.5rem; }
+  .hero-name { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: clamp(2.2rem, 6vw, 4.5rem); line-height: 0.95; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+  .hero-name .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
+  .hero-name .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
+  .hero-role { font-family: 'Press Start 2P', monospace; font-size: 0.7rem; color: var(--purple); letter-spacing: 0.08em; margin-bottom: 2rem; line-height: 1.8; font-weight: bold; }
+  .hero-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+  .meta-tag { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.05em; padding: 0.35rem 0.7rem; border: 2px solid var(--pixel-dark); background: var(--white); color: var(--text-mid); line-height: 1.8; }
+  .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; }
 
-    /* TOOL CHIPS */
-    .chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.25rem 0; }
-    .chip { font-family: var(--font-pixel); font-size: .42rem; padding: .4rem .7rem; border-radius: 20px; border: 1px solid rgba(42,156,132,.3); color: var(--teal); background: rgba(63,187,158,.08); }
+  .btn { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.12s; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); cursor: pointer; }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+  .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
+  .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+  .btn-primary { background: #A122C0; color: white; }
+  .btn-primary:hover { background: var(--hot-pink); }
+  .btn-secondary { background: var(--white); color: var(--purple); }
+  .btn-secondary:hover { background: var(--lavender-mid); }
 
-    /* STAT ROW */
-    .stat-row { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--rule); background: var(--card-bg); border-radius: 8px; overflow: hidden; margin: 2rem 0; }
-    .stat-cell { padding: 1.25rem 1rem; text-align: center; border-right: 1px solid var(--rule); }
-    .stat-cell:last-child { border-right: none; }
-    .stat-num { font-family: var(--font-display); font-size: 2.25rem; font-weight: 900; display: block; line-height: 1; margin-bottom: .4rem; }
-    .stat-num--pink   { color: var(--pink-text);   }
-    .stat-num--orange { color: var(--orange-text); }
-    .stat-num--yellow { color: var(--yellow-text); }
-    .stat-num--teal   { color: var(--teal);        }
-    .stat-desc { font-size: .75rem; color: var(--muted); line-height: 1.4; }
+  /* PROBLEM GRID — overview layout */
+  .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .pull-quote { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1rem, 2vw, 1.3rem); color: var(--purple); border-left: 6px solid var(--teal); padding-left: 1.25rem; margin-bottom: 1.25rem; line-height: 1.4; letter-spacing: -0.01em; }
+  .body-text { font-size: 0.9rem; line-height: 1.8; color: var(--text-mid); font-weight: 600; margin-bottom: 0.85rem; }
+  .sub-label { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; letter-spacing: 0.1em; color: var(--purple); margin-bottom: 1rem; font-weight: bold; }
+  .insight-list { list-style: none; }
+  .insight-list li { font-size: 0.82rem; font-weight: 700; color: var(--text-mid); padding: 0.6rem 0; border-bottom: 2px solid var(--mint); display: flex; gap: 0.75rem; align-items: flex-start; line-height: 1.5; }
+  .insight-list li::before { content: '▶'; color: var(--teal); flex-shrink: 0; font-size: 0.6rem; margin-top: 3px; }
 
-    /* FINDINGS LIST */
-    .label-list { list-style: none; margin: 1.5rem 0; }
-    .label-list li { display: grid; grid-template-columns: auto 1fr; gap: .75rem; align-items: start; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
-    .label-list li:first-child { border-top: 1px solid var(--rule); }
-    .ll-sev { font-family: var(--font-pixel); font-size: .42rem; padding: .3rem .55rem; border-radius: 3px; white-space: nowrap; align-self: start; margin-top: .1rem; font-weight: 700; }
-    .ll-sev--critical { background: #ffe4ef; color: var(--pink-text);   border: 1px solid rgba(194,24,91,.3); }
-    .ll-sev--high     { background: #ffe8d6; color: var(--orange-text); border: 1px solid rgba(194,65,12,.3); }
-    .ll-sev--moderate { background: #fff4cc; color: var(--yellow-text); border: 1px solid rgba(161,98,7,.3);  }
-    .ll-sev--low      { background: #d6f5ec; color: var(--teal);        border: 1px solid rgba(42,156,132,.3); }
-    .ll-title { font-weight: 700; color: var(--ink); display: block; margin-bottom: .2rem; font-size: .95rem; }
-    .ll-desc { font-size: .88rem; color: var(--muted); line-height: 1.6; display: block; }
-    .ll-wcag { font-family: var(--font-pixel); font-size: .4rem; color: var(--purple); margin-top: .35rem; display: block; }
+  /* TOOL CHIPS */
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0; }
+  .chip { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; padding: 0.45rem 0.75rem; border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); color: var(--pixel-dark); background: var(--mint); letter-spacing: 0.05em; }
 
-    /* WORKS LIST */
-    .works-list { list-style: none; margin: 1.5rem 0; }
-    .works-list li { padding: .9rem 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 1rem; }
-    .works-list li:first-child { border-top: 1px solid var(--rule); }
-    .works-title { font-weight: 700; color: var(--ink); font-size: .95rem; }
-    .works-desc { font-size: .88rem; color: var(--muted); display: block; margin-top: .15rem; }
-    .works-badge { font-family: var(--font-pixel); font-size: .42rem; color: var(--teal); border: 1px solid rgba(42,156,132,.3); background: #d6f5ec; padding: .3rem .5rem; border-radius: 3px; white-space: nowrap; align-self: start; font-weight: 700; }
+  /* STAT ROW */
+  .stat-row-outer { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; margin-bottom: 3rem; }
+  .stat-cell { padding: 2rem 1rem; text-align: center; border-right: 3px solid var(--pixel-dark); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-family: 'Press Start 2P', monospace; font-size: clamp(1.3rem, 2.5vw, 1.9rem); display: block; margin-bottom: 0.5rem; text-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
+  .stat-num.s-pink { color: var(--hot-pink); }
+  .stat-num.s-orange { color: var(--orange); }
+  .stat-num.s-purple { color: var(--purple); }
+  .stat-num.s-teal { color: var(--teal); }
+  .stat-label { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; letter-spacing: 0.08em; color: var(--text-light); line-height: 1.8; }
 
-    /* RECO LIST */
-    .reco-list { list-style: none; margin: 1.5rem 0; counter-reset: reco; }
-    .reco-list li { counter-increment: reco; display: grid; grid-template-columns: auto 1fr; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid var(--rule); align-items: start; }
-    .reco-list li:first-child { border-top: 1px solid var(--rule); }
-    .reco-num { font-family: var(--font-display); font-size: 1.75rem; font-weight: 900; color: var(--purple); opacity: .5; line-height: 1; padding-top: .1rem; min-width: 1.5rem; text-align: center; }
-    .reco-title { font-weight: 700; color: var(--teal); font-size: .95rem; display: block; margin-bottom: .3rem; }
-    .reco-desc { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+  /* CALLOUT */
+  .callout { background: var(--white); border: 3px solid var(--pixel-dark); border-left-width: 8px; border-left-color: var(--hot-pink); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; padding: 1.5rem 1.75rem; margin: 1.5rem 0; }
+  .callout p { font-size: 0.95rem; line-height: 1.7; color: var(--text-mid); font-weight: 600; }
+  .callout strong { color: var(--pixel-dark); font-weight: 900; }
 
-    /* VPAT BLOCK */
-    .vpat-block { border: 1px solid var(--rule); background: var(--card-bg); border-radius: 8px; padding: 2rem; text-align: center; margin: 2rem 0; }
-    .vpat-block__eyebrow { font-family: var(--font-pixel); font-size: .45rem; color: var(--muted); letter-spacing: .1em; margin-bottom: .75rem; }
-    .vpat-block__title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--ink); text-transform: uppercase; margin-bottom: .4rem; }
-    .vpat-block__desc { font-size: .88rem; color: var(--muted); margin-bottom: 1.25rem; }
+  /* FINDING CARDS — annotation-card style adapted for severity */
+  .finding-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; list-style: none; }
+  .finding-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; transition: all 0.12s; display: flex; flex-direction: column; }
+  .finding-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--pixel-dark); }
+  .finding-header { background: var(--pixel-dark); padding: 0.85rem 1.1rem; display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+  .finding-num { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: var(--yellow); letter-spacing: 0.05em; flex-shrink: 0; }
+  .sev-tag { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; padding: 0.3rem 0.55rem; border: 2px solid var(--pixel-dark); letter-spacing: 0.06em; margin-left: auto; }
+  .sev-tag.s-critical { background: var(--hot-pink); color: var(--white); }
+  .sev-tag.s-high { background: var(--orange); color: var(--pixel-dark); }
+  .sev-tag.s-moderate { background: var(--yellow); color: var(--pixel-dark); }
+  .sev-tag.s-low { background: var(--mint); color: var(--pixel-dark); }
+  .finding-body { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
+  .finding-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--purple); line-height: 1.3; letter-spacing: -0.01em; }
+  .finding-desc { font-size: 0.85rem; line-height: 1.6; color: var(--text-mid); font-weight: 600; }
+  .finding-wcag { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; letter-spacing: 0.05em; color: var(--text-light); padding-top: 0.6rem; border-top: 2px dashed var(--lavender-mid); margin-top: auto; line-height: 1.8; }
 
-    /* PULL QUOTE */
-    .pull-quote { border-left: 3px solid var(--purple); padding: 1.25rem 1.5rem; margin: 2rem 0; background: rgba(161,34,192,.08); border-radius: 0 6px 6px 0; }
-    .pull-quote p { font-size: 1rem; font-style: italic; color: var(--ink); margin: 0 0 .5rem; line-height: 1.65; }
-    .pull-quote cite { font-family: var(--font-pixel); font-size: .42rem; color: var(--muted); font-style: normal; letter-spacing: .05em; }
+  /* WINS — pattern-grid style for "what works" */
+  .wins-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .win-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); overflow: hidden; }
+  .win-card::before { content: ''; display: block; height: 6px; background: var(--teal); }
+  .win-card-body { padding: 1.4rem 1.25rem; }
+  .win-label { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; letter-spacing: 0.08em; color: var(--teal); margin-bottom: 0.6rem; }
+  .win-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1rem; color: var(--purple); margin-bottom: 0.6rem; letter-spacing: -0.01em; line-height: 1.25; }
+  .win-body { font-size: 0.85rem; line-height: 1.6; color: var(--text-light); font-weight: 600; }
 
-    /* FOOTER */
-    .case-footer { padding: 3rem 0 5rem; display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
-    .footer-copy { font-family: var(--font-pixel); font-size: .42rem; color: var(--muted); letter-spacing: .08em; line-height: 1.8; }
-    .footer-links { display: flex; gap: 1.25rem; margin-left: auto; }
-    .footer-links a { font-family: var(--font-pixel); font-size: .42rem; color: var(--muted); text-decoration: none; letter-spacing: .06em; }
-    .footer-links a:hover { color: var(--ink); }
+  /* RECOMMENDATIONS */
+  .rec-list { display: grid; gap: 1.25rem; }
+  .rec-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; padding: 1.5rem 1.5rem 1.5rem 5rem; position: relative; }
+  .rec-card::before { content: attr(data-num); position: absolute; left: 1.25rem; top: 1.25rem; width: 2.75rem; height: 2.75rem; background: var(--purple); color: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Press Start 2P', monospace; font-size: 0.85rem; }
+  .rec-priority { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.08em; padding: 0.25rem 0.5rem; border: 2px solid var(--pixel-dark); display: inline-block; margin-bottom: 0.6rem; background: var(--yellow); color: var(--pixel-dark); }
+  .rec-priority.p-critical { background: var(--hot-pink); color: var(--white); }
+  .rec-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  .rec-body { font-size: 0.85rem; line-height: 1.65; color: var(--text-mid); font-weight: 600; }
 
-    /* RESPONSIVE */
-    @media (max-width: 640px) {
-      .stat-row { grid-template-columns: repeat(2,1fr); }
-      .stat-cell:nth-child(2) { border-right: none; }
-      .stat-cell:nth-child(3) { border-top: 1px solid var(--rule); }
-      .label-list li, .reco-list li { grid-template-columns: 1fr; }
-      .ll-sev { width: fit-content; }
-      .meta-row { gap: 1.25rem; }
-    }
-  </style>
+  /* VPAT DOWNLOAD BLOCK */
+  .vpat-block { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; padding: 2.5rem; text-align: center; margin-top: 1rem; position: relative; }
+  .vpat-block::before { content: ''; display: block; height: 8px; margin: -2.5rem -2.5rem 1.5rem; background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 20%, var(--yellow) 20%, var(--yellow) 40%, var(--teal) 40%, var(--teal) 60%, var(--purple) 60%, var(--purple) 80%, var(--orange) 80%, var(--orange) 100%); }
+  .vpat-eyebrow { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; letter-spacing: 0.1em; color: var(--text-light); margin-bottom: 0.85rem; }
+  .vpat-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1rem, 2vw, 1.3rem); color: var(--purple); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+  .vpat-desc { font-size: 0.85rem; color: var(--text-light); font-weight: 600; margin-bottom: 1.5rem; }
+
+  /* TAKEAWAY */
+  .takeaway { background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 12px; padding: 2.75rem 2.5rem 2.5rem; position: relative; margin-top: 1rem; }
+  .takeaway::before { content: '★'; font-family: 'Press Start 2P', monospace; font-size: 2.5rem; position: absolute; top: -1rem; left: 1.5rem; color: var(--purple); text-shadow: 3px 3px 0 var(--pixel-dark); }
+  .takeaway-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(0.95rem, 1.8vw, 1.2rem); color: var(--pixel-dark); line-height: 1.5; margin-bottom: 0.85rem; letter-spacing: -0.01em; }
+  .takeaway-attr { font-size: 0.78rem; font-weight: 700; color: rgba(10,5,32,0.6); }
+
+  /* FOOTER */
+  footer { background: var(--purple); border-top: 4px solid var(--pixel-dark); padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+  .footer-brand { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--mint); letter-spacing: 0.06em; line-height: 2; }
+  .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--yellow); letter-spacing: 0.1em; cursor: pointer; padding: 0.4rem 0.75rem; border: 2px solid var(--yellow); background: rgba(0,0,0,0.2); border-radius: 4px; transition: all 0.3s; }
+  .footer-hits:hover, .footer-hits:focus-visible { background: rgba(255,229,102,0.15); border-color: var(--mint); color: var(--mint); }
+  .footer-hits:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
+  .footer-links { display: flex; gap: 1rem; }
+  .footer-links a { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--mint); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
+  .footer-links a:hover { color: var(--yellow); }
+  .footer-links a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; color: var(--yellow); border-radius: 2px; }
+
+  @media (max-width: 900px) {
+    .stat-row-outer { grid-template-columns: repeat(2, 1fr); }
+    .stat-cell:nth-child(2) { border-right: none; }
+    .stat-cell:nth-child(1), .stat-cell:nth-child(2) { border-bottom: 3px solid var(--pixel-dark); }
+  }
+  @media (max-width: 700px) {
+    .problem-grid { grid-template-columns: 1fr; }
+    .finding-list { grid-template-columns: 1fr; }
+    .wins-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .stat-row-outer { grid-template-columns: 1fr; }
+    .stat-cell { border-right: none; border-bottom: 3px solid var(--pixel-dark); }
+    .stat-cell:last-child { border-bottom: none; }
+    .rec-card { padding: 4.5rem 1.25rem 1.25rem; }
+    .rec-card::before { top: 1rem; left: 1rem; }
+  }
+</style>
 </head>
 <body>
 
-<a href="#main-content" class="skip-link">Skip to main content</a>
-<div id="nav-wrapper"></div>
-<script src="../assets/nav.js"></script>
-
+<!-- NAV injected by nav.js -->
 <main id="main-content">
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="wrap">
-      <p class="hero__eyebrow">♿ CASE STUDY · WCAG 2.1 CONFORMANCE</p>
-      <h1 class="hero__title">NPR.org:<br>Where Accessibility<br>Investments Meet<br>Ad Reality.</h1>
-      <p class="hero__sub">A WCAG 2.1 Level A and AA conformance audit of NPR.org — formatted in the VPAT 2.5Rev structure used by procurement and legal teams. Two page types. One significant finding nobody talks about.</p>
-      <div class="hero-ctas">
-        <a href="#findings" class="btn btn--teal">▶ See the Findings</a>
-        <a href="#vpat" class="btn btn--ghost">↓ Full VPAT</a>
+<!-- HERO -->
+<section class="hero" aria-label="NPR.org accessibility audit case study">
+  <div class="hero-badge" aria-hidden="true">♿ CASE STUDY · WCAG 2.1 CONFORMANCE</div>
+  <h1 class="hero-name">
+    <span class="line1">NPR.ORG</span>
+    <span class="line2">ACCESSIBILITY AUDIT</span>
+  </h1>
+  <p class="hero-role">A WCAG 2.1 Level A &amp; AA Conformance Audit in VPAT 2.5Rev Format</p>
+  <div class="hero-meta" aria-label="Project details">
+    <span class="meta-tag">ROLE: UX EVALUATOR</span>
+    <span class="meta-tag">TOOLS: WAVE · VOICEOVER · HEADINGSMAP</span>
+    <span class="meta-tag">YEAR: SPRING 2026</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#findings" class="btn btn-primary">▶ See the Findings</a>
+    <a href="#vpat" class="btn btn-secondary">↓ Full VPAT</a>
+  </div>
+</section>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- OVERVIEW -->
+<div class="section-bg-white">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">01 // OVERVIEW</span>
+      <h2 class="section-title">A site I use and trust, <span class="accent">tested honestly</span></h2>
+    </div>
+    <div class="problem-grid">
+      <div>
+        <p class="pull-quote">Where accessibility investments meet ad reality.</p>
+        <p class="body-text">Public media organizations carry an implicit accessibility contract with their audiences. NPR's mission is to inform, and that mission breaks down when the interface gets in the way of the people trying to receive it.</p>
+        <p class="body-text">I chose NPR.org because it's a site I use and trust. I came in expecting a reasonably clean accessibility picture. What I found instead was a site doing several things genuinely well, and one thing that completely overshadows them: an ad implementation that has made keyboard navigation on article pages nearly impossible.</p>
+        <p class="body-text">A VPAT (Voluntary Product Accessibility Template) is the standardized industry document used to report WCAG conformance. It's the format procurement, legal, and enterprise teams request when evaluating software accessibility. Producing one correctly takes systematic manual testing, not just a scan.</p>
       </div>
-      <div class="meta-row">
-        <div><span class="meta-label">Role</span><span class="meta-value">UX Evaluator</span></div>
-        <div><span class="meta-label">Tools</span><span class="meta-value">WAVE · VoiceOver · HeadingsMap · Keyboard</span></div>
-        <div><span class="meta-label">Standard</span><span class="meta-value">WCAG 2.1 A &amp; AA</span></div>
-        <div><span class="meta-label">Year</span><span class="meta-value">Spring 2026</span></div>
+      <div>
+        <p class="sub-label">// WHAT THIS AUDIT COVERS</p>
+        <ul class="insight-list">
+          <li>WCAG 2.1 Level A and AA conformance, reported in VPAT 2.5Rev format</li>
+          <li>Two page types tested in parallel: NPR homepage and a single article page</li>
+          <li>Manual testing with VoiceOver and keyboard navigation, plus automated scans with WAVE and HeadingsMap</li>
+          <li>Twelve documented failures across the homepage and article page</li>
+          <li>One central finding that overshadows the rest: a keyboard trap built by the ad implementation</li>
+        </ul>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- 01 OVERVIEW -->
-  <section class="cs-section" id="overview">
-    <div class="wrap">
-      <span class="section-number">01 // OVERVIEW</span>
-      <h2>A site I use and trust — tested honestly</h2>
+<div class="pixel-divider" aria-hidden="true"></div>
 
-      <div class="glance">
-        <p class="glance__label">// AUDIT AT A GLANCE</p>
-        <div class="glance__grid">
-          <div><span class="glance__item-label">Product</span><span class="glance__item-value">NPR.org</span></div>
-          <div><span class="glance__item-label">Scope</span><span class="glance__item-value">Homepage + Article Page</span></div>
-          <div><span class="glance__item-label">Format</span><span class="glance__item-value">VPAT® 2.5Rev</span></div>
-          <div><span class="glance__item-label">Test Date</span><span class="glance__item-value">April 29, 2026</span></div>
-          <div><span class="glance__item-label">Environment</span><span class="glance__item-value">macOS · Chrome</span></div>
-          <div><span class="glance__item-label">Screen Reader</span><span class="glance__item-value">VoiceOver (built-in)</span></div>
+<!-- METHODOLOGY -->
+<div class="section-bg-soft" id="method">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">02 // METHODOLOGY</span>
+      <h2 class="section-title">How I <span class="accent2">tested</span></h2>
+    </div>
+    <p class="body-text" style="margin-bottom: 1rem; max-width: 760px;">Testing was conducted manually and with automated tools on a MacBook running macOS, in Google Chrome. I tested two page types in parallel: the NPR homepage and a single article page. Testing each criterion against both page types showed where issues were site-wide versus specific to one context.</p>
+    <p class="body-text" style="margin-bottom: 1rem; max-width: 760px;">Automated tools (WAVE, HeadingsMap) surfaced structural and contrast issues quickly. Manual testing with VoiceOver and keyboard navigation revealed the behavioral failures automated tools miss: what it actually feels like to try to read an NPR article without a mouse.</p>
+    <div class="chips" aria-label="Tools used">
+      <span class="chip">WAVE</span>
+      <span class="chip">HEADINGSMAP</span>
+      <span class="chip">COLOR PICKER</span>
+      <span class="chip">VOICEOVER</span>
+      <span class="chip">KEYBOARD</span>
+      <span class="chip">MOUSE</span>
+    </div>
+    <p class="body-text" style="max-width: 760px;">I brought working knowledge of NPR.org to the session. That mattered. I could tell the difference between something genuinely broken and something unfamiliar.</p>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- LEAD FINDING -->
+<div class="section-bg-white" id="lead">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">03 // THE LEAD FINDING</span>
+      <h2 class="section-title">31 of 38 tab stops <span class="accent">are ads</span></h2>
+    </div>
+
+    <div class="stat-row-outer">
+      <div class="stat-cell"><span class="stat-num s-pink">31/38</span><span class="stat-label">TAB STOPS<br/>ARE ADS</span></div>
+      <div class="stat-cell"><span class="stat-num s-orange">5+</span><span class="stat-label">TAB PRESSES<br/>PER AD UNIT</span></div>
+      <div class="stat-cell"><span class="stat-num s-purple">59</span><span class="stat-label">IMAGES MISSING<br/>ALT TEXT</span></div>
+      <div class="stat-cell"><span class="stat-num s-teal">44</span><span class="stat-label">CONTRAST<br/>ERRORS</span></div>
+    </div>
+
+    <div class="callout">
+      <p><strong>On the NPR article page, 31 of 38 tab stops are ads or contextless inline links.</strong> For a keyboard-dependent user, reading an NPR article means tabbing through an ad gauntlet before reaching the content the page exists to deliver.</p>
+    </div>
+
+    <p class="body-text">The failure is at WCAG 2.1.2 (No Keyboard Trap) and 2.4.3 (Focus Order). Sponsored content blocks require 5 or more consecutive tab stops to exit. The article audio player and KQED live player are technically keyboard-accessible, but buried under the ad stack in tab order, making them functionally unreachable.</p>
+    <p class="body-text">This is a design and implementation decision with compounding consequences. NPR's genuine accessibility wins (its skip-to-main-content link, visible focus indicators) are negated for keyboard users the moment they enter an article page. The skip link clears the nav. It doesn't clear the ads.</p>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- FINDINGS -->
+<div class="section-bg-soft" id="findings">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">04 // FINDINGS</span>
+      <h2 class="section-title">Twelve failures, <span class="accent2">ranked by impact</span></h2>
+    </div>
+    <p class="body-text" style="margin-bottom: 2.5rem; max-width: 760px;">All findings come directly from the VPAT below, organized by user impact rather than WCAG criterion order. Severity reflects how directly the failure blocks an actual person from using the site.</p>
+
+    <ol class="finding-list" aria-label="Audit findings ranked by severity">
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 01</span>
+          <span class="sev-tag s-critical">CRITICAL</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">Keyboard trap in sponsored content</p>
+          <p class="finding-desc">Keyboard users become trapped in ad units, requiring 5+ tab presses to exit each one. Over 27 of 38 total tab stops on the article page are ad-related. The article itself is functionally unreachable via keyboard.</p>
+          <p class="finding-wcag">WCAG 2.1.2 · NO KEYBOARD TRAP · LEVEL A<br/>DOES NOT SUPPORT</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 02</span>
+          <span class="sev-tag s-critical">CRITICAL</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">59 images missing alt text on the homepage</p>
+          <p class="finding-desc">WAVE detected 59 images and 3 linked images without alternative text on the homepage. 3 images and 3 linked images also failed on the article page. Screen reader users receive no information about these images.</p>
+          <p class="finding-wcag">WCAG 1.1.1 · NON-TEXT CONTENT · LEVEL A<br/>DOES NOT SUPPORT</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 03</span>
+          <span class="sev-tag s-critical">CRITICAL</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">32 empty buttons and 17 broken ARIA menus</p>
+          <p class="finding-desc">WAVE flagged 32 empty buttons on the homepage, 6 on the article page, and 17 broken ARIA menus. The podcast play button announces as "3 08 button," using audio duration as the accessible name. Every empty button is a dead end for screen reader users.</p>
+          <p class="finding-wcag">WCAG 4.1.2 · NAME, ROLE, VALUE · LEVEL A<br/>DOES NOT SUPPORT</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 04</span>
+          <span class="sev-tag s-critical">CRITICAL</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">Watch section videos have no title, description, or alt text</p>
+          <p class="finding-desc">Prerecorded videos on the homepage are announced only as "play video" via VoiceOver. Descriptions are teaser copy about the topic, not descriptions of the visual content. Entirely inaccessible for screen reader users.</p>
+          <p class="finding-wcag">WCAG 1.2.1 · AUDIO-ONLY AND VIDEO-ONLY · LEVEL A<br/>DOES NOT SUPPORT</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 05</span>
+          <span class="sev-tag s-high">HIGH</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">Link purpose not conveyed to screen readers</p>
+          <p class="finding-desc">Section header links ("National," "Law") are announced by VoiceOver with the section name only, no destination context. Inline article links read without surrounding sentence context. Screen reader users cannot determine where a link goes without clicking it.</p>
+          <p class="finding-wcag">WCAG 2.4.4 · LINK PURPOSE · LEVEL A<br/>DOES NOT SUPPORT</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 06</span>
+          <span class="sev-tag s-high">HIGH</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">44 contrast errors on the homepage</p>
+          <p class="finding-desc">WAVE detected 44 contrast errors on the homepage. On the article page, the audio player UI falls below the 4.5:1 minimum for normal text. For a news organization, low-contrast body text is a significant barrier to the primary use case.</p>
+          <p class="finding-wcag">WCAG 1.4.3 · CONTRAST MINIMUM · LEVEL AA<br/>DOES NOT SUPPORT</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 07</span>
+          <span class="sev-tag s-high">HIGH</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">No audio description on Watch section videos</p>
+          <p class="finding-desc">Homepage videos include closed captions but no audio description track. Visual-only content in the videos is inaccessible to blind and low-vision users regardless of how well the captions are written.</p>
+          <p class="finding-wcag">WCAG 1.2.5 · AUDIO DESCRIPTION · LEVEL AA<br/>DOES NOT SUPPORT</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 08</span>
+          <span class="sev-tag s-moderate">MODERATE</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">Focus order disrupted by ads on both page types</p>
+          <p class="finding-desc">Homepage focus order generally follows visual layout but is disrupted by sponsored content. Article page focus order is heavily disrupted, with the ad stack appearing before editorial content in keyboard sequence.</p>
+          <p class="finding-wcag">WCAG 2.4.3 · FOCUS ORDER · LEVEL A<br/>PARTIALLY SUPPORTS</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 09</span>
+          <span class="sev-tag s-moderate">MODERATE</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">6 skipped heading levels and a silent section heading</p>
+          <p class="finding-desc">HeadingsMap and WAVE detected 6 skipped heading levels on the article page. On the homepage, the "Watch" section heading is not announced by VoiceOver at all, breaking section structure for users navigating by headings.</p>
+          <p class="finding-wcag">WCAG 2.4.6 · HEADINGS AND LABELS · LEVEL AA<br/>PARTIALLY SUPPORTS</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 10</span>
+          <span class="sev-tag s-moderate">MODERATE</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">Inline links interrupt VoiceOver sentence reading</p>
+          <p class="finding-desc">On the article page, inline hyperlinks interrupt VoiceOver reading flow, requiring manual keyboard input to continue through a single sentence. Reading a linked paragraph becomes a stop-and-start process.</p>
+          <p class="finding-wcag">WCAG 1.3.2 · MEANINGFUL SEQUENCE · LEVEL A<br/>PARTIALLY SUPPORTS</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 11</span>
+          <span class="sev-tag s-low">LOW</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">Live ads update without a user pause mechanism</p>
+          <p class="finding-desc">On both page types, live ads update automatically without a pause, stop, or hide control. The NPR logo animates once on load without looping, which is a reasonable handling of animation.</p>
+          <p class="finding-wcag">WCAG 2.2.2 · PAUSE, STOP, HIDE · LEVEL A<br/>PARTIALLY SUPPORTS</p>
+        </div>
+      </li>
+
+      <li class="finding-card">
+        <div class="finding-header">
+          <span class="finding-num" aria-hidden="true">FINDING 12</span>
+          <span class="sev-tag s-low">LOW</span>
+        </div>
+        <div class="finding-body">
+          <p class="finding-title">Search results not announced to screen readers</p>
+          <p class="finding-desc">Submitting a search produced a brief audible tone through VoiceOver but no spoken announcement of results loading or result count. Users don't know if the search succeeded.</p>
+          <p class="finding-wcag">WCAG 4.1.3 · STATUS MESSAGES · LEVEL AA<br/>PARTIALLY SUPPORTS</p>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- WHAT WORKS -->
+<div class="section-bg-white" id="wins">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">05 // WHAT WORKS</span>
+      <h2 class="section-title">Where NPR <span class="accent">gets it right</span></h2>
+    </div>
+    <p class="body-text" style="margin-bottom: 2.5rem; max-width: 760px;">This audit is not a takedown. NPR has made real accessibility investments worth naming. A site can do all of these things correctly and still fail the people trying to read an article via keyboard. That is the problem.</p>
+
+    <div class="wins-grid">
+      <div class="win-card">
+        <div class="win-card-body">
+          <p class="win-label">WIN 01 · SUPPORTS</p>
+          <p class="win-title">Skip to main content link</p>
+          <p class="win-body">Appears on the first tab press on both page types. Correct behavior, correctly implemented.</p>
         </div>
       </div>
-
-      <div class="body-text">
-        <p>Public media organizations carry an implicit accessibility contract with their audiences. NPR's mission is to inform — and that mission is undermined when the interface gets in the way of the people trying to receive it.</p>
-        <p>I chose NPR.org because it's a site I use and trust. I came in expecting a reasonably clean accessibility picture. What I found instead was a site doing several things genuinely well, and one thing that completely overshadows them: an ad implementation that has made keyboard navigation on article pages nearly impossible.</p>
+      <div class="win-card">
+        <div class="win-card-body">
+          <p class="win-label">WIN 02 · SUPPORTS</p>
+          <p class="win-title">Visible focus indicators</p>
+          <p class="win-body">A black outlined focus square appears on all tested interactive elements with strong contrast. A genuine strength. Many news sites skip this entirely.</p>
+        </div>
       </div>
-
-      <div class="callout callout--teal">
-        <strong>What a VPAT is:</strong> A Voluntary Product Accessibility Template is a standardized industry document used to report WCAG conformance. It's the format procurement teams, legal teams, and enterprise clients request when evaluating software accessibility. Producing one correctly requires systematic manual testing — not just a scan.
+      <div class="win-card">
+        <div class="win-card-body">
+          <p class="win-label">WIN 03 · SUPPORTS</p>
+          <p class="win-title">3-minute audio version of articles</p>
+          <p class="win-body">A full audio reading of the written content. A meaningful media alternative, not just a checkbox. A content-level accessibility decision.</p>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- 02 METHODOLOGY -->
-  <section class="cs-section" id="method">
-    <div class="wrap">
-      <span class="section-number">02 // METHODOLOGY</span>
-      <h2>How I tested</h2>
-      <div class="body-text">
-        <p>Testing was conducted manually and with automated tools on a MacBook running macOS, in Google Chrome. I tested two page types in parallel: the NPR homepage and a single article page. Testing each criterion against both page types showed where issues were site-wide versus specific to one context.</p>
-        <p>Automated tools (WAVE, HeadingsMap) surfaced structural and contrast issues quickly. Manual testing with VoiceOver and keyboard navigation revealed the behavioral failures automated tools miss: what it actually feels like to try to read an NPR article without a mouse.</p>
-      </div>
-      <div class="chips">
-        <span class="chip">WAVE</span>
-        <span class="chip">HeadingsMap</span>
-        <span class="chip">Color Picker Eyedropper</span>
-        <span class="chip">VoiceOver (macOS built-in)</span>
-        <span class="chip">Keyboard Navigation</span>
-        <span class="chip">Mouse</span>
-      </div>
-      <div class="body-text">
-        <p>I brought working knowledge of NPR.org to the session — I use the site regularly. That matters. I could tell the difference between something genuinely broken and something unfamiliar.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 03 LEAD FINDING -->
-  <section class="cs-section" id="lead">
-    <div class="wrap">
-      <span class="section-number">03 // THE LEAD FINDING</span>
-      <h2>31 of 38 tab stops are ads</h2>
-
-      <div class="callout">
-        <strong>On the NPR article page, 31 of 38 tab stops are ads or contextless inline links.</strong> For a keyboard-dependent user, reading an NPR article means tabbing through an ad gauntlet before reaching the content the page exists to deliver.
-      </div>
-
-      <div class="stat-row">
-        <div class="stat-cell"><span class="stat-num stat-num--pink">31</span><span class="stat-desc">of 38 tab stops are ad or no-context links</span></div>
-        <div class="stat-cell"><span class="stat-num stat-num--orange">5+</span><span class="stat-desc">tab presses to exit a single ad unit</span></div>
-        <div class="stat-cell"><span class="stat-num stat-num--yellow">59</span><span class="stat-desc">images missing alt text on the homepage</span></div>
-        <div class="stat-cell"><span class="stat-num stat-num--teal">44</span><span class="stat-desc">contrast errors detected by WAVE</span></div>
-      </div>
-
-      <div class="body-text">
-        <p>The failure is at WCAG 2.1.2 (No Keyboard Trap) and 2.4.3 (Focus Order). Sponsored content blocks require 5 or more consecutive tab stops to exit. The article audio player and KQED live player are technically keyboard-accessible, but buried under the ad stack in tab order — making them functionally unreachable.</p>
-        <p>This is a design and implementation decision with compounding consequences. NPR's genuine accessibility wins — its skip-to-main-content link, visible focus indicators — are negated for keyboard users the moment they enter an article page. The skip link clears the nav. It doesn't clear the ads.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 04 FINDINGS -->
-  <section class="cs-section" id="findings">
-    <div class="wrap">
-      <span class="section-number">04 // FINDINGS BY SEVERITY</span>
-      <h2>What failed and why it matters</h2>
-      <div class="body-text"><p>All findings come directly from the VPAT below, organized by user impact rather than criterion order.</p></div>
-
-      <ul class="label-list" aria-label="Audit findings by severity">
-        <li>
-          <span class="ll-sev ll-sev--critical">Critical</span>
-          <div>
-            <span class="ll-title">Keyboard trap in sponsored content</span>
-            <span class="ll-desc">Keyboard users become trapped in ad units, requiring 5+ tab presses to exit each one. Over 27 of 38 total tab stops on the article page are ad-related. The article itself is functionally unreachable via keyboard.</span>
-            <span class="ll-wcag">WCAG 2.1.2 — No Keyboard Trap (Level A) · Does Not Support</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--critical">Critical</span>
-          <div>
-            <span class="ll-title">59 images missing alt text on the homepage</span>
-            <span class="ll-desc">WAVE detected 59 images and 3 linked images without alternative text on the homepage. 3 images and 3 linked images also failed on the article page. Screen reader users receive no information about these images.</span>
-            <span class="ll-wcag">WCAG 1.1.1 — Non-text Content (Level A) · Does Not Support</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--critical">Critical</span>
-          <div>
-            <span class="ll-title">32 empty buttons and 17 broken ARIA menus</span>
-            <span class="ll-desc">WAVE flagged 32 empty buttons on the homepage, 6 on the article page, and 17 broken ARIA menus. The podcast play button announces as "3 08 button" — using audio duration as the accessible name. Every empty button is a dead end for screen reader users.</span>
-            <span class="ll-wcag">WCAG 4.1.2 — Name, Role, Value (Level A) · Does Not Support</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--critical">Critical</span>
-          <div>
-            <span class="ll-title">Watch section videos have no title, description, or alt text</span>
-            <span class="ll-desc">Prerecorded videos on the homepage are announced only as "play video" via VoiceOver. Descriptions are teaser copy about the topic — not descriptions of the visual content. Entirely inaccessible for screen reader users.</span>
-            <span class="ll-wcag">WCAG 1.2.1 — Audio-only and Video-only (Level A) · Does Not Support</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--high">High</span>
-          <div>
-            <span class="ll-title">Link purpose not conveyed to screen readers</span>
-            <span class="ll-desc">Section header links ("National," "Law") are announced by VoiceOver with the section name only — no destination context. Inline article links read without surrounding sentence context. Screen reader users cannot determine where a link goes without clicking it.</span>
-            <span class="ll-wcag">WCAG 2.4.4 — Link Purpose (Level A) · Does Not Support</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--high">High</span>
-          <div>
-            <span class="ll-title">44 contrast errors on the homepage</span>
-            <span class="ll-desc">WAVE detected 44 contrast errors on the homepage. On the article page, the audio player UI falls below the 4.5:1 minimum for normal text. For a news organization, low-contrast body text is a significant barrier to the primary use case.</span>
-            <span class="ll-wcag">WCAG 1.4.3 — Contrast Minimum (Level AA) · Does Not Support</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--high">High</span>
-          <div>
-            <span class="ll-title">No audio description on Watch section videos</span>
-            <span class="ll-desc">Homepage videos include closed captions but no audio description track. Visual-only content in the videos is inaccessible to blind and low-vision users regardless of how well the captions are written.</span>
-            <span class="ll-wcag">WCAG 1.2.5 — Audio Description (Level AA) · Does Not Support</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--moderate">Moderate</span>
-          <div>
-            <span class="ll-title">Focus order disrupted by ads on both page types</span>
-            <span class="ll-desc">Homepage focus order generally follows visual layout but is disrupted by sponsored content. Article page focus order is heavily disrupted, with the ad stack appearing before editorial content in keyboard sequence.</span>
-            <span class="ll-wcag">WCAG 2.4.3 — Focus Order (Level A) · Partially Supports</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--moderate">Moderate</span>
-          <div>
-            <span class="ll-title">6 skipped heading levels and a silent section heading</span>
-            <span class="ll-desc">HeadingsMap and WAVE detected 6 skipped heading levels on the article page. On the homepage, the "Watch" section heading is not announced by VoiceOver at all, breaking section structure for users navigating by headings.</span>
-            <span class="ll-wcag">WCAG 2.4.6 — Headings and Labels (Level AA) · Partially Supports</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--moderate">Moderate</span>
-          <div>
-            <span class="ll-title">Inline links interrupt VoiceOver sentence reading</span>
-            <span class="ll-desc">On the article page, inline hyperlinks interrupt VoiceOver reading flow, requiring manual keyboard input to continue through a single sentence. Reading a linked paragraph becomes a stop-and-start process.</span>
-            <span class="ll-wcag">WCAG 1.3.2 — Meaningful Sequence (Level A) · Partially Supports</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--moderate">Moderate</span>
-          <div>
-            <span class="ll-title">Audio player duration announced as its accessible name</span>
-            <span class="ll-desc">The article audio player is announced as "Listen 3 41 button groove, audio module article" — using duration as the accessible name rather than content context. The KQED live player is not announced meaningfully at all.</span>
-            <span class="ll-wcag">WCAG 2.5.3 — Label in Name (Level A) · Partially Supports</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--low">Low</span>
-          <div>
-            <span class="ll-title">Live ads update without a user pause mechanism</span>
-            <span class="ll-desc">On both page types, live ads update automatically without a pause, stop, or hide control. The NPR logo animates once on load without looping, which is a reasonable handling of animation.</span>
-            <span class="ll-wcag">WCAG 2.2.2 — Pause, Stop, Hide (Level A) · Partially Supports</span>
-          </div>
-        </li>
-        <li>
-          <span class="ll-sev ll-sev--low">Low</span>
-          <div>
-            <span class="ll-title">Search results not announced to screen readers</span>
-            <span class="ll-desc">Submitting a search produced a brief audible tone through VoiceOver but no spoken announcement of results loading or result count. Users don't know if the search succeeded.</span>
-            <span class="ll-wcag">WCAG 4.1.3 — Status Messages (Level AA) · Partially Supports</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 05 WHAT WORKS -->
-  <section class="cs-section" id="works">
-    <div class="wrap">
-      <span class="section-number">05 // WHERE IT WORKS</span>
-      <h2>What NPR gets right</h2>
-      <div class="body-text"><p>This audit is not a takedown. NPR has made real accessibility investments worth naming.</p></div>
-      <ul class="works-list" aria-label="NPR accessibility strengths">
-        <li>
-          <div><span class="works-title">Skip to main content link</span><span class="works-desc">Appears on the first tab press on both page types. Correct behavior, correctly implemented.</span></div>
-          <span class="works-badge">Supports</span>
-        </li>
-        <li>
-          <div><span class="works-title">Visible focus indicators</span><span class="works-desc">A black outlined focus square appears on all tested interactive elements with strong contrast. A genuine strength — many news sites skip this entirely.</span></div>
-          <span class="works-badge">Supports</span>
-        </li>
-        <li>
-          <div><span class="works-title">3-minute audio version of articles</span><span class="works-desc">A full audio reading of the written content — a meaningful media alternative, not just a checkbox. A content-level accessibility decision.</span></div>
-          <span class="works-badge">Supports</span>
-        </li>
-        <li>
-          <div><span class="works-title">Closed captions on Watch section videos</span><span class="works-desc">Prerecorded video includes closed captions. Page titles are accurate and descriptive. Color is not used as the only means of conveying meaning.</span></div>
-          <span class="works-badge">Supports</span>
-        </li>
-      </ul>
-      <div class="body-text" style="margin-top:1.5rem;"><p>These are not small things. A site can do all of them correctly and still fail the people trying to read an article via keyboard. That is the problem.</p></div>
-    </div>
-  </section>
-
-  <!-- 06 RECOMMENDATIONS -->
-  <section class="cs-section" id="recs">
-    <div class="wrap">
-      <span class="section-number">06 // RECOMMENDATIONS</span>
-      <h2>What to fix, in order</h2>
-      <div class="body-text"><p>Prioritized by impact on real users — not WCAG criterion order.</p></div>
-      <ol class="reco-list" aria-label="Prioritized recommendations">
-        <li>
-          <span class="reco-num">1</span>
-          <div><span class="reco-title">Fix the ad implementation's keyboard behavior</span><span class="reco-desc">This is the only recommendation that is also a legal exposure. WCAG 2.1.2 is a Level A criterion — baseline conformance. Ad units need to be navigable with a single tab stop or grouped with a skip mechanism. This is not a front-end fix alone: it requires coordination with ad ops.</span></div>
-        </li>
-        <li>
-          <span class="reco-num">2</span>
-          <div><span class="reco-title">Audit and remediate all empty buttons</span><span class="reco-desc">32 empty buttons on the homepage and 6 on the article page each need an accessible name. The podcast play button should announce the episode name, not the duration. Every empty button is a dead end in keyboard navigation.</span></div>
-        </li>
-        <li>
-          <span class="reco-num">3</span>
-          <div><span class="reco-title">Add alt text to all editorial images</span><span class="reco-desc">59 homepage images lack alternative text. For a news organization, image alt text is also editorial context — a photo that can't be described is a story element that doesn't reach part of the audience. Establish an editorial workflow that requires alt text at upload.</span></div>
-        </li>
-        <li>
-          <span class="reco-num">4</span>
-          <div><span class="reco-title">Repair ARIA menus and link purpose</span><span class="reco-desc">17 broken ARIA menus on the homepage need to be corrected or replaced. Section header links need descriptive accessible names that communicate destination, not just the section label. This is a heading and landmark audit combined.</span></div>
-        </li>
-        <li>
-          <span class="reco-num">5</span>
-          <div><span class="reco-title">Resolve contrast failures on the audio player</span><span class="reco-desc">The article audio player UI falls below the 4.5:1 minimum for normal text. Given how central audio is to NPR's identity, this is a meaningful gap — and it's a discrete component that can be corrected without a broader redesign.</span></div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- 07 VPAT -->
-  <section class="cs-section" id="vpat">
-    <div class="wrap">
-      <span class="section-number">07 // THE DELIVERABLE</span>
-      <h2>Full VPAT</h2>
-      <div class="body-text">
-        <p>The complete WCAG 2.1 Level A and AA conformance report is formatted using the VPAT® 2.5Rev template from the Information Technology Industry Council. It covers every applicable success criterion across both page types, with conformance level and remarks for each.</p>
-      </div>
-      <div class="vpat-block">
-        <p class="vpat-block__eyebrow">VPAT® 2.5REV · WCAG 2.1 EDITION</p>
-        <p class="vpat-block__title">NPR.org Accessibility Conformance Report</p>
-        <p class="vpat-block__desc">12-page conformance report · April 2026 · WCAG 2.1 Level A &amp; AA · macOS Chrome + VoiceOver</p>
-        <a href="/assets/NPR.pdf" class="btn btn--teal" target="_blank" rel="noopener">▶ View Full VPAT (PDF)</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 08 TAKEAWAY -->
-  <section class="cs-section" id="reflection">
-    <div class="wrap">
-      <span class="section-number">08 // TAKEAWAY</span>
-      <h2>The tension this audit revealed</h2>
-      <div class="body-text">
-        <p>NPR is publicly funded, editorially independent, and mission-driven. It also runs ads. Those two things are in direct conflict when the ad implementation breaks the experience for keyboard users.</p>
-        <p>This audit surfaced something that goes beyond checklist compliance: a site can demonstrate genuine care for accessibility at the content layer — audio alternatives, visible focus states, working skip links — and still fail the people who need it most at the implementation layer, because ad ops and accessibility weren't in the same room.</p>
-        <p>WCAG conformance isn't a design system problem. It's a cross-functional coordination problem. The keyboard trap in NPR's article ads isn't a failure of values. It's a failure of process — no one in the ad implementation workflow was checking whether these units could be exited by a keyboard user.</p>
-      </div>
-      <div class="pull-quote">
-        <p>"That's the gap a VPAT surfaces that a quick WAVE scan doesn't. You have to sit in it and try to tab through an article."</p>
-        <cite>— Stacy Tomasi · UX 60504 Accessibility &amp; Universal Design · Spring 2026</cite>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <div class="wrap">
-    <div class="case-footer">
-      <span class="footer-copy">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED<br>SCORE: ∞</span>
-      <div class="footer-links">
-        <a href="mailto:hello@tomiux.com">Email</a>
-        <a href="https://www.linkedin.com/in/stacytomasi/">LinkedIn</a>
-        <a href="https://tomiux.com/#work">← Work</a>
+      <div class="win-card">
+        <div class="win-card-body">
+          <p class="win-label">WIN 04 · SUPPORTS</p>
+          <p class="win-title">Closed captions on Watch videos</p>
+          <p class="win-body">Prerecorded video includes closed captions. Page titles are accurate and descriptive. Color is not used as the only means of conveying meaning.</p>
+        </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- RECOMMENDATIONS -->
+<div class="section-bg-soft">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">06 // RECOMMENDATIONS</span>
+      <h2 class="section-title">What to fix, <span class="accent2">in order</span></h2>
+    </div>
+    <p class="body-text" style="margin-bottom: 2rem; max-width: 760px;">Prioritized by impact on real users, not WCAG criterion order.</p>
+
+    <div class="rec-list">
+      <div class="rec-card" data-num="01">
+        <span class="rec-priority p-critical">CRITICAL</span>
+        <p class="rec-title">Fix the ad implementation's keyboard behavior</p>
+        <p class="rec-body">This is the only recommendation that is also a legal exposure. WCAG 2.1.2 is a Level A criterion, baseline conformance. Ad units need to be navigable with a single tab stop, or grouped with a skip mechanism. This is not a front-end fix alone. It requires coordination with ad ops.</p>
+      </div>
+      <div class="rec-card" data-num="02">
+        <span class="rec-priority">HIGH PRIORITY</span>
+        <p class="rec-title">Audit and remediate all empty buttons</p>
+        <p class="rec-body">32 empty buttons on the homepage and 6 on the article page each need an accessible name. The podcast play button should announce the episode name, not the duration. Every empty button is a dead end in keyboard navigation.</p>
+      </div>
+      <div class="rec-card" data-num="03">
+        <span class="rec-priority">HIGH PRIORITY</span>
+        <p class="rec-title">Add alt text to all editorial images</p>
+        <p class="rec-body">59 homepage images lack alternative text. For a news organization, image alt text is also editorial context. A photo that can't be described is a story element that doesn't reach part of the audience. Establish an editorial workflow that requires alt text at upload.</p>
+      </div>
+      <div class="rec-card" data-num="04">
+        <span class="rec-priority">MEDIUM PRIORITY</span>
+        <p class="rec-title">Repair ARIA menus and link purpose</p>
+        <p class="rec-body">17 broken ARIA menus on the homepage need to be corrected or replaced. Section header links need descriptive accessible names that communicate destination, not just the section label. This is a heading and landmark audit combined.</p>
+      </div>
+      <div class="rec-card" data-num="05">
+        <span class="rec-priority">MEDIUM PRIORITY</span>
+        <p class="rec-title">Resolve contrast failures on the audio player</p>
+        <p class="rec-body">The article audio player UI falls below the 4.5:1 minimum for normal text. Given how central audio is to NPR's identity, this is a meaningful gap. It's a discrete component that can be corrected without a broader redesign.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- VPAT DELIVERABLE -->
+<div class="section-bg-white" id="vpat">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">07 // THE DELIVERABLE</span>
+      <h2 class="section-title">The full <span class="accent">VPAT</span></h2>
+    </div>
+    <p class="body-text" style="margin-bottom: 2rem; max-width: 760px;">The complete WCAG 2.1 Level A and AA conformance report is formatted using the VPAT 2.5Rev template from the Information Technology Industry Council. It covers every applicable success criterion across both page types, with conformance level and remarks for each.</p>
+
+    <div class="vpat-block">
+      <div aria-hidden="true"></div>
+      <p class="vpat-eyebrow">VPAT 2.5REV · WCAG 2.1 EDITION</p>
+      <p class="vpat-title">NPR.org Accessibility Conformance Report</p>
+      <p class="vpat-desc">12-page conformance report · April 2026 · WCAG 2.1 Level A &amp; AA · macOS Chrome + VoiceOver</p>
+      <a href="../assets/NPR.pdf" class="btn btn-primary" target="_blank" rel="noopener">▶ View Full VPAT (PDF)</a>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- TAKEAWAY -->
+<div class="section-bg-soft">
+  <div class="section-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">08 // TAKEAWAY</span>
+      <h2 class="section-title">The tension this audit <span class="accent2">revealed</span></h2>
+    </div>
+    <p class="body-text" style="margin-bottom: 1rem; max-width: 760px;">NPR is publicly funded, editorially independent, and mission-driven. It also runs ads. Those two things are in direct conflict when the ad implementation breaks the experience for keyboard users.</p>
+    <p class="body-text" style="margin-bottom: 1rem; max-width: 760px;">This audit surfaced something that goes beyond checklist compliance. A site can demonstrate genuine care for accessibility at the content layer (audio alternatives, visible focus states, working skip links) and still fail the people who need it most at the implementation layer, because ad ops and accessibility weren't in the same room.</p>
+    <p class="body-text" style="margin-bottom: 2.5rem; max-width: 760px;">WCAG conformance isn't a design system problem. It's a cross-functional coordination problem. The keyboard trap in NPR's article ads isn't a failure of values. It's a failure of process. Nobody in the ad implementation workflow was checking whether these units could be exited by a keyboard user.</p>
+
+    <div class="takeaway">
+      <p class="takeaway-text">"That's the gap a VPAT surfaces that a quick WAVE scan doesn't. You have to sit in it and try to tab through an article."</p>
+      <p class="takeaway-attr">— Stacy Tomasi · UX 60504 Accessibility &amp; Universal Design · Spring 2026</p>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
 
 </main>
+
+<footer>
+  <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
+  <div class="footer-hits" tabindex="0" role="button" aria-label="Secret score counter" title="you found it 👻" id="footer-easter-egg">SCORE: <span aria-hidden="true">∞</span></div>
+  <div class="footer-links">
+    <a href="mailto:hello@tomiux.com">Email</a>
+    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
+    <a href="https://tomiux.com/#work">← Work</a>
+  </div>
+</footer>
+
+<script>
+  const egg = document.getElementById('footer-easter-egg');
+  function activateEgg() { egg.setAttribute('data-found','true'); egg.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'; egg.setAttribute('aria-label','Konami code accepted!'); }
+  egg.addEventListener('click', activateEgg);
+  egg.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); } });
+</script>
+
 </body>
 </html>
