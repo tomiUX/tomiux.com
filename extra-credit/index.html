@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Extra Credit — TomiUX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lavender-bg: #f0e8ff; --lavender-mid: #c8a8f0; --lavender-dark: #9b70d8;
+    --pink: #ff6eb4; --hot-pink: #ff2d9b; --baby-pink: #ffb3d9;
+    --teal: #3FBB9E; --mint: #91EBD3; --yellow: #ffe566; --orange: #ff8c42;
+    --blue: #6bb8ff; --baby-blue: #b3d9ff; --purple: #A122C0;
+    --lime: #c8ff6b; --red: #ff5252; --white: #ffffff;
+    --text: #1a0a3e; --text-mid: #4a1878; --text-light: #8850b0;
+    --pixel-dark: #0a0520;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito', sans-serif; background: var(--lavender-bg); color: var(--text); overflow-x: hidden; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.1;
+    background-image:
+      radial-gradient(3px 3px at 12% 8%, var(--pink), transparent),
+      radial-gradient(2px 2px at 45% 5%, var(--yellow), transparent),
+      radial-gradient(3px 3px at 78% 10%, var(--orange), transparent),
+      radial-gradient(2px 2px at 35% 60%, var(--pink), transparent),
+      radial-gradient(3px 3px at 68% 92%, var(--pink), transparent);
+    background-size: 300px 300px;
+  }
+
+  /* ===== NAV ===== */
+  nav { position: sticky; top: 0; z-index: 100; background: rgba(253,248,255,0.95); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 4px solid var(--pixel-dark); box-shadow: 0 4px 0 var(--lavender-dark); }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0.75rem 2rem; }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .nav-logo img { height: 40px; width: auto; filter: drop-shadow(2px 2px 0 var(--purple)); }
+  .nav-logo-text { font-family: 'Press Start 2P', monospace; font-size: 1rem; line-height: 1; }
+  .logo-tomi { color: #A122C0; } .logo-ux { color: #3FBB9E; }
+  .nav-links { display: flex; gap: 0.25rem; list-style: none; align-items: center; }
+  .nav-links a { font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-mid); text-decoration: none; padding: 0.45rem 0.9rem; border-radius: 6px; transition: all 0.15s; }
+  .nav-links a:hover, .nav-links a.active { background: var(--lavender-mid); color: var(--purple); }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown > a::after { content: ' ▾'; font-size: 0.6rem; opacity: 0.7; }
+  .dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: 0; background: rgba(253,248,255,0.98); border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); border-radius: 8px; min-width: 200px; z-index: 200; overflow: hidden; }
+  .nav-dropdown:hover .dropdown-menu, .nav-dropdown:focus-within .dropdown-menu { display: block; }
+  .dropdown-menu a { display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1rem !important; border-radius: 0 !important; border-bottom: 2px solid var(--lavender-mid); font-size: 0.75rem !important; color: var(--text-mid) !important; white-space: nowrap; background: none !important; }
+  .dropdown-menu a:last-child { border-bottom: none; }
+  .dropdown-menu a:hover { background: var(--lavender-mid) !important; color: var(--purple) !important; }
+  .dropdown-tag { font-family: 'Press Start 2P', monospace; font-size: 0.35rem; padding: 0.15rem 0.4rem; border: 1.5px solid var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; }
+  .nav-cv { background: #A122C0 !important; color: white !important; border: 3px solid var(--pixel-dark) !important; box-shadow: 3px 3px 0 var(--pixel-dark) !important; border-radius: 6px !important; }
+  .nav-cv:hover { transform: translate(-1px,-1px) !important; box-shadow: 4px 4px 0 var(--pixel-dark) !important; background: var(--hot-pink) !important; }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header {
+    background:
+      radial-gradient(ellipse at 10% 50%, rgba(255,110,180,0.2) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 30%, rgba(63,187,158,0.2) 0%, transparent 50%),
+      var(--lavender-bg);
+    border-bottom: 4px solid var(--pixel-dark);
+    padding: 4rem 2rem 3.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-header-inner { max-width: 1200px; margin: 0 auto; }
+
+  .page-back { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--text-light); text-decoration: none; letter-spacing: 0.08em; margin-bottom: 1.5rem; transition: color 0.15s; }
+  .page-back:hover { color: var(--purple); }
+
+  .page-badge { display: inline-block; font-family: 'Press Start 2P', monospace; font-size: 0.5rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; margin-bottom: 1.25rem; }
+
+  .page-title { font-family: 'Lilita One', sans-serif; font-size: clamp(3rem, 7vw, 5.5rem); color: var(--hot-pink); line-height: 0.9; margin-bottom: 1rem; -webkit-text-stroke: 2px var(--pixel-dark); text-shadow: 4px 4px 0 rgba(255,45,155,0.2); }
+
+  .page-desc { font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: var(--text-mid); max-width: 580px; line-height: 1.7; font-weight: 700; }
+  .page-desc em { color: var(--hot-pink); font-style: normal; font-weight: 900; }
+
+  /* ===== PIXEL DIVIDER ===== */
+  .pixel-divider { height: 12px; background: repeating-linear-gradient(90deg, #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px, #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px, #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px); border-top: 3px solid var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark); }
+
+  /* ===== PLAYGROUND LAYOUT ===== */
+  .playground-wrap { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 6rem; position: relative; z-index: 1; }
+
+  /* ===== PROJECT ENTRY — vertical stacked cards ===== */
+  .project-entry {
+    margin-bottom: 4rem;
+    background: var(--white);
+    border: 3px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .project-entry:last-child { margin-bottom: 0; }
+
+  /* colored top stripe per entry */
+  .project-stripe { height: 8px; }
+  .stripe-pink { background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 25%, var(--baby-pink) 25%, var(--baby-pink) 50%, var(--hot-pink) 50%, var(--hot-pink) 75%, var(--pink) 75%); }
+  .stripe-teal { background: repeating-linear-gradient(90deg, var(--teal) 0, var(--teal) 25%, var(--mint) 25%, var(--mint) 50%, var(--teal) 50%, var(--teal) 75%, var(--mint) 75%); }
+  .stripe-purple { background: repeating-linear-gradient(90deg, var(--purple) 0, var(--purple) 25%, var(--lavender-mid) 25%, var(--lavender-mid) 50%, var(--hot-pink) 50%, var(--hot-pink) 75%, var(--purple) 75%); }
+  .stripe-yellow { background: repeating-linear-gradient(90deg, var(--yellow) 0, var(--yellow) 25%, var(--orange) 25%, var(--orange) 50%, var(--yellow) 50%, var(--yellow) 75%, var(--orange) 75%); }
+
+  .project-header {
+    padding: 1.5rem 1.75rem 1.25rem;
+    border-bottom: 3px solid var(--pixel-dark);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    background: var(--white);
+  }
+
+  .project-num { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--hot-pink); letter-spacing: 0.1em; margin-bottom: 0.35rem; }
+  .project-name { font-family: 'Lilita One', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); color: var(--text); -webkit-text-stroke: 0.5px var(--pixel-dark); line-height: 1.1; }
+  .project-tag { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; padding: 0.3rem 0.6rem; background: #A122C0; color: white; border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); letter-spacing: 0.06em; white-space: nowrap; align-self: flex-start; margin-top: 0.5rem; }
+
+  .project-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 300px;
+  }
+
+  /* left: context panel */
+  .project-context {
+    padding: 1.75rem;
+    border-right: 3px solid var(--pixel-dark);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: var(--lavender-bg);
+  }
+
+  .context-section-label { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+
+  .context-text { font-size: 0.85rem; color: var(--text-mid); line-height: 1.7; font-weight: 600; }
+
+  .insight-tag {
+    display: inline-block;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 0.72rem;
+    padding: 0.2rem 0.6rem;
+    border: 2px solid var(--pixel-dark);
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+    margin: 0.2rem 0.2rem 0 0;
+  }
+
+  .tag-pink { background: var(--baby-pink); color: var(--pixel-dark); }
+  .tag-teal { background: var(--mint); color: var(--pixel-dark); }
+  .tag-yellow { background: var(--yellow); color: var(--pixel-dark); }
+  .tag-purple { background: var(--lavender-mid); color: var(--pixel-dark); }
+
+  /* right: interactive sandbox */
+  .project-sandbox {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--white);
+  }
+
+  .sandbox-label { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--teal); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+
+  /* ===== INTERACTIVE DEMOS ===== */
+
+  /* 001 — Runaway X */
+  .demo-runaway-wrap { position: relative; flex: 1; min-height: 180px; background: var(--lavender-bg); border: 2px solid var(--lavender-mid); border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .demo-modal { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); border-radius: 10px; width: 220px; padding: 1.25rem; position: relative; text-align: center; }
+  .demo-modal p { font-size: 0.8rem; color: var(--text-mid); font-weight: 700; line-height: 1.5; margin-bottom: 0.75rem; }
+  #runaway-x {
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 28px; height: 28px;
+    background: var(--red);
+    border: 2px solid var(--pixel-dark);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.7rem;
+    color: white;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: top 0.1s, right 0.1s, left 0.1s, bottom 0.1s;
+    font-family: 'Nunito', sans-serif;
+    z-index: 5;
+  }
+  .demo-reset-btn { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; padding: 0.4rem 0.9rem; background: var(--yellow); border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 4px; cursor: pointer; transition: all 0.1s; display: block; width: 100%; text-align: center; }
+  .demo-reset-btn:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--pixel-dark); }
+  .escape-count { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--hot-pink); letter-spacing: 0.08em; margin-top: 0.75rem; text-align: center; }
+
+  /* 002 — Eternal Spinner */
+  .demo-spinner-wrap { flex: 1; min-height: 180px; background: var(--lavender-bg); border: 2px solid var(--lavender-mid); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem; }
+  .spinner-ring { width: 48px; height: 48px; border: 5px solid var(--lavender-mid); border-top-color: var(--purple); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner-msg { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--text-light); letter-spacing: 0.08em; text-align: center; line-height: 2; }
+  .spinner-progress { width: 80%; max-width: 200px; height: 10px; background: var(--lavender-mid); border: 2px solid var(--pixel-dark); border-radius: 4px; overflow: hidden; }
+  .spinner-bar { height: 100%; background: var(--purple); width: 0%; animation: fakeLoad 4s ease-in-out infinite; border-radius: 2px; }
+  @keyframes fakeLoad { 0% { width: 0%; } 40% { width: 75%; } 70% { width: 78%; } 90% { width: 79%; } 100% { width: 79%; } }
+  .spinner-time { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--hot-pink); letter-spacing: 0.06em; }
+
+  /* 003 — Un-Undoable */
+  .demo-delete-wrap { flex: 1; min-height: 180px; background: var(--lavender-bg); border: 2px solid var(--lavender-mid); border-radius: 8px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .delete-item { display: flex; align-items: center; justify-content: space-between; background: var(--white); border: 2px solid var(--pixel-dark); border-radius: 6px; padding: 0.5rem 0.75rem; font-size: 0.78rem; font-weight: 700; color: var(--text); transition: all 0.2s; }
+  .delete-item.deleted { opacity: 0; pointer-events: none; height: 0; padding: 0; border: none; margin: 0; overflow: hidden; }
+  .delete-btn { background: var(--red); color: white; border: 2px solid var(--pixel-dark); border-radius: 4px; padding: 0.2rem 0.5rem; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.68rem; cursor: pointer; box-shadow: 2px 2px 0 var(--pixel-dark); transition: all 0.1s; }
+  .delete-btn:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--pixel-dark); }
+  .undo-toast { display: none; align-items: center; justify-content: space-between; background: var(--pixel-dark); color: white; border-radius: 6px; padding: 0.5rem 0.75rem; font-size: 0.75rem; font-weight: 700; gap: 0.5rem; }
+  .undo-toast.visible { display: flex; }
+  .undo-btn { background: var(--yellow); color: var(--pixel-dark); border: none; border-radius: 4px; padding: 0.2rem 0.6rem; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.7rem; cursor: pointer; }
+  .no-undo-msg { font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--red); letter-spacing: 0.06em; text-align: center; display: none; margin-top: 0.5rem; }
+  .no-undo-msg.visible { display: block; }
+
+  /* 004 — Consent Trap */
+  .demo-consent-wrap { flex: 1; min-height: 180px; background: var(--lavender-bg); border: 2px solid var(--lavender-mid); border-radius: 8px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: center; gap: 0.75rem; }
+  .consent-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; color: var(--text); }
+  .consent-row { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.75rem; color: var(--text-mid); font-weight: 600; line-height: 1.4; }
+  .consent-row input[type="checkbox"] { margin-top: 2px; accent-color: var(--purple); width: 14px; height: 14px; flex-shrink: 0; }
+  .consent-fine { font-size: 0.62rem; color: var(--text-light); line-height: 1.5; }
+  .consent-fine .tiny { font-size: 0.52rem; color: rgba(136,80,176,0.5); }
+  .consent-submit { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.78rem; padding: 0.5rem 1.25rem; background: var(--purple); color: white; border: 2px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); border-radius: 6px; cursor: pointer; transition: all 0.1s; align-self: flex-start; }
+  .consent-submit:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--pixel-dark); }
+  .consent-result { display: none; font-family: 'Press Start 2P', monospace; font-size: 0.38rem; color: var(--hot-pink); letter-spacing: 0.06em; line-height: 2; }
+  .consent-result.visible { display: block; }
+
+  /* empty / coming soon card */
+  .project-entry.coming-soon { opacity: 0.45; border-style: dashed; box-shadow: 3px 3px 0 var(--lavender-dark); }
+  .project-entry.coming-soon .project-sandbox { align-items: center; justify-content: center; min-height: 200px; }
+  .coming-soon-inner { text-align: center; }
+  .coming-soon-inner .cs-icon { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; }
+  .coming-soon-inner p { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--text-light); letter-spacing: 0.08em; line-height: 2; }
+
+  /* footer */
+  footer { background: #A122C0; border-top: 4px solid var(--pixel-dark); padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+  .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
+  .footer-brand img { height: 28px; filter: drop-shadow(2px 2px 0 var(--pink)); }
+  .footer-brand span { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--yellow); letter-spacing: 0.08em; line-height: 1.8; }
+  .footer-links { display: flex; gap: 1.25rem; }
+  .footer-links a { font-family: 'Nunito', sans-serif; font-size: 0.78rem; color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 700; transition: color 0.15s; }
+  .footer-links a:hover { color: var(--yellow); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 780px) {
+    .project-body { grid-template-columns: 1fr; }
+    .project-context { border-right: none; border-bottom: 3px solid var(--pixel-dark); }
+    .demo-runaway-wrap, .demo-spinner-wrap, .demo-delete-wrap, .demo-consent-wrap { min-height: 140px; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-inner { padding: 0.75rem 1rem; }
+    .nav-logo-text { font-size: 0.7rem; }
+    .page-header { padding: 3rem 1rem 2.5rem; }
+    .playground-wrap { padding: 2.5rem 1rem 4rem; }
+    .project-header, .project-context, .project-sandbox { padding: 1.25rem; }
+    .dropdown-menu { left: auto; right: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://tomiux.com">
+      <img src="https://tomiux.com/assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX" />
+      <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="https://tomiux.com/#work">Featured</a>
+        <div class="dropdown-menu">
+          <a href="https://tomiux.com/august/"><span class="dropdown-tag">IxD</span> August Smart Lock</a>
+          <a href="https://tomiux.com/philz/"><span class="dropdown-tag">USABILITY TESTING</span> Philz Coffee</a>
+          <a href="https://tomiux.com/yelp/"><span class="dropdown-tag">RESEARCH</span> Yelp Usability Study</a>
+          <a href="https://tomiux.com/coursera/"><span class="dropdown-tag">A11Y</span> Coursera Cognitive Audit</a>
+          <a href="https://tomiux.com/stubhub/"><span class="dropdown-tag">A11Y</span> StubHub Annotations</a>
+        </div>
+      </li>
+      <li><a href="https://tomiux.com/#extra-credit" class="active">Extra Credit</a></li>
+      <li><a href="https://tomiux.com/#about">About</a></li>
+      <li><a href="https://tomiux.com/#contact">Contact</a></li>
+      <li><a href="https://tomiux.com/assets/Stacy-Tomasi-UX-Designer-Resume.pdf" class="nav-cv" target="_blank" rel="noopener">CV ↗</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <a href="https://tomiux.com" class="page-back">← Back to Home</a>
+    <div class="page-badge">02 // EXTRA CREDIT</div>
+    <h1 class="page-title">Extra Credit</h1>
+    <p class="page-desc">Unsolicited feedback. Report attached. <em>Interact with them. That's the point.</em></p>
+  </div>
+</div>
+
+<div class="pixel-divider"></div>
+
+<div class="playground-wrap">
+
+  <!-- ===== COMING SOON — all 8 entries ===== -->
+  <div class="project-entry coming-soon">
+    <div class="project-stripe stripe-pink"></div>
+    <div class="project-header">
+      <div><div class="project-num">№ 001</div><div class="project-name">NPR.org VPAT</div></div>
+      <span class="project-tag">COMING SOON</span>
+    </div>
+    <div class="project-body">
+      <div class="project-context" style="justify-content:center;align-items:center;min-height:160px;">
+        <p class="context-text" style="text-align:center;font-style:italic;">Under construction — check back soon.</p>
+      </div>
+      <div class="project-sandbox" style="align-items:center;justify-content:center;min-height:160px;">
+        <div class="coming-soon-inner"><span class="cs-icon">🔭</span><p>STILL IN THE WILD<br/>LOADING SOON...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-entry coming-soon">
+    <div class="project-stripe stripe-teal"></div>
+    <div class="project-header">
+      <div><div class="project-num">№ 002</div><div class="project-name">Kent State Instagram</div></div>
+      <span class="project-tag">COMING SOON</span>
+    </div>
+    <div class="project-body">
+      <div class="project-context" style="justify-content:center;align-items:center;min-height:160px;">
+        <p class="context-text" style="text-align:center;font-style:italic;">Under construction — check back soon.</p>
+      </div>
+      <div class="project-sandbox" style="align-items:center;justify-content:center;min-height:160px;">
+        <div class="coming-soon-inner"><span class="cs-icon">🔭</span><p>STILL IN THE WILD<br/>LOADING SOON...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-entry coming-soon">
+    <div class="project-stripe stripe-purple"></div>
+    <div class="project-header">
+      <div><div class="project-num">№ 003</div><div class="project-name">AllTheHomes.com</div></div>
+      <span class="project-tag">COMING SOON</span>
+    </div>
+    <div class="project-body">
+      <div class="project-context" style="justify-content:center;align-items:center;min-height:160px;">
+        <p class="context-text" style="text-align:center;font-style:italic;">Under construction — check back soon.</p>
+      </div>
+      <div class="project-sandbox" style="align-items:center;justify-content:center;min-height:160px;">
+        <div class="coming-soon-inner"><span class="cs-icon">🔭</span><p>STILL IN THE WILD<br/>LOADING SOON...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-entry coming-soon">
+    <div class="project-stripe stripe-yellow"></div>
+    <div class="project-header">
+      <div><div class="project-num">№ 004</div><div class="project-name">Temu</div></div>
+      <span class="project-tag">COMING SOON</span>
+    </div>
+    <div class="project-body">
+      <div class="project-context" style="justify-content:center;align-items:center;min-height:160px;">
+        <p class="context-text" style="text-align:center;font-style:italic;">Under construction — check back soon.</p>
+      </div>
+      <div class="project-sandbox" style="align-items:center;justify-content:center;min-height:160px;">
+        <div class="coming-soon-inner"><span class="cs-icon">🔭</span><p>STILL IN THE WILD<br/>LOADING SOON...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-entry coming-soon">
+    <div class="project-stripe stripe-pink"></div>
+    <div class="project-header">
+      <div><div class="project-num">№ 005</div><div class="project-name">Palmstreet</div></div>
+      <span class="project-tag">COMING SOON</span>
+    </div>
+    <div class="project-body">
+      <div class="project-context" style="justify-content:center;align-items:center;min-height:160px;">
+        <p class="context-text" style="text-align:center;font-style:italic;">Under construction — check back soon.</p>
+      </div>
+      <div class="project-sandbox" style="align-items:center;justify-content:center;min-height:160px;">
+        <div class="coming-soon-inner"><span class="cs-icon">🔭</span><p>STILL IN THE WILD<br/>LOADING SOON...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-entry coming-soon">
+    <div class="project-stripe stripe-teal"></div>
+    <div class="project-header">
+      <div><div class="project-num">№ 006</div><div class="project-name">Planta</div></div>
+      <span class="project-tag">COMING SOON</span>
+    </div>
+    <div class="project-body">
+      <div class="project-context" style="justify-content:center;align-items:center;min-height:160px;">
+        <p class="context-text" style="text-align:center;font-style:italic;">Under construction — check back soon.</p>
+      </div>
+      <div class="project-sandbox" style="align-items:center;justify-content:center;min-height:160px;">
+        <div class="coming-soon-inner"><span class="cs-icon">🔭</span><p>STILL IN THE WILD<br/>LOADING SOON...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-entry coming-soon">
+    <div class="project-stripe stripe-purple"></div>
+    <div class="project-header">
+      <div><div class="project-num">№ 007</div><div class="project-name">Portland Leather</div></div>
+      <span class="project-tag">COMING SOON</span>
+    </div>
+    <div class="project-body">
+      <div class="project-context" style="justify-content:center;align-items:center;min-height:160px;">
+        <p class="context-text" style="text-align:center;font-style:italic;">Under construction — check back soon.</p>
+      </div>
+      <div class="project-sandbox" style="align-items:center;justify-content:center;min-height:160px;">
+        <div class="coming-soon-inner"><span class="cs-icon">🔭</span><p>STILL IN THE WILD<br/>LOADING SOON...</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-entry coming-soon">
+    <div class="project-stripe stripe-yellow"></div>
+    <div class="project-header">
+      <div><div class="project-num">№ 008</div><div class="project-name">Wedding Seating App</div></div>
+      <span class="project-tag">COMING SOON</span>
+    </div>
+    <div class="project-body">
+      <div class="project-context" style="justify-content:center;align-items:center;min-height:160px;">
+        <p class="context-text" style="text-align:center;font-style:italic;">Under construction — check back soon.</p>
+      </div>
+      <div class="project-sandbox" style="align-items:center;justify-content:center;min-height:160px;">
+        <div class="coming-soon-inner"><span class="cs-icon">🔭</span><p>STILL IN THE WILD<br/>LOADING SOON...</p></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end playground-wrap -->
+
+<div class="pixel-divider"></div>
+
+<footer>
+  <div class="footer-brand">
+    <img src="https://tomiux.com/assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX" />
+    <span>© 2026 · STACY TOMASI<br/>TOMIUX · ALL RIGHTS RESERVED</span>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:hello@tomiux.com">Email</a>
+    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://tomiux.com/assets/Stacy-Tomasi-UX-Designer-Resume.pdf" target="_blank" rel="noopener">CV</a>
+  </div>
+</footer>
+
+<script>
+// JS reserved for future interactive demos
+</script>
+</body>
+</html>
