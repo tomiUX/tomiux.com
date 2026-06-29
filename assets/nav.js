@@ -92,15 +92,10 @@
     #tomiux-nav .dropdown-menu {
       display: none; position: absolute;
       top: 100%; left: 0;
-      padding-top: 8px;
-      background: transparent;
-      border: none; box-shadow: none;
-      min-width: 220px; z-index: 200; overflow: visible;
-    }
-    #tomiux-nav .dropdown-menu-inner {
       background: rgba(253,248,255,0.98);
       border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520;
-      border-radius: 8px; overflow: hidden;
+      border-radius: 8px; min-width: 220px; z-index: 200; overflow: hidden;
+      margin-top: 4px;
     }
     #tomiux-nav .dropdown-menu.open { display: block; }
 
@@ -116,7 +111,7 @@
     #tomiux-nav .dropdown-menu a:hover { background: #c8a8f0 !important; color: #A122C0 !important; }
     #tomiux-nav .dropdown-menu a:focus-visible { outline: 3px solid #A122C0 !important; outline-offset: -3px !important; background: #c8a8f0 !important; color: #A122C0 !important; }
 
-    #tomiux-nav .dropdown-tag {
+    #tomiux-nav .nav-dropdown-tag {
       font-family: 'Press Start 2P', monospace;
       font-size: 0.45rem; padding: 0.15rem 0.4rem;
       border: 1.5px solid #0a0520; color: #0a0520;
@@ -166,13 +161,13 @@
     '  <ul class="nav-links" role="list">',
     '    <li class="nav-dropdown">',
     '      <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="nav-featured-btn">Featured</button>',
-    '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu"><div class="dropdown-menu-inner">',
-    '        <a href="https://tomiux.com/august/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">IxD</span> August Smart Lock</a>',
-    '        <a href="https://tomiux.com/philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">RESEARCH</span> Philz Coffee</a>',
-    '        <a href="https://tomiux.com/yelp/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">RESEARCH</span> Yelp Usability Study</a>',
-    '        <a href="https://tomiux.com/coursera/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> Coursera Cognitive Audit</a>',
-    '        <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">A11Y</span> StubHub Annotations</a>',
-    '      </div></div>',
+    '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu">',
+    '        <a href="https://tomiux.com/august/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">IxD</span> August Smart Lock</a>',
+    '        <a href="https://tomiux.com/philz/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">USABILITY</span> Philz Coffee</a>',
+    '        <a href="https://tomiux.com/yelp/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">RESEARCH</span> Yelp Usability Study</a>',
+    '        <a href="https://tomiux.com/coursera/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">A11Y</span> Coursera Cognitive Audit</a>',
+    '        <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">A11Y</span> StubHub Annotations</a>',
+    '      </div>',
     '    </li>',
     '    <li><a href="https://tomiux.com/#extra-credit">Extra Credit</a></li>',
     '    <li><a href="https://tomiux.com/#about">About</a></li>',
@@ -221,20 +216,21 @@
     // Keep menu open when clicking inside it
     menu.addEventListener('click', (e) => e.stopPropagation());
 
-    // Hover with delay — prevents snap-close when mouse moves from button to menu
+    // Hover with delay — attach to the li wrapper so the gap is covered
+    const li = menu.closest('li') || wrapper;
     let closeTimer = null;
 
     function scheduleClose() {
-      closeTimer = setTimeout(() => closeMenu(false), 120);
+      closeTimer = setTimeout(() => closeMenu(false), 200);
     }
     function cancelClose() {
       if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
     }
 
-    btn.addEventListener('mouseenter', () => { cancelClose(); openMenu(false); });
-    btn.addEventListener('mouseleave', scheduleClose);
-    menu.addEventListener('mouseenter', cancelClose);
-    menu.addEventListener('mouseleave', scheduleClose);
+    if (li) {
+      li.addEventListener('mouseenter', () => { cancelClose(); openMenu(false); });
+      li.addEventListener('mouseleave', scheduleClose);
+    }
 
     // Keyboard
     btn.addEventListener('keydown', (e) => {
