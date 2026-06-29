@@ -212,21 +212,14 @@
       if (returnFocus) btn.focus();
     }
 
-    // Hover — open on mouseenter, close only when mouse leaves to outside both wrapper and menu
-    if (wrapper) {
-      wrapper.addEventListener('mouseenter', () => openMenu(false));
-      wrapper.addEventListener('mouseleave', (e) => {
-        const to = e.relatedTarget;
-        if (!wrapper.contains(to) && !menu.contains(to)) closeMenu(false);
-      });
-      menu.addEventListener('mouseleave', (e) => {
-        const to = e.relatedTarget;
-        if (!wrapper.contains(to) && !menu.contains(to)) closeMenu(false);
-      });
-    }
+    // Click — toggle open/close
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menu.classList.contains('open') ? closeMenu(false) : openMenu(false);
+    });
 
-    // Click — toggle (for keyboard and touch users)
-    btn.addEventListener('click', () => menu.classList.contains('open') ? closeMenu(false) : openMenu(false));
+    // Keep menu open when clicking inside it
+    menu.addEventListener('click', (e) => e.stopPropagation());
 
     // Keyboard
     btn.addEventListener('keydown', (e) => {
@@ -242,10 +235,8 @@
       if (e.key === 'Escape' || e.key === 'Tab') { closeMenu(true); }
     });
 
-    // Outside click closes menu
-    document.addEventListener('click', (e) => {
-      if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu(false);
-    });
+    // Click outside closes menu
+    document.addEventListener('click', () => closeMenu(false));
   }
 
   if (document.body) {
