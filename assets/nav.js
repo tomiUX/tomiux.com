@@ -85,7 +85,7 @@
       cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
       transition: all 0.15s;
     }
-    #tomiux-nav .nav-dropdown-btn::after { content: '\25BE'; font-size: 0.6rem; opacity: 0.7; }
+    #tomiux-nav .nav-dropdown-btn::after { content: '\\25BE'; font-size: 0.6rem; opacity: 0.7; }
     #tomiux-nav .nav-dropdown-btn:hover { background: #c8a8f0; color: #A122C0; }
     #tomiux-nav .nav-dropdown-btn:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; background: #c8a8f0; color: #A122C0; }
 
