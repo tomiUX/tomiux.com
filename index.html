@@ -247,7 +247,8 @@
 
   /* ===== WORK CARDS — OPTION C (tight cards) ===== */
   .work-grid { display: flex; flex-direction: column; gap: 0.6rem; }
-  .work-group { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .work-group { margin-bottom: 1.5rem; }
+  .work-group-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
   .work-group:last-child { margin-bottom: 0; }
   .work-group-label { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
   .work-group-label span { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
@@ -475,6 +476,7 @@
     .passion-card-body { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.75rem; }
     .passion-visual { font-size: 5rem; max-width: 200px; margin: 0 auto; }
     .about-grid { grid-template-columns: 1fr; }
+    .work-group-cards { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     .work-card { grid-template-columns: 40px 1fr; gap: 0.85rem; }
@@ -522,8 +524,8 @@
           <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">ANNOTATIONS</span> StubHub Annotations</a>
           <a href="https://tomiux.com/npr/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">WCAG</span> NPR.org Audit</a>
           <a href="https://tomiux.com/pottery-barn/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">HEURISTIC</span> Pottery Barn</a>
-          <a href="https://tomiux.com/starbucks-vs-philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">HEURISTIC</span> Starbucks vs. Philz</a>
-          <a href="https://tomiux.com/blue-nile-brilliant-earth/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">USABILITY</span> Blue Nile vs. Brilliant Earth</a>
+          <a href="https://tomiux.com/starbucks-philz/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">HEURISTIC</span> Starbucks vs. Philz</a>
+          <a href="https://tomiux.com/blue-nile/" role="menuitem"><span class="dropdown-tag" aria-hidden="true">USABILITY</span> Blue Nile vs. Brilliant Earth</a>
         </div>
       </li>
       <li><a href="#extra-credit">Extra Credit</a></li>
@@ -574,6 +576,7 @@
       <!-- AUDIT & ANALYSIS -->
       <div class="work-group">
         <div class="work-group-label"><span>Audit &amp; Analysis</span></div>
+        <div class="work-group-cards">
 
         <a href="https://tomiux.com/pottery-barn/" class="work-card">
           <div class="work-color wc7" aria-hidden="true"></div>
@@ -588,7 +591,7 @@
           </div>
         </a>
 
-        <a href="https://tomiux.com/starbucks-vs-philz/" class="work-card">
+        <a href="https://tomiux.com/starbucks-philz/" class="work-card">
           <div class="work-color wc8" aria-hidden="true"></div>
           <div class="work-card-body">
             <p class="work-title">Starbucks vs. Philz</p>
@@ -601,7 +604,7 @@
           </div>
         </a>
 
-        <a href="https://tomiux.com/blue-nile-brilliant-earth/" class="work-card">
+        <a href="https://tomiux.com/blue-nile/" class="work-card">
           <div class="work-color wc9" aria-hidden="true"></div>
           <div class="work-card-body">
             <p class="work-title">Blue Nile vs. Brilliant Earth</p>
@@ -652,11 +655,13 @@
             <span class="work-arrow" aria-hidden="true">→</span>
           </div>
         </a>
+        </div>
       </div>
 
       <!-- DESIGN & RESEARCH -->
       <div class="work-group">
         <div class="work-group-label"><span>Design &amp; Research</span></div>
+        <div class="work-group-cards">
 
         <a href="https://tomiux.com/august/" class="work-card">
           <div class="work-color wc4" aria-hidden="true"></div>
@@ -696,6 +701,7 @@
             <span class="work-arrow" aria-hidden="true">→</span>
           </div>
         </a>
+        </div>
       </div>
 
       <!-- CAPSTONE -->
