@@ -74,8 +74,15 @@
     #tomiux-nav .nav-links a:hover { background: #c8a8f0; color: #A122C0; }
     #tomiux-nav .nav-links a:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; background: #c8a8f0; color: #A122C0; }
 
-    /* Dropdown trigger — button not anchor (WCAG 2.1.1) */
     #tomiux-nav .nav-dropdown { position: relative; }
+    #tomiux-nav .nav-dropdown::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 8px;
+    }
     #tomiux-nav .nav-dropdown-btn {
       font-family: 'Nunito', sans-serif;
       font-size: 0.8rem; font-weight: 800;
@@ -91,11 +98,10 @@
 
     #tomiux-nav .dropdown-menu {
       display: none; position: absolute;
-      top: 100%; left: 0;
+      top: calc(100% + 4px); left: 0;
       background: rgba(253,248,255,0.98);
       border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520;
       border-radius: 8px; min-width: 220px; z-index: 200; overflow: hidden;
-      margin-top: 4px;
     }
     #tomiux-nav .dropdown-menu.open { display: block; }
 
@@ -216,20 +222,19 @@
     // Keep menu open when clicking inside it
     menu.addEventListener('click', (e) => e.stopPropagation());
 
-    // Hover with delay — attach to the li wrapper so the gap is covered
-    const li = menu.closest('li') || wrapper;
+    // Hover with delay — covers the gap between button and menu
     let closeTimer = null;
 
     function scheduleClose() {
-      closeTimer = setTimeout(() => closeMenu(false), 200);
+      closeTimer = setTimeout(() => closeMenu(false), 150);
     }
     function cancelClose() {
       if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
     }
 
-    if (li) {
-      li.addEventListener('mouseenter', () => { cancelClose(); openMenu(false); });
-      li.addEventListener('mouseleave', scheduleClose);
+    if (wrapper) {
+      wrapper.addEventListener('mouseenter', () => { cancelClose(); openMenu(false); });
+      wrapper.addEventListener('mouseleave', scheduleClose);
     }
 
     // Keyboard
