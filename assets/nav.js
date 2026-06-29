@@ -94,11 +94,15 @@
       top: calc(100% + 8px); left: 0;
       background: rgba(253,248,255,0.98);
       border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520;
-      border-radius: 8px; min-width: 220px; z-index: 200; overflow: hidden;
+      border-radius: 8px; min-width: 220px; z-index: 200; overflow: visible;
     }
     #tomiux-nav .dropdown-menu.open { display: block; }
-    #tomiux-nav:hover .dropdown-menu { display: block; }
-    #tomiux-nav .nav-dropdown:hover .dropdown-menu { display: block; }
+    /* Invisible bridge across the gap so mouse doesn't leave the wrapper
+       when travelling from the button down to the menu items */
+    #tomiux-nav .dropdown-menu::before {
+      content: ''; position: absolute; left: 0; right: 0;
+      top: -10px; height: 10px; background: transparent;
+    }
 
     #tomiux-nav .dropdown-menu a {
       display: flex !important; align-items: center; gap: 0.5rem;
@@ -195,33 +199,45 @@
     if (!btn || !menu) return;
 
     const menuItems = [...menu.querySelectorAll('[role="menuitem"]')];
+    const wrapper = btn.closest('.nav-dropdown');
 
-    function openMenu() {
+    function openMenu(moveFocus) {
       menu.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
-      if (menuItems[0]) menuItems[0].focus();
+      if (moveFocus && menuItems[0]) menuItems[0].focus();
     }
-    function closeMenu() {
+    function closeMenu(returnFocus) {
       menu.classList.remove('open');
       btn.setAttribute('aria-expanded', 'false');
-      btn.focus();
+      if (returnFocus) btn.focus();
     }
 
-    btn.addEventListener('click', () => menu.classList.contains('open') ? closeMenu() : openMenu());
+    // Hover — open/close on mouseenter/mouseleave of the whole wrapper
+    if (wrapper) {
+      wrapper.addEventListener('mouseenter', () => openMenu(false));
+      wrapper.addEventListener('mouseleave', () => closeMenu(false));
+    }
+
+    // Click — toggle (for keyboard and touch users)
+    btn.addEventListener('click', () => menu.classList.contains('open') ? closeMenu(false) : openMenu(false));
+
+    // Keyboard
     btn.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        openMenu();
+        openMenu(true);
       }
     });
     menu.addEventListener('keydown', (e) => {
       const idx = menuItems.indexOf(document.activeElement);
       if (e.key === 'ArrowDown') { e.preventDefault(); menuItems[(idx + 1) % menuItems.length].focus(); }
       if (e.key === 'ArrowUp')   { e.preventDefault(); menuItems[(idx - 1 + menuItems.length) % menuItems.length].focus(); }
-      if (e.key === 'Escape' || e.key === 'Tab') { closeMenu(); }
+      if (e.key === 'Escape' || e.key === 'Tab') { closeMenu(true); }
     });
+
+    // Outside click closes menu
     document.addEventListener('click', (e) => {
-      if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu();
+      if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu(false);
     });
   }
 
