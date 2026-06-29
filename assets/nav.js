@@ -130,6 +130,84 @@
       outline: 3px solid #ffe566 !important;
       outline-offset: 3px !important;
     }
+
+    /* ── UNIFIED FOOTER (overrides per-page styles) ──────────────────────── */
+    footer {
+      background: #A122C0 !important;
+      border-top: 4px solid #0a0520 !important;
+      padding: 1.25rem 2rem !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      flex-wrap: wrap !important;
+      gap: 1rem !important;
+      position: relative;
+      z-index: 1;
+    }
+    footer .footer-brand {
+      font-family: 'Press Start 2P', monospace !important;
+      font-size: 0.5rem !important;
+      color: #ffe566 !important;
+      letter-spacing: 0.08em !important;
+      line-height: 1.8 !important;
+      flex: 1 1 auto;
+    }
+    footer .footer-hits {
+      font-family: 'Press Start 2P', monospace !important;
+      font-size: 0.55rem !important;
+      color: #ffe566 !important;
+      letter-spacing: 0.08em !important;
+      padding: 0.4rem 0.75rem !important;
+      border: 2px solid #ffe566 !important;
+      background: rgba(0,0,0,0.2) !important;
+      border-radius: 4px !important;
+      cursor: pointer;
+      transition: all 0.3s !important;
+      text-align: center;
+      flex: 0 0 auto;
+    }
+    footer .footer-hits:hover,
+    footer .footer-hits:focus-visible {
+      background: rgba(255,229,102,0.15) !important;
+      border-color: #3FBB9E !important;
+      color: #3FBB9E !important;
+    }
+    footer .footer-hits:focus-visible {
+      outline: 2px solid #ffe566 !important;
+      outline-offset: 2px !important;
+    }
+    footer .footer-hits[data-found="true"] {
+      background: rgba(63,187,158,0.2) !important;
+      border-color: #3FBB9E !important;
+      color: #3FBB9E !important;
+    }
+    footer .footer-links {
+      display: flex !important;
+      gap: 1.25rem !important;
+      flex: 0 0 auto;
+    }
+    footer .footer-links a {
+      font-family: 'Nunito', sans-serif !important;
+      font-size: 0.78rem !important;
+      color: rgba(255,255,255,0.9) !important;
+      text-decoration: none !important;
+      font-weight: 700 !important;
+      transition: color 0.15s !important;
+    }
+    footer .footer-links a:hover { color: #ffe566 !important; }
+    footer .footer-links a:focus-visible {
+      outline: 2px solid #ffe566 !important;
+      outline-offset: 3px !important;
+      color: #ffe566 !important;
+      border-radius: 2px !important;
+    }
+    @media (max-width: 680px) {
+      footer { justify-content: center !important; text-align: center; }
+      footer .footer-brand, footer .footer-hits, footer .footer-links {
+        flex: 0 0 100%;
+        justify-content: center !important;
+      }
+    }
   `;
   document.head.appendChild(style);
 
@@ -162,8 +240,8 @@
     '      <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="nav-featured-btn">Featured</button>',
     '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu">',
     '        <a href="https://tomiux.com/pottery-barn/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">HEURISTIC</span> Pottery Barn</a>',
-    '        <a href="https://tomiux.com/starbucks-philz/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">HEURISTIC</span> Starbucks vs. Philz</a>',
-    '        <a href="https://tomiux.com/blue-nile/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">USABILITY</span> Blue Nile vs. Brilliant Earth</a>',
+    '        <a href="https://tomiux.com/starbucks-vs-philz/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">HEURISTIC</span> Starbucks vs. Philz</a>',
+    '        <a href="https://tomiux.com/blue-nile-brilliant-earth/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">USABILITY</span> Blue Nile vs. Brilliant Earth</a>',
     '        <a href="https://tomiux.com/coursera/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">COGNITIVE</span> Coursera Cognitive Audit</a>',
     '        <a href="https://tomiux.com/stubhub/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">A11Y</span> StubHub Annotations</a>',
     '        <a href="https://tomiux.com/npr/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">WCAG</span> NPR.org Audit</a>',
