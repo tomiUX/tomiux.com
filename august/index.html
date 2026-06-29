@@ -69,16 +69,48 @@
   .section-title .accent2 { color: var(--hot-pink); }
 
   /* HERO */
-  .hero { position: relative; z-index: 1; overflow: hidden; padding: 4rem 2rem 3.5rem; text-align: center; background: radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.25) 0%, transparent 50%), radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.25) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(155,89,255,0.2) 0%, transparent 50%), var(--lavender-bg); border-bottom: 4px solid var(--pixel-dark); }
-  .hero-badge { display: inline-block; padding: 0.4rem 1rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.5rem; }
-  .hero-name { font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: clamp(2.5rem, 7vw, 5rem); line-height: 0.95; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
-  .hero-name .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
-  .hero-name .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
-  .hero-role { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--hot-pink); letter-spacing: 0.08em; margin-bottom: 2rem; line-height: 1.8; }
-  .hero-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
-  .meta-tag { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; letter-spacing: 0.05em; padding: 0.35rem 0.7rem; border: 2px solid var(--pixel-dark); background: var(--white); color: var(--text-mid); line-height: 1.8; }
-  .hero-cta { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; }
+  .case-hero {
+    position: relative; z-index: 1;
+    background: radial-gradient(ellipse at 10% 40%, rgba(255,110,180,0.18) 0%, transparent 50%), radial-gradient(ellipse at 90% 20%, rgba(78,205,196,0.18) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(155,89,255,0.15) 0%, transparent 50%), var(--lavender-bg);
+    padding: 4rem 2rem 3rem; border-bottom: 4px solid var(--pixel-dark);
+  }
+  .case-hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .case-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.08em;
+    color: var(--pixel-dark); background: var(--yellow);
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    padding: 0.4rem 0.8rem; margin-bottom: 1.25rem;
+  }
+  .case-title {
+    font-family: 'Unbounded', sans-serif; font-weight: 900;
+    font-size: clamp(2.2rem, 5vw, 4rem); line-height: 0.95; margin-bottom: 0.75rem; letter-spacing: -0.02em;
+  }
+  .case-title .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.2); }
+  .case-title .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.2); }
+  .case-subtitle { font-size: 1rem; color: var(--text-mid); font-weight: 700; line-height: 1.6; margin-bottom: 1.5rem; }
+  .case-meta-pills { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .pill { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.3rem 0.7rem; border-radius: 4px; border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); }
+  .pill-purple { background: var(--purple); color: white; }
+  .pill-teal { background: var(--teal); color: var(--pixel-dark); }
+  .pill-yellow { background: var(--yellow); color: var(--pixel-dark); }
+  .pill-pink { background: var(--hot-pink); color: white; }
+  .pill-orange { background: var(--orange); color: var(--pixel-dark); }
 
+  .hero-stat-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; max-width: 420px; }
+  .stat-card-header { background: var(--purple); padding: 0.7rem 1.25rem; display: flex; justify-content: space-between; align-items: center; }
+  .stat-card-header span { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.08em; color: white; }
+  .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+  .stat-cell { padding: 1.1rem 1.25rem; border-right: 2px solid var(--lavender-mid); border-bottom: 2px solid var(--lavender-mid); text-align: center; }
+  .stat-cell:nth-child(2n) { border-right: none; }
+  .stat-cell:nth-child(3), .stat-cell:nth-child(4) { border-bottom: none; }
+  .stat-number { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 2.2rem; line-height: 1; margin-bottom: 0.25rem; }
+  .stat-label-sm { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-light); line-height: 1.6; }
+
+  @media (max-width: 768px) {
+    .case-hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stat-card { max-width: 100%; }
+  }
   .btn { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.12s; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); }
   .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
   .btn:active { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--pixel-dark); }
@@ -170,21 +202,45 @@
 <main id="main-content">
 
 <!-- HERO -->
-<section class="hero" aria-label="August Smart Lock case study">
-  <div class="hero-badge" aria-hidden="true">🔒 CASE STUDY — IxD</div>
-  <h1 class="hero-name">
-    <span class="line1">AUGUST</span>
-    <span class="line2">HOME</span>
-  </h1>
-  <p class="hero-role">Smart Lock UX · End-to-End Design Process</p>
-  <div class="hero-meta" aria-label="Project details">
-    <span class="meta-tag">ROLE: UX DESIGNER</span>
-    <span class="meta-tag">TOOLS: PAPER · FIGMA · LOVABLE</span>
-    <span class="meta-tag">YEAR: SPRING 2026</span>
-  </div>
-  <div class="hero-cta">
-    <a href="#prototype-embed" class="btn btn-primary" aria-label="Jump to interactive prototype">▶ Play with the Prototype</a>
-    <a href="#design-decisions" class="btn btn-secondary">↓ Design Decisions</a>
+<section class="case-hero" aria-label="August Smart Lock case study">
+  <div class="case-hero-inner">
+    <div>
+      <div class="case-eyebrow"><span aria-hidden="true">&#128274;</span> CASE STUDY &#183; IxD</div>
+      <h1 class="case-title">
+        <span class="line1">August</span>
+        <span class="line2">Home</span>
+      </h1>
+      <p class="case-subtitle">Smart lock UX from research through high-fidelity prototype, designing an end-to-end experience for connected home security.</p>
+      <div class="case-meta-pills">
+        <span class="pill pill-purple">End-to-End Design</span>
+        <span class="pill pill-teal">Figma + Lovable</span>
+        <span class="pill pill-yellow">Spring 2026</span>
+      </div>
+    </div>
+    <div class="hero-stat-card">
+      <div class="stat-card-header">
+        <span>PROJECT SCOPE</span>
+        <span aria-hidden="true">&#128274;</span>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-cell">
+          <div class="stat-number" style="color:var(--purple);">E2E</div>
+          <div class="stat-label-sm">DESIGN<br/>SCOPE</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number" style="color:var(--teal);">IoT</div>
+          <div class="stat-label-sm">PRODUCT<br/>DOMAIN</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number" style="color:var(--orange);">UX</div>
+          <div class="stat-label-sm">DESIGNER<br/>ROLE</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-number" style="color:var(--hot-pink);">Hi-Fi</div>
+          <div class="stat-label-sm">PROTOTYPE<br/>FIDELITY</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
