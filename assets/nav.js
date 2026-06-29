@@ -212,10 +212,17 @@
       if (returnFocus) btn.focus();
     }
 
-    // Hover — open/close on mouseenter/mouseleave of the whole wrapper
+    // Hover — open on mouseenter, close only when mouse leaves to outside both wrapper and menu
     if (wrapper) {
       wrapper.addEventListener('mouseenter', () => openMenu(false));
-      wrapper.addEventListener('mouseleave', () => closeMenu(false));
+      wrapper.addEventListener('mouseleave', (e) => {
+        const to = e.relatedTarget;
+        if (!wrapper.contains(to) && !menu.contains(to)) closeMenu(false);
+      });
+      menu.addEventListener('mouseleave', (e) => {
+        const to = e.relatedTarget;
+        if (!wrapper.contains(to) && !menu.contains(to)) closeMenu(false);
+      });
     }
 
     // Click — toggle (for keyboard and touch users)
