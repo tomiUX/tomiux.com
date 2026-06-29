@@ -45,6 +45,12 @@
       --sbux-soft: #e8f5ef;
       --philz: #ff8c42;
       --philz-soft: #fff4ec;
+
+      /* WCAG AA compliant text variants — used wherever these colors appear AS TEXT */
+      --orange-text: #b8521a;    /* dark orange — passes AA on white */
+      --teal-text: #0e7a5f;      /* dark teal — passes AA on white */
+      --pink-text: #b8167d;      /* dark pink — passes AA on white */
+      --text-light-aa: #4a1878;  /* darkened text-light — passes AA on light bg */
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -213,7 +219,7 @@
 
     .case-title .line1 { display: block; color: var(--sbux); text-shadow: 4px 4px 0 rgba(0,112,74,0.2); }
     .case-title .line2 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.2); }
-    .case-title .line3 { display: block; color: var(--orange); text-shadow: 4px 4px 0 rgba(255,140,66,0.2); font-size: 0.55em; margin-top: 0.4rem; line-height: 1.2; }
+    .case-title .line3 { display: block; color: var(--orange-text); text-shadow: 4px 4px 0 rgba(255,140,66,0.2); font-size: 0.55em; margin-top: 0.4rem; line-height: 1.2; }
 
     .case-subtitle {
       font-size: 1rem;
@@ -300,15 +306,15 @@
       font-weight: 800;
       font-size: 0.72rem;
       letter-spacing: 0.04em;
-      color: var(--text-light);
+      color: var(--text-light-aa);
       line-height: 1.5;
     }
 
     .c-green  { color: var(--sbux); }
-    .c-orange { color: var(--orange); }
+    .c-orange { color: var(--orange-text); }
     .c-purple { color: var(--purple); }
-    .c-teal   { color: var(--teal); }
-    .c-pink   { color: var(--pink); }
+    .c-teal   { color: var(--teal-text); }
+    .c-pink   { color: var(--pink-text); }
 
     /* ===== OVERVIEW CARDS ===== */
     .overview-grid {
@@ -344,7 +350,7 @@
       font-family: 'Nunito', sans-serif;
       font-weight: 900;
       font-size: 0.72rem;
-      color: var(--orange);
+      color: var(--orange-text);
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
@@ -510,7 +516,7 @@
     }
 
     .label-sbux  { color: var(--sbux); }
-    .label-philz { color: var(--orange); }
+    .label-philz { color: var(--orange-text); }
 
     .compare-card-body p {
       font-size: 0.86rem;
@@ -536,7 +542,7 @@
 
     .figure-caption {
       font-size: 0.75rem;
-      color: var(--text-light);
+      color: var(--text-light-aa);
       font-weight: 600;
       font-style: italic;
       margin-top: 0.5rem;
@@ -622,7 +628,7 @@
       content: '▸';
       position: absolute;
       left: 0;
-      color: var(--orange);
+      color: var(--orange-text);
       font-weight: 900;
     }
 
@@ -753,6 +759,8 @@
   </style>
 </head>
 <body>
+
+<main id="main-content">
 
 <!-- HERO -->
 <div class="case-hero">
@@ -1285,6 +1293,8 @@
     </div>
   </div>
 </div>
+
+</main>
 
 <footer>
   <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
