@@ -274,10 +274,18 @@
       if (main && !main.id) main.id = 'main-content';
     }
 
-    // ── Remove "Back to Featured Work" links from footer ─────────────────────
+    // ── Remove "Back to Featured Work" links from footer and body ────────────
     document.querySelectorAll('footer .footer-links a').forEach(a => {
       const txt = (a.textContent || '').trim().toLowerCase();
       if (txt.includes('work') || txt === '← work' || txt === '→ work') {
+        a.remove();
+      }
+    });
+    // Remove standalone back-to-work CTAs (any container .back-cta, or any link with that text)
+    document.querySelectorAll('.back-cta').forEach(el => el.remove());
+    document.querySelectorAll('a').forEach(a => {
+      const txt = (a.textContent || '').trim().toLowerCase();
+      if (txt === '← back to featured work' || txt === 'back to featured work' || txt === '← back to work' || txt === 'back to work') {
         a.remove();
       }
     });
