@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue Nile vs. Brilliant Earth Usability Study // TomiUX 💎</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Nunito:wght@400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <script src="../assets/nav.js" defer></script>
+
+  <style>
+    :root {
+      --lavender-bg: #f0e8ff;
+      --lavender-mid: #c8a8f0;
+      --lavender-dark: #9b70d8;
+      --pink: #ff6eb4;
+      --hot-pink: #ff2d9b;
+      --baby-pink: #ffb3d9;
+      --teal: #3FBB9E;
+      --mint: #91EBD3;
+      --yellow: #ffe566;
+      --orange: #ff8c42;
+      --blue: #6bb8ff;
+      --baby-blue: #b3d9ff;
+      --purple: #A122C0;
+      --lime: #c8ff6b;
+      --red: #ff5252;
+      --white: #ffffff;
+      --offwhite: #fdf8ff;
+      --text: #1a0a3e;
+      --text-mid: #4a1878;
+      --text-light: #6a3090;
+      --pixel-dark: #0a0520;
+
+      /* Blue Nile / Brilliant Earth accent palette */
+      --bn-blue: #3FBB9E;
+      --bn-blue-soft: #e0f7f2;
+      --be-green: #A122C0;
+      --be-green-soft: #f5e0ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body { font-family: 'Nunito', sans-serif; background: var(--lavender-bg); color: var(--text); overflow-x: hidden; }
+
+    body::before {
+      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.10;
+      background-image:
+        radial-gradient(3px 3px at 12% 8%, var(--pink), transparent),
+        radial-gradient(2px 2px at 28% 22%, var(--teal), transparent),
+        radial-gradient(3px 3px at 45% 5%, var(--yellow), transparent),
+        radial-gradient(2px 2px at 62% 18%, var(--purple), transparent),
+        radial-gradient(3px 3px at 78% 10%, var(--orange), transparent),
+        radial-gradient(2px 2px at 92% 25%, var(--teal), transparent),
+        radial-gradient(3px 3px at 15% 45%, var(--yellow), transparent),
+        radial-gradient(2px 2px at 35% 60%, var(--pink), transparent),
+        radial-gradient(3px 3px at 55% 55%, var(--blue), transparent),
+        radial-gradient(2px 2px at 72% 48%, var(--lime), transparent),
+        radial-gradient(3px 3px at 88% 65%, var(--hot-pink), transparent);
+      background-size: 300px 300px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      body::before { animation: bgShimmer 8s ease-in-out infinite alternate; }
+    }
+    @keyframes bgShimmer { 0% { opacity: 0.06; } 100% { opacity: 0.16; } }
+
+    /* FOCUS STYLES */
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; border-radius: 4px; }
+    .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+    .footer-links a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; border-radius: 2px; color: var(--yellow); }
+    .footer-hits:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; border-radius: 4px; color: var(--yellow); }
+
+    /* PIXEL DIVIDER */
+    .pixel-divider {
+      height: 12px;
+      background: repeating-linear-gradient(90deg, #3FBB9E 0px, #3FBB9E 20px, #ff6eb4 20px, #ff6eb4 40px, #A122C0 40px, #A122C0 60px, #ffe566 60px, #ffe566 80px, #91EBD3 80px, #91EBD3 100px, #ff8c42 100px, #ff8c42 120px, #3FBB9E 120px, #3FBB9E 140px);
+      border-top: 3px solid var(--pixel-dark); border-bottom: 3px solid var(--pixel-dark);
+      position: relative; z-index: 1;
+    }
+
+    /* SECTION BACKGROUNDS */
+    .bg-white { background: var(--white); position: relative; z-index: 1; }
+    .bg-soft {
+      background: radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%), radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%), var(--lavender-bg);
+      position: relative; z-index: 1;
+    }
+
+    /* CONTENT WRAP */
+    .content-wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; position: relative; z-index: 1; }
+
+    /* SECTION HEADER */
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .section-badge { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.7rem; padding: 0.4rem 0.75rem; border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
+    .badge-yellow  { background: var(--yellow);   color: var(--pixel-dark); }
+    .badge-blue    { background: var(--bn-blue);   color: white; }
+    .badge-green   { background: var(--be-green);  color: white; }
+    .badge-purple  { background: var(--purple);    color: white; }
+    .badge-teal    { background: var(--teal);      color: var(--pixel-dark); }
+    .badge-orange  { background: var(--orange);    color: var(--pixel-dark); }
+    .badge-pink    { background: var(--hot-pink);  color: white; }
+
+    .section-title {
+      font-family: 'Unbounded', sans-serif; font-weight: 700;
+      font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1.05; letter-spacing: -0.02em;
+    }
+
+    /* HERO */
+    .case-hero {
+      position: relative; z-index: 1;
+      background:
+        radial-gradient(ellipse at 0% 60%, rgba(63,187,158,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 100% 20%, rgba(161,34,192,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgba(155,89,255,0.15) 0%, transparent 50%),
+        var(--lavender-bg);
+      padding: 4rem 2rem 3rem; border-bottom: 4px solid var(--pixel-dark);
+    }
+
+    .case-hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
+    .case-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.08em;
+      color: var(--pixel-dark); background: var(--teal);
+      border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+      padding: 0.4rem 0.8rem; margin-bottom: 1.25rem;
+    }
+
+    .case-title {
+      font-family: 'Unbounded', sans-serif; font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 4rem); line-height: 0.95; margin-bottom: 0.75rem; letter-spacing: -0.02em;
+    }
+    .case-title .line1 { display: block; color: var(--bn-blue); text-shadow: 4px 4px 0 rgba(63,187,158,0.2); }
+    .case-title .line2 { display: block; color: var(--be-green); text-shadow: 4px 4px 0 rgba(161,34,192,0.2); }
+    .case-title .line-vs { display: block; color: var(--purple); font-size: 0.45em; letter-spacing: 0.1em; margin: 0.15em 0; }
+
+    .case-subtitle { font-size: 1rem; color: var(--text-mid); font-weight: 700; line-height: 1.6; margin-bottom: 1.5rem; }
+
+    .case-meta-pills { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .pill { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.3rem 0.7rem; border-radius: 4px; border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); }
+    .pill-blue   { background: var(--bn-blue);  color: white; }
+    .pill-green  { background: var(--be-green); color: white; }
+    .pill-purple { background: var(--purple);   color: white; }
+    .pill-teal   { background: var(--teal);     color: var(--pixel-dark); }
+    .pill-yellow { background: var(--yellow);   color: var(--pixel-dark); }
+
+    /* HERO STAT CARD */
+    .hero-stat-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; max-width: 420px; }
+    .stat-card-header { background: var(--purple); padding: 0.7rem 1.25rem; display: flex; justify-content: space-between; align-items: center; }
+    .stat-card-header span { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.08em; color: white; }
+    .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+    .stat-cell { padding: 1.1rem 1.25rem; border-right: 2px solid var(--lavender-mid); border-bottom: 2px solid var(--lavender-mid); text-align: center; }
+    .stat-cell:nth-child(2n) { border-right: none; }
+    .stat-cell:nth-child(3), .stat-cell:nth-child(4) { border-bottom: none; }
+    .stat-number { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 2.2rem; line-height: 1; margin-bottom: 0.25rem; }
+    .stat-label-sm { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--text-light); line-height: 1.6; }
+    .n19  { color: var(--purple); }
+    .n78  { color: var(--bn-blue); }
+    .n26  { color: var(--red); }
+    .n63  { color: var(--be-green); }
+
+    /* OVERVIEW CARDS */
+    .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+    .overview-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 10px; overflow: hidden; }
+    .overview-card-top { height: 8px; background: repeating-linear-gradient(90deg, var(--bn-blue) 0, var(--bn-blue) 25%, var(--be-green) 25%, var(--be-green) 50%, var(--purple) 50%, var(--purple) 75%, var(--teal) 75%, var(--teal) 100%); }
+    .overview-card-body { padding: 1.25rem 1.5rem; }
+    .overview-card-title { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; color: var(--bn-blue); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .overview-card-text { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; font-weight: 600; }
+
+    /* METHOD TABLE */
+    .method-table { width: 100%; border-collapse: collapse; border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 10px; overflow: hidden; background: var(--white); margin-bottom: 3rem; }
+    .method-table th { background: var(--purple); color: white; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.08em; padding: 0.8rem 1.25rem; text-align: left; border-right: 2px solid rgba(255,255,255,0.15); }
+    .method-table td { font-size: 0.84rem; font-weight: 700; color: var(--text-mid); padding: 0.9rem 1.25rem; border-bottom: 2px solid var(--lavender-mid); border-right: 2px solid var(--lavender-mid); line-height: 1.5; vertical-align: top; }
+    .method-table tr:last-child td { border-bottom: none; }
+    .method-table td:last-child, .method-table th:last-child { border-right: none; }
+    .method-table .label-col { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.82rem; color: var(--text-mid); background: rgba(0,87,168,0.04); letter-spacing: 0.02em; white-space: nowrap; width: 160px; }
+    .footnote { font-size: 0.78rem; color: var(--text-light); font-style: italic; font-weight: 600; margin-top: 0.75rem; padding: 0.5rem 1rem; border-left: 3px solid var(--purple); background: rgba(161,34,192,0.04); }
+
+    /* LIMITATION BOX */
+    .limitation-box { background: #fff8f0; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; border-left: 6px solid var(--orange); }
+    .limitation-label { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; color: var(--orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .limitation-text { font-size: 0.86rem; color: var(--text-mid); line-height: 1.65; font-weight: 600; }
+
+    /* HEAD TO HEAD */
+    .h2h-wrap { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: stretch; margin-bottom: 2rem; }
+    .h2h-vs { display: flex; align-items: center; justify-content: center; font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 1.6rem; color: var(--purple); padding: 0 0.5rem; }
+    .site-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 10px; overflow: hidden; }
+    .site-card-header { padding: 0.75rem 1.25rem; display: flex; align-items: center; gap: 0.6rem; }
+    .site-card.bn .site-card-header { background: var(--bn-blue); }
+    .site-card.be .site-card-header { background: var(--be-green); }
+    .site-name { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.85rem; color: white; }
+    .site-url  { font-size: 0.68rem; color: rgba(255,255,255,0.75); font-weight: 700; }
+    .stat-rows { padding: 0.25rem 0; }
+    .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 1.25rem; border-bottom: 1.5px solid var(--lavender-mid); }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-row-label { font-size: 0.8rem; color: var(--text-light); font-weight: 700; }
+    .stat-row-value { font-family: 'Unbounded', sans-serif; font-size: 0.9rem; font-weight: 700; }
+    .val-win  { color: var(--teal); }
+    .val-loss { color: var(--red); }
+    .val-tie  { color: var(--orange); }
+    .val-neutral { color: var(--text); }
+
+    /* TENSION CALLOUT */
+    .tension-box { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 10px; overflow: hidden; margin-bottom: 2rem; }
+    .tension-header { background: var(--purple); padding: 0.75rem 1.25rem; }
+    .tension-header-label { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; color: var(--yellow); letter-spacing: 0.08em; text-transform: uppercase; }
+    .tension-body { padding: 1.25rem 1.5rem; }
+    .tension-body p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.7; font-weight: 600; margin-bottom: 0.75rem; }
+    .tension-body p:last-child { margin-bottom: 0; }
+
+    /* FULL METRICS TABLE */
+    .metrics-wrap { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; margin-bottom: 2rem; }
+    .metrics-table { width: 100%; border-collapse: collapse; min-width: 520px; }
+    .metrics-table th { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.04em; padding: 0.9rem 1.25rem; text-align: center; border-right: 2px solid rgba(255,255,255,0.12); }
+    .metrics-table th:first-child { text-align: left; }
+    .metrics-table th:last-child { border-right: none; }
+    .metrics-table th.th-label { background: var(--purple); color: white; }
+    .metrics-table th.th-bn { background: var(--bn-blue); color: white; }
+    .metrics-table th.th-be { background: var(--be-green); color: white; }
+    .metrics-table td { padding: 0.8rem 1.25rem; border-bottom: 2px solid var(--lavender-mid); border-right: 2px solid var(--lavender-mid); text-align: center; font-size: 0.84rem; font-weight: 700; color: var(--text-mid); }
+    .metrics-table td:first-child { text-align: left; color: var(--text-light); font-size: 0.8rem; }
+    .metrics-table td:last-child { border-right: none; }
+    .metrics-table tr:last-child td { border-bottom: none; }
+    .metrics-table tr:hover td { background: rgba(161,34,192,0.03); }
+    .col-bn { color: var(--bn-blue); }
+    .col-be { color: var(--be-green); }
+
+    /* THEMES */
+    .themes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-bottom: 3rem; }
+    .theme-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); border-radius: 10px; overflow: hidden; transition: all 0.12s; }
+    .theme-card:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+    .theme-card-top { padding: 0.6rem 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .theme-icon { font-size: 1.1rem; }
+    .theme-card-label { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--white); }
+    .theme-t1 .theme-card-top { background: var(--bn-blue); }
+    .theme-t2 .theme-card-top { background: var(--purple); }
+    .theme-t3 .theme-card-top { background: var(--be-green); }
+    .theme-t4 .theme-card-top { background: var(--orange); }
+    .theme-t4 .theme-card-label { color: var(--pixel-dark); }
+    .theme-t5 .theme-card-top { background: var(--teal); }
+    .theme-t5 .theme-card-label { color: var(--pixel-dark); }
+    .theme-t6 .theme-card-top { background: var(--red); }
+    .theme-card-body { padding: 1rem 1.1rem 1.1rem; }
+    .theme-card-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--text); margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+    .theme-card-text { font-size: 0.82rem; color: var(--text-mid); line-height: 1.65; font-weight: 600; margin-bottom: 0.75rem; }
+    .theme-stat { font-size: 0.76rem; color: var(--text-light); font-weight: 700; background: var(--lavender-bg); border-radius: 4px; padding: 0.4rem 0.7rem; display: inline-block; border: 1.5px solid var(--lavender-mid); }
+
+    /* UI DISCONNECT CARDS */
+    .disconnect-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; margin-bottom: 2rem; }
+    .disconnect-header { padding: 0.8rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
+    .disconnect-header.bn { background: var(--bn-blue); }
+    .disconnect-header.be { background: var(--be-green); }
+    .disconnect-header.both { background: var(--purple); }
+    .disconnect-num { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.7rem; color: var(--yellow); letter-spacing: 0.08em; background: rgba(255,229,102,0.15); padding: 0.3rem 0.6rem; border: 1.5px solid rgba(255,229,102,0.4); }
+    .disconnect-title { font-family: 'Nunito', sans-serif; font-size: 1.1rem; font-weight: 900; color: white; letter-spacing: 0.04em; text-transform: uppercase; }
+    .disconnect-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .disconnect-side { padding: 1.5rem; border-right: 3px solid var(--lavender-mid); }
+    .disconnect-side:last-child { border-right: none; }
+    .disconnect-side-label { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.08em; margin-bottom: 0.75rem; padding: 0.3rem 0.6rem; display: inline-block; border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); }
+    .label-designed { background: var(--yellow); color: var(--pixel-dark); }
+    .label-users    { background: var(--purple); color: white; }
+    .label-finding  { background: var(--orange); color: var(--pixel-dark); }
+    .disconnect-text { font-size: 0.84rem; color: var(--text-mid); line-height: 1.65; font-weight: 600; }
+    .behavior-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+    .behavior-list li { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; font-weight: 600; padding-left: 1.2rem; position: relative; }
+    .behavior-list li::before { content: '→'; position: absolute; left: 0; color: var(--purple); font-weight: 900; }
+
+    /* RECOMMENDATIONS */
+    .rec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 3rem; }
+    .rec-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); border-radius: 10px; overflow: hidden; }
+    .rec-card-top { padding: 0.75rem 1.1rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--pixel-dark); }
+    .rec-t1 .rec-card-top { background: var(--baby-pink); }
+    .rec-t2 .rec-card-top { background: var(--baby-pink); }
+    .rec-t3 .rec-card-top { background: var(--yellow); }
+    .rec-priority { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.65rem; letter-spacing: 0.08em; color: var(--pixel-dark); }
+    .rec-card-icon { font-size: 1.4rem; }
+    .rec-card-body { padding: 1rem 1.1rem 1.25rem; }
+    .rec-card-title { font-family: 'Nunito', sans-serif; font-size: 1rem; font-weight: 900; color: var(--pixel-dark); letter-spacing: 0.01em; margin-bottom: 0.6rem; }
+    .rec-item-list { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .rec-item-list li { font-size: 0.8rem; color: var(--text-mid); line-height: 1.5; font-weight: 600; padding-left: 1.1rem; position: relative; }
+    .rec-item-list li::before { content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 900; }
+
+    /* BACK CTA */
+    .back-cta { text-align: center; margin-top: 3rem; }
+    .btn { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.85rem 1.75rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.12s; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); }
+    .btn:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
+    .btn-purple { background: var(--purple); color: white; }
+    .btn-purple:hover { background: var(--hot-pink); }
+
+    /* FOOTER */
+    footer { background: var(--pixel-dark); padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
+    .footer-brand { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--text-light); line-height: 2.2; letter-spacing: 0.05em; }
+    .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.4rem; color: var(--yellow); letter-spacing: 0.05em; cursor: pointer; border-radius: 4px; padding: 0.2rem 0.4rem; border: 1px solid transparent; transition: all 0.2s; }
+    .footer-hits[data-found='true'] { color: var(--teal); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--text-light); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--pink); }
+
+    /* OVERFLOW for wide metrics table */
+    .table-scroll { overflow-x: auto; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .case-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .overview-grid, .themes-grid, .disconnect-body { grid-template-columns: 1fr; }
+      .rec-grid { grid-template-columns: 1fr; }
+      .disconnect-side { border-right: none; border-bottom: 3px solid var(--lavender-mid); }
+      .disconnect-side:last-child { border-bottom: none; }
+      .h2h-wrap { grid-template-columns: 1fr; }
+      .h2h-vs { padding: 0.5rem 0; font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+  <div class="pixel-divider" role="presentation"></div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <header class="case-hero">
+    <div class="case-hero-inner">
+      <div>
+        <div class="case-eyebrow">💎 USABILITY BENCHMARKING // UX RESEARCH</div>
+        <h1 class="case-title">
+          <span class="line1">Blue Nile</span>
+          <span class="line-vs">VS.</span>
+          <span class="line2">Brilliant Earth</span>
+        </h1>
+        <p class="case-subtitle">
+          Two luxury jewelry sites. One identical task. An unmoderated comparative usability benchmark that found the numbers pointing in opposite directions -- and asked why.
+        </p>
+        <div class="case-meta-pills">
+          <span class="pill pill-purple">Unmoderated Testing</span>
+          <span class="pill pill-teal">Loop11 Platform</span>
+          <span class="pill pill-blue">Blue Nile</span>
+          <span class="pill pill-green">Brilliant Earth</span>
+        </div>
+      </div>
+
+      <div>
+        <div class="hero-stat-card" role="region" aria-label="Study metrics at a glance">
+          <div class="stat-card-header">
+            <span>STUDY AT A GLANCE 💎</span>
+            <span>DEC 2025</span>
+          </div>
+          <div class="stat-grid">
+            <div class="stat-cell">
+              <div class="stat-number n19">19</div>
+              <div class="stat-label-sm">TOTAL<br>PARTICIPANTS</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-number n78">78%</div>
+              <div class="stat-label-sm">BLUE NILE<br>SUCCESS RATE</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-number n26">26%</div>
+              <div class="stat-label-sm">BRILLIANT EARTH<br>ABANDON RATE</div>
+            </div>
+            <div class="stat-cell">
+              <div class="stat-number n63">63%</div>
+              <div class="stat-label-sm">BRILLIANT EARTH<br>SUCCESS RATE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="pixel-divider" role="presentation"></div>
+
+  <!-- ═══════════════════════════════════════════
+       01 // OVERVIEW
+  ═══════════════════════════════════════════ -->
+  <section class="bg-white">
+    <div class="content-wrap">
+      <div class="section-header">
+        <span class="section-badge badge-blue">01 // OVERVIEW</span>
+        <h2 class="section-title">The Study</h2>
+      </div>
+
+      <div class="overview-grid">
+        <div class="overview-card">
+          <div class="overview-card-top"></div>
+          <div class="overview-card-body">
+            <div class="overview-card-title">What We Were Testing</div>
+            <p class="overview-card-text">Blue Nile and Brilliant Earth both occupy the luxury jewelry space -- similar product categories, comparable price points, and a shared customer: someone shopping for something that matters. That made them a fair pair for a head-to-head unmoderated usability benchmark. Same task. Same participants. Same conditions. Anything different in the data comes from the sites themselves.</p>
+          </div>
+        </div>
+        <div class="overview-card">
+          <div class="overview-card-top"></div>
+          <div class="overview-card-body">
+            <div class="overview-card-title">Why It Matters</div>
+            <p class="overview-card-text">High-consideration e-commerce has almost no margin for confusion. A user shopping for a platinum necklace as a gift isn't browsing casually -- they have a specific goal and limited patience for a site that gets in the way. This study measured exactly where each site helped or hurt that experience, using behavioral data rather than self-report alone.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-bottom: 1.5rem;">
+        <h2 class="section-title" style="font-size: 1.1rem;">Method</h2>
+      </div>
+      <table class="method-table" aria-label="Study methodology details">
+        <thead>
+          <tr>
+            <th style="width:160px;">PARAMETER</th>
+            <th>DETAILS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="label-col">Method</td><td>Unmoderated remote usability study -- participants completed tasks independently, no moderator present</td></tr>
+          <tr><td class="label-col">Platform</td><td>Loop11 (participants required to install browser extension)</td></tr>
+          <tr><td class="label-col">Sites Tested</td><td>Blue Nile (bluenile.com) and Brilliant Earth (brilliantearth.com)</td></tr>
+          <tr><td class="label-col">Participants</td><td>19 recruited · 15 fully completed · 4 incomplete. Pool included family members, classmates, and friends.</td></tr>
+          <tr><td class="label-col">Throwaway Task</td><td>Find the company's physical store locations page -- used to orient participants before the comparison task</td></tr>
+          <tr><td class="label-col">Comparison Task</td><td>You are shopping for a gift. Find a necklace made of platinum with diamonds and sapphires. Add it to your cart and note the price.</td></tr>
+          <tr><td class="label-col">Task Type</td><td>Standard (URL-based start) · Page limit: 5 per site · Success criteria: shopping cart URL or specific product URL (Any rule)</td></tr>
+          <tr><td class="label-col">Measures</td><td>Success rate, fail rate, abandon rate, lostness, page views, task duration, SUS score, click path analysis</td></tr>
+          <tr><td class="label-col">Course</td><td>UX 60502 · User Experience Processes and Practice · Dr. Cathy Smith · December 2025</td></tr>
+        </tbody>
+      </table>
+
+      <div class="limitation-box" role="note">
+        <div class="limitation-label">⚠ Study Limitations</div>
+        <p class="limitation-text">19 participants is small, and the pool skewed toward family members in one geographic area and classmates whose engagement patterns weren't consistent with real users. Loop11's browser extension requirement likely deterred participants and introduced selection bias toward more tech-comfortable users. Results should be read as directional benchmarking, not a definitive usability verdict. SUS respondent counts also differed: 17 for Blue Nile, 15 for Brilliant Earth -- scores aren't from equal sample sizes.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="pixel-divider" role="presentation"></div>
+
+  <!-- ═══════════════════════════════════════════
+       02 // HEAD-TO-HEAD
+  ═══════════════════════════════════════════ -->
+  <section class="bg-soft">
+    <div class="content-wrap">
+      <div class="section-header">
+        <span class="section-badge badge-purple">02 // THE NUMBERS</span>
+        <h2 class="section-title">Head-to-Head</h2>
+      </div>
+
+      <div class="h2h-wrap">
+        <div class="site-card bn">
+          <div class="site-card-header">
+            <div>
+              <div class="site-name">Blue Nile</div>
+              <div class="site-url">bluenile.com</div>
+            </div>
+          </div>
+          <div class="stat-rows">
+            <div class="stat-row"><span class="stat-row-label">Success rate</span><span class="stat-row-value val-win">78%</span></div>
+            <div class="stat-row"><span class="stat-row-label">Fail rate</span><span class="stat-row-value val-neutral">10%</span></div>
+            <div class="stat-row"><span class="stat-row-label">Abandon rate</span><span class="stat-row-value val-win">10%</span></div>
+            <div class="stat-row"><span class="stat-row-label">Lostness</span><span class="stat-row-value val-loss">0.47</span></div>
+            <div class="stat-row"><span class="stat-row-label">Avg duration (success)</span><span class="stat-row-value val-neutral">2:03</span></div>
+            <div class="stat-row"><span class="stat-row-label">Avg page views (success)</span><span class="stat-row-value val-neutral">8.8</span></div>
+            <div class="stat-row"><span class="stat-row-label">SUS score</span><span class="stat-row-value val-loss">64 <small style="font-size:0.6rem;font-weight:600;color:var(--text-light);">n=17</small></span></div>
+            <div class="stat-row"><span class="stat-row-label">Typical success path</span><span class="stat-row-value val-win">4 clicks</span></div>
+          </div>
+        </div>
+
+        <div class="h2h-vs">VS</div>
+
+        <div class="site-card be">
+          <div class="site-card-header">
+            <div>
+              <div class="site-name">Brilliant Earth</div>
+              <div class="site-url">brilliantearth.com</div>
+            </div>
+          </div>
+          <div class="stat-rows">
+            <div class="stat-row"><span class="stat-row-label">Success rate</span><span class="stat-row-value val-loss">63%</span></div>
+            <div class="stat-row"><span class="stat-row-label">Fail rate</span><span class="stat-row-value val-neutral">10%</span></div>
+            <div class="stat-row"><span class="stat-row-label">Abandon rate</span><span class="stat-row-value val-loss">26%</span></div>
+            <div class="stat-row"><span class="stat-row-label">Lostness</span><span class="stat-row-value val-win">0.35</span></div>
+            <div class="stat-row"><span class="stat-row-label">Avg duration (success)</span><span class="stat-row-value val-win">1:19</span></div>
+            <div class="stat-row"><span class="stat-row-label">Avg page views (success)</span><span class="stat-row-value val-win">7.6</span></div>
+            <div class="stat-row"><span class="stat-row-label">SUS score</span><span class="stat-row-value val-win">67 <small style="font-size:0.6rem;font-weight:600;color:var(--text-light);">n=15</small></span></div>
+            <div class="stat-row"><span class="stat-row-label">Typical success path</span><span class="stat-row-value val-loss">6 clicks</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tension-box">
+        <div class="tension-header">
+          <div class="tension-header-label">★ THE METRIC THAT DOESN'T ADD UP</div>
+        </div>
+        <div class="tension-body">
+          <p>Brilliant Earth scored higher on SUS (67 vs. 64), lower lostness (0.35 vs. 0.47), and faster task completion for successful users (1:19 vs. 2:03). By those numbers, it's the more intuitive site. But it also had a 26% abandon rate versus Blue Nile's 10%, and a 15-point gap in success rate. The SUS scores don't reflect those gaps at all.</p>
+          <p>The users who succeeded on Brilliant Earth navigated it efficiently -- but more than a quarter of participants gave up before getting there. A strong SUS score from the finishers doesn't speak for the ones who didn't make it. That's the core tension of this study, and it's a useful argument for why behavioral metrics and self-report scores need to be read together, not as substitutes for each other.</p>
+        </div>
+      </div>
+
+      <div class="limitation-box" style="border-left-color: var(--purple);">
+        <div class="limitation-label" style="color: var(--purple);">💡 Notable Data Point</div>
+        <p class="limitation-text">On Brilliant Earth, the average abandon time was 2:10 -- longer than the average successful completion time of 1:19. Participants who gave up weren't confused and leaving immediately. They were trying, getting stuck somewhere mid-task, and eventually quitting. That's a different problem than a confusing entry point -- it points to something breaking down deeper in the flow.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="pixel-divider" role="presentation"></div>
+
+  <!-- ═══════════════════════════════════════════
+       03 // FULL METRICS
+  ═══════════════════════════════════════════ -->
+  <section class="bg-white">
+    <div class="content-wrap">
+      <div class="section-header">
+        <span class="section-badge badge-teal">03 // FULL DATA</span>
+        <h2 class="section-title">Complete Metrics</h2>
+      </div>
+
+      <div class="table-scroll">
+        <div class="metrics-wrap">
+          <table class="metrics-table" aria-label="Complete study metrics comparison">
+            <thead>
+              <tr>
+                <th class="th-label">Metric</th>
+                <th class="th-bn">Blue Nile</th>
+                <th class="th-be">Brilliant Earth</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Success rate</td><td class="col-bn">78%</td><td class="col-be">63%</td></tr>
+              <tr><td>Fail rate</td><td class="col-bn">10%</td><td class="col-be">10%</td></tr>
+              <tr><td>Abandon rate</td><td class="col-bn">10%</td><td class="col-be">26%</td></tr>
+              <tr><td>Lostness</td><td class="col-bn">0.47</td><td class="col-be">0.35</td></tr>
+              <tr><td>Avg page views (all)</td><td class="col-bn">8.1</td><td class="col-be">6.6</td></tr>
+              <tr><td>Avg page views (success)</td><td class="col-bn">8.8</td><td class="col-be">7.6</td></tr>
+              <tr><td>Avg page views (fail)</td><td class="col-bn">5.0</td><td class="col-be">4.5</td></tr>
+              <tr><td>Avg duration (all)</td><td class="col-bn">2:14</td><td class="col-be">1:23</td></tr>
+              <tr><td>Avg duration (success)</td><td class="col-bn">2:03</td><td class="col-be">1:19</td></tr>
+              <tr><td>Avg duration (fail)</td><td class="col-bn">3:39</td><td class="col-be">1:21</td></tr>
+              <tr><td>Avg duration (abandon)</td><td class="col-bn">--</td><td class="col-be">2:10</td></tr>
+              <tr><td>Avg sec/page (success)</td><td class="col-bn">13.97</td><td class="col-be">10.39</td></tr>
+              <tr><td>Avg sec/page (fail)</td><td class="col-bn">43.8</td><td class="col-be">18.0</td></tr>
+              <tr><td>SUS score</td><td class="col-bn">64 (n=17)</td><td class="col-be">67 (n=15)</td></tr>
+              <tr><td>Typical success path</td><td class="col-bn">4 clicks</td><td class="col-be">6 clicks</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="footnote">Lostness score per Loop11 dashboard screenshots. The written analysis document cited 0.42 for Blue Nile; Loop11 screenshots show 0.47. Screenshots are the authoritative source.</p>
+    </div>
+  </section>
+
+  <div class="pixel-divider" role="presentation"></div>
+
+  <!-- ═══════════════════════════════════════════
+       04 // FINDINGS
+  ═══════════════════════════════════════════ -->
+  <section class="bg-soft">
+    <div class="content-wrap">
+      <div class="section-header">
+        <span class="section-badge badge-orange">04 // FINDINGS</span>
+        <h2 class="section-title">What the Data Shows</h2>
+      </div>
+
+      <div class="themes-grid">
+        <div class="theme-card theme-t1">
+          <div class="theme-card-top">
+            <span class="theme-icon">🗺️</span>
+            <span class="theme-card-label">IA LABELING -- BOTH SITES</span>
+          </div>
+          <div class="theme-card-body">
+            <div class="theme-card-title">The "Design Your Own" Trap</div>
+            <p class="theme-card-text">The most common failure on both sites was landing in a customization section instead of pre-designed jewelry. Neither site clearly separates these pathways at the category level. Users expecting to browse ready-made pieces followed labels that dropped them into build-your-own flows -- a fundamentally different task.</p>
+            <span class="theme-stat">Most common fail path on both sites</span>
+          </div>
+        </div>
+
+        <div class="theme-card theme-t2">
+          <div class="theme-card-top">
+            <span class="theme-icon">🔽</span>
+            <span class="theme-card-label">FILTER RELIANCE -- BRILLIANT EARTH</span>
+          </div>
+          <div class="theme-card-body">
+            <div class="theme-card-title">Success Depended on Filters Working</div>
+            <p class="theme-card-text">Brilliant Earth's successful users relied heavily on filters to reach the task URL -- the same page URL appeared multiple times in click streams as participants adjusted settings without navigating away. When filters didn't surface the right result, there wasn't an obvious fallback, which likely contributed to the high abandon rate.</p>
+            <span class="theme-stat">6-click avg success path</span>
+          </div>
+        </div>
+
+        <div class="theme-card theme-t3">
+          <div class="theme-card-top">
+            <span class="theme-icon">⚡</span>
+            <span class="theme-card-label">EFFICIENCY VS. COMPLETION</span>
+          </div>
+          <div class="theme-card-body">
+            <div class="theme-card-title">Fast When It Worked, Stuck When It Didn't</div>
+            <p class="theme-card-text">Brilliant Earth successful users were faster (1:19 vs. 2:03) with fewer page views (7.6 vs. 8.8). But Brilliant Earth failures spent less time per page (18 sec vs. 43.8), suggesting different failure modes. Blue Nile failures involved exploratory clicking across more pages. Brilliant Earth failures got stuck and stopped.</p>
+            <span class="theme-stat">43.8 sec/page on Blue Nile fail vs. 18 sec on BE fail</span>
+          </div>
+        </div>
+
+        <div class="theme-card theme-t4">
+          <div class="theme-card-top">
+            <span class="theme-icon">📊</span>
+            <span class="theme-card-label">SUS LIMITATIONS</span>
+          </div>
+          <div class="theme-card-body">
+            <div class="theme-card-title">Self-Report Doesn't See Abandoners</div>
+            <p class="theme-card-text">The close SUS scores (Blue Nile 64, Brilliant Earth 67) don't capture the 16-point gap in success rate or the abandonment difference. SUS reflects how the people who finished felt. It has no mechanism to account for the ones who left. Using SUS alone here would lead to the wrong conclusion.</p>
+            <span class="theme-stat">3-point SUS gap; 15-point success gap</span>
+          </div>
+        </div>
+
+        <div class="theme-card theme-t5">
+          <div class="theme-card-top">
+            <span class="theme-icon">🚶</span>
+            <span class="theme-card-label">ABANDON BEHAVIOR</span>
+          </div>
+          <div class="theme-card-body">
+            <div class="theme-card-title">They Tried for Over Two Minutes First</div>
+            <p class="theme-card-text">Brilliant Earth abandoners averaged 2:10 before quitting -- longer than the 1:19 average for successful completions. They weren't bailing immediately. Something downstream caused them to give up, likely a navigation dead end or a filter interaction that didn't return useful results.</p>
+            <span class="theme-stat">Abandon avg 2:10 vs. success avg 1:19</span>
+          </div>
+        </div>
+
+        <div class="theme-card theme-t6">
+          <div class="theme-card-top">
+            <span class="theme-icon">🎯</span>
+            <span class="theme-card-label">DIRECT PATHING -- BLUE NILE</span>
+          </div>
+          <div class="theme-card-body">
+            <div class="theme-card-title">Fewer Clicks to the Finish Line</div>
+            <p class="theme-card-text">Blue Nile's 4-click success path suggests more direct navigation to product or cart. 93% of successful participants ended at the shopping cart URL. Whether this reflects better search, better IA, or better category labeling isn't determinable from this study alone -- but the shorter path correlates with higher completion.</p>
+            <span class="theme-stat">14/15 successful users hit the cart URL (93%)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pixel-divider" role="presentation"></div>
+
+  <!-- ═══════════════════════════════════════════
+       05 // UI DISCONNECTS
+  ═══════════════════════════════════════════ -->
+  <section class="bg-white">
+    <div class="content-wrap">
+      <div class="section-header">
+        <span class="section-badge badge-green">05 // UI DISCONNECTS</span>
+        <h2 class="section-title">What the Sites Built vs. What Users Did</h2>
+      </div>
+
+      <!-- DISCONNECT 1 -->
+      <div class="disconnect-card">
+        <div class="disconnect-header both">
+          <span class="disconnect-num">BOTH SITES</span>
+          <span class="disconnect-title">The "Design Your Own" Navigation Problem</span>
+        </div>
+        <div class="disconnect-body">
+          <div class="disconnect-side">
+            <span class="disconnect-side-label label-designed">WHAT BOTH SITES BUILT</span>
+            <p class="disconnect-text">Navigation categories that separate custom jewelry (build-your-own, design studio) from pre-designed pieces. On Brilliant Earth, the fail path URL is explicitly <code>/jewelry/necklace/diamond/design-your-own/</code> -- a legitimate section of the site for a different user goal. On Blue Nile, the fail path included a search results page filtered to all-diamond necklaces with no material refinement.</p>
+          </div>
+          <div class="disconnect-side">
+            <span class="disconnect-side-label label-users">WHAT USERS DID INSTEAD</span>
+            <ul class="behavior-list">
+              <li>Followed "necklaces" navigation that led into customization flows</li>
+              <li>Did not recognize "design your own" as a separate category from "shop necklaces"</li>
+              <li>Landed on the wrong section and either failed or abandoned from there</li>
+              <li>The category label distinction wasn't strong enough to prevent the wrong path</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- DISCONNECT 2 -->
+      <div class="disconnect-card">
+        <div class="disconnect-header be">
+          <span class="disconnect-num">BRILLIANT EARTH</span>
+          <span class="disconnect-title">Filter Dependency Without a Safety Net</span>
+        </div>
+        <div class="disconnect-body">
+          <div class="disconnect-side">
+            <span class="disconnect-side-label label-designed">WHAT BRILLIANT EARTH BUILT</span>
+            <p class="disconnect-text">A filter-forward browsing experience where users can narrow by metal, stone, price, and style. Successful participants used this system effectively -- the repeat page URL appearances in click streams show users adjusting filters without leaving the page. When it worked, it worked efficiently (7.6 avg page views for success).</p>
+          </div>
+          <div class="disconnect-side">
+            <span class="disconnect-side-label label-users">WHAT USERS DID INSTEAD</span>
+            <ul class="behavior-list">
+              <li>Participants who couldn't find the right filter combination had no clear alternative path</li>
+              <li>26% abandoned rather than finding a workaround -- the highest abandon rate in the study</li>
+              <li>Abandoners spent 2:10 trying before quitting, suggesting a mid-flow breakdown rather than an upfront confusion</li>
+              <li>When filtering fails, there's no obvious fallback to search or browse</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- DISCONNECT 3 -->
+      <div class="disconnect-card">
+        <div class="disconnect-header bn">
+          <span class="disconnect-num">BLUE NILE</span>
+          <span class="disconnect-title">More Exploration, More Completion</span>
+        </div>
+        <div class="disconnect-body">
+          <div class="disconnect-side">
+            <span class="disconnect-side-label label-finding">THE PATTERN</span>
+            <p class="disconnect-text">Blue Nile's successful users took more pages (8.8 avg) and more time (2:03) than Brilliant Earth's successful users -- but they also succeeded more often (78% vs. 63%). The fail pattern is also different: Blue Nile failures spent 43.8 seconds per page, versus 18 seconds for Brilliant Earth failures. Blue Nile users who failed were exploring. Brilliant Earth users who failed were stuck.</p>
+          </div>
+          <div class="disconnect-side">
+            <span class="disconnect-side-label label-users">WHAT THIS SUGGESTS</span>
+            <ul class="behavior-list">
+              <li>Blue Nile's navigation may offer more recovery paths when users go the wrong direction</li>
+              <li>More page views and time isn't inherently worse -- users were still finding what they needed</li>
+              <li>The 4-click success path suggests a direct route existed for users who found the right entry point</li>
+              <li>Lower abandon rate (10%) supports the idea that confusion resolved rather than compounded</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pixel-divider" role="presentation"></div>
+
+  <!-- ═══════════════════════════════════════════
+       06 // RECOMMENDATIONS
+  ═══════════════════════════════════════════ -->
+  <section class="bg-soft">
+    <div class="content-wrap">
+      <div class="section-header">
+        <span class="section-badge badge-pink">06 // RECOMMENDATIONS</span>
+        <h2 class="section-title">What to Fix</h2>
+      </div>
+
+      <div class="rec-grid">
+        <div class="rec-card rec-t1">
+          <div class="rec-card-top">
+            <span class="rec-priority">P1 · HIGH IMPACT -- BOTH SITES</span>
+            <span class="rec-card-icon">🗺️</span>
+          </div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Separate "Shop" from "Design" at the Category Level</div>
+            <ul class="rec-item-list">
+              <li>Rename or visually differentiate "Design Your Own" from "Shop Necklaces" in navigation</li>
+              <li>Add clear category descriptions on landing pages so users know which path they've entered</li>
+              <li>Consider a top-level choice modal for high-intent users: "Shopping for a gift?" vs. "Creating something custom?"</li>
+              <li>Addresses the most common failure path on both sites</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rec-card rec-t2">
+          <div class="rec-card-top">
+            <span class="rec-priority">P1 · HIGH IMPACT -- BRILLIANT EARTH</span>
+            <span class="rec-card-icon">🔽</span>
+          </div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Add a Search Fallback When Filters Return No Path</div>
+            <ul class="rec-item-list">
+              <li>When filtering doesn't surface results, surface a visible search bar or suggested categories</li>
+              <li>Add a "Can't find it? Try searching" prompt mid-browse rather than a dead end</li>
+              <li>Test whether promoting search earlier reduces the 26% abandon rate</li>
+              <li>Addresses the mid-flow breakdown revealed by the 2:10 average abandon time</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rec-card rec-t3">
+          <div class="rec-card-top">
+            <span class="rec-priority">P2 · FOLLOW-UP RESEARCH</span>
+            <span class="rec-card-icon">🔬</span>
+          </div>
+          <div class="rec-card-body">
+            <div class="rec-card-title">Tree Test the Navigation Before Redesigning It</div>
+            <ul class="rec-item-list">
+              <li>Run a tree test on both sites' navigation structures with a larger, more diverse sample</li>
+              <li>Isolate whether the "design your own" confusion is a labeling problem or an IA problem</li>
+              <li>Add a moderated component with think-aloud protocol around filter interactions on Brilliant Earth</li>
+              <li>Card sort to understand how users mentally categorize "pre-designed" vs. "custom" jewelry</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="pixel-divider" role="presentation"></div>
+
+  <!-- ═══════════════════════════════════════════
+       BACK CTA
+  ═══════════════════════════════════════════ -->
+  <section class="bg-white">
+    <div class="content-wrap" style="padding-top: 3rem; padding-bottom: 3rem;">
+      <div class="back-cta">
+        <a href="https://tomiux.com/#work" class="btn btn-purple">← Back to Featured Work</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
+    <div
+      class="footer-hits"
+      tabindex="0"
+      role="button"
+      aria-label="Secret score counter"
+      title="you found it 👻"
+      id="footer-easter-egg"
+    >SCORE: <span aria-hidden="true">∞</span></div>
+    <div class="footer-links">
+      <a href="mailto:hello@tomiux.com">Email</a>
+      <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
+      <a href="https://tomiux.com/#work">← Work</a>
+    </div>
+  </footer>
+
+  <script>
+    const egg = document.getElementById('footer-easter-egg');
+    function activateEgg() {
+      egg.setAttribute('data-found','true');
+      egg.innerHTML = '<span>🎮 KONAMI CODE ACCEPTED 🎮</span>';
+      egg.setAttribute('aria-label','Konami code accepted!');
+    }
+    egg.addEventListener('click', activateEgg);
+    egg.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); } });
+  </script>
+
+</body>
+</html>
