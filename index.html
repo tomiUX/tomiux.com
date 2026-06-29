@@ -247,6 +247,11 @@
 
   /* ===== WORK CARDS — OPTION C (tight cards) ===== */
   .work-grid { display: flex; flex-direction: column; gap: 0.6rem; }
+  .work-group { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .work-group:last-child { margin-bottom: 0; }
+  .work-group-label { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+  .work-group-label span { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+  .work-group-label::after { content: ''; flex: 1; height: 2px; background: var(--lavender-mid); }
 
   .work-card {
     background: var(--white);
@@ -566,122 +571,150 @@
     </div>
     <div class="work-grid">
 
-      <a href="https://tomiux.com/coursera/" class="work-card">
-        <div class="work-color wc1" aria-hidden="true"></div>
-        <div class="work-card-body">
-          <p class="work-title">Coursera Cognitive Audit</p>
-          <p class="work-desc">Cognitive accessibility audit of Coursera's web and mobile platforms, introducing original frameworks: the cognitive budget, Search Tax, and Interaction Tax.</p>
-        </div>
-        <div class="work-card-right">
-          <span class="work-tag">Cognitive Audit</span>
-          <span class="work-year">2026</span>
-          <span class="work-arrow" aria-hidden="true">→</span>
-        </div>
-      </a>
+      <!-- AUDIT & ANALYSIS -->
+      <div class="work-group">
+        <div class="work-group-label"><span>Audit &amp; Analysis</span></div>
 
-      <a href="https://tomiux.com/stubhub/" class="work-card">
-        <div class="work-color wc2" aria-hidden="true"></div>
-        <div class="work-card-body">
-          <p class="work-title">StubHub A11y Annotations</p>
-          <p class="work-desc">Accessibility annotation set for StubHub written for developer handoff. Applied WCAG 2.1 standards to real product screens with actionable, implementation-ready specs.</p>
-        </div>
-        <div class="work-card-right">
-          <span class="work-tag">A11Y</span>
-          <span class="work-year">2026</span>
-          <span class="work-arrow" aria-hidden="true">→</span>
-        </div>
-      </a>
+        <a href="https://tomiux.com/pottery-barn/" class="work-card">
+          <div class="work-color wc7" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">Pottery Barn</p>
+            <p class="work-desc">Ten-heuristic audit of PotteryBarn.com focused on shopping for a leather armchair. Clean design hiding a silent checkout failure and a material selection problem with no in-context fix.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag">Heuristic Eval</span>
+            <span class="work-year">2026</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
 
-      <a href="https://tomiux.com/npr/" class="work-card">
-        <div class="work-color wc3" aria-hidden="true"></div>
-        <div class="work-card-body">
-          <p class="work-title">NPR.org Accessibility Audit</p>
-          <p class="work-desc">WCAG 2.1 Level A &amp; AA conformance audit of NPR.org formatted in the VPAT 2.5Rev structure. Two page types, twelve pages of findings.</p>
-        </div>
-        <div class="work-card-right">
-          <span class="work-tag">WCAG Audit</span>
-          <span class="work-year">2026</span>
-          <span class="work-arrow" aria-hidden="true">→</span>
-        </div>
-      </a>
+        <a href="https://tomiux.com/starbucks-philz/" class="work-card">
+          <div class="work-color wc8" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">Starbucks vs. Philz</p>
+            <p class="work-desc">Comparative heuristic evaluation of two coffee mobile apps. Same ten heuristics, two very different approaches to ordering, and a clear winner on usability.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag">Heuristic Eval</span>
+            <span class="work-year">2026</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
 
-      <a href="https://tomiux.com/august/" class="work-card">
-        <div class="work-color wc4" aria-hidden="true"></div>
-        <div class="work-card-body">
-          <p class="work-title">August Smart Lock</p>
-          <p class="work-desc">Redesigned the guest access and device-switching flow for a smart lock app, from physical paper prototype to polished Figma prototype in one semester.</p>
-        </div>
-        <div class="work-card-right">
-          <span class="work-tag">IxD</span>
-          <span class="work-year">2026</span>
-          <span class="work-arrow" aria-hidden="true">→</span>
-        </div>
-      </a>
+        <a href="https://tomiux.com/blue-nile/" class="work-card">
+          <div class="work-color wc9" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">Blue Nile vs. Brilliant Earth</p>
+            <p class="work-desc">Comparative usability study of two fine jewelry e-commerce sites. High-stakes purchase decisions, low tolerance for friction, two sites with very different ideas about trust.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag">Usability</span>
+            <span class="work-year">2026</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
 
-      <a href="https://tomiux.com/philz/" class="work-card">
-        <div class="work-color wc5" aria-hidden="true"></div>
-        <div class="work-card-body">
-          <p class="work-title">Philz Coffee</p>
-          <p class="work-desc">Moderated usability study of the Philz Coffee mobile app. Uncovered a critical UI Disconnect where users failed to recognize interactive elements and mapped a path to fix it.</p>
-        </div>
-        <div class="work-card-right">
-          <span class="work-tag">Usability</span>
-          <span class="work-year">2026</span>
-          <span class="work-arrow" aria-hidden="true">→</span>
-        </div>
-      </a>
+        <a href="https://tomiux.com/coursera/" class="work-card">
+          <div class="work-color wc1" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">Coursera Cognitive Audit</p>
+            <p class="work-desc">Cognitive accessibility audit of Coursera's web and mobile platforms, introducing original frameworks: the cognitive budget, Search Tax, and Interaction Tax.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag">Cognitive Audit</span>
+            <span class="work-year">2026</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
 
-      <a href="https://tomiux.com/yelp/" class="work-card">
-        <div class="work-color wc6" aria-hidden="true"></div>
-        <div class="work-card-body">
-          <p class="work-title">Yelp Usability Study</p>
-          <p class="work-desc">Unmoderated usability study evaluating Yelp's core discovery and decision-making flows. Identified friction patterns across real task scenarios.</p>
-        </div>
-        <div class="work-card-right">
-          <span class="work-tag">UX Research</span>
-          <span class="work-year">2026</span>
-          <span class="work-arrow" aria-hidden="true">→</span>
-        </div>
-      </a>
+        <a href="https://tomiux.com/stubhub/" class="work-card">
+          <div class="work-color wc2" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">StubHub A11y Annotations</p>
+            <p class="work-desc">Accessibility annotation set for StubHub written for developer handoff. Applied WCAG 2.1 standards to real product screens with actionable, implementation-ready specs.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag">A11Y</span>
+            <span class="work-year">2026</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
 
-      <a href="https://tomiux.com/pottery-barn/" class="work-card">
-        <div class="work-color wc7" aria-hidden="true"></div>
-        <div class="work-card-body">
-          <p class="work-title">Pottery Barn</p>
-          <p class="work-desc">Ten-heuristic audit of PotteryBarn.com focused on shopping for a leather armchair. Clean design hiding a silent checkout failure and a material selection problem with no in-context fix.</p>
-        </div>
-        <div class="work-card-right">
-          <span class="work-tag">Heuristic Eval</span>
-          <span class="work-year">2026</span>
-          <span class="work-arrow" aria-hidden="true">→</span>
-        </div>
-      </a>
+        <a href="https://tomiux.com/npr/" class="work-card">
+          <div class="work-color wc3" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">NPR.org Accessibility Audit</p>
+            <p class="work-desc">WCAG 2.1 Level A &amp; AA conformance audit of NPR.org formatted in the VPAT 2.5Rev structure. Two page types, twelve pages of findings.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag">WCAG Audit</span>
+            <span class="work-year">2026</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+      </div>
 
-      <a href="https://tomiux.com/starbucks-philz/" class="work-card coming-soon" aria-disabled="true">
-        <div class="work-color wc8" aria-hidden="true"></div>
-        <div class="work-card-body">
-          <p class="work-title">Starbucks vs. Philz</p>
-          <p class="work-desc">Comparative heuristic evaluation of two coffee mobile apps. Same ten heuristics, two very different approaches to ordering, and a clear winner on usability.</p>
-        </div>
-        <div class="work-card-right">
-          <span class="work-tag">Heuristic Eval</span>
-          <span class="work-year">2026</span>
-          <span class="work-coming-label">Coming soon</span>
-        </div>
-      </a>
+      <!-- DESIGN & RESEARCH -->
+      <div class="work-group">
+        <div class="work-group-label"><span>Design &amp; Research</span></div>
 
-      <a href="https://tomiux.com/blue-nile/" class="work-card coming-soon" aria-disabled="true">
-        <div class="work-color wc9" aria-hidden="true"></div>
-        <div class="work-card-body">
-          <p class="work-title">Blue Nile vs. Brilliant Earth</p>
-          <p class="work-desc">Comparative usability study of two fine jewelry e-commerce sites. High-stakes purchase decisions, low tolerance for friction, two sites with very different ideas about trust.</p>
+        <a href="https://tomiux.com/august/" class="work-card">
+          <div class="work-color wc4" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">August Smart Lock</p>
+            <p class="work-desc">Redesigned the guest access and device-switching flow for a smart lock app, from physical paper prototype to polished Figma prototype in one semester.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag">IxD</span>
+            <span class="work-year">2026</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+
+        <a href="https://tomiux.com/philz/" class="work-card">
+          <div class="work-color wc5" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">Philz Coffee</p>
+            <p class="work-desc">Moderated usability study of the Philz Coffee mobile app. Uncovered a critical UI Disconnect where users failed to recognize interactive elements and mapped a path to fix it.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag">Usability</span>
+            <span class="work-year">2026</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+
+        <a href="https://tomiux.com/yelp/" class="work-card">
+          <div class="work-color wc6" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">Yelp Usability Study</p>
+            <p class="work-desc">Unmoderated usability study evaluating Yelp's core discovery and decision-making flows. Identified friction patterns across real task scenarios.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag">UX Research</span>
+            <span class="work-year">2026</span>
+            <span class="work-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- CAPSTONE -->
+      <div class="work-group">
+        <div class="work-group-label"><span>Capstone</span></div>
+
+        <div class="work-card coming-soon">
+          <div class="work-color" style="background:linear-gradient(135deg,#d4c5e8,#b8a8d0);" aria-hidden="true"></div>
+          <div class="work-card-body">
+            <p class="work-title">Meatball</p>
+            <p class="work-desc">Master's capstone in progress. Check back when it's ready — it's worth the wait.</p>
+          </div>
+          <div class="work-card-right">
+            <span class="work-tag" style="background:var(--text-light);">MS Project</span>
+            <span class="work-year">2026</span>
+            <span class="work-coming-label">In progress</span>
+          </div>
         </div>
-        <div class="work-card-right">
-          <span class="work-tag">Usability</span>
-          <span class="work-year">2026</span>
-          <span class="work-coming-label">Coming soon</span>
-        </div>
-      </a>
+      </div>
 
     </div>
   </div>
