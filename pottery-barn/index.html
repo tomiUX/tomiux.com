@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pottery Barn Heuristic Evaluation // TomiUX 🔍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lavender-bg:   #f0e8ff;
+    --lavender-mid:  #c8a8f0;
+    --lavender-dark: #9b70d8;
+    --pink:          #ff6eb4;
+    --hot-pink:      #ff2d9b;
+    --baby-pink:     #ffb3d9;
+    --teal:          #3FBB9E;
+    --mint:          #91EBD3;
+    --yellow:        #ffe566;
+    --orange:        #ff8c42;
+    --blue:          #6bb8ff;
+    --purple:        #A122C0;
+    --red:           #ff5252;
+    --white:         #ffffff;
+    --offwhite:      #fdf8ff;
+    --text:          #1a0a3e;
+    --text-mid:      #4a1878;
+    --text-light:    #6a3090;
+    --pixel-dark:    #0a0520;
+
+    /* Score colors */
+    --score-1: #3FBB9E;
+    --score-2: #ffe566;
+    --score-3: #ff8c42;
+    --score-4: #ff2d9b;
+  }
+
+  /* ===== SKIP LINK (WCAG 2.4.1) ===== */
+  .skip-link {
+    position: absolute; top: -100%; left: 1rem;
+    background: var(--purple); color: white;
+    padding: 0.75rem 1.25rem; font-family: 'Nunito', sans-serif;
+    font-weight: 800; font-size: 0.9rem; text-decoration: none;
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    z-index: 9999; border-radius: 0 0 8px 8px;
+  }
+  .skip-link:focus { top: 0; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--lavender-bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.10;
+    background-image:
+      radial-gradient(3px 3px at 12% 8%,  var(--pink),   transparent),
+      radial-gradient(2px 2px at 28% 22%, var(--teal),   transparent),
+      radial-gradient(3px 3px at 45% 5%,  var(--yellow), transparent),
+      radial-gradient(2px 2px at 62% 18%, var(--purple), transparent),
+      radial-gradient(3px 3px at 78% 10%, var(--orange), transparent),
+      radial-gradient(2px 2px at 92% 25%, var(--teal),   transparent),
+      radial-gradient(3px 3px at 8%  45%, var(--yellow), transparent),
+      radial-gradient(2px 2px at 35% 60%, var(--pink),   transparent),
+      radial-gradient(3px 3px at 55% 55%, var(--blue),   transparent),
+      radial-gradient(2px 2px at 72% 48%, var(--purple), transparent),
+      radial-gradient(3px 3px at 88% 65%, var(--hot-pink), transparent);
+    background-size: 300px 300px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    body::before { animation: bgShimmer 8s ease-in-out infinite alternate; }
+  }
+  @keyframes bgShimmer { 0% { opacity: 0.06; } 100% { opacity: 0.16; } }
+
+  /* ===== FOCUS STYLES (WCAG 2.4.7) ===== */
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--purple); outline-offset: 3px; border-radius: 4px;
+  }
+  .btn:focus-visible {
+    outline: 3px solid var(--yellow); outline-offset: 3px;
+    transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark);
+  }
+  .footer-links a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; border-radius: 2px; color: var(--yellow); }
+  .footer-hits:focus-visible    { outline: 2px solid var(--yellow); outline-offset: 2px; border-radius: 4px; }
+
+  /* nav injected by nav.js */
+
+  /* ===== PIXEL DIVIDER ===== */
+  .pixel-divider {
+    height: 12px;
+    background: repeating-linear-gradient(90deg,
+      #3FBB9E 0px,   #3FBB9E 20px,
+      #ff6eb4 20px,  #ff6eb4 40px,
+      #A122C0 40px,  #A122C0 60px,
+      #ffe566 60px,  #ffe566 80px,
+      #91EBD3 80px,  #91EBD3 100px,
+      #ff8c42 100px, #ff8c42 120px,
+      #3FBB9E 120px, #3FBB9E 140px);
+    border-top: 3px solid var(--pixel-dark);
+    border-bottom: 3px solid var(--pixel-dark);
+    position: relative; z-index: 1;
+  }
+
+  /* ===== SECTION BACKGROUNDS ===== */
+  .bg-white { background: var(--white); position: relative; z-index: 1; }
+  .bg-soft {
+    background:
+      radial-gradient(ellipse at 0% 50%,   rgba(255,179,217,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2)  0%, transparent 60%),
+      var(--lavender-bg);
+    position: relative; z-index: 1;
+  }
+
+  /* ===== CONTENT WRAP ===== */
+  .content-wrap { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; position: relative; z-index: 1; }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .section-badge {
+    font-family: 'Press Start 2P', monospace; font-size: 0.52rem;
+    padding: 0.4rem 0.75rem;
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    letter-spacing: 0.05em; white-space: nowrap; background: var(--yellow); color: var(--pixel-dark);
+  }
+  .badge-purple { background: var(--purple); color: white; }
+  .badge-teal   { background: var(--teal);   color: var(--pixel-dark); }
+  .badge-pink   { background: var(--hot-pink); color: white; }
+  .badge-orange { background: var(--orange); color: var(--pixel-dark); }
+
+  .section-title {
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--purple);
+  }
+  .section-title .accent  { color: var(--teal); }
+  .section-title .accent2 { color: var(--hot-pink); }
+
+  /* ===== HERO ===== */
+  .case-hero {
+    position: relative; z-index: 1;
+    background:
+      radial-gradient(ellipse at 0%   60%, rgba(63,187,158,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 100% 20%, rgba(161,34,192,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(255,229,102,0.12) 0%, transparent 50%),
+      var(--lavender-bg);
+    padding: 4rem 2rem 3.5rem;
+    border-bottom: 4px solid var(--pixel-dark);
+  }
+  .hero-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .case-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Press Start 2P', monospace; font-size: 0.52rem; letter-spacing: 0.08em;
+    color: var(--pixel-dark); background: var(--teal);
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    padding: 0.4rem 0.8rem; margin-bottom: 1.25rem;
+  }
+  .case-title {
+    font-family: 'Unbounded', sans-serif; font-weight: 900;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    line-height: 0.95; margin-bottom: 0.75rem; letter-spacing: -0.02em;
+  }
+  .case-title .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.2); }
+  .case-title .line2 { display: block; color: var(--teal);   text-shadow: 4px 4px 0 rgba(63,187,158,0.2); }
+  .case-subtitle { font-size: 1rem; color: var(--text-mid); font-weight: 700; line-height: 1.6; margin-bottom: 1.75rem; }
+
+  .case-meta-pills { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+  .pill {
+    font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    padding: 0.3rem 0.7rem; border-radius: 4px;
+    border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark);
+  }
+  .pill-purple { background: var(--purple);   color: white; }
+  .pill-teal   { background: var(--teal);     color: var(--pixel-dark); }
+  .pill-yellow { background: var(--yellow);   color: var(--pixel-dark); }
+  .pill-white  { background: var(--white);    color: var(--text-mid); }
+
+  /* Hero right — score card */
+  .hero-scorecard {
+    background: var(--white);
+    border: 4px solid var(--pixel-dark);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+  .scorecard-label {
+    font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
+    color: var(--text-light); letter-spacing: 0.08em;
+    margin-bottom: 1.25rem; display: block;
+  }
+  .scorecard-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+  }
+  .scorecard-stat {
+    background: var(--lavender-bg);
+    border: 2px solid var(--pixel-dark);
+    border-radius: 8px; padding: 0.75rem 0.9rem;
+  }
+  .scorecard-stat .stat-num {
+    font-family: 'Unbounded', sans-serif; font-weight: 900;
+    font-size: 1.6rem; line-height: 1; margin-bottom: 0.2rem;
+  }
+  .scorecard-stat .stat-desc {
+    font-family: 'Nunito', sans-serif; font-size: 0.7rem;
+    font-weight: 700; color: var(--text-mid); line-height: 1.35;
+  }
+  .stat-critical .stat-num { color: var(--hot-pink); }
+  .stat-major    .stat-num { color: var(--orange); }
+  .stat-clear    .stat-num { color: var(--teal); }
+  .stat-sig      .stat-num { color: var(--purple); }
+
+  /* ===== OVERVIEW GRID ===== */
+  .overview-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1.5rem;
+  }
+  .overview-card {
+    background: var(--lavender-bg);
+    border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark);
+    border-radius: 10px; padding: 1.5rem;
+  }
+  .overview-card-label {
+    font-family: 'Press Start 2P', monospace; font-size: 0.48rem;
+    color: var(--text-light); letter-spacing: 0.08em; margin-bottom: 0.6rem;
+    display: block;
+  }
+  .overview-card p {
+    font-size: 0.92rem; color: var(--text-mid); line-height: 1.65;
+  }
+
+  /* ===== SCORE LEGEND ===== */
+  .score-legend {
+    display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'Nunito', sans-serif; font-size: 0.8rem;
+    font-weight: 700; color: var(--text-mid);
+  }
+  .legend-dot {
+    width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
+    border: 2px solid var(--pixel-dark);
+  }
+
+  /* ===== HEURISTIC TABLE ===== */
+  .heuristic-table { display: flex; flex-direction: column; gap: 0; }
+  .h-row {
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 1.5rem; align-items: start;
+    padding: 1.25rem 1.5rem;
+    border: 3px solid var(--pixel-dark);
+    border-top: none;
+    background: var(--white);
+    transition: background 0.12s;
+  }
+  .h-row:first-child { border-top: 3px solid var(--pixel-dark); border-radius: 10px 10px 0 0; }
+  .h-row:last-child  { border-radius: 0 0 10px 10px; }
+  .h-row:nth-child(even) { background: var(--lavender-bg); }
+  @media (prefers-reduced-motion: no-preference) {
+    .h-row:hover { background: #ede0ff; }
+  }
+  .h-name {
+    font-family: 'Unbounded', sans-serif; font-size: 0.75rem; font-weight: 700;
+    color: var(--text); margin-bottom: 0.4rem; line-height: 1.3;
+  }
+  .h-obs {
+    font-size: 0.88rem; color: var(--text-mid); line-height: 1.65;
+  }
+  .score-badge {
+    font-family: 'Press Start 2P', monospace; font-size: 0.55rem;
+    padding: 0.45em 0.7em;
+    border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
+    border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+    align-self: start; margin-top: 0.1rem;
+  }
+  .s1 { background: var(--teal);     color: var(--pixel-dark); }
+  .s2 { background: var(--yellow);   color: var(--pixel-dark); }
+  .s3 { background: var(--orange);   color: var(--pixel-dark); }
+  .s4 { background: var(--hot-pink); color: white; }
+
+  /* ===== FINDINGS GRID ===== */
+  .findings-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;
+  }
+  .finding-card {
+    border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark);
+    border-radius: 10px; overflow: hidden;
+  }
+  .finding-header {
+    padding: 0.75rem 1.25rem;
+    border-bottom: 3px solid var(--pixel-dark);
+  }
+  .finding-header-label {
+    font-family: 'Press Start 2P', monospace; font-size: 0.5rem;
+    letter-spacing: 0.08em; color: var(--pixel-dark);
+  }
+  .finding-header.strength { background: var(--teal); }
+  .finding-header.weakness { background: var(--hot-pink); }
+  .finding-header.weakness .finding-header-label { color: white; }
+  .finding-body {
+    padding: 1.25rem; background: var(--white);
+  }
+  .finding-body ul {
+    padding-left: 0; list-style: none;
+  }
+  .finding-body li {
+    font-size: 0.88rem; color: var(--text-mid);
+    font-weight: 600; line-height: 1.6;
+    padding: 0.4rem 0 0.4rem 1.4rem; position: relative;
+    border-bottom: 1px solid var(--lavender-bg);
+  }
+  .finding-body li:last-child { border-bottom: none; }
+  .finding-body li::before {
+    position: absolute; left: 0; font-weight: 900;
+  }
+  .strength-list li::before { content: '✓'; color: var(--teal); }
+  .weakness-list li::before { content: '✗'; color: var(--hot-pink); }
+
+  /* ===== RECOMMENDATIONS ===== */
+  .rec-grid { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem; }
+  .rec-card {
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 1.5rem; align-items: start;
+    background: var(--white);
+    border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark);
+    border-radius: 10px; padding: 1.5rem;
+    overflow: hidden;
+  }
+  .rec-number {
+    font-family: 'Press Start 2P', monospace; font-size: 0.75rem;
+    color: white; background: var(--purple);
+    border: 3px solid var(--pixel-dark);
+    width: 2.5rem; height: 2.5rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px; flex-shrink: 0;
+  }
+  .rec-title {
+    font-family: 'Unbounded', sans-serif; font-size: 0.88rem; font-weight: 700;
+    color: var(--text); margin-bottom: 0.5rem; line-height: 1.3;
+  }
+  .rec-body { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; }
+
+  /* ===== METHOD NOTE ===== */
+  .method-card {
+    background: var(--lavender-bg);
+    border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark);
+    border-radius: 10px; padding: 2rem;
+    margin-top: 1.5rem;
+  }
+  .method-card p {
+    font-size: 0.92rem; color: var(--text-mid); line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .method-card p:last-child { margin-bottom: 0; }
+
+  /* ===== PULL QUOTE ===== */
+  .pull-quote {
+    border-left: 5px solid var(--teal);
+    background: var(--white);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 4px 4px 0 rgba(63,187,158,0.2);
+  }
+  .pull-quote p {
+    font-family: 'Unbounded', sans-serif; font-weight: 700;
+    font-size: 1.05rem; color: var(--text); line-height: 1.5;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--pixel-dark);
+    padding: 1.5rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    position: relative; z-index: 1;
+  }
+  .footer-brand {
+    font-family: 'Press Start 2P', monospace; font-size: 0.4rem;
+    color: var(--text-light); line-height: 2.2; letter-spacing: 0.05em;
+  }
+  .footer-hits {
+    font-family: 'Press Start 2P', monospace; font-size: 0.4rem;
+    color: var(--yellow); letter-spacing: 0.05em;
+    cursor: pointer; border-radius: 4px; padding: 0.2rem 0.4rem;
+    border: 1px solid transparent; transition: all 0.2s;
+  }
+  .footer-hits[data-found="true"] { color: var(--teal); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem;
+    color: var(--text-light); text-decoration: none; transition: color 0.15s;
+  }
+  .footer-links a:hover { color: var(--pink); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero-inner       { grid-template-columns: 1fr; gap: 2.5rem; }
+    .overview-grid    { grid-template-columns: 1fr; }
+    .findings-grid    { grid-template-columns: 1fr; }
+    .scorecard-grid   { grid-template-columns: 1fr 1fr; }
+    .h-row            { grid-template-columns: 1fr; }
+    .rec-card         { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .content-wrap     { padding: 3rem 1.25rem; }
+    .case-hero        { padding: 3rem 1.25rem 2.5rem; }
+    .scorecard-grid   { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SKIP LINK (WCAG 2.4.1) — always first -->
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- nav injected by nav.js -->
+<script src="../assets/nav.js" defer></script>
+
+<main id="main-content">
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════ -->
+<section class="case-hero" aria-label="Case study overview: Pottery Barn Heuristic Evaluation">
+  <div class="hero-inner">
+
+    <div class="hero-left">
+      <span class="case-eyebrow" aria-hidden="false">🔍 HEURISTIC EVALUATION</span>
+      <h1 class="case-title">
+        <span class="line1">Pottery Barn</span>
+        <span class="line2">Looks Good,<br>Ships Broken.</span>
+      </h1>
+      <p class="case-subtitle">A ten-heuristic audit of PotteryBarn.com focused on the task of shopping for a high-end leather armchair, from browse to checkout. Clean design. Real usability gaps.</p>
+
+      <div class="case-meta-pills">
+        <span class="pill pill-purple">E-Commerce</span>
+        <span class="pill pill-teal">Heuristic Eval</span>
+        <span class="pill pill-yellow">Nielsen's 10</span>
+        <span class="pill pill-white">Solo Evaluator</span>
+        <span class="pill pill-white">Feb 2026</span>
+      </div>
+
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-scorecard">
+        <span class="scorecard-label" aria-label="Audit scorecard summary">AUDIT SCORECARD</span>
+        <div class="scorecard-grid">
+          <div class="scorecard-stat stat-critical">
+            <div class="stat-num">1</div>
+            <div class="stat-desc">Major Issue<br>(Score 4)</div>
+          </div>
+          <div class="scorecard-stat stat-sig">
+            <div class="stat-num">5</div>
+            <div class="stat-desc">Significant<br>(Score 3)</div>
+          </div>
+          <div class="scorecard-stat stat-major">
+            <div class="stat-num">2</div>
+            <div class="stat-desc">Minimal Issue<br>(Score 2)</div>
+          </div>
+          <div class="scorecard-stat stat-clear">
+            <div class="stat-num">2</div>
+            <div class="stat-desc">No Concern<br>(Score 1)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     01 — CONTEXT
+════════════════════════════════════════════════════════ -->
+<section class="bg-soft">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">01 // CONTEXT</span>
+      <h2 class="section-title">Why <span class="accent">Pottery Barn</span></h2>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-card">
+        <span class="overview-card-label">THE SITE</span>
+        <p>Pottery Barn is a high-end home furnishings retailer with a broad audience: casual browsers and people making $1,500+ purchasing decisions share the same interface. That range creates genuine usability tension.</p>
+      </div>
+      <div class="overview-card">
+        <span class="overview-card-label">THE TASK</span>
+        <p>Shopping for a leather armchair: browse categories, apply filters, select materials and configuration options, proceed to checkout. Mid-funnel, detail-heavy, and dependent on clear system guidance throughout.</p>
+      </div>
+    </div>
+
+    <div class="pull-quote">
+      <p>The site looks polished. That polish made it easier to spot where usability problems were hiding underneath the surface.</p>
+    </div>
+
+    <p style="font-size:0.92rem; color:var(--text-mid); line-height:1.75;">Shopping for a leather armchair puts most of the site's complexity in play. Leather grade selection, delivery method configuration, and sequential product customization steps all require clear system guidance. That is exactly where the audit found the most friction.</p>
+  </div>
+</section>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     02 — SCORING CRITERIA
+════════════════════════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-purple" aria-hidden="true">02 // SCORING</span>
+      <h2 class="section-title">What the <span class="accent">numbers</span> mean</h2>
+    </div>
+
+    <p style="font-size:0.92rem; color:var(--text-mid); line-height:1.75; margin-bottom:1.75rem;">Each of Nielsen's 10 Usability Heuristics was scored on a 1–4 severity scale. Scores were assigned based on observed friction during the task, not general impressions of the site.</p>
+
+    <div class="score-legend">
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--teal);"></div>
+        <span><strong>1 — No concern.</strong> Meets the heuristic.</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--yellow);"></div>
+        <span><strong>2 — Minimal issue.</strong> Minor friction, can wait.</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--orange);"></div>
+        <span><strong>3 — Significant impact.</strong> Noticeable friction, address soon.</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-dot" style="background:var(--hot-pink);"></div>
+        <span><strong>4 — Major issue.</strong> Critical blocker, address immediately.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     03 — EVALUATION RESULTS
+════════════════════════════════════════════════════════ -->
+<section class="bg-soft">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-teal" aria-hidden="true">03 // FINDINGS</span>
+      <h2 class="section-title">All ten <span class="accent">heuristics</span>, scored</h2>
+    </div>
+
+    <div class="heuristic-table" role="list" aria-label="Heuristic evaluation results">
+
+      <div class="h-row" role="listitem">
+        <div>
+          <p class="h-name">Visibility of System Status</p>
+          <p class="h-obs">Basic feedback is there: page refreshes, filter updates, hover states. During complex actions like delivery method selection, useful status feedback disappears. The system goes quiet at exactly the moment users need confirmation they're on the right track.</p>
+        </div>
+        <span class="score-badge s3" aria-label="Score 3: Significant impact">3</span>
+      </div>
+
+      <div class="h-row" role="listitem">
+        <div>
+          <p class="h-name">Match Between System and Real World</p>
+          <p class="h-obs">Top-level labels like "Chairs" and "Leather" are intuitive. The friction appears in material specifications. Terms like "Performance Faux Nubuck" are presented without context or comparison. Users who aren't already fluent in upholstery terminology are left to guess.</p>
+        </div>
+        <span class="score-badge s3" aria-label="Score 3: Significant impact">3</span>
+      </div>
+
+      <div class="h-row" role="listitem">
+        <div>
+          <p class="h-name">User Control and Freedom</p>
+          <p class="h-obs">Navigation is generally reversible, filters are removable, and cart edits are possible. The gaps are in the product configuration flow, where incomplete selections create dead ends without explaining how to get out of them.</p>
+        </div>
+        <span class="score-badge s2" aria-label="Score 2: Minimal issue">2</span>
+      </div>
+
+      <div class="h-row" role="listitem">
+        <div>
+          <p class="h-name">Consistency and Standards</p>
+          <p class="h-obs">The site follows familiar e-commerce conventions throughout. Layouts, navigation patterns, and interactive behaviors are predictable. This one does its job quietly.</p>
+        </div>
+        <span class="score-badge s1" aria-label="Score 1: No concern">1</span>
+      </div>
+
+      <div class="h-row" role="listitem" style="border-left: 5px solid var(--hot-pink);">
+        <div>
+          <p class="h-name">Error Prevention ⚠️</p>
+          <p class="h-obs">This is the critical failure. The "Ship to Home" option becomes unresponsive when collapsed product options haven't been selected first. No error message appears. No visual cue signals the problem. Users are left clicking a button that silently does nothing, with no indication of what's blocking them or how to fix it.</p>
+        </div>
+        <span class="score-badge s4" aria-label="Score 4: Major issue">4</span>
+      </div>
+
+      <div class="h-row" role="listitem">
+        <div>
+          <p class="h-name">Recognition Rather than Recall</p>
+          <p class="h-obs">Navigation and filters reduce memory load effectively. The recognition problem surfaces in material selection: fabric and leather options are listed without explanation. Users must already know what they're choosing between, or leave the site to research it elsewhere.</p>
+        </div>
+        <span class="score-badge s3" aria-label="Score 3: Significant impact">3</span>
+      </div>
+
+      <div class="h-row" role="listitem">
+        <div>
+          <p class="h-name">Flexibility and Efficiency of Use</p>
+          <p class="h-obs">Quick View, saved favorites, and multiple checkout paths are all solid efficiency features. The filter terminology problem limits efficiency for users who aren't sure what they're filtering for.</p>
+        </div>
+        <span class="score-badge s2" aria-label="Score 2: Minimal issue">2</span>
+      </div>
+
+      <div class="h-row" role="listitem">
+        <div>
+          <p class="h-name">Aesthetic and Minimalist Design</p>
+          <p class="h-obs">The site is visually clean and well-organized. Promotions and pop-ups exist but don't overwhelm. The aesthetic does what it needs to do for this brand.</p>
+        </div>
+        <span class="score-badge s1" aria-label="Score 1: No concern">1</span>
+      </div>
+
+      <div class="h-row" role="listitem">
+        <div>
+          <p class="h-name">Help Users Recognize, Diagnose, and Recover from Errors</p>
+          <p class="h-obs">Post-error messaging is clear enough once an error state is visible. The problem is upstream: errors from incomplete configuration, like the shipping selection issue, aren't surfaced at all. Users don't know they've made an error because the system hasn't told them.</p>
+        </div>
+        <span class="score-badge s3" aria-label="Score 3: Significant impact">3</span>
+      </div>
+
+      <div class="h-row" role="listitem">
+        <div>
+          <p class="h-name">Help and Documentation</p>
+          <p class="h-obs">Almost no embedded guidance exists for material selection or product comparison. Care instructions appear in some places, but when a user is deciding between leather grades on a $1,500 chair, the site offers no in-context support at all.</p>
+        </div>
+        <span class="score-badge s3" aria-label="Score 3: Significant impact">3</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     04 — STRENGTHS & GAPS
+════════════════════════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-pink" aria-hidden="true">04 // SUMMARY</span>
+      <h2 class="section-title">What works, <span class="accent2">what breaks</span></h2>
+    </div>
+
+    <div class="findings-grid">
+      <div class="finding-card">
+        <div class="finding-header strength">
+          <span class="finding-header-label" aria-hidden="true">✓ STRENGTHS</span>
+        </div>
+        <div class="finding-body">
+          <ul class="strength-list">
+            <li>Clean visual design that doesn't compete with the products</li>
+            <li>Consistent e-commerce conventions throughout</li>
+            <li>Functional filter pane with real-time updates</li>
+            <li>Quick View keeps users in the browse flow</li>
+            <li>Cart and filter states are easy to edit and reverse</li>
+            <li>Favoriting works directly from the product grid</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="finding-card">
+        <div class="finding-header weakness">
+          <span class="finding-header-label" aria-hidden="true">✗ PROBLEM AREAS</span>
+        </div>
+        <div class="finding-body">
+          <ul class="weakness-list">
+            <li>Silent failure on "Ship to Home" with no recovery path</li>
+            <li>Material terminology unexplained on the product page</li>
+            <li>No comparison tool for leather grades or upholstery options</li>
+            <li>Configuration dependencies are invisible to the user</li>
+            <li>Post-error guidance can't recover what error prevention missed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     05 — REDESIGN PRIORITIES
+════════════════════════════════════════════════════════ -->
+<section class="bg-soft">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge badge-orange" aria-hidden="true">05 // RECOMMENDATIONS</span>
+      <h2 class="section-title">Three fixes that <span class="accent">move the needle</span></h2>
+    </div>
+
+    <p style="font-size:0.92rem; color:var(--text-mid); line-height:1.75; margin-bottom:2rem;">These recommendations apply Shneiderman's Eight Golden Rules alongside the heuristic findings, targeting the highest-severity issues first.</p>
+
+    <div class="rec-grid">
+
+      <div class="rec-card">
+        <div class="rec-number" aria-hidden="true">01</div>
+        <div>
+          <p class="rec-title">Fix the silent failure on shipping selection</p>
+          <p class="rec-body">When a user tries to select "Ship to Home" before completing required configuration steps, nothing happens and nothing explains why. The fix is either a visible inline error that names the missing step, or a system design that prevents the button from being available until the prerequisites are met. The current state is a conversion blocker with no recovery path visible to the user.</p>
+        </div>
+      </div>
+
+      <div class="rec-card">
+        <div class="rec-number" aria-hidden="true">02</div>
+        <div>
+          <p class="rec-title">Add a materials comparison surface</p>
+          <p class="rec-body">Leather grades, performance fabrics, and upholstery finishes are listed by name only. A lightweight tooltip, expandable panel, or side-by-side comparison for material options would let users make informed decisions in place, instead of leaving the site to research "Performance Faux Nubuck" elsewhere. This reduces cognitive load and brings information to where the decision is actually happening.</p>
+        </div>
+      </div>
+
+      <div class="rec-card">
+        <div class="rec-number" aria-hidden="true">03</div>
+        <div>
+          <p class="rec-title">Make configuration dependencies visible</p>
+          <p class="rec-body">The product page has a sequencing problem: selections depend on each other, but the interface doesn't communicate that order. Making dependencies explicit through visual sequencing, step indicators, or contextual prompts would prevent users from reaching dead ends without knowing how they got there.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
+<!-- ═══════════════════════════════════════════════════════
+     06 — METHOD REFLECTION
+════════════════════════════════════════════════════════ -->
+<section class="bg-white">
+  <div class="content-wrap">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">06 // REFLECTION</span>
+      <h2 class="section-title">What heuristic evaluation <span class="accent">can and can't</span> tell you</h2>
+    </div>
+
+    <div class="method-card">
+      <p>Heuristic evaluation is fast and cost-effective. A single evaluator can surface meaningful usability issues without recruiting participants, which makes it useful early in the design cycle and at post-launch review. The Pottery Barn findings here, particularly the silent shipping failure, are exactly the kind of issue that structured expert review reliably catches.</p>
+      <p>The inherent limitation is subjectivity. An expert brings assumptions about what "typical" users do, and those assumptions don't always hold. Some real-world pain points won't surface without watching actual users attempt the task. The stronger approach pairs heuristic review with moderated or unmoderated usability testing to cross-validate findings and set priorities based on observed behavior, not just evaluation judgment.</p>
+      <p>Heuristic evaluation works best as a starting point, not a final word.</p>
+    </div>
+
+
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
+  <div
+    class="footer-hits"
+    tabindex="0"
+    role="button"
+    aria-label="Secret score counter"
+    title="you found it 👻"
+    id="footer-easter-egg"
+  >SCORE: <span aria-hidden="true">∞</span></div>
+  <div class="footer-links">
+    <a href="mailto:hello@tomiux.com">Email</a>
+    <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
+    <a href="https://tomiux.com/#work">← Work</a>
+  </div>
+</footer>
+
+<script>
+  const egg = document.getElementById('footer-easter-egg');
+  function activateEgg() {
+    egg.setAttribute('data-found', 'true');
+    egg.innerHTML = '<span>🎮 KONAMI CODE ACCEPTED 🎮</span>';
+    egg.setAttribute('aria-label', 'Konami code accepted!');
+  }
+  egg.addEventListener('click', activateEgg);
+  egg.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); }
+  });
+</script>
+
+</body>
+</html>
