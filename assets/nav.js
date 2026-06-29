@@ -136,10 +136,9 @@
       background: #A122C0 !important;
       border-top: 4px solid #0a0520 !important;
       padding: 1.25rem 2rem !important;
-      display: flex !important;
-      justify-content: space-between !important;
+      display: grid !important;
+      grid-template-columns: 1fr auto 1fr !important;
       align-items: center !important;
-      flex-wrap: wrap !important;
       gap: 1rem !important;
       position: relative;
       z-index: 1;
@@ -150,7 +149,8 @@
       color: #ffe566 !important;
       letter-spacing: 0.08em !important;
       line-height: 1.8 !important;
-      flex: 1 1 auto;
+      justify-self: start;
+      text-align: left;
     }
     footer .footer-hits {
       font-family: 'Press Start 2P', monospace !important;
@@ -164,7 +164,7 @@
       cursor: pointer;
       transition: all 0.3s !important;
       text-align: center;
-      flex: 0 0 auto;
+      justify-self: center;
     }
     footer .footer-hits:hover,
     footer .footer-hits:focus-visible {
@@ -184,7 +184,7 @@
     footer .footer-links {
       display: flex !important;
       gap: 1.25rem !important;
-      flex: 0 0 auto;
+      justify-self: end;
     }
     footer .footer-links a {
       font-family: 'Nunito', sans-serif !important;
@@ -202,10 +202,16 @@
       border-radius: 2px !important;
     }
     @media (max-width: 680px) {
-      footer { justify-content: center !important; text-align: center; }
-      footer .footer-brand, footer .footer-hits, footer .footer-links {
-        flex: 0 0 100%;
-        justify-content: center !important;
+      footer {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        justify-items: center;
+      }
+      footer .footer-brand,
+      footer .footer-hits,
+      footer .footer-links {
+        justify-self: center !important;
+        text-align: center;
       }
     }
   `;
@@ -267,6 +273,14 @@
       const main = document.querySelector('main') || document.querySelector('section');
       if (main && !main.id) main.id = 'main-content';
     }
+
+    // ── Remove "Back to Featured Work" links from footer ─────────────────────
+    document.querySelectorAll('footer .footer-links a').forEach(a => {
+      const txt = (a.textContent || '').trim().toLowerCase();
+      if (txt.includes('work') || txt === '← work' || txt === '→ work') {
+        a.remove();
+      }
+    });
 
     // ── Dropdown ──────────────────────────────────────────────────────────────
     const btn = document.getElementById('nav-featured-btn');
