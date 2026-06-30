@@ -119,6 +119,7 @@
   .section-title {
     font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(2rem, 4.5vw, 3.2rem);
     color: var(--purple); flex: 1; line-height: 1;
+    -webkit-text-stroke: 1.5px var(--pixel-dark);
   }
   .section-title .accent  { color: var(--purple); }
   .section-title .accent2 { color: var(--hot-pink); }
@@ -193,7 +194,7 @@
     border-radius: 4px; overflow: hidden;
   }
   .scorecard-header {
-    background: var(--pixel-dark); padding: 0.75rem 1.25rem;
+    background: var(--purple); padding: 0.75rem 1.25rem;
     font-family: 'Press Start 2P', monospace; font-size: 0.58rem;
     color: var(--yellow); letter-spacing: 0.06em;
   }
@@ -251,23 +252,29 @@
   .fw-item-text { font-size: 0.8rem; font-weight: 600; color: var(--text); line-height: 1.45; }
 
   /* Terms band */
-  .terms-band { background: var(--pixel-dark); padding: 3.5rem 2rem; position: relative; z-index: 1; }
+  /* Terms section — light style matching site */
+  .terms-band {
+    background: radial-gradient(ellipse at 0% 50%, rgba(107,184,255,0.15) 0%, transparent 60%), radial-gradient(ellipse at 100% 50%, rgba(63,187,158,0.15) 0%, transparent 60%), var(--lavender-bg);
+    padding: 3.5rem 2rem; position: relative; z-index: 1;
+  }
   .terms-inner { max-width: 1100px; margin: 0 auto; }
   .terms-label {
     font-family: 'Press Start 2P', monospace; font-size: 0.58rem;
-    color: var(--yellow); letter-spacing: 0.1em; margin-bottom: 1.75rem;
+    color: var(--purple); letter-spacing: 0.1em; margin-bottom: 1.75rem;
   }
   .terms-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
   .term-card {
-    background: rgba(255,255,255,0.07); border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 4px; padding: 1.25rem 1.1rem; transition: background 0.15s;
+    background: var(--white); border: 3px solid var(--pixel-dark);
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    border-radius: 4px; padding: 1.25rem 1.1rem;
+    transition: transform 0.12s, box-shadow 0.12s;
   }
-  .term-card:hover { background: rgba(255,255,255,0.12); }
+  .term-card:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
   .term-name {
     font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.4rem;
-    color: var(--yellow); margin-bottom: 0.4rem; line-height: 1;
+    color: var(--purple); margin-bottom: 0.4rem; line-height: 1;
   }
-  .term-def { font-size: 0.82rem; color: rgba(255,255,255,0.82); line-height: 1.55; }
+  .term-def { font-size: 0.82rem; color: var(--text-mid); line-height: 1.55; font-weight: 600; }
 
   /* Stat row */
   .stat-row {
@@ -339,23 +346,23 @@
 
   /* Takeaway */
   .takeaway {
-    background: var(--pixel-dark);
-    border: 4px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--lavender-dark);
+    background: var(--teal);
+    border: 4px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--pixel-dark);
     border-radius: 4px; padding: 2.5rem 2rem; margin-top: 3rem; position: relative;
   }
   .takeaway::before {
     content: '"';
     font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 8rem; line-height: 1;
-    color: var(--yellow); opacity: 0.2;
+    color: var(--pixel-dark); opacity: 0.12;
     position: absolute; top: -1rem; left: 1.5rem;
   }
   .takeaway-text {
     font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    color: var(--white); line-height: 1.45; margin-bottom: 1rem; position: relative;
+    color: var(--pixel-dark); line-height: 1.45; margin-bottom: 1rem; position: relative;
   }
   .takeaway-attr {
     font-family: 'Press Start 2P', monospace; font-size: 0.50rem;
-    color: var(--yellow); letter-spacing: 0.05em; position: relative;
+    color: white; letter-spacing: 0.05em; position: relative;
   }
 
   /* Body copy */
@@ -383,18 +390,18 @@
 
   /* Footer */
   footer {
-    background: var(--pixel-dark); color: rgba(255,255,255,0.6);
-    border-top: 4px solid var(--lavender-dark);
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 1rem; padding: 1.5rem 2rem; position: relative; z-index: 1;
+    background: var(--purple); border-top: 4px solid var(--pixel-dark);
+    padding: 2rem; display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1;
   }
-  .footer-brand { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.45); }
-  .footer-links { display: flex; gap: 1.25rem; }
-  .footer-links a { font-family: 'Press Start 2P', monospace; font-size: 0.6rem; color: var(--yellow); text-decoration: none; letter-spacing: 0.05em; transition: color 0.12s; }
-  .footer-links a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; border-radius: 2px; }
-  .footer-links a:hover { color: var(--pink); }
-  .footer-hits[data-found='true'] { color: var(--yellow); }
-  .footer-hits:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; border-radius: 4px; color: var(--yellow); }
+  .footer-brand { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; color: var(--mint); letter-spacing: 0.06em; line-height: 2; }
+  .footer-links { display: flex; gap: 1rem; }
+  .footer-links a { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.8rem; color: var(--mint); text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; transition: color 0.12s; }
+  .footer-links a:hover { color: var(--yellow); }
+  .footer-links a:focus-visible { outline: 2px solid var(--yellow); outline-offset: 3px; border-radius: 2px; color: var(--yellow); }
+  .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--yellow); letter-spacing: 0.1em; cursor: pointer; }
+  .footer-hits[data-found='true'] { color: var(--teal); }
+  .footer-hits:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; border-radius: 4px; }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -404,6 +411,16 @@
     }
     body::before { animation: none; opacity: 0.08; }
   }
+
+  /* REVEAL ANIMATIONS */
+  .reveal { opacity: 0; transform: translateY(16px); }
+  @media (prefers-reduced-motion: no-preference) { .reveal { animation: up 0.6s ease forwards; } }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+  @keyframes up { to { opacity: 1; transform: translateY(0); } }
+  .d1 { animation-delay: 0.1s; }
+  .d2 { animation-delay: 0.25s; }
+  .d3 { animation-delay: 0.4s; }
+  .d4 { animation-delay: 0.55s; }
 </style>
 </head>
 <body>
@@ -415,20 +432,20 @@
 <section class="case-hero" aria-label="Coursera cognitive accessibility audit">
   <div class="hero-inner">
     <div>
-      <span class="hero-eyebrow">COGNITIVE AUDIT · 2026</span>
+      <span class="hero-eyebrow reveal">COGNITIVE AUDIT · 2026</span>
       <h1 class="hero-title">
-        <span class="line1">Coursera</span>
-        <span class="line2">Cognitive Audit</span>
+        <span class="line1 reveal d1">Coursera</span>
+        <span class="line2 reveal d2">Cognitive Audit</span>
       </h1>
-      <p class="hero-sub">How much mental energy does a learner on Coursera spend before they learn anything? A heuristic evaluation of the web and iOS platforms through the lens of cognitive accessibility.</p>
-      <div class="hero-tags">
+      <p class="hero-sub reveal d2">How much mental energy does a learner on Coursera spend before they learn anything? A heuristic evaluation of the web and iOS platforms through the lens of cognitive accessibility.</p>
+      <div class="hero-tags reveal d3">
         <span class="hero-tag">Nielsen's Heuristics</span>
         <span class="hero-tag">Cognitive Load</span>
         <span class="hero-tag">Web + iOS</span>
         <span class="hero-tag">March 2026</span>
       </div>
     </div>
-    <div class="hero-scorecard">
+    <div class="hero-scorecard reveal d2">
       <div class="scorecard-header">// AUDIT AT A GLANCE</div>
       <div class="scorecard-body">
         <div class="scorecard-row">
@@ -449,7 +466,7 @@
         </div>
         <div class="scorecard-row">
           <span class="scorecard-label">Highest Severity</span>
-          <span class="scorecard-val" style="color:var(--red);">Score 4 — 7 Issues</span>
+          <span class="scorecard-val" style="color:var(--red);">Score 4 · 7 Issues</span>
         </div>
       </div>
     </div>
@@ -518,7 +535,7 @@
 <div class="section-bg-soft">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">02 // SEVERITY OVERVIEW</span>
+      <span class="section-badge" aria-hidden="true" style="background:var(--teal);color:var(--pixel-dark);">02 // SEVERITY OVERVIEW</span>
       <h2 class="section-title">Counting the <span class="accent">cost</span></h2>
     </div>
     <div class="stat-row">
@@ -539,7 +556,7 @@
         <span class="stat-label">SCORE 4<br/>CRITICAL</span>
       </div>
     </div>
-    <p class="body-text" style="text-align:center; margin: 0 auto;">Of the 18 findings across both platforms, 7 hit Score 4 — total barriers requiring immediate attention to prevent learner abandonment. All 7 are on mobile.</p>
+    <p class="body-text" style="text-align:center; margin: 0 auto;">Of the 18 findings across both platforms, 7 hit Score 4, total barriers requiring immediate attention to prevent learner abandonment. All 7 are on mobile.</p>
   </div>
 </div>
 
@@ -549,7 +566,7 @@
 <div class="section-bg-white">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">03 // FINDINGS BY PLATFORM</span>
+      <span class="section-badge" aria-hidden="true" style="background:var(--purple);color:white;">03 // FINDINGS BY PLATFORM</span>
       <h2 class="section-title">Web vs. <span class="accent3">Mobile</span></h2>
     </div>
     <div class="platform-split">
@@ -603,7 +620,7 @@
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
-            <div class="pf-text"><span class="pf-title">Deceptive Styling — Titles</span> A title in the left pane looks like static branding but triggers a full page navigation. A visual-function lie.</div>
+            <div class="pf-text"><span class="pf-title">Deceptive Styling: Titles</span> A title in the left pane looks like static branding but triggers a full page navigation. A visual-function lie.</div>
           </div>
         </div>
       </div>
@@ -668,7 +685,7 @@
 <div class="section-bg-soft">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">04 // BY HEURISTIC CATEGORY</span>
+      <span class="section-badge" aria-hidden="true" style="background:var(--orange);color:var(--pixel-dark);">04 // BY HEURISTIC CATEGORY</span>
       <h2 class="section-title">Six lenses, <span class="accent">one learner</span></h2>
     </div>
     <div class="framework-grid">
@@ -728,7 +745,7 @@
           <ul class="fw-findings">
             <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">"My Learning" Hub and logo navigation act as dual orientation safety nets</span></li>
             <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Link Anxiety causes users to hesitate clicking "Coach" for fear of losing progress</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">No hierarchical context — lessons don't show where they sit in the larger structure</span></li>
+            <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">No hierarchical context. Lessons don't show where they sit in the larger structure</span></li>
           </ul>
         </div>
       </div>
@@ -755,7 +772,7 @@
 <div class="section-bg-white">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">05 // RECOMMENDATIONS</span>
+      <span class="section-badge" aria-hidden="true" style="background:var(--hot-pink);color:white;">05 // RECOMMENDATIONS</span>
       <h2 class="section-title">Making the system <span class="accent2">invisible</span></h2>
     </div>
     <div class="recs-grid">
@@ -782,12 +799,10 @@
     </div>
 
     <div class="takeaway">
-      <p class="takeaway-text">The goal is to make the system invisible. When the interface disappears, the learner's full cognitive budget is available for the one thing they came to do — actually learn.</p>
+      <p class="takeaway-text">The goal is to make the system invisible. When the interface disappears, the learner's full cognitive budget is available for the one thing they came to do: actually learn.</p>
       <p class="takeaway-attr">Stacy Tomasi, Accessibility Audit, March 2026</p>
     </div>
 
-    <div style="text-align:center; margin-top: 3rem;">
-      <a href="https://tomiux.com/#work" class="btn-back" aria-label="Back to Featured Work">← Back to Featured Work</a>
     </div>
   </div>
 </div>
@@ -802,7 +817,7 @@
     onclick="this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'"
     onkeydown="if(event.key==='Enter'||event.key===' '){this.setAttribute('data-found','true'); this.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'}">SCORE: <span aria-hidden="true">∞</span></div>
   <div class="footer-links">
-    <a href="mailto:stacy.tomasi@gmail.com">Email</a>
+    <a href="mailto:hello@tomiux.com">Email</a>
     <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
     <a href="https://tomiux.com/#work">← Work</a>
   </div>
