@@ -95,7 +95,7 @@
     .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
     .section-badge { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.7rem; padding: 0.4rem 0.75rem; border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
     .badge-yellow  { background: var(--yellow);   color: var(--pixel-dark); }
-    .badge-blue    { background: var(--bn-blue);   color: white; }
+    .badge-blue    { background: var(--bn-blue);   color: var(--pixel-dark); }
     .badge-green   { background: var(--be-green);  color: white; }
     .badge-purple  { background: var(--purple);    color: white; }
     .badge-teal    { background: var(--teal);      color: var(--pixel-dark); }
@@ -140,7 +140,7 @@
 
     .case-meta-pills { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .pill { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.3rem 0.7rem; border-radius: 4px; border: 2.5px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); }
-    .pill-blue   { background: var(--bn-blue);  color: white; }
+    .pill-blue   { background: var(--bn-blue);  color: var(--pixel-dark); }
     .pill-green  { background: var(--be-green); color: white; }
     .pill-purple { background: var(--purple);   color: white; }
     .pill-teal   { background: var(--teal);     color: var(--pixel-dark); }
@@ -189,6 +189,8 @@
     .site-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 5px 5px 0 var(--pixel-dark); border-radius: 10px; overflow: hidden; }
     .site-card-header { padding: 0.75rem 1.25rem; display: flex; align-items: center; gap: 0.6rem; }
     .site-card.bn .site-card-header { background: var(--bn-blue); }
+    .site-card.bn .site-name { color: var(--pixel-dark); }
+    .site-card.bn .site-url { color: rgba(10,5,32,0.65); }
     .site-card.be .site-card-header { background: var(--be-green); }
     .site-name { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.85rem; color: white; }
     .site-url  { font-size: 0.68rem; color: rgba(255,255,255,0.75); font-weight: 700; }
@@ -217,7 +219,7 @@
     .metrics-table th:first-child { text-align: left; }
     .metrics-table th:last-child { border-right: none; }
     .metrics-table th.th-label { background: var(--purple); color: white; }
-    .metrics-table th.th-bn { background: var(--bn-blue); color: white; }
+    .metrics-table th.th-bn { background: var(--bn-blue); color: var(--pixel-dark); }
     .metrics-table th.th-be { background: var(--be-green); color: white; }
     .metrics-table td { padding: 0.8rem 1.25rem; border-bottom: 2px solid var(--lavender-mid); border-right: 2px solid var(--lavender-mid); text-align: center; font-size: 0.84rem; font-weight: 700; color: var(--text-mid); }
     .metrics-table td:first-child { text-align: left; color: var(--text-light); font-size: 0.8rem; }
@@ -235,6 +237,7 @@
     .theme-icon { font-size: 1.1rem; }
     .theme-card-label { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--white); }
     .theme-t1 .theme-card-top { background: var(--bn-blue); }
+    .theme-t1 .theme-card-label { color: var(--pixel-dark); }
     .theme-t2 .theme-card-top { background: var(--purple); }
     .theme-t3 .theme-card-top { background: var(--be-green); }
     .theme-t4 .theme-card-top { background: var(--orange); }
@@ -251,6 +254,8 @@
     .disconnect-card { background: var(--white); border: 3px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--pixel-dark); border-radius: 12px; overflow: hidden; margin-bottom: 2rem; }
     .disconnect-header { padding: 0.8rem 1.5rem; display: flex; align-items: center; gap: 1rem; }
     .disconnect-header.bn { background: var(--bn-blue); }
+    .disconnect-header.bn .disconnect-title { color: var(--pixel-dark); }
+    .disconnect-header.bn .disconnect-num { color: var(--pixel-dark); background: rgba(10,5,32,0.08); border-color: rgba(10,5,32,0.2); }
     .disconnect-header.be { background: var(--be-green); }
     .disconnect-header.both { background: var(--purple); }
     .disconnect-num { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.7rem; color: var(--yellow); letter-spacing: 0.08em; background: rgba(255,229,102,0.15); padding: 0.3rem 0.6rem; border: 1.5px solid rgba(255,229,102,0.4); }
@@ -331,7 +336,7 @@
           <span class="line2">Brilliant Earth</span>
         </h1>
         <p class="case-subtitle">
-          Two luxury jewelry sites. One identical task. An unmoderated comparative usability benchmark that found the numbers pointing in opposite directions -- and asked why.
+          Two luxury jewelry sites. One identical task. An unmoderated comparative usability benchmark that found the numbers pointing in opposite directions, and asked why.
         </p>
         <div class="case-meta-pills">
           <span class="pill pill-purple">Unmoderated Testing</span>
@@ -387,14 +392,14 @@
           <div class="overview-card-top"></div>
           <div class="overview-card-body">
             <div class="overview-card-title">What We Were Testing</div>
-            <p class="overview-card-text">Blue Nile and Brilliant Earth both occupy the luxury jewelry space -- similar product categories, comparable price points, and a shared customer: someone shopping for something that matters. That made them a fair pair for a head-to-head unmoderated usability benchmark. Same task. Same participants. Same conditions. Anything different in the data comes from the sites themselves.</p>
+            <p class="overview-card-text">Blue Nile and Brilliant Earth both occupy the luxury jewelry space with similar product categories, comparable price points, and a shared customer: someone shopping for something that matters. That made them a fair pair for a head-to-head unmoderated usability benchmark. Same task. Same participants. Same conditions. Anything different in the data comes from the sites themselves.</p>
           </div>
         </div>
         <div class="overview-card">
           <div class="overview-card-top"></div>
           <div class="overview-card-body">
             <div class="overview-card-title">Why It Matters</div>
-            <p class="overview-card-text">High-consideration e-commerce has almost no margin for confusion. A user shopping for a platinum necklace as a gift isn't browsing casually -- they have a specific goal and limited patience for a site that gets in the way. This study measured exactly where each site helped or hurt that experience, using behavioral data rather than self-report alone.</p>
+            <p class="overview-card-text">High-consideration e-commerce has almost no margin for confusion. A user shopping for a platinum necklace as a gift isn't browsing casually. They have a specific goal and limited patience for a site that gets in the way. This study measured exactly where each site helped or hurt that experience, using behavioral data rather than self-report alone.</p>
           </div>
         </div>
       </div>
@@ -410,11 +415,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td class="label-col">Method</td><td>Unmoderated remote usability study -- participants completed tasks independently, no moderator present</td></tr>
+          <tr><td class="label-col">Method</td><td>Unmoderated remote usability study. Participants completed tasks independently with no moderator present</td></tr>
           <tr><td class="label-col">Platform</td><td>Loop11 (participants required to install browser extension)</td></tr>
           <tr><td class="label-col">Sites Tested</td><td>Blue Nile (bluenile.com) and Brilliant Earth (brilliantearth.com)</td></tr>
           <tr><td class="label-col">Participants</td><td>19 recruited · 15 fully completed · 4 incomplete. Pool included family members, classmates, and friends.</td></tr>
-          <tr><td class="label-col">Throwaway Task</td><td>Find the company's physical store locations page -- used to orient participants before the comparison task</td></tr>
+          <tr><td class="label-col">Throwaway Task</td><td>Find the company's physical store locations page. Used to orient participants before the comparison task</td></tr>
           <tr><td class="label-col">Comparison Task</td><td>You are shopping for a gift. Find a necklace made of platinum with diamonds and sapphires. Add it to your cart and note the price.</td></tr>
           <tr><td class="label-col">Task Type</td><td>Standard (URL-based start) · Page limit: 5 per site · Success criteria: shopping cart URL or specific product URL (Any rule)</td></tr>
           <tr><td class="label-col">Measures</td><td>Success rate, fail rate, abandon rate, lostness, page views, task duration, SUS score, click path analysis</td></tr>
@@ -424,7 +429,7 @@
 
       <div class="limitation-box" role="note">
         <div class="limitation-label">⚠ Study Limitations</div>
-        <p class="limitation-text">19 participants is small, and the pool skewed toward family members in one geographic area and classmates whose engagement patterns weren't consistent with real users. Loop11's browser extension requirement likely deterred participants and introduced selection bias toward more tech-comfortable users. Results should be read as directional benchmarking, not a definitive usability verdict. SUS respondent counts also differed: 17 for Blue Nile, 15 for Brilliant Earth -- scores aren't from equal sample sizes.</p>
+        <p class="limitation-text">19 participants is small, and the pool skewed toward family members in one geographic area and classmates whose engagement patterns weren't consistent with real users. Loop11's browser extension requirement likely deterred participants and introduced selection bias toward more tech-comfortable users. Results should be read as directional benchmarking, not a definitive usability verdict. SUS respondent counts also differed: 17 for Blue Nile, 15 for Brilliant Earth, so scores aren't from equal sample sizes.</p>
       </div>
     </div>
   </section>
@@ -489,13 +494,13 @@
         </div>
         <div class="tension-body">
           <p>Brilliant Earth scored higher on SUS (67 vs. 64), lower lostness (0.35 vs. 0.47), and faster task completion for successful users (1:19 vs. 2:03). By those numbers, it's the more intuitive site. But it also had a 26% abandon rate versus Blue Nile's 10%, and a 15-point gap in success rate. The SUS scores don't reflect those gaps at all.</p>
-          <p>The users who succeeded on Brilliant Earth navigated it efficiently -- but more than a quarter of participants gave up before getting there. A strong SUS score from the finishers doesn't speak for the ones who didn't make it. That's the core tension of this study, and it's a useful argument for why behavioral metrics and self-report scores need to be read together, not as substitutes for each other.</p>
+          <p>The users who succeeded on Brilliant Earth navigated it efficiently, but more than a quarter of participants gave up before getting there. A strong SUS score from the finishers doesn't speak for the ones who didn't make it. That's the core tension of this study, and it's a useful argument for why behavioral metrics and self-report scores need to be read together, not as substitutes for each other.</p>
         </div>
       </div>
 
       <div class="limitation-box" style="border-left-color: var(--purple);">
         <div class="limitation-label" style="color: var(--purple);">💡 Notable Data Point</div>
-        <p class="limitation-text">On Brilliant Earth, the average abandon time was 2:10 -- longer than the average successful completion time of 1:19. Participants who gave up weren't confused and leaving immediately. They were trying, getting stuck somewhere mid-task, and eventually quitting. That's a different problem than a confusing entry point -- it points to something breaking down deeper in the flow.</p>
+        <p class="limitation-text">On Brilliant Earth, the average abandon time was 2:10, longer than the average successful completion time of 1:19. Participants who gave up weren't confused and leaving immediately. They were trying, getting stuck somewhere mid-task, and eventually quitting. That's a different problem than a confusing entry point. It points to something breaking down deeper in the flow.</p>
       </div>
     </div>
   </section>
@@ -562,11 +567,11 @@
         <div class="theme-card theme-t1">
           <div class="theme-card-top">
             <span class="theme-icon">🗺️</span>
-            <span class="theme-card-label">IA LABELING -- BOTH SITES</span>
+            <span class="theme-card-label">IA LABELING · BOTH SITES</span>
           </div>
           <div class="theme-card-body">
             <div class="theme-card-title">The "Design Your Own" Trap</div>
-            <p class="theme-card-text">The most common failure on both sites was landing in a customization section instead of pre-designed jewelry. Neither site clearly separates these pathways at the category level. Users expecting to browse ready-made pieces followed labels that dropped them into build-your-own flows -- a fundamentally different task.</p>
+            <p class="theme-card-text">The most common failure on both sites was landing in a customization section instead of pre-designed jewelry. Neither site clearly separates these pathways at the category level. Users expecting to browse ready-made pieces followed labels that dropped them into build-your-own flows, a fundamentally different task.</p>
             <span class="theme-stat">Most common fail path on both sites</span>
           </div>
         </div>
@@ -574,11 +579,11 @@
         <div class="theme-card theme-t2">
           <div class="theme-card-top">
             <span class="theme-icon">🔽</span>
-            <span class="theme-card-label">FILTER RELIANCE -- BRILLIANT EARTH</span>
+            <span class="theme-card-label">FILTER RELIANCE · BRILLIANT EARTH</span>
           </div>
           <div class="theme-card-body">
             <div class="theme-card-title">Success Depended on Filters Working</div>
-            <p class="theme-card-text">Brilliant Earth's successful users relied heavily on filters to reach the task URL -- the same page URL appeared multiple times in click streams as participants adjusted settings without navigating away. When filters didn't surface the right result, there wasn't an obvious fallback, which likely contributed to the high abandon rate.</p>
+            <p class="theme-card-text">Brilliant Earth's successful users relied heavily on filters to reach the task URL. The same page URL appeared multiple times in click streams as participants adjusted settings without navigating away. When filters didn't surface the right result, there wasn't an obvious fallback, which likely contributed to the high abandon rate.</p>
             <span class="theme-stat">6-click avg success path</span>
           </div>
         </div>
@@ -614,7 +619,7 @@
           </div>
           <div class="theme-card-body">
             <div class="theme-card-title">They Tried for Over Two Minutes First</div>
-            <p class="theme-card-text">Brilliant Earth abandoners averaged 2:10 before quitting -- longer than the 1:19 average for successful completions. They weren't bailing immediately. Something downstream caused them to give up, likely a navigation dead end or a filter interaction that didn't return useful results.</p>
+            <p class="theme-card-text">Brilliant Earth abandoners averaged 2:10 before quitting, longer than the 1:19 average for successful completions. They weren't bailing immediately. Something downstream caused them to give up, likely a navigation dead end or a filter interaction that didn't return useful results.</p>
             <span class="theme-stat">Abandon avg 2:10 vs. success avg 1:19</span>
           </div>
         </div>
@@ -622,11 +627,11 @@
         <div class="theme-card theme-t6">
           <div class="theme-card-top">
             <span class="theme-icon">🎯</span>
-            <span class="theme-card-label">DIRECT PATHING -- BLUE NILE</span>
+            <span class="theme-card-label">DIRECT PATHING · BLUE NILE</span>
           </div>
           <div class="theme-card-body">
             <div class="theme-card-title">Fewer Clicks to the Finish Line</div>
-            <p class="theme-card-text">Blue Nile's 4-click success path suggests more direct navigation to product or cart. 93% of successful participants ended at the shopping cart URL. Whether this reflects better search, better IA, or better category labeling isn't determinable from this study alone -- but the shorter path correlates with higher completion.</p>
+            <p class="theme-card-text">Blue Nile's 4-click success path suggests more direct navigation to product or cart. 93% of successful participants ended at the shopping cart URL. Whether this reflects better search, better IA, or better category labeling isn't determinable from this study alone, but the shorter path correlates with higher completion.</p>
             <span class="theme-stat">14/15 successful users hit the cart URL (93%)</span>
           </div>
         </div>
@@ -655,7 +660,7 @@
         <div class="disconnect-body">
           <div class="disconnect-side">
             <span class="disconnect-side-label label-designed">WHAT BOTH SITES BUILT</span>
-            <p class="disconnect-text">Navigation categories that separate custom jewelry (build-your-own, design studio) from pre-designed pieces. On Brilliant Earth, the fail path URL is explicitly <code>/jewelry/necklace/diamond/design-your-own/</code> -- a legitimate section of the site for a different user goal. On Blue Nile, the fail path included a search results page filtered to all-diamond necklaces with no material refinement.</p>
+            <p class="disconnect-text">Navigation categories that separate custom jewelry (build-your-own, design studio) from pre-designed pieces. On Brilliant Earth, the fail path URL is explicitly <code>/jewelry/necklace/diamond/design-your-own/</code>, a legitimate section of the site for a different user goal. On Blue Nile, the fail path included a search results page filtered to all-diamond necklaces with no material refinement.</p>
           </div>
           <div class="disconnect-side">
             <span class="disconnect-side-label label-users">WHAT USERS DID INSTEAD</span>
@@ -678,13 +683,13 @@
         <div class="disconnect-body">
           <div class="disconnect-side">
             <span class="disconnect-side-label label-designed">WHAT BRILLIANT EARTH BUILT</span>
-            <p class="disconnect-text">A filter-forward browsing experience where users can narrow by metal, stone, price, and style. Successful participants used this system effectively -- the repeat page URL appearances in click streams show users adjusting filters without leaving the page. When it worked, it worked efficiently (7.6 avg page views for success).</p>
+            <p class="disconnect-text">A filter-forward browsing experience where users can narrow by metal, stone, price, and style. Successful participants used this system effectively. The repeat page URL appearances in click streams show users adjusting filters without leaving the page. When it worked, it worked efficiently (7.6 avg page views for success).</p>
           </div>
           <div class="disconnect-side">
             <span class="disconnect-side-label label-users">WHAT USERS DID INSTEAD</span>
             <ul class="behavior-list">
               <li>Participants who couldn't find the right filter combination had no clear alternative path</li>
-              <li>26% abandoned rather than finding a workaround -- the highest abandon rate in the study</li>
+              <li>26% abandoned rather than finding a workaround, the highest abandon rate in the study</li>
               <li>Abandoners spent 2:10 trying before quitting, suggesting a mid-flow breakdown rather than an upfront confusion</li>
               <li>When filtering fails, there's no obvious fallback to search or browse</li>
             </ul>
@@ -701,13 +706,13 @@
         <div class="disconnect-body">
           <div class="disconnect-side">
             <span class="disconnect-side-label label-finding">THE PATTERN</span>
-            <p class="disconnect-text">Blue Nile's successful users took more pages (8.8 avg) and more time (2:03) than Brilliant Earth's successful users -- but they also succeeded more often (78% vs. 63%). The fail pattern is also different: Blue Nile failures spent 43.8 seconds per page, versus 18 seconds for Brilliant Earth failures. Blue Nile users who failed were exploring. Brilliant Earth users who failed were stuck.</p>
+            <p class="disconnect-text">Blue Nile's successful users took more pages (8.8 avg) and more time (2:03) than Brilliant Earth's successful users, but they also succeeded more often (78% vs. 63%). The fail pattern is also different: Blue Nile failures spent 43.8 seconds per page, versus 18 seconds for Brilliant Earth failures. Blue Nile users who failed were exploring. Brilliant Earth users who failed were stuck.</p>
           </div>
           <div class="disconnect-side">
             <span class="disconnect-side-label label-users">WHAT THIS SUGGESTS</span>
             <ul class="behavior-list">
               <li>Blue Nile's navigation may offer more recovery paths when users go the wrong direction</li>
-              <li>More page views and time isn't inherently worse -- users were still finding what they needed</li>
+              <li>More page views and time isn't inherently worse. Users were still finding what they needed</li>
               <li>The 4-click success path suggests a direct route existed for users who found the right entry point</li>
               <li>Lower abandon rate (10%) supports the idea that confusion resolved rather than compounded</li>
             </ul>
@@ -732,7 +737,7 @@
       <div class="rec-grid">
         <div class="rec-card rec-t1">
           <div class="rec-card-top">
-            <span class="rec-priority">P1 · HIGH IMPACT -- BOTH SITES</span>
+            <span class="rec-priority">P1 · HIGH IMPACT · BOTH SITES</span>
             <span class="rec-card-icon">🗺️</span>
           </div>
           <div class="rec-card-body">
@@ -748,7 +753,7 @@
 
         <div class="rec-card rec-t2">
           <div class="rec-card-top">
-            <span class="rec-priority">P1 · HIGH IMPACT -- BRILLIANT EARTH</span>
+            <span class="rec-priority">P1 · HIGH IMPACT · BRILLIANT EARTH</span>
             <span class="rec-card-icon">🔽</span>
           </div>
           <div class="rec-card-body">
