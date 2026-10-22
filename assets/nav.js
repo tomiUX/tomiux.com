@@ -436,7 +436,7 @@
 
   // ── Jump bar: auto-built from section badges on case study pages ─────────────
   function buildJumpBar() {
-    var badges = [].slice.call(document.querySelectorAll('.section-badge'));
+    var badges = [].slice.call(document.querySelectorAll('.section-badge')).filter(function (b) { return (b.textContent || '').indexOf('//') > -1; });
     if (badges.length < 3 || document.getElementById('tomiux-jump')) return;
     var used = {};
     var items = badges.map(function (badge, i) {
