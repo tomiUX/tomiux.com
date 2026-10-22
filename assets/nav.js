@@ -220,6 +220,14 @@
 
 
 
+
+    /* TOP BAR BACK LINK */
+    #tomiux-nav .nav-back { display: inline-flex; align-items: center; gap: 0.35rem; margin-left: 1rem; margin-right: auto; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: #4a1878; padding: 0.4rem 0.75rem; border: 2px solid #0a0520; border-radius: 6px; background: #fff; box-shadow: 2px 2px 0 #0a0520; white-space: nowrap; }
+    #tomiux-nav .nav-back:hover { background: #f0e8ff; color: #A122C0; }
+    #tomiux-nav .nav-back:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; }
+    #tomiux-nav .nb-short { display: none; }
+    @media (max-width: 1080px) { #tomiux-nav .nb-long { display: none; } #tomiux-nav .nb-short { display: inline; } }
+    @media (max-width: 760px) { #tomiux-nav .nav-back { margin-left: 0.6rem; } }
     /* BACK TO WORK */
     .tomiux-back { display: flex; justify-content: center; padding: 3rem 1.25rem 3.5rem; position: relative; z-index: 1; }
     .tomiux-back a { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: #fff; background: #A122C0; border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 8px; padding: 0.85rem 1.5rem; transition: transform 0.12s, box-shadow 0.12s; }
@@ -290,10 +298,11 @@
     '    <img src="https://tomiux.com/assets/Ghost_Logo_Tomi_UX.svg" alt="" aria-hidden="true" />',
     '    <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>',
     '  </a>',
+    '  <a class="nav-back" href="https://tomiux.com/#work"><span aria-hidden="true">\u2190</span> <span class="nb-long">All case studies</span><span class="nb-short">Back</span></a>',
     '  <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="tomiux-nav-links"><span aria-hidden="true">☰</span> <span class="nav-toggle-label">Menu</span></button>',
     '  <ul class="nav-links" role="list" id="tomiux-nav-links">',
     '    <li class="nav-dropdown">',
-    '      <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="nav-featured-btn">Featured</button>',
+    '      <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="nav-featured-btn">Case Studies</button>',
     '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu">',
     '        <a href="https://tomiux.com/pottery-barn/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">HEURISTIC</span> Pottery Barn</a>',
     '        <a href="https://tomiux.com/starbucks-vs-philz/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">HEURISTIC</span> Starbucks vs. Philz</a>',
@@ -306,7 +315,7 @@
     '        <a href="https://tomiux.com/yelp/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">RESEARCH</span> Yelp Usability Study</a>',
     '      </div>',
     '    </li>',
-    '    <li><a href="https://tomiux.com/#extra-credit">Extra Credit</a></li>',
+    '    <li><a href="https://tomiux.com/#extra-credit">Mini Audits</a></li>',
     '    <li><a href="https://tomiux.com/#about">About</a></li>',
     '    <li><a href="https://tomiux.com/#contact">Contact</a></li>',
     '    <li><a href="https://tomiux.com/assets/Stacy-Tomasi-UX-Designer-Resume.pdf" class="nav-cv" target="_blank" rel="noopener" aria-label="Download CV (opens in new tab)">CV \u2197</a></li>',
