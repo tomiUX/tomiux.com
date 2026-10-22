@@ -454,7 +454,7 @@
       </h1>
       <p class="hero-sub reveal d2">How much mental energy does a learner on Coursera spend before they learn anything? A heuristic evaluation of the web and iOS platforms through the lens of cognitive accessibility.</p>
       <div class="hero-tags reveal d3">
-        <span class="hero-tag">Nielsen's Heuristics</span>
+        <span class="hero-tag">W3C Cognitive Accessibility</span>
         <span class="hero-tag">Cognitive Load</span>
         <span class="hero-tag">Web + iOS</span>
         <span class="hero-tag">March 2026</span>
@@ -469,7 +469,7 @@
         </div>
         <div class="scorecard-row">
           <span class="scorecard-label">Framework</span>
-          <span class="scorecard-val">Nielsen (6 of 10)</span>
+          <span class="scorecard-val">W3C cognitive objectives (6)</span>
         </div>
         <div class="scorecard-row">
           <span class="scorecard-label">Severity Scale</span>
@@ -500,10 +500,10 @@
     <div class="problem-grid">
       <div>
         <p class="pull-quote">Cognitive accessibility isn't measured by what's there. It's measured by what isn't.</p>
-        <p class="body-text">Using 6 of Nielsen's 10 Usability Heuristics as the evaluation lens (Focus, Error Prevention, Visual Comprehension, Understanding, Findability, and Clarity), I mapped each finding to a 1–4 severity scale, grounded in real, personal usage of the Google UX Design Certificate.</p>
+        <p class="body-text">Using 6 W3C cognitive accessibility design objectives as the evaluation lens (Focus, Error Prevention, Visual Comprehension, Understanding, Findability, and Clarity), I mapped each finding to a 1–4 severity scale, grounded in real, personal usage of the Google UX Design Certificate.</p>
       </div>
       <div>
-        <p class="sub-label">// WHY THESE 6 HEURISTICS</p>
+        <p class="sub-label">// WHY THESE 6 OBJECTIVES</p>
         <ul class="insight-list">
           <li>They represent the critical path of a learner from login to lesson</li>
           <li>A seamless experience rarely generates data; friction causes abandonment that does</li>
@@ -519,7 +519,7 @@
 <!-- ORIGINAL TERMINOLOGY -->
 <div class="terms-band">
   <div class="terms-inner">
-    <p class="terms-label">// ORIGINAL TERMINOLOGY COINED IN THIS AUDIT</p>
+    <p class="terms-label">// KEY TERMS USED IN THIS AUDIT</p>
     <div class="terms-grid">
       <div class="term-card">
         <p class="term-name">Cognitive Budget</p>
@@ -531,7 +531,7 @@
       </div>
       <div class="term-card">
         <p class="term-name">Interaction Tax</p>
-        <p class="term-def">Mandatory friction that must be "paid" before a user can access the thing they came to do. A 4-click goal-setting flow on every return visit is a textbook Interaction Tax.</p>
+        <p class="term-def">Mandatory friction that must be "paid" before a user can access the thing they came to do. A 4-click goal-setting flow when returning after time away is a textbook Interaction Tax.</p>
       </div>
       <div class="term-card">
         <p class="term-name">Memory Tax</p>
@@ -568,7 +568,7 @@
         <span class="stat-label">SCORE 4<br/>CRITICAL</span>
       </div>
     </div>
-    <p class="body-text" style="text-align:center; margin: 0 auto;">Of the 18 findings across both platforms, 7 hit Score 4, total barriers requiring immediate attention to prevent learner abandonment. All 7 are on mobile.</p>
+    <p class="body-text" style="text-align:center; margin: 0 auto;">Of the 12 issues across both platforms, 7 hit Score 4, total barriers requiring immediate attention to prevent learner abandonment. 6 are on mobile, 1 on web.</p>
   </div>
 </div>
 
@@ -600,7 +600,7 @@
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s3">S3</span>
-            <div class="pf-text"><span class="pf-title">Non-Standard Theater Mode Icon</span> No universal meaning, no persistent tooltip. Its immersive functionality remains hidden from most users.</div>
+            <div class="pf-text"><span class="pf-title">Non-Standard Theater Mode Icon</span> No universal meaning, no persistent tooltip. Its immersive functionality remains hidden from many users.</div>
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s3">S3</span>
@@ -611,7 +611,7 @@
             <div class="pf-text"><span class="pf-title">Deceptive Styling: Titles</span> A title in the left pane looks like static branding but triggers a full page navigation. A visual-function lie.</div>
           </div>
           <details class="more quiet">
-            <summary>Strengths (6)</summary>
+            <summary>Strengths (7)</summary>
             <div class="platform-finding">
               <span class="pf-badge pf-s1">S1</span>
               <div class="pf-text"><span class="pf-title">Theater Mode</span> Centers video, darkens background, syncs highlighted transcript. Removes peripheral distraction beautifully.</div>
@@ -630,7 +630,11 @@
             </div>
             <div class="platform-finding">
               <span class="pf-badge pf-s1">S1</span>
-              <div class="pf-text"><span class="pf-title">"My Learning" Hub + Logo Nav</span> Centralized landing page and predictable logo "Home" button provide dual orientation safety nets.</div>
+              <div class="pf-text"><span class="pf-title">"My Learning" Hub</span> Centralized landing page provides an orientation safety net.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Logo Nav</span> Predictable logo "Home" button provides a second orientation safety net.</div>
             </div>
             <div class="platform-finding">
               <span class="pf-badge pf-s1">S1</span>
@@ -645,11 +649,11 @@
         <div class="platform-body">
           <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
-            <div class="pf-text"><span class="pf-title">Mandatory 4-Click Goal Flow</span> A forced commitment/goal-setting sequence on every return visit. An Interaction Tax paid before any learning begins.</div>
+            <div class="pf-text"><span class="pf-title">Mandatory 4-Click Goal Flow</span> A forced commitment/goal-setting sequence when returning after time away. An Interaction Tax paid before any learning begins.</div>
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
-            <div class="pf-text"><span class="pf-title">Progress Confusion</span> 76% in one view, 45% in another, with different branding from the web. Forces Mental Math™ and causes planning errors around deadlines.</div>
+            <div class="pf-text"><span class="pf-title">Progress Confusion</span> 76% in one view, 45% in another, with different branding from the web. Forces Mental Math and causes planning errors around deadlines.</div>
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
@@ -695,7 +699,7 @@
 
     </div>
     <details class="more quiet by-heuristic">
-      <summary>Same findings by heuristic</summary>
+      <summary>Same findings by objective</summary>
       <div class="framework-grid">
 
         <div class="framework-card">
@@ -705,7 +709,7 @@
             <ul class="fw-findings">
               <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Theater Mode removes distractions, a cognitive accessibility best practice</span></li>
               <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Commitment Modal creates interaction fatigue for every returning user</span></li>
-              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">4-Click Interaction Tax paid on every return before any session can begin</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">4-Click Interaction Tax paid when returning after time away, before any session can begin</span></li>
             </ul>
           </div>
         </div>
@@ -729,7 +733,7 @@
             <ul class="fw-findings">
               <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Generous white space minimizes sensory overload when reviewing completed work</span></li>
               <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Portfolio Project buried inside a collapsed module breaks the user's mental map</span></li>
-              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Hidden nav bar with no fading-edge cue conceals essential tabs from most users</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Hidden nav bar with no fading-edge cue conceals essential tabs from many users</span></li>
             </ul>
           </div>
         </div>
@@ -806,7 +810,7 @@
         <p class="rec-title">Fix the Affordances</p>
         <details class="more quiet">
           <summary>Why</summary>
-          <p class="rec-body">Give "Save Note" a proper button border. Add underlines to linked titles. Clear visual affordances eliminate both the invisible web controls and the tappability ambiguity on mobile.</p>
+          <p class="rec-body">Give "Save Note" a proper button border. Add underlines to linked titles. Clear visual affordances eliminate the invisible web controls.</p>
         </details>
       </div>
       <div class="rec-card">
