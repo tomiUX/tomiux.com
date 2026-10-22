@@ -73,8 +73,8 @@
       padding: 0.45rem 0.9rem; border-radius: 6px;
       transition: all 0.15s;
     }
-    #tomiux-nav .nav-links a:hover { background: #c8a8f0; color: #A122C0; }
-    #tomiux-nav .nav-links a:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; background: #c8a8f0; color: #A122C0; }
+    #tomiux-nav .nav-links a:hover { background: #f0e8ff; color: #A122C0; }
+    #tomiux-nav .nav-links a:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; background: #f0e8ff; color: #A122C0; }
 
     /* Dropdown trigger — button not anchor (WCAG 2.1.1) */
     #tomiux-nav .nav-dropdown { position: relative; }
@@ -88,8 +88,8 @@
       transition: all 0.15s;
     }
     #tomiux-nav .nav-dropdown-btn::after { content: '\u25BE'; font-size: 0.6rem; opacity: 0.7; }
-    #tomiux-nav .nav-dropdown-btn:hover { background: #c8a8f0; color: #A122C0; }
-    #tomiux-nav .nav-dropdown-btn:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; background: #c8a8f0; color: #A122C0; }
+    #tomiux-nav .nav-dropdown-btn:hover { background: #f0e8ff; color: #A122C0; }
+    #tomiux-nav .nav-dropdown-btn:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; background: #f0e8ff; color: #A122C0; }
 
     #tomiux-nav .dropdown-menu {
       display: none; position: absolute;
@@ -109,8 +109,8 @@
       text-decoration: none;
     }
     #tomiux-nav .dropdown-menu a:last-child { border-bottom: none; }
-    #tomiux-nav .dropdown-menu a:hover { background: #c8a8f0 !important; color: #A122C0 !important; }
-    #tomiux-nav .dropdown-menu a:focus-visible { outline: 3px solid #A122C0 !important; outline-offset: -3px !important; background: #c8a8f0 !important; color: #A122C0 !important; }
+    #tomiux-nav .dropdown-menu a:hover { background: #f0e8ff !important; color: #A122C0 !important; }
+    #tomiux-nav .dropdown-menu a:focus-visible { outline: 3px solid #A122C0 !important; outline-offset: -3px !important; background: #f0e8ff !important; color: #A122C0 !important; }
 
     #tomiux-nav .nav-dropdown-tag {
       font-family: 'Nunito', sans-serif; font-weight: 800;
@@ -127,6 +127,7 @@
       transform: translate(-1px,-1px) !important;
       box-shadow: 4px 4px 0 #0a0520 !important;
       background: #ff2d9b !important;
+      color: #0a0520 !important;
     }
     #tomiux-nav .nav-cv:focus-visible {
       outline: 3px solid #ffe566 !important;
@@ -278,10 +279,10 @@
   document.head.appendChild(style);
 
   // ── Inject Google Fonts ─────────────────────────────────────────────────────
-  if (!document.querySelector('link[href*="Press+Start"]')) {
+  if (!document.querySelector('link[href*="family=Nunito"]')) {
     const fontLink = document.createElement('link');
     fontLink.rel = 'stylesheet';
-    fontLink.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap';
     document.head.appendChild(fontLink);
   }
 
