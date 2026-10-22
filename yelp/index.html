@@ -363,7 +363,7 @@
         </div>
         <div class="stat-cell">
           <div class="stat-number n7">7 min</div>
-          <div class="stat-label-sm">MAX TIME<br/>VARIANCE</div>
+          <div class="stat-label-sm">SLOWEST<br/>TASK</div>
         </div>
       </div>
     </div>
@@ -476,7 +476,7 @@
         <thead>
           <tr>
             <th>TASK</th>
-            <th>SUCCESS RATE</th>
+            <th>SUCCEEDED</th>
             <th>AVG TIME</th>
             <th>FASTEST</th>
             <th>SLOWEST</th>
@@ -486,7 +486,7 @@
         <tbody>
           <tr>
             <td><span class="task-label">T1: Group Dining</span></td>
-            <td><span class="friction-chip friction-pass">83%</span></td>
+            <td><span class="friction-chip friction-pass">5 of 6</span></td>
             <td>~1.7 min</td>
             <td>~0.7 min</td>
             <td>~2.6 min</td>
@@ -494,7 +494,7 @@
           </tr>
           <tr>
             <td><span class="task-label">T2: Service Hours</span></td>
-            <td><span class="friction-chip friction-med">67%</span></td>
+            <td><span class="friction-chip friction-med">4 of 6</span></td>
             <td>~2.1 min</td>
             <td>~1.0 min</td>
             <td>~5.1 min</td>
@@ -502,7 +502,7 @@
           </tr>
           <tr>
             <td><span class="task-label">T3: Quiet Coffee</span></td>
-            <td><span class="friction-chip friction-fail">50%</span></td>
+            <td><span class="friction-chip friction-fail">3 of 6</span></td>
             <td>~3.4 min</td>
             <td>~1.4 min</td>
             <td>~7.0 min</td>
@@ -510,7 +510,7 @@
           </tr>
           <tr>
             <td><span class="task-label">T4: Dog Brunch</span></td>
-            <td><span class="friction-chip friction-fail">50%</span></td>
+            <td><span class="friction-chip friction-fail">3 of 6</span></td>
             <td>~1.8 min</td>
             <td>~0.5 min</td>
             <td>~4.0 min</td>
@@ -518,7 +518,7 @@
           </tr>
           <tr>
             <td><span class="task-label">T5: Booking</span></td>
-            <td><span class="friction-chip friction-med">67%</span></td>
+            <td><span class="friction-chip friction-med">4 of 6</span></td>
             <td>~3.1 min</td>
             <td>~0.7 min</td>
             <td>~6.9 min</td>
@@ -550,7 +550,7 @@
         <div class="theme-card-body">
           <div class="theme-card-title">The Search Bar as a Workaround</div>
           <p class="theme-card-text">Almost every task, users defaulted to the search bar, not because they preferred it, but because the interface's structured filters failed them. Users typed "quiet coffee shop" directly when no "noise level" filter existed, and used text search for "Mediterranean" even though it was a filterable sidebar attribute.</p>
-          <span class="theme-stat">Observed across all 5 tasks</span>
+          <span class="theme-stat">Observed in almost every task</span>
         </div>
       </div>
 
@@ -561,7 +561,7 @@
         </div>
         <div class="theme-card-body">
           <div class="theme-card-title">Checking the Box Felt Like Finishing the Job</div>
-          <p class="theme-card-text">50% of users failed Task 4 the moment they applied the "Dogs Allowed" filter. They considered the task complete. The checkbox felt like system-level confirmation, so they skipped the human-level verification step (checking a review). When filters returned no results at all, the opposite happened: users lost faith in the structured path and reverted entirely to manual methods.</p>
+          <p class="theme-card-text">50% of users failed Task 4 the moment they applied the "dog friendly" filter. They considered the task complete. The checkbox felt like system-level confirmation, so they skipped the human-level verification step (checking a review). When filters returned no results at all, the opposite happened: users lost faith in the structured path and reverted entirely to manual methods.</p>
           <span class="theme-stat">50% failure rate · Task 4</span>
         </div>
       </div>
@@ -645,16 +645,16 @@
 
     <div class="f-list">
       <details class="f-row">
-        <summary><span class="f-num">#1</span><span class="f-main"><span class="f-title">The Ghost Filter</span><span class="f-prob">"Open At" appeared as static blue text with no dropdown arrow, no border, no affordance</span></span><span class="f-pour">TASK 2</span><span class="f-caret" aria-hidden="true">▾</span></summary>
-        <div class="f-body"><p><b>What Yelp built</b>The "Open At" filter under Features is technically functional; clicking the blue text opens a date/time picker where users can specify a day and hour. The "Open Now" checkbox under Suggested also applies a real-time hours filter. Both tools exist. Both work.</p><p><b>What users did instead</b></p><ul class="behavior-list"><li>"Open Now" read as a status label showing current time, not a clickable filter</li><li>Editing the time required a 3-step sequence users never discovered</li><li>Users spent most of their time manually clicking into profiles to check Sunday hours</li></ul></div>
+        <summary><span class="f-num">#1</span><span class="f-main"><span class="f-title">The Ghost Filter</span><span class="f-prob">"Open At" appeared as static blue text with no dropdown arrow or underline</span></span><span class="f-pour">TASK 2</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>What Yelp built</b>The "Open At" filter under Features is technically functional; clicking the blue text opens a date/time picker where users can specify a day and hour. The "Open Now" checkbox under Suggested also applies a real-time hours filter. Both tools exist. Both work.</p><p><b>What users did instead</b></p><ul class="behavior-list"><li>"Open Now" read as a status label showing current time, not a clickable filter</li><li>Users may miss that the time can be edited at all</li><li>Users spent most of their time manually clicking into profiles to check Sunday hours</li></ul></div>
       </details>
       <details class="f-row">
         <summary><span class="f-num">#2</span><span class="f-main"><span class="f-title">The Hidden Search Box</span><span class="f-prob">Search bar was buried below the map, photos, and business info, mid-page</span></span><span class="f-pour">TASKS 3 &amp; 4</span><span class="f-caret" aria-hidden="true">▾</span></summary>
-        <div class="f-body"><p><b>What Yelp built</b>Yelp places a "Search Reviews" bar directly within the reviews section of every business profile. This bar allows users to search for specific terms across all reviews, which is exactly what was needed to find mentions of "quiet," "dog friendly," or "wifi" without scrolling manually.</p><p><b>What users did instead</b></p><ul class="behavior-list"><li>By the time users scrolled to that point, they were already reading reviews one-by-one</li><li>The bar's position made it appear supplementary, not essential</li><li>50% of Task 3 users never found it and spent up to 7 minutes reading manually</li><li>The one user who succeeded on Task 4 explicitly knew to use it from prior experience</li></ul></div>
+        <div class="f-body"><p><b>What Yelp built</b>Yelp places a "Search Reviews" bar directly within the reviews section of every business profile. This bar allows users to search for specific terms across all reviews, which is exactly what was needed to find mentions of "quiet," "dog friendly," or "wifi" without scrolling manually.</p><p><b>What users did instead</b></p><ul class="behavior-list"><li>By the time users scrolled to that point, they were already reading reviews one-by-one</li><li>The bar's position made it appear supplementary, not essential</li><li>Users who missed it read reviews one by one. The slowest Task 3 session took about 7 minutes</li><li>One user who succeeded on Task 4 explicitly knew to use it from prior experience</li></ul></div>
       </details>
       <details class="f-row">
         <summary><span class="f-num">#3</span><span class="f-main"><span class="f-title">The Shapeshifting CTA</span><span class="f-prob">Yelp's primary CTA button changes label depending on how the user arrived at a business listing.</span></span><span class="f-pour">TASK 5</span><span class="f-caret" aria-hidden="true">▾</span></summary>
-        <div class="f-body"><p><b>The issue</b>Searching "Massage Therapist" displays "Get pricing &amp; availability." Searching "Massage Therapy" or "Thai massage" displays "Request an appointment." The underlying action is identical (scheduling a session) but the label is not.</p><p><b>What users did instead</b></p><ul class="behavior-list"><li>When the label didn't match, they assumed the feature was unavailable</li><li>Multiple participants returned to search with a different query to find "the right button"</li><li>Time variance peaked at 7 minutes, entirely due to this label mismatch</li><li>67% success rate, with failure concentrated in users who arrived via specific search terms</li></ul></div>
+        <div class="f-body"><p><b>The issue</b>Searching "Massage Therapy" displays "Get pricing &amp; availability." Searching "Thai massage" displays "Request an appointment." The underlying action is identical (scheduling a session) but the label is not.</p><p><b>What users did instead</b></p><ul class="behavior-list"><li>When the label didn't match, they assumed the feature was unavailable</li><li>Multiple participants returned to search with a different query to find "the right button"</li><li>Time variance peaked at about 7 minutes on Tasks 3 &amp; 5</li><li>67% success rate, with failure concentrated in users who arrived via specific search terms</li></ul></div>
       </details>
     </div>
   </div>
@@ -678,8 +678,8 @@
         </div>
         <div class="rec-card-body">
           <div class="rec-card-title">Elevate Search Reviews</div>
-          <ul class="rec-item-list"><li>This single change addresses the 50% failure rate on Tasks 3 & 4</li></ul>
-          <details class="more quiet"><summary>How</summary><ul class="rec-item-list"><li>Move the "Search Reviews" bar directly under the Overall Rating section</li><li>Add placeholder microcopy: "Search for quiet, dog-friendly, wifi…"</li><li>Apply a visible border and background to signal interactivity</li></ul></details>
+          <ul class="rec-item-list"><li>Targets the Task 3 &amp; 4 failures</li></ul>
+          <details class="more quiet"><summary>Next steps</summary><ul class="rec-item-list"><li>Move the "Search Reviews" bar directly under the Overall Rating section</li><li>Add placeholder microcopy: "Search for quiet, dog-friendly, wifi…"</li><li>Apply a visible border and background to signal interactivity</li></ul></details>
         </div>
       </div>
 
@@ -690,7 +690,7 @@
         </div>
         <div class="rec-card-body">
           <div class="rec-card-title">Fix Filter Affordances</div>
-          <details class="more quiet"><summary>How</summary><ul class="rec-item-list"><li>Add a chevron arrow and border to the "Open At" time control</li><li>Style "Open Now" as a toggle button, not a label; it should look pressable</li><li>Reduce the time-edit flow from 3 steps to 1 (single click to open picker)</li><li>Add a "Good for Work / Study" filter to replace the "quiet" search workaround</li></ul></details>
+          <details class="more quiet"><summary>Next steps</summary><ul class="rec-item-list"><li>Add a chevron arrow and border to the "Open At" time control</li><li>Style "Open Now" as a toggle button, not a label; it should look pressable</li><li>Reduce the time-edit flow from 3 steps to 1 (single click to open picker)</li><li>Add a "Good for Work / Study" filter to replace the "quiet" search workaround</li></ul></details>
         </div>
       </div>
 
@@ -701,8 +701,8 @@
         </div>
         <div class="rec-card-body">
           <div class="rec-card-title">Standardize CTA Labels</div>
-          <ul class="rec-item-list"><li>This eliminates the 7-minute time variance gap entirely</li></ul>
-          <details class="more quiet"><summary>How</summary><ul class="rec-item-list"><li>Use one label: "Request an Appointment" across all search entry points</li><li>Add a calendar icon to reinforce the action's meaning at a glance</li><li>Never vary button text based on search query. Users carry mental models between sessions</li></ul></details>
+          <ul class="rec-item-list"><li>Targets the Task 5 time gap</li></ul>
+          <details class="more quiet"><summary>Next steps</summary><ul class="rec-item-list"><li>Use one label: "Request an Appointment" across all search entry points</li><li>Add a calendar icon to reinforce the action's meaning at a glance</li><li>Never vary button text based on search query. Users carry mental models between sessions</li></ul></details>
         </div>
       </div>
     </div>
