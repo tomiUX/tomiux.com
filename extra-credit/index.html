@@ -375,6 +375,16 @@
   }
   @media (prefers-reduced-motion: reduce) { .ec-caret, .ec-toggle, .demo-btn { transition: none; } }
 
+
+  /* screenshot viewer */
+  .ec-lightbox { margin: auto; border: 3px solid var(--pixel-dark); border-radius: 10px; box-shadow: 6px 6px 0 var(--pixel-dark); padding: 0; max-width: min(1100px, 94vw); max-height: 92vh; background: var(--white); overflow: hidden; }
+  .ec-lightbox::backdrop { background: rgba(10,5,32,0.72); }
+  .ec-lightbox-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.55rem 0.75rem; border-bottom: 3px solid var(--pixel-dark); background: var(--lavender-bg); }
+  .ec-lightbox-cap { font-weight: 800; font-size: 0.82rem; color: var(--text-mid); line-height: 1.4; }
+  .ec-lightbox-close { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.8rem; padding: 0.35rem 0.75rem; background: var(--yellow); color: var(--pixel-dark); border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 6px; cursor: pointer; flex-shrink: 0; }
+  .ec-lightbox-close:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  .ec-lightbox img { display: block; max-width: 100%; max-height: calc(92vh - 76px); margin: 0 auto; object-fit: contain; }
+
   /* footer */
   footer { background: #A122C0; border-top: 4px solid var(--pixel-dark); padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; position: relative; z-index: 1; }
   .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
@@ -451,7 +461,7 @@
   <p class="demo-count" id="ec-kent-state-instagram-count">On gold: 1.6:1 · fails 4.5:1</p>
 </div>
 <p class="demo-note">Recreated colors. Ratios measured on the original post.</p>
-        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n2"><a class="ec-shot" href="img/ig-game-day.jpg" target="_blank" rel="noopener"><img src="img/ig-game-day.jpg" alt="Kent State basketball Game Day post. Light event text sits on a gold background" loading="lazy"></a><a class="ec-shot" href="img/ig-final-score.jpg" target="_blank" rel="noopener"><img src="img/ig-final-score.jpg" alt="Victory post. The 76 to 75 final score appears only inside the image" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
+        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n2"><a class="ec-shot" href="img/ig-game-day.jpg"><img src="img/ig-game-day.jpg" alt="Kent State basketball Game Day post. Light event text sits on a gold background" loading="lazy"></a><a class="ec-shot" href="img/ig-final-score.jpg"><img src="img/ig-final-score.jpg" alt="Victory post. The 76 to 75 final score appears only inside the image" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
       </div>
     </div>
   </article>
@@ -481,7 +491,7 @@
   <p class="demo-count" id="ec-temu-count">Pop-ups closed: 0</p>
 </div>
 <p class="demo-note">Illustrative. The real app has more.</p>
-        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n1"><a class="ec-shot" href="img/temu-annotated.jpg" target="_blank" rel="noopener"><img src="img/temu-annotated.jpg" alt="Temu home screen annotated: redundant deals, untappable-looking top menu, endless scroll" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
+        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n1"><a class="ec-shot" href="img/temu-annotated.jpg"><img src="img/temu-annotated.jpg" alt="Temu home screen annotated: redundant deals, untappable-looking top menu, endless scroll" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
       </div>
     </div>
   </article>
@@ -516,7 +526,7 @@
   <p class="demo-count" id="ec-palmstreet-count" aria-live="polite"></p>
 </div>
 <p class="demo-note">Illustrative tab bar.</p>
-        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n1"><a class="ec-shot" href="img/palmstreet-annotated.jpg" target="_blank" rel="noopener"><img src="img/palmstreet-annotated.jpg" alt="Palmstreet home screen annotated: clean grid, clear navigation, organized deals" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
+        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n1"><a class="ec-shot" href="img/palmstreet-annotated.jpg"><img src="img/palmstreet-annotated.jpg" alt="Palmstreet home screen annotated: clean grid, clear navigation, organized deals" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
       </div>
     </div>
   </article>
@@ -550,7 +560,7 @@
   <p class="demo-count" id="ec-planta-count" aria-live="polite">Tap Done on any task</p>
 </div>
 <p class="demo-note">Illustrative tasks.</p>
-        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n2"><a class="ec-shot" href="img/planta-light-setting.jpg" target="_blank" rel="noopener"><img src="img/planta-light-setting.jpg" alt="Planta light settings: grow light must be changed at the site level first" loading="lazy"></a><a class="ec-shot" href="img/planta-tasks.jpg" target="_blank" rel="noopener"><img src="img/planta-tasks.jpg" alt="Planta task list showing today&#x27;s tasks and late warnings" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
+        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n2"><a class="ec-shot" href="img/planta-light-setting.jpg"><img src="img/planta-light-setting.jpg" alt="Planta light settings: grow light must be changed at the site level first" loading="lazy"></a><a class="ec-shot" href="img/planta-tasks.jpg"><img src="img/planta-tasks.jpg" alt="Planta task list showing today&#x27;s tasks and late warnings" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
       </div>
     </div>
   </article>
@@ -583,7 +593,7 @@
   <div class="cart" id="ec-portland-leather-cart" hidden></div>
 </div>
 <p class="demo-note">Prices from the app screenshots in the paper.</p>
-        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n2"><a class="ec-shot" href="img/portland-product.jpg" target="_blank" rel="noopener"><img src="img/portland-product.jpg" alt="Product page: was $132.00, today $92.40, enter code at checkout" loading="lazy"></a><a class="ec-shot" href="img/portland-cart.jpg" target="_blank" rel="noopener"><img src="img/portland-cart.jpg" alt="Cart for the same bag showing $132.00" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
+        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n2"><a class="ec-shot" href="img/portland-product.jpg"><img src="img/portland-product.jpg" alt="Product page: was $132.00, today $92.40, enter code at checkout" loading="lazy"></a><a class="ec-shot" href="img/portland-cart.jpg"><img src="img/portland-cart.jpg" alt="Cart for the same bag showing $132.00" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
       </div>
     </div>
   </article>
@@ -617,7 +627,7 @@
   <p class="demo-count" id="ec-wedding-seating-count" aria-live="polite"></p>
 </div>
 <p class="demo-note">Rebuilt from the dietary updates screen in the flows.</p>
-        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n2"><a class="ec-shot" href="img/seating-task3-bad.jpg" target="_blank" rel="noopener"><img src="img/seating-task3-bad.jpg" alt="Bad design flow: dietary updates with no action buttons and no conflict flag" loading="lazy"></a><a class="ec-shot" href="img/seating-task3-good.jpg" target="_blank" rel="noopener"><img src="img/seating-task3-good.jpg" alt="Good design flow: Confirm buttons on each row and a warning icon on Tom&#x27;s conflict" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
+        <div class="ec-shots"><p class="sandbox-label">FROM THE PAPER</p><div class="ec-shot-grid n2"><a class="ec-shot" href="img/seating-task3-bad.jpg"><img src="img/seating-task3-bad.jpg" alt="Bad design flow: dietary updates with no action buttons and no conflict flag" loading="lazy"></a><a class="ec-shot" href="img/seating-task3-good.jpg"><img src="img/seating-task3-good.jpg" alt="Good design flow: Confirm buttons on each row and a warning icon on Tom&#x27;s conflict" loading="lazy"></a></div><p class="demo-note">Original screenshots. Tap to enlarge.</p></div>
       </div>
     </div>
   </article>
@@ -625,6 +635,12 @@
 </div><!-- end playground-wrap -->
 
 <div class="pixel-divider"></div>
+
+
+<dialog class="ec-lightbox" id="ec-lightbox" aria-label="Screenshot">
+  <div class="ec-lightbox-bar"><p class="ec-lightbox-cap" id="ec-lightbox-cap"></p><button type="button" class="ec-lightbox-close" id="ec-lightbox-close">✕ Close</button></div>
+  <img id="ec-lightbox-img" alt="">
+</dialog>
 
 <footer>
   <div class="footer-brand">
@@ -841,6 +857,26 @@
     render();
   });
 })();
+
+  // screenshot viewer (stays on the page)
+  (function () {
+    var dlg = document.getElementById('ec-lightbox');
+    if (!dlg || typeof dlg.showModal !== 'function') return; // old browsers just follow the link
+    var img = document.getElementById('ec-lightbox-img'), cap = document.getElementById('ec-lightbox-cap');
+    var opener = null;
+    document.querySelectorAll('.ec-shot').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var thumb = a.querySelector('img');
+        img.src = a.getAttribute('href'); img.alt = thumb.alt; cap.textContent = thumb.alt;
+        opener = a; dlg.showModal();
+      });
+    });
+    function close() { dlg.close(); }
+    document.getElementById('ec-lightbox-close').addEventListener('click', close);
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
+    dlg.addEventListener('close', function () { img.removeAttribute('src'); if (opener) opener.focus(); });
+  })();
 </script>
 </body>
 </html>
