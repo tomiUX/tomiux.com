@@ -236,6 +236,7 @@
     /* JUMP BAR */
     #tomiux-jump { position: fixed; z-index: 900; font-family: 'Nunito', sans-serif; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
     #tomiux-jump.show, #tomiux-jump:focus-within { opacity: 1; pointer-events: auto; }
+    #tomiux-jump .tj-project { font-weight: 900; font-size: 0.92rem; line-height: 1.25; color: #0a0520; margin: 0 0 0.6rem 0.25rem; padding-bottom: 0.55rem; border-bottom: 2px solid #c8a8f0; }
     #tomiux-jump .tj-title { font-weight: 900; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8850b0; margin: 0 0 0.5rem 0.25rem; }
     #tomiux-jump .tj-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.15rem; }
     #tomiux-jump a { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.4rem 0.55rem; border-radius: 6px; text-decoration: none; color: #4a1878; font-weight: 800; font-size: 0.8rem; line-height: 1.3; border: 2px solid transparent; }
@@ -250,12 +251,12 @@
     }
     @media (max-width: 1499px) {
       #tomiux-jump { right: 16px; bottom: 16px; max-width: calc(100vw - 32px); }
-      #tomiux-jump .tj-title { display: none; }
       #tomiux-jump .tj-toggle { display: inline-flex; align-items: center; gap: 0.45rem; max-width: 100%; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.8rem; padding: 0.55rem 0.9rem; background: #ffe566; color: #0a0520; border: 3px solid #0a0520; box-shadow: 3px 3px 0 #0a0520; border-radius: 999px; cursor: pointer; }
       #tomiux-jump .tj-toggle:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; }
       #tomiux-jump .tj-current { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      #tomiux-jump .tj-list { display: none; position: absolute; right: 0; bottom: calc(100% + 10px); width: 240px; max-height: 60vh; overflow-y: auto; background: #fff; border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 10px; padding: 0.5rem; }
-      #tomiux-jump.open .tj-list { display: flex; }
+      #tomiux-jump .tj-panel { display: none; position: absolute; right: 0; bottom: calc(100% + 10px); width: 250px; max-height: 65vh; overflow-y: auto; background: #fff; border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 10px; padding: 0.6rem 0.5rem; }
+      #tomiux-jump.open .tj-panel { display: block; }
+      #tomiux-jump .tj-panel .tj-title { display: block; }
     }
     @media print { #tomiux-jump { display: none; } }
     @media (max-width: 680px) {
@@ -455,6 +456,7 @@
       return { num: num, label: label, el: target };
     });
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var project = (document.title.split('//')[0] || '').replace(/[<>&]/g, '').trim();
     var wrap = document.createElement('nav');
     wrap.id = 'tomiux-jump';
     wrap.setAttribute('aria-label', 'On this page');
@@ -463,8 +465,11 @@
     }).join('');
     wrap.innerHTML =
       '<button type="button" class="tj-toggle" aria-expanded="false" aria-controls="tomiux-jump-list"><span aria-hidden="true">☰</span> <span class="tj-current">Sections</span></button>' +
-      '<p class="tj-title" aria-hidden="true">On this page</p>' +
-      '<ol class="tj-list" id="tomiux-jump-list">' + list + '</ol>';
+      '<div class="tj-panel" id="tomiux-jump-list">' +
+        (project ? '<p class="tj-project">' + project + '</p>' : '') +
+        '<p class="tj-title" aria-hidden="true">On this page</p>' +
+        '<ol class="tj-list">' + list + '</ol>' +
+      '</div>';
     document.body.appendChild(wrap);
     var links = [].slice.call(wrap.querySelectorAll('a'));
     var toggle = wrap.querySelector('.tj-toggle'), current = wrap.querySelector('.tj-current');
