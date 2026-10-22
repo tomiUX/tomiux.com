@@ -201,6 +201,23 @@
       color: #ffe566 !important;
       border-radius: 2px !important;
     }
+
+    /* ===== PHONE MENU ===== */
+    #tomiux-nav .nav-toggle { display: none; align-items: center; gap: 0.4rem; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.45rem 0.8rem; background: #ffe566; color: #0a0520; border: 2px solid #0a0520; box-shadow: 2px 2px 0 #0a0520; border-radius: 6px; cursor: pointer; }
+    #tomiux-nav .nav-toggle:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; }
+    @media (max-width: 760px) {
+      #tomiux-nav .nav-inner { position: relative; padding: 0.6rem 1rem; }
+      #tomiux-nav .nav-toggle { display: inline-flex; }
+      #tomiux-nav .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 0.5rem 1rem 1rem; background: #fdf8ff; border-bottom: 4px solid #0a0520; box-shadow: 0 4px 0 #9b70d8; max-height: calc(100vh - 70px); overflow-y: auto; }
+      #tomiux-nav.menu-open .nav-links { display: flex; }
+      #tomiux-nav .nav-links li { width: 100%; }
+      #tomiux-nav .nav-links a, #tomiux-nav .nav-dropdown-btn { display: flex; width: 100%; padding: 0.8rem 0.5rem; font-size: 0.9rem; border-radius: 0; border-bottom: 2px solid #c8a8f0; text-align: left; }
+      #tomiux-nav .nav-links .nav-cv { justify-content: center; margin-top: 0.75rem; border-radius: 6px !important; border: 3px solid #0a0520 !important; }
+      #tomiux-nav .nav-dropdown { position: static; }
+      #tomiux-nav .dropdown-menu { position: static; min-width: 0; margin: 0.25rem 0 0.5rem; box-shadow: none; border: 2px solid #0a0520; }
+      #tomiux-nav .dropdown-menu a { white-space: normal !important; font-size: 0.85rem !important; }
+    }
+
     @media (max-width: 680px) {
       footer {
         grid-template-columns: 1fr !important;
@@ -241,7 +258,8 @@
     '    <img src="https://tomiux.com/assets/Ghost_Logo_Tomi_UX.svg" alt="" aria-hidden="true" />',
     '    <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>',
     '  </a>',
-    '  <ul class="nav-links" role="list">',
+    '  <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="tomiux-nav-links"><span aria-hidden="true">☰</span> <span class="nav-toggle-label">Menu</span></button>',
+    '  <ul class="nav-links" role="list" id="tomiux-nav-links">',
     '    <li class="nav-dropdown">',
     '      <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="nav-featured-btn">Featured</button>',
     '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu">',
@@ -290,6 +308,25 @@
       }
     });
 
+
+    // ===== PHONE MENU =====
+    (function () {
+      const navEl = nav;
+      const tog = navEl && navEl.querySelector('.nav-toggle');
+      const list = document.getElementById('tomiux-nav-links');
+      if (!tog || !list) return;
+      function setMenu(open) {
+        navEl.classList.toggle('menu-open', open);
+        tog.setAttribute('aria-expanded', open ? 'true' : 'false');
+        tog.querySelector('.nav-toggle-label').textContent = open ? 'Close' : 'Menu';
+      }
+      tog.addEventListener('click', (e) => { e.stopPropagation(); setMenu(!navEl.classList.contains('menu-open')); });
+      list.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navEl.classList.contains('menu-open')) { setMenu(false); tog.focus(); } });
+      document.addEventListener('click', (e) => { if (!navEl.contains(e.target)) setMenu(false); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 760) setMenu(false); });
+    })();
+
     // ── Dropdown ──────────────────────────────────────────────────────────────
     const btn = document.getElementById('nav-featured-btn');
     const menu = document.getElementById('nav-featured-menu');
@@ -314,10 +351,11 @@
     function scheduleClose() { closeTimer = setTimeout(() => closeMenu(false), 150); }
     function cancelClose() { if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; } }
 
-    wrapper.addEventListener('mouseenter', () => { cancelClose(); openMenu(false); });
-    wrapper.addEventListener('mouseleave', scheduleClose);
+    const isPhone = () => window.matchMedia('(max-width: 760px)').matches;
+    wrapper.addEventListener('mouseenter', () => { if (isPhone()) return; cancelClose(); openMenu(false); });
+    wrapper.addEventListener('mouseleave', () => { if (!isPhone()) scheduleClose(); });
     menu.addEventListener('mouseenter', cancelClose);
-    menu.addEventListener('mouseleave', scheduleClose);
+    menu.addEventListener('mouseleave', () => { if (!isPhone()) scheduleClose(); });
 
     // Click toggle
     btn.addEventListener('click', (e) => {

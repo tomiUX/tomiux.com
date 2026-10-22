@@ -167,6 +167,23 @@
   }
   .dropdown-menu.open { display: block; }
 
+  /* ===== PHONE MENU ===== */
+  nav .nav-toggle { display: none; align-items: center; gap: 0.4rem; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.45rem 0.8rem; background: #ffe566; color: #0a0520; border: 2px solid #0a0520; box-shadow: 2px 2px 0 #0a0520; border-radius: 6px; cursor: pointer; }
+  nav .nav-toggle:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; }
+  @media (max-width: 760px) {
+    nav .nav-inner { position: relative; padding: 0.6rem 1rem; }
+    nav .nav-toggle { display: inline-flex; }
+    nav .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 0.5rem 1rem 1rem; background: #fdf8ff; border-bottom: 4px solid #0a0520; box-shadow: 0 4px 0 #9b70d8; max-height: calc(100vh - 70px); overflow-y: auto; }
+    nav.menu-open .nav-links { display: flex; }
+    nav .nav-links li { width: 100%; }
+    nav .nav-links a, nav .nav-dropdown-btn { display: flex; width: 100%; padding: 0.8rem 0.5rem; font-size: 0.9rem; border-radius: 0; border-bottom: 2px solid #c8a8f0; text-align: left; }
+    nav .nav-links .nav-cv { justify-content: center; margin-top: 0.75rem; border-radius: 6px !important; border: 3px solid #0a0520 !important; }
+    nav .nav-dropdown { position: static; }
+    nav .dropdown-menu { position: static; min-width: 0; margin: 0.25rem 0 0.5rem; box-shadow: none; border: 2px solid #0a0520; }
+    nav .dropdown-menu a { white-space: normal !important; font-size: 0.85rem !important; }
+  }
+
+
   .dropdown-menu a {
     display: flex; align-items: center; gap: 0.5rem;
     padding: 0.6rem 1rem; border-bottom: 2px solid var(--lavender-mid);
@@ -308,7 +325,7 @@
 
   /* ===== EXTRA CREDIT / SPECIMEN CARDS ===== */
   .artifacts-intro { font-size: 0.92rem; color: var(--text-mid); max-width: 46rem; margin: 0 auto 2.5rem; text-align: center; line-height: 1.7; font-weight: 700; }
-  .specimen-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .specimen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 
   .specimen { text-decoration: none;
     background: var(--white); border-radius: 8px; border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark);
@@ -521,7 +538,8 @@
       <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="" aria-hidden="true" style="height:44px;width:auto;filter:drop-shadow(2px 2px 0 #0a0520);" />
       <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>
     </a>
-    <ul class="nav-links" role="list">
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav-links"><span aria-hidden="true">☰</span> <span class="nav-toggle-label">Menu</span></button>
+    <ul class="nav-links" role="list" id="site-nav-links">
       <li class="nav-dropdown">
         <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="featured-menu-btn">Featured</button>
         <div class="dropdown-menu" role="menu" aria-labelledby="featured-menu-btn" id="featured-menu">
@@ -728,14 +746,12 @@
     </div>
     <p class="artifacts-intro">Unsolicited feedback. Report attached.</p>
     <div class="specimen-grid">
-      <a class="specimen" href="https://tomiux.com/extra-credit/#npr" aria-label="NPR.org VPAT, WCAG mini report"><span class="specimen-num" aria-hidden="true">№ 001</span><div class="specimen-icon" aria-hidden="true">⌨️</div><span class="specimen-name">NPR.org VPAT</span><span class="specimen-tag">WCAG</span></a>
-      <a class="specimen" href="https://tomiux.com/extra-credit/#kent-state-instagram" aria-label="Kent State Instagram, Contrast mini report"><span class="specimen-num" aria-hidden="true">№ 002</span><div class="specimen-icon" aria-hidden="true">📸</div><span class="specimen-name">Kent State Instagram</span><span class="specimen-tag">Contrast</span></a>
-      <a class="specimen" href="https://tomiux.com/extra-credit/#allthehomes" aria-label="AllTheHomes.com, A11y memo mini report"><span class="specimen-num" aria-hidden="true">№ 003</span><div class="specimen-icon" aria-hidden="true">🏡</div><span class="specimen-name">AllTheHomes.com</span><span class="specimen-tag">A11y memo</span></a>
-      <a class="specimen" href="https://tomiux.com/extra-credit/#temu" aria-label="Temu, Cognitive mini report"><span class="specimen-num" aria-hidden="true">№ 004</span><div class="specimen-icon" aria-hidden="true">🎰</div><span class="specimen-name">Temu</span><span class="specimen-tag">Cognitive</span></a>
-      <a class="specimen" href="https://tomiux.com/extra-credit/#palmstreet" aria-label="Palmstreet, Cognitive mini report"><span class="specimen-num" aria-hidden="true">№ 005</span><div class="specimen-icon" aria-hidden="true">🌵</div><span class="specimen-name">Palmstreet</span><span class="specimen-tag">Cognitive</span></a>
-      <a class="specimen" href="https://tomiux.com/extra-credit/#planta" aria-label="Planta, Norman mini report"><span class="specimen-num" aria-hidden="true">№ 006</span><div class="specimen-icon" aria-hidden="true">🪴</div><span class="specimen-name">Planta</span><span class="specimen-tag">Norman</span></a>
-      <a class="specimen" href="https://tomiux.com/extra-credit/#portland-leather" aria-label="Portland Leather, Norman mini report"><span class="specimen-num" aria-hidden="true">№ 007</span><div class="specimen-icon" aria-hidden="true">👜</div><span class="specimen-name">Portland Leather</span><span class="specimen-tag">Norman</span></a>
-      <a class="specimen" href="https://tomiux.com/extra-credit/#wedding-seating" aria-label="Wedding Seating App, Cognition mini report"><span class="specimen-num" aria-hidden="true">№ 008</span><div class="specimen-icon" aria-hidden="true">💍</div><span class="specimen-name">Wedding Seating App</span><span class="specimen-tag">Cognition</span></a>
+      <a class="specimen" href="https://tomiux.com/extra-credit/#kent-state-instagram" aria-label="Kent State Instagram, Contrast mini report"><span class="specimen-num" aria-hidden="true">№ 001</span><div class="specimen-icon" aria-hidden="true">📸</div><span class="specimen-name">Kent State Instagram</span><span class="specimen-tag">Contrast</span></a>
+      <a class="specimen" href="https://tomiux.com/extra-credit/#temu" aria-label="Temu, Cognitive mini report"><span class="specimen-num" aria-hidden="true">№ 002</span><div class="specimen-icon" aria-hidden="true">🎰</div><span class="specimen-name">Temu</span><span class="specimen-tag">Cognitive</span></a>
+      <a class="specimen" href="https://tomiux.com/extra-credit/#palmstreet" aria-label="Palmstreet, Cognitive mini report"><span class="specimen-num" aria-hidden="true">№ 003</span><div class="specimen-icon" aria-hidden="true">🌵</div><span class="specimen-name">Palmstreet</span><span class="specimen-tag">Cognitive</span></a>
+      <a class="specimen" href="https://tomiux.com/extra-credit/#planta" aria-label="Planta, Norman mini report"><span class="specimen-num" aria-hidden="true">№ 004</span><div class="specimen-icon" aria-hidden="true">🪴</div><span class="specimen-name">Planta</span><span class="specimen-tag">Norman</span></a>
+      <a class="specimen" href="https://tomiux.com/extra-credit/#portland-leather" aria-label="Portland Leather, Norman mini report"><span class="specimen-num" aria-hidden="true">№ 005</span><div class="specimen-icon" aria-hidden="true">👜</div><span class="specimen-name">Portland Leather</span><span class="specimen-tag">Norman</span></a>
+      <a class="specimen" href="https://tomiux.com/extra-credit/#wedding-seating" aria-label="Wedding Seating App, Cognition mini report"><span class="specimen-num" aria-hidden="true">№ 006</span><div class="specimen-icon" aria-hidden="true">💍</div><span class="specimen-name">Wedding Seating App</span><span class="specimen-tag">Cognition</span></a>
     </div>
     <div class="playground-cta">
       <a href="https://tomiux.com/extra-credit/" class="btn btn-primary" style="display:inline-flex;">▶ SEE THE WORK</a>
@@ -872,7 +888,26 @@
     if (e.key === 'ArrowUp')   { e.preventDefault(); menuItems[(idx - 1 + menuItems.length) % menuItems.length].focus(); }
     if (e.key === 'Escape' || e.key === 'Tab') { closeMenu(); }
   });
-  document.addEventListener('click', (e) => { if (!btn.contains(e.target) && !menu.contains(e.target)) closeMenu(); });
+  document.addEventListener('click', (e) => { if (menu.classList.contains('open') && !btn.contains(e.target) && !menu.contains(e.target)) { menu.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); } });
+
+  // ===== PHONE MENU =====
+  (function () {
+    const navEl = document.querySelector('nav[aria-label="Main navigation"]');
+    const tog = navEl && navEl.querySelector('.nav-toggle');
+    const list = document.getElementById('site-nav-links');
+    if (!tog || !list) return;
+    function setMenu(open) {
+      navEl.classList.toggle('menu-open', open);
+      tog.setAttribute('aria-expanded', open ? 'true' : 'false');
+      tog.querySelector('.nav-toggle-label').textContent = open ? 'Close' : 'Menu';
+    }
+    tog.addEventListener('click', (e) => { e.stopPropagation(); setMenu(!navEl.classList.contains('menu-open')); });
+    list.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navEl.classList.contains('menu-open')) { setMenu(false); tog.focus(); } });
+    document.addEventListener('click', (e) => { if (!navEl.contains(e.target)) setMenu(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 760) setMenu(false); });
+  })();
+
 
   // ===== EASTER EGG — keyboard handler (WCAG 2.1.1) =====
   const egg = document.getElementById('footer-easter-egg');
