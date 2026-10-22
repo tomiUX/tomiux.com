@@ -254,7 +254,7 @@
   nav.setAttribute('aria-label', 'Main navigation');
   nav.innerHTML = [
     '<div class="nav-inner">',
-    '  <a class="nav-logo" href="https://tomiux.com" aria-label="TomiUX — home">',
+    '  <a class="nav-logo" href="https://tomiux.com" aria-label="TomiUX home">',
     '    <img src="https://tomiux.com/assets/Ghost_Logo_Tomi_UX.svg" alt="" aria-hidden="true" />',
     '    <span class="nav-logo-text"><span class="logo-tomi">Tomi</span><span class="logo-ux">UX</span></span>',
     '  </a>',

@@ -308,7 +308,7 @@
     </div>
     <div class="problem-grid">
       <div>
-        <p class="pull-quote">When designers don't specify accessibility intent, developers fill the gap — and they fill it wrong.</p>
+        <p class="pull-quote">When designers don't specify accessibility intent, developers fill the gap, and they fill it wrong.</p>
         <p class="body-text">StubHub's mobile checkout flow is built. It works for sighted mouse users. But across six screens of the purchase path, screen reader users get partial labels, keyboard users lose focus mid-flow, and color-blind users miss urgency cues entirely.</p>
         <p class="body-text">None of these are developer mistakes. They are design specification gaps. The icons were never marked decorative or meaningful. The buttons were never given accessible names. The error messages were never tied to their fields. Every issue traces back to a missing line in the design handoff.</p>
         <p class="body-text">This project annotates ten of those gaps, alongside what should have been specified before any code was written.</p>
@@ -399,13 +399,13 @@
       <span class="section-badge" aria-hidden="true">03 // ARTIFACT</span>
       <h2 class="section-title">The annotated <span class="accent2">whiteboard</span></h2>
     </div>
-    <p class="body-text" style="margin-bottom: 2rem; max-width: 760px;">The full annotation set lives on a Canva whiteboard, where each StubHub screen is marked up in place using the three-layer structure described above. The text findings below distill what's visually annotated here — but the whiteboard is the deliverable a developer would actually receive at handoff.</p>
+    <p class="body-text" style="margin-bottom: 2rem; max-width: 760px;">The full annotation set lives on a Canva whiteboard, where each StubHub screen is marked up in place using the three-layer structure described above. The text findings below distill what's visually annotated here, but the whiteboard is the deliverable a developer would actually receive at handoff.</p>
 
     <div class="whiteboard-frame">
       <div class="whiteboard-aspect">
         <iframe
           src="https://www.canva.com/design/DAHHLtdbIPI/mJ4W3zDMs0HDEOy7JpVolw/view?embed"
-          title="StubHub accessibility annotations whiteboard by Stacy Tomasi — interactive Canva embed"
+          title="StubHub accessibility annotations whiteboard by Stacy Tomasi (interactive Canva embed)"
           loading="lazy"
           allowfullscreen="allowfullscreen"
           allow="fullscreen">
@@ -703,7 +703,7 @@
         <div class="pattern-card-body">
           <p class="pattern-label">PATTERN 01</p>
           <p class="pattern-title">Icons without intent</p>
-          <p class="pattern-body">Icons appear throughout the flow with no design-time decision about whether they are decorative or meaningful. Developers guess — sometimes hiding important icons, sometimes labeling decorative ones. Every icon needs that flag set in the design file.</p>
+          <p class="pattern-body">Icons appear throughout the flow with no design-time decision about whether they are decorative or meaningful. Developers guess, sometimes hiding important icons, sometimes labeling decorative ones. Every icon needs that flag set in the design file.</p>
           <p class="pattern-refs">↳ AA #2 · AA #5 · AA #7</p>
         </div>
       </div>
@@ -711,7 +711,7 @@
         <div class="pattern-card-body">
           <p class="pattern-label">PATTERN 02</p>
           <p class="pattern-title">Color carrying the meaning alone</p>
-          <p class="pattern-body">Urgency, error states, and disabled states all rely on color as the only signal. WCAG 1.4.1 — Use of Color — is violated repeatedly. Every state change needs a non-color companion: text, icon shape, programmatic role, or announcement.</p>
+          <p class="pattern-body">Urgency, error states, and disabled states all rely on color as the only signal. WCAG 1.4.1 (Use of Color) is violated repeatedly. Every state change needs a non-color companion: text, icon shape, programmatic role, or announcement.</p>
           <p class="pattern-refs">↳ AA #7 · AA #9 · AA #10</p>
         </div>
       </div>
@@ -719,7 +719,7 @@
         <div class="pattern-card-body">
           <p class="pattern-label">PATTERN 03</p>
           <p class="pattern-title">Visible labels that aren't accessible names</p>
-          <p class="pattern-body">"Continue", "From $247", "Hottest event" — short visible labels work for sighted users with full screen context, but strip out everything a screen reader needs to disambiguate. The accessible name must carry the full context the visual layout implies.</p>
+          <p class="pattern-body">"Continue", "From $247", "Hottest event": short visible labels work for sighted users with full screen context, but strip out everything a screen reader needs to disambiguate. The accessible name must carry the full context the visual layout implies.</p>
           <p class="pattern-refs">↳ AA #1 · AA #3 · AA #4 · AA #5</p>
         </div>
       </div>
@@ -727,7 +727,7 @@
         <div class="pattern-card-body">
           <p class="pattern-label">PATTERN 04</p>
           <p class="pattern-title">Focus and structure left undefined</p>
-          <p class="pattern-body">Modal headings, auto-appearing dialogs, and disabled-state messaging all skip the keyboard and assistive tech path. Focus management and heading structure are not afterthoughts — they are first-class design specifications, on equal footing with layout and color.</p>
+          <p class="pattern-body">Modal headings, auto-appearing dialogs, and disabled-state messaging all skip the keyboard and assistive tech path. Focus management and heading structure are not afterthoughts. They are first-class design specifications, on equal footing with layout and color.</p>
           <p class="pattern-refs">↳ AA #6 · AA #8 · AA #10</p>
         </div>
       </div>
@@ -748,7 +748,7 @@
       <div class="rec-card" data-num="01">
         <span class="rec-priority">HIGH PRIORITY</span>
         <p class="rec-title">Add an a11y annotation layer to the Figma component library</p>
-        <p class="rec-body">Every interactive component in the design system should ship with its accessible name pattern, role, focus order, and decorative-vs-meaningful flag visible in the file. Annotations are not extra work — they are the spec. If a component cannot be annotated, it cannot ship.</p>
+        <p class="rec-body">Every interactive component in the design system should ship with its accessible name pattern, role, focus order, and decorative-vs-meaningful flag visible in the file. Annotations are not extra work. They are the spec. If a component cannot be annotated, it cannot ship.</p>
       </div>
       <div class="rec-card" data-num="02">
         <span class="rec-priority">HIGH PRIORITY</span>
@@ -763,7 +763,7 @@
       <div class="rec-card" data-num="04">
         <span class="rec-priority">MEDIUM PRIORITY</span>
         <p class="rec-title">Pair every color-coded state with a non-color signal in the spec</p>
-        <p class="rec-body">Disabled states, error states, urgency cues, and status indicators must carry a second channel — text, icon shape, role, or live region — defined at design time. WCAG 1.4.1 cannot be remediated in QA. It has to be designed in.</p>
+        <p class="rec-body">Disabled states, error states, urgency cues, and status indicators must carry a second channel (text, icon shape, role, or live region) defined at design time. WCAG 1.4.1 cannot be remediated in QA. It has to be designed in.</p>
       </div>
     </div>
   </div>
@@ -779,8 +779,8 @@
       <h2 class="section-title">The fix isn't <span class="accent">code</span>. It's the <span class="accent2">handoff</span>.</h2>
     </div>
     <div class="takeaway">
-      <p class="takeaway-text">"Every accessibility failure I annotated traced back to a missing line in the design spec. Developers were not being lazy — they were being asked to invent semantics that the design file should have carried. Accessibility is not a remediation phase. It is a design deliverable."</p>
-      <p class="takeaway-attr">— Stacy Tomasi · UX 60504 Accessibility &amp; Universal Design · Spring 2026</p>
+      <p class="takeaway-text">"Every accessibility failure I annotated traced back to a missing line in the design spec. Developers were not being lazy. They were being asked to invent semantics that the design file should have carried. Accessibility is not a remediation phase. It is a design deliverable."</p>
+      <p class="takeaway-attr">Stacy Tomasi · UX 60504 Accessibility &amp; Universal Design · Spring 2026</p>
     </div>
   </div>
 </div>
