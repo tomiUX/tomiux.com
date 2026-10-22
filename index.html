@@ -11,7 +11,7 @@
   </script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Stacy Tomasi // TomiUX 🎮</title>
+<title>Stacy Tomasi // TomiUX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -1038,16 +1038,12 @@
 <div class="section-bg-soft" style="position:relative;z-index:1;">
   <div class="section-wrap" id="about">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">04 // PLAYER PROFILE</span>
+      <span class="section-badge" aria-hidden="true">04 // ABOUT</span>
       <h2 class="section-title"><span style="color:#ff2d9b;">About /</span> <span style="color:#ff2d9b;">Résumé</span></h2>
     </div>
     <div class="about-grid">
       <div class="about-card">
         <div class="about-card-top" aria-hidden="true"></div>
-        <div class="about-card-header">
-          <span>PLAYER 1 // ID-001</span>
-          <span>2026 ★★★</span>
-        </div>
         <div class="about-portrait">
           <img class="about-photo" src="assets/stacy-tomasi.jpg" alt="Stacy Tomasi" width="640" height="800" loading="lazy" />
         </div>
@@ -1080,7 +1076,7 @@
 <div class="section-bg-white" style="position:relative;z-index:1;">
   <div class="section-wrap" id="contact">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">05 // EXTRA LIFE</span>
+      <span class="section-badge" aria-hidden="true">05 // CONTACT</span>
       <h2 class="section-title"><span class="accent">Get in</span> <span class="accent">Touch</span></h2>
     </div>
     <div class="contact-pod">
@@ -1322,7 +1318,7 @@
     <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="" aria-hidden="true" style="height:28px;width:auto;" />
     <span>© 2026 · STACY TOMASI<br/>TOMIUX · ALL RIGHTS RESERVED</span>
   </div>
-  <div class="footer-hits" tabindex="0" role="button" aria-label="Secret score counter" title="you found it 👻" id="footer-easter-egg">SCORE: <span aria-hidden="true">∞</span></div>
+  <div class="footer-hits" tabindex="0" role="button" aria-label="Footer note" title="you found it 👻" id="footer-easter-egg">✎ Red pen approved</div>
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
     <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
@@ -1382,8 +1378,8 @@
   const egg = document.getElementById('footer-easter-egg');
   function activateEgg() {
     egg.setAttribute('data-found', 'true');
-    egg.innerHTML = '<span>🎮 KONAMI CODE ACCEPTED 🎮</span>';
-    egg.setAttribute('aria-label', 'Konami code accepted!');
+    egg.innerHTML = '<span>✎ Yes, I proofread the footer too</span>';
+    egg.setAttribute('aria-label', 'You found the footer note');
   }
   egg.addEventListener('click', activateEgg);
   egg.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); } });

@@ -11,7 +11,7 @@
   </script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Philz Coffee Usability Study // TomiUX 🎮</title>
+<title>Philz Coffee Usability Study // TomiUX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -1708,10 +1708,10 @@
     class="footer-hits"
     tabindex="0"
     role="button"
-    aria-label="Secret score counter"
+    aria-label="Footer note"
     title="you found it 👻"
     id="footer-easter-egg"
-  >SCORE: <span>∞</span></div>
+  >✎ Red pen approved</div>
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
     <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
@@ -1721,7 +1721,7 @@
 
 <script>
   const egg = document.getElementById('footer-easter-egg');
-  function activateEgg() { egg.setAttribute('data-found','true'); egg.innerHTML='<span>🎮 KONAMI CODE ACCEPTED 🎮</span>'; egg.setAttribute('aria-label','Konami code accepted!'); }
+  function activateEgg() { egg.setAttribute('data-found','true'); egg.innerHTML='<span>✎ Yes, I proofread the footer too</span>'; egg.setAttribute('aria-label','You found the footer note'); }
   egg.addEventListener('click', activateEgg);
   egg.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); } });
 </script>
