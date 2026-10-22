@@ -453,6 +453,7 @@
   .about-card-header span { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.7rem; color: #0a0520; letter-spacing: 0.08em; }
   .about-portrait { padding: 1.5rem; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, rgba(255,179,217,0.3), var(--lavender-bg) 70%); min-height: 170px; border-bottom: 3px solid var(--pixel-dark); }
   .about-portrait img { width: 120px; filter: drop-shadow(3px 3px 0 var(--purple)); }
+  .about-portrait img.about-photo { display: block; width: 100%; max-width: 240px; height: auto; aspect-ratio: 4 / 5; object-fit: cover; filter: none; border: 3px solid var(--pixel-dark); border-radius: 10px; box-shadow: 5px 5px 0 var(--pixel-dark); }
   .about-stats { padding: 0; }
   .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 0.65rem 1rem; border-bottom: 2px solid var(--lavender-mid); font-size: 0.78rem; }
   .stat-row:last-child { border-bottom: none; }
@@ -1048,7 +1049,7 @@
           <span>2026 ★★★</span>
         </div>
         <div class="about-portrait">
-          <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="TomiUX mascot" style="width:140px;height:auto;filter:drop-shadow(3px 3px 0 #A122C0);" />
+          <img class="about-photo" src="assets/stacy-tomasi.jpg" alt="Stacy Tomasi" width="640" height="800" loading="lazy" />
         </div>
         <div class="about-stats">
           <div class="stat-row"><span class="stat-label">Name</span><span class="stat-value">Stacy Tomasi</span></div>
