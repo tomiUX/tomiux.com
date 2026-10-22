@@ -233,8 +233,10 @@
     font-size: clamp(3.5rem, 9vw, 7rem); line-height: 0.92;
     margin-bottom: 1.5rem; letter-spacing: 0;
   }
-  .hero-name .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
-  .hero-name .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
+  .hero-name .line1 { display: block; color: var(--purple); -webkit-text-stroke: 2.5px var(--pixel-dark); paint-order: stroke fill; text-shadow: 5px 5px 0 var(--pixel-dark); }
+  .hero-name .line1::before { content: ''; display: inline-block; width: 0.8em; height: 0.8em; margin-right: 0.12em; vertical-align: -0.02em; background: url(assets/Ghost_Logo_Tomi_UX.svg) center / contain no-repeat; filter: drop-shadow(5px 5px 0 var(--pixel-dark)); }
+  .hero-name .line2 { display: block; color: var(--teal); -webkit-text-stroke: 2.5px var(--pixel-dark); paint-order: stroke fill; text-shadow: 5px 5px 0 var(--pixel-dark); }
+  @media (max-width: 600px) { .hero-name .line1, .hero-name .line2 { -webkit-text-stroke-width: 1.5px; text-shadow: 3px 3px 0 var(--pixel-dark); } .hero-name .line1::before { filter: drop-shadow(3px 3px 0 var(--pixel-dark)); } }
 
   .hero-tagline { font-size: 1.15rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 0.5rem; font-weight: 700; }
   .hero-credentials { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text-mid); margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 0.6rem; flex-wrap: wrap; letter-spacing: 0.01em; }

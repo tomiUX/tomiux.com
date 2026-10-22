@@ -218,6 +218,32 @@
       #tomiux-nav .dropdown-menu a { white-space: normal !important; font-size: 0.85rem !important; }
     }
 
+
+    /* JUMP BAR */
+    #tomiux-jump { position: fixed; z-index: 900; font-family: 'Nunito', sans-serif; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+    #tomiux-jump.show, #tomiux-jump:focus-within { opacity: 1; pointer-events: auto; }
+    #tomiux-jump .tj-title { font-weight: 900; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8850b0; margin: 0 0 0.5rem 0.25rem; }
+    #tomiux-jump .tj-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.15rem; }
+    #tomiux-jump a { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.4rem 0.55rem; border-radius: 6px; text-decoration: none; color: #4a1878; font-weight: 800; font-size: 0.8rem; line-height: 1.3; border: 2px solid transparent; }
+    #tomiux-jump a:hover { background: #f0e8ff; color: #A122C0; }
+    #tomiux-jump a:focus-visible { outline: 3px solid #A122C0; outline-offset: 1px; }
+    #tomiux-jump a[aria-current="true"] { background: #ffe566; color: #0a0520; border-color: #0a0520; box-shadow: 2px 2px 0 #0a0520; }
+    #tomiux-jump .tj-num { font-size: 0.68rem; color: #ff2d9b; min-width: 1.4em; }
+    #tomiux-jump a[aria-current="true"] .tj-num { color: #0a0520; }
+    #tomiux-jump .tj-toggle { display: none; }
+    @media (min-width: 1500px) {
+      #tomiux-jump { opacity: 1; pointer-events: auto; left: 16px; top: 50%; transform: translateY(-50%); width: 190px; max-height: 80vh; overflow-y: auto; background: rgba(255,255,255,0.96); border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 10px; padding: 0.8rem 0.6rem; }
+    }
+    @media (max-width: 1499px) {
+      #tomiux-jump { right: 16px; bottom: 16px; max-width: calc(100vw - 32px); }
+      #tomiux-jump .tj-title { display: none; }
+      #tomiux-jump .tj-toggle { display: inline-flex; align-items: center; gap: 0.45rem; max-width: 100%; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.8rem; padding: 0.55rem 0.9rem; background: #ffe566; color: #0a0520; border: 3px solid #0a0520; box-shadow: 3px 3px 0 #0a0520; border-radius: 999px; cursor: pointer; }
+      #tomiux-jump .tj-toggle:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; }
+      #tomiux-jump .tj-current { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      #tomiux-jump .tj-list { display: none; position: absolute; right: 0; bottom: calc(100% + 10px); width: 240px; max-height: 60vh; overflow-y: auto; background: #fff; border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 10px; padding: 0.5rem; }
+      #tomiux-jump.open .tj-list { display: flex; }
+    }
+    @media print { #tomiux-jump { display: none; } }
     @media (max-width: 680px) {
       footer {
         grid-template-columns: 1fr !important;
@@ -379,10 +405,81 @@
     document.addEventListener('click', () => closeMenu(false));
   }
 
+
+  // ── Jump bar: auto-built from section badges on case study pages ─────────────
+  function buildJumpBar() {
+    var badges = [].slice.call(document.querySelectorAll('.section-badge'));
+    if (badges.length < 3 || document.getElementById('tomiux-jump')) return;
+    var used = {};
+    var items = badges.map(function (badge, i) {
+      var raw = (badge.textContent || '').trim();
+      var parts = raw.split('//');
+      var num = parts.length > 1 ? parts[0].trim() : '';
+      var label = (parts.length > 1 ? parts[1] : parts[0]).trim().toLowerCase()
+        .replace(/\b[\w]+/g, function (w, i) { var up = { ui: 'UI', ux: 'UX', a11y: 'A11Y', wcag: 'WCAG' }; if (up[w]) return up[w]; if (i > 0 && /^(of|by|the|a|an|and|to|in|on|vs)$/.test(w)) return w; return w.charAt(0).toUpperCase() + w.slice(1); });
+      var target = badge.closest('section') || badge.closest('.section-header') || badge.parentElement;
+      if (!target.id) {
+        var base = 'sec-' + label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        var id = base, n = 2; while (used[id] || document.getElementById(id)) id = base + '-' + n++;
+        target.id = id;
+      }
+      used[target.id] = 1;
+      target.style.scrollMarginTop = '96px';
+      return { num: num, label: label, el: target };
+    });
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var wrap = document.createElement('nav');
+    wrap.id = 'tomiux-jump';
+    wrap.setAttribute('aria-label', 'On this page');
+    var list = items.map(function (it, i) {
+      return '<li><a href="#' + it.el.id + '" data-i="' + i + '"><span class="tj-num" aria-hidden="true">' + (it.num || '·') + '</span><span class="tj-label">' + it.label + '</span></a></li>';
+    }).join('');
+    wrap.innerHTML =
+      '<button type="button" class="tj-toggle" aria-expanded="false" aria-controls="tomiux-jump-list"><span aria-hidden="true">☰</span> <span class="tj-current">Sections</span></button>' +
+      '<p class="tj-title" aria-hidden="true">On this page</p>' +
+      '<ol class="tj-list" id="tomiux-jump-list">' + list + '</ol>';
+    document.body.appendChild(wrap);
+    var links = [].slice.call(wrap.querySelectorAll('a'));
+    var toggle = wrap.querySelector('.tj-toggle'), current = wrap.querySelector('.tj-current');
+    function setOpen(o) { wrap.classList.toggle('open', o); toggle.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+    toggle.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!wrap.classList.contains('open')); });
+    document.addEventListener('click', function (e) { if (!wrap.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && wrap.classList.contains('open')) { setOpen(false); toggle.focus(); } });
+    links.forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var it = items[+a.getAttribute('data-i')];
+        it.el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        if (!it.el.hasAttribute('tabindex')) it.el.setAttribute('tabindex', '-1');
+        it.el.focus({ preventScroll: true });
+        try { history.replaceState(null, '', '#' + it.el.id); } catch (err) {}
+        setOpen(false);
+      });
+    });
+    var active = -1, ticking = false;
+    function update() {
+      ticking = false;
+      var line = window.innerHeight * 0.3, idx = -1;
+      for (var i = 0; i < items.length; i++) { if (items[i].el.getBoundingClientRect().top - line <= 0) idx = i; }
+      var nearBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (nearBottom) idx = items.length - 1;
+      wrap.classList.toggle('show', window.scrollY > 240);
+      if (idx === active) return;
+      active = idx;
+      links.forEach(function (a, i) { if (i === idx) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
+      current.textContent = idx >= 0 ? items[idx].label : 'Sections';
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  }
+
+  function startJump() { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildJumpBar); else buildJumpBar(); }
   if (document.body) {
     inject();
   } else {
     document.addEventListener('DOMContentLoaded', inject);
   }
+  startJump();
 
 })();
