@@ -14,7 +14,7 @@
 <title>Stacy Tomasi // TomiUX 🎮</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --lavender-bg: #f0e8ff;
@@ -177,7 +177,7 @@
   .dropdown-menu a:focus-visible { outline: 3px solid var(--purple); outline-offset: -3px; background: var(--lavender-mid); color: var(--purple); }
 
   .dropdown-tag {
-    font-family: 'Press Start 2P', monospace; font-size: 0.45rem;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.7rem;
     padding: 0.15rem 0.4rem; border: 1.5px solid var(--pixel-dark);
     color: var(--pixel-dark); letter-spacing: 0.05em;
   }
@@ -207,14 +207,14 @@
   .hero-badge {
     display: inline-block; padding: 0.4rem 1rem; background: var(--yellow);
     border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark);
-    font-family: 'Press Start 2P', monospace; font-size: 0.55rem;
+    font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem;
     color: var(--pixel-dark); letter-spacing: 0.08em; margin-bottom: 1.75rem;
   }
 
   .hero-name {
-    font-family: 'Unbounded', sans-serif; font-weight: 900;
+    font-family: 'Fredoka', sans-serif; font-weight: 900;
     font-size: clamp(3.5rem, 9vw, 7rem); line-height: 0.92;
-    margin-bottom: 1.5rem; letter-spacing: -0.03em;
+    margin-bottom: 1.5rem; letter-spacing: 0;
   }
   .hero-name .line1 { display: block; color: var(--purple); text-shadow: 4px 4px 0 rgba(161,34,192,0.3), 8px 8px 0 rgba(161,34,192,0.15); }
   .hero-name .line2 { display: block; color: var(--teal); text-shadow: 4px 4px 0 rgba(63,187,158,0.3), 8px 8px 0 rgba(63,187,158,0.15); }
@@ -248,8 +248,8 @@
   .section-bg-white { background: var(--white); }
   .section-bg-soft { background: radial-gradient(ellipse at 0% 50%, rgba(255,179,217,0.2) 0%, transparent 60%), radial-gradient(ellipse at 100% 50%, rgba(78,205,196,0.2) 0%, transparent 60%), var(--lavender-bg); }
   .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
-  .section-badge { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
-  .section-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--text); flex: 1; line-height: 1.05; letter-spacing: -0.02em; }
+  .section-badge { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; padding: 0.4rem 0.75rem; background: var(--yellow); border: 3px solid var(--pixel-dark); box-shadow: 3px 3px 0 var(--pixel-dark); color: var(--pixel-dark); letter-spacing: 0.05em; white-space: nowrap; }
+  .section-title { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--text); flex: 1; line-height: 1.05; letter-spacing: 0; }
   .section-title .accent { color: var(--purple); }
   .section-title .accent2 { color: var(--hot-pink); }
 
@@ -259,7 +259,7 @@
   .work-group-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
   .work-group:last-child { margin-bottom: 0; }
   .work-group-label { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
-  .work-group-label span { font-family: 'Press Start 2P', monospace; font-size: 0.65rem; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+  .work-group-label span { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
   .work-group-label::after { content: ''; flex: 1; height: 2px; background: var(--lavender-mid); }
 
   .work-card {
@@ -295,16 +295,16 @@
   .wc9 { background: linear-gradient(135deg, var(--mint), var(--blue)); }
 
   .work-card-body { min-width: 0; }
-  .work-title { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 0.2rem; letter-spacing: -0.01em; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .work-title { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 0.2rem; letter-spacing: 0; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .work-desc { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
   .work-card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; flex-shrink: 0; }
   .work-tag { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: var(--purple); color: white; border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 4px; white-space: nowrap; }
-  .work-year { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--text-light); }
+  .work-year { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.7rem; color: var(--text-light); }
   .work-arrow { font-size: 0.9rem; color: var(--lavender-dark); transition: color 0.12s; }
   .work-card:hover .work-arrow { color: var(--purple); }
   .work-card.coming-soon .work-arrow { display: none; }
-  .work-coming-label { font-family: 'Press Start 2P', monospace; font-size: 0.42rem; color: var(--text-light); letter-spacing: 0.06em; }
+  .work-coming-label { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.7rem; color: var(--text-light); letter-spacing: 0.06em; }
 
   /* ===== EXTRA CREDIT / SPECIMEN CARDS ===== */
   .artifacts-intro { font-size: 0.92rem; color: var(--text-mid); max-width: 46rem; margin: 0 auto 2.5rem; text-align: center; line-height: 1.7; font-weight: 700; }
@@ -326,10 +326,10 @@
   .specimen.coming-soon .specimen-icon { font-size: 1.2rem; opacity: 0.4; }
   .specimen.coming-soon .specimen-name { color: var(--text-light); font-style: italic; font-size: 0.7rem; }
 
-  .specimen-num { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--hot-pink); letter-spacing: 0.1em; align-self: flex-start; margin-top: 0.4rem; }
+  .specimen-num { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.7rem; color: var(--hot-pink); letter-spacing: 0.1em; align-self: flex-start; margin-top: 0.4rem; }
   .specimen-icon { font-size: 2.2rem; flex: 1; display: flex; align-items: center; }
   .specimen-name { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.78rem; color: var(--text); text-align: center; line-height: 1.3; }
-  .specimen-tag { font-family: 'Press Start 2P', monospace; font-size: 0.45rem; color: var(--purple); letter-spacing: 0.1em; text-transform: uppercase; }
+  .specimen-tag { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.7rem; color: var(--purple); letter-spacing: 0.1em; text-transform: uppercase; }
   .playground-cta { text-align: center; margin-top: 2.5rem; }
 
   /* ===== PASSION PROJECT ===== */
@@ -363,8 +363,8 @@
     gap: 0.5rem;
   }
   .passion-card-header span {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.5rem;
+    font-family: 'Nunito', sans-serif; font-weight: 800;
+    font-size: 0.7rem;
     color: var(--pixel-dark);
     letter-spacing: 0.08em;
   }
@@ -390,18 +390,18 @@
   }
   .passion-content { display: flex; flex-direction: column; gap: 0.6rem; }
   .passion-tagline {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 0.65rem;
+    font-family: 'Nunito', sans-serif; font-weight: 800;
+    font-size: 0.85rem;
     color: var(--hot-pink);
     letter-spacing: 0.08em;
     line-height: 1.6;
   }
   .passion-title {
-    font-family: 'Unbounded', sans-serif;
+    font-family: 'Fredoka', sans-serif;
     font-weight: 900;
     font-size: clamp(2rem, 4vw, 3rem);
     color: var(--teal);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     line-height: 1;
     text-shadow: 3px 3px 0 rgba(63,187,158,0.25);
   }
@@ -431,7 +431,7 @@
   .about-card { background: var(--white); border-radius: 12px; border: 3px solid var(--pixel-dark); box-shadow: 6px 6px 0 var(--pixel-dark); overflow: hidden; }
   .about-card-top { background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 16.66%, var(--yellow) 16.66%, var(--yellow) 33.33%, var(--teal) 33.33%, var(--teal) 50%, var(--purple) 50%, var(--purple) 66.66%, var(--orange) 66.66%, var(--orange) 83.33%, var(--blue) 83.33%, var(--blue) 100%); height: 12px; }
   .about-card-header { background: #FFC9F9; padding: 0.65rem 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--pixel-dark); }
-  .about-card-header span { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: #0a0520; letter-spacing: 0.08em; }
+  .about-card-header span { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.7rem; color: #0a0520; letter-spacing: 0.08em; }
   .about-portrait { padding: 1.5rem; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, rgba(255,179,217,0.3), var(--lavender-bg) 70%); min-height: 170px; border-bottom: 3px solid var(--pixel-dark); }
   .about-portrait img { width: 120px; filter: drop-shadow(3px 3px 0 var(--purple)); }
   .about-stats { padding: 0; }
@@ -441,7 +441,7 @@
   .stat-value { color: var(--text); font-weight: 800; text-align: right; }
   .stat-value.open { color: #0e7a5f; }
 
-  .about-lead { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text); line-height: 1.4; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+  .about-lead { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: clamp(1.15rem, 2vw, 1.4rem); color: var(--text); line-height: 1.5; margin-bottom: 1.25rem; }
   .about-lead .hl { color: var(--purple); }
   .about-lead .hl2 { color: #0e7a5f; }
   .about-body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 1.25rem; font-weight: 600; }
@@ -454,11 +454,11 @@
   /* ===== CONTACT ===== */
   .contact-pod { background: var(--white); border-radius: 16px; border: 3px solid var(--pixel-dark); box-shadow: 8px 8px 0 var(--pixel-dark); padding: 4rem 3rem; text-align: center; position: relative; overflow: hidden; max-width: 680px; margin: 0 auto; }
   .contact-pod::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 10px; background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 16.66%, var(--yellow) 16.66%, var(--yellow) 33.33%, var(--teal) 33.33%, var(--teal) 50%, var(--purple) 50%, var(--purple) 66.66%, var(--orange) 66.66%, var(--orange) 83.33%, var(--blue) 83.33%, var(--blue) 100%); }
-  .contact-signal { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: #0e7a5f; letter-spacing: 0.12em; display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .contact-signal { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; color: #0e7a5f; letter-spacing: 0.12em; display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 1.5rem; }
   .signal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
-  .contact-headline { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3.5vw, 2.4rem); color: var(--text); line-height: 1.2; margin-bottom: 1.75rem; letter-spacing: -0.02em; }
+  .contact-headline { font-family: 'Fredoka', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3.5vw, 2.4rem); color: var(--text); line-height: 1.2; margin-bottom: 1.75rem; letter-spacing: 0; }
   .contact-headline .accent { color: var(--purple); }
-  .contact-email { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: clamp(0.85rem, 1.5vw, 1rem); color: var(--purple); text-decoration: none; padding: 0.85rem 2rem; border-radius: 8px; border: 3px solid var(--pixel-dark); background: var(--lavender-mid); box-shadow: 4px 4px 0 var(--pixel-dark); transition: all 0.12s; margin-bottom: 1.5rem; }
+  .contact-email { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: #ffffff; text-decoration: none; padding: 0.85rem 2rem; border-radius: 8px; border: 3px solid var(--pixel-dark); background: var(--purple); box-shadow: 4px 4px 0 var(--pixel-dark); transition: all 0.12s; margin-bottom: 1.5rem; }
   .contact-email:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
   .contact-email:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--pixel-dark); }
   .contact-sub { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; max-width: 26rem; margin: 0 auto; font-weight: 600; }
@@ -467,8 +467,8 @@
   footer { background: #A122C0; border-top: 4px solid var(--pixel-dark); padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; flex-wrap: wrap; gap: 1rem; }
   .footer-brand { display: flex; align-items: center; gap: 0.6rem; }
   .footer-brand img { height: 28px; filter: drop-shadow(2px 2px 0 var(--pink)); }
-  .footer-brand span { font-family: 'Press Start 2P', monospace; font-size: 0.5rem; color: var(--yellow); letter-spacing: 0.08em; line-height: 1.8; }
-  .footer-hits { font-family: 'Press Start 2P', monospace; font-size: 0.55rem; color: var(--yellow); letter-spacing: 0.08em; padding: 0.4rem 0.75rem; border: 2px solid var(--yellow); background: rgba(0,0,0,0.2); transition: all 0.3s; cursor: pointer; border-radius: 4px; }
+  .footer-brand span { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.7rem; color: var(--yellow); letter-spacing: 0.08em; line-height: 1.8; }
+  .footer-hits { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; color: var(--yellow); letter-spacing: 0.08em; padding: 0.4rem 0.75rem; border: 2px solid var(--yellow); background: rgba(0,0,0,0.2); transition: all 0.3s; cursor: pointer; border-radius: 4px; }
   .footer-hits:hover, .footer-hits:focus-visible { background: rgba(255,229,102,0.15); border-color: var(--teal); color: var(--teal); }
   .footer-hits:focus-visible { outline: 2px solid var(--yellow); outline-offset: 2px; }
   .footer-hits[data-found="true"] { background: rgba(63,187,158,0.2); border-color: var(--teal); color: var(--teal); }
@@ -822,7 +822,6 @@
       <h2 class="section-title"><span class="accent">Get in</span> <span class="accent">Touch</span></h2>
     </div>
     <div class="contact-pod">
-      <div class="contact-signal"><span class="signal-dot" aria-hidden="true"></span> Ready Player 2?</div>
       <h3 class="contact-headline">Let's make something<br/><span class="accent">worth noticing.</span></h3>
       <a href="mailto:hello@tomiux.com" class="contact-email">✉ hello@tomiux.com</a>
       <p class="contact-sub">Whether it's a project, a usability question, or an interface that needs a second opinion — I'm here.</p>

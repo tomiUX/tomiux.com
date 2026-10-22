@@ -111,8 +111,8 @@
     #tomiux-nav .dropdown-menu a:focus-visible { outline: 3px solid #A122C0 !important; outline-offset: -3px !important; background: #c8a8f0 !important; color: #A122C0 !important; }
 
     #tomiux-nav .nav-dropdown-tag {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 0.45rem; padding: 0.15rem 0.4rem;
+      font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: 0.7rem; padding: 0.15rem 0.4rem;
       border: 1.5px solid #0a0520; color: #0a0520;
       letter-spacing: 0.05em; flex-shrink: 0;
     }
@@ -144,8 +144,8 @@
       z-index: 1;
     }
     footer .footer-brand {
-      font-family: 'Press Start 2P', monospace !important;
-      font-size: 0.5rem !important;
+      font-family: 'Nunito', sans-serif; font-weight: 800 !important;
+      font-size: 0.7rem !important;
       color: #ffe566 !important;
       letter-spacing: 0.08em !important;
       line-height: 1.8 !important;
@@ -153,8 +153,8 @@
       text-align: left;
     }
     footer .footer-hits {
-      font-family: 'Press Start 2P', monospace !important;
-      font-size: 0.55rem !important;
+      font-family: 'Nunito', sans-serif; font-weight: 800 !important;
+      font-size: 0.72rem !important;
       color: #ffe566 !important;
       letter-spacing: 0.08em !important;
       padding: 0.4rem 0.75rem !important;
@@ -221,7 +221,7 @@
   if (!document.querySelector('link[href*="Press+Start"]')) {
     const fontLink = document.createElement('link');
     fontLink.rel = 'stylesheet';
-    fontLink.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@700;900&display=swap';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap';
     document.head.appendChild(fontLink);
   }
 
