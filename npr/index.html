@@ -300,8 +300,8 @@
           <div class="stat-label-sm">CONFORMANCE<br/>LEVELS</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-number" style="color:var(--orange);">3</div>
-          <div class="stat-label-sm">TESTING<br/>TOOLS</div>
+          <div class="stat-number" style="color:var(--orange);">6</div>
+          <div class="stat-label-sm">TESTING<br/>METHODS</div>
         </div>
         <div class="stat-cell">
           <div class="stat-number" style="color:var(--hot-pink);">UX</div>
@@ -332,7 +332,7 @@
         <p class="sub-label">// WHAT THIS AUDIT COVERS</p>
         <ul class="insight-list">
           <li>WCAG 2.1 Level A and AA conformance, reported in VPAT 2.5Rev format</li>
-          <li>Twelve documented failures across the homepage and article page</li>
+          <li>12 key failures across the homepage and article page (19 criteria not fully supported)</li>
         </ul>
       </div>
     </div>
@@ -382,7 +382,7 @@
       <p>For a keyboard-dependent user, reading an NPR article means tabbing through an ad gauntlet before reaching the content the page exists to deliver.</p>
     </div>
 
-    <p class="body-text">The failure is at WCAG 2.1.2 (No Keyboard Trap) and 2.4.3 (Focus Order). Sponsored content blocks require 5 or more consecutive tab stops to exit. The article audio player and KQED live player are technically keyboard-accessible, but buried under the ad stack in tab order, making them functionally unreachable.</p>
+    <p class="body-text">The failure is at WCAG 2.1.2 (No Keyboard Trap) and 2.4.3 (Focus Order). Sponsored content blocks require 5 or more consecutive tab stops to exit. The article audio player and KQED live player are technically keyboard-accessible, but buried under ads in tab order, making them nearly impossible to reach.</p>
     <p class="body-text">NPR's genuine accessibility wins (its skip-to-main-content link, visible focus indicators) are negated for keyboard users the moment they enter an article page. The skip link clears the nav. It doesn't clear the ads.</p>
   </div>
 </div>
@@ -400,7 +400,7 @@
     <div class="f-list" aria-label="Audit findings ranked by severity">
       <details class="f-row">
         <summary><span class="f-num">01</span><span class="f-main"><span class="f-title">Keyboard trap in sponsored content</span><span class="f-prob">Keyboard users become trapped in ad units, requiring 5+ tab presses to exit each one.</span></span><span class="f-pour"><span class="sev-tag s-critical">CRITICAL</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
-        <div class="f-body"><p><b>Detail</b>Over 27 of 38 total tab stops on the article page are ad-related. The article itself is functionally unreachable via keyboard.</p><p><b>WCAG</b>WCAG 2.1.2 · NO KEYBOARD TRAP · LEVEL A<br/>DOES NOT SUPPORT</p></div>
+        <div class="f-body"><p><b>Detail</b>Over 27 of 38 total tab stops on the article page are ad-related. Reaching the article itself is nearly impossible via keyboard.</p><p><b>WCAG</b>WCAG 2.1.2 · NO KEYBOARD TRAP · LEVEL A<br/>DOES NOT SUPPORT</p></div>
       </details>
       <details class="f-row">
         <summary><span class="f-num">02</span><span class="f-main"><span class="f-title">59 images missing alt text on the homepage</span><span class="f-prob">WAVE detected 59 images and 3 linked images without alternative text on the homepage.</span></span><span class="f-pour"><span class="sev-tag s-critical">CRITICAL</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
@@ -412,7 +412,7 @@
       </details>
       <details class="f-row">
         <summary><span class="f-num">04</span><span class="f-main"><span class="f-title">Watch section videos have no title, description, or alt text</span><span class="f-prob">Prerecorded videos on the homepage are announced only as "play video" via VoiceOver.</span></span><span class="f-pour"><span class="sev-tag s-critical">CRITICAL</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
-        <div class="f-body"><p><b>Detail</b>Descriptions are teaser copy about the topic, not descriptions of the visual content. Entirely inaccessible for screen reader users.</p><p><b>WCAG</b>WCAG 1.2.1 · AUDIO-ONLY AND VIDEO-ONLY · LEVEL A<br/>DOES NOT SUPPORT</p></div>
+        <div class="f-body"><p><b>Detail</b>Descriptions are teaser copy about the topic, not descriptions of the visual content. Screen reader users don't get a description of what's on screen.</p><p><b>WCAG</b>WCAG 1.2.1 · AUDIO-ONLY AND VIDEO-ONLY · LEVEL A<br/>DOES NOT SUPPORT</p></div>
       </details>
       <details class="f-row">
         <summary><span class="f-num">05</span><span class="f-main"><span class="f-title">Link purpose not conveyed to screen readers</span><span class="f-prob">Section header links ("National," "Law") are announced by VoiceOver with the section name only, no destination context.</span></span><span class="f-pour"><span class="sev-tag s-high">HIGH</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
@@ -420,7 +420,7 @@
       </details>
       <details class="f-row">
         <summary><span class="f-num">06</span><span class="f-main"><span class="f-title">44 contrast errors on the homepage</span><span class="f-prob">WAVE detected 44 contrast errors on the homepage.</span></span><span class="f-pour"><span class="sev-tag s-high">HIGH</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
-        <div class="f-body"><p><b>Detail</b>On the article page, the audio player UI falls below the 4.5:1 minimum for normal text. For a news organization, low-contrast body text is a significant barrier to the primary use case.</p><p><b>WCAG</b>WCAG 1.4.3 · CONTRAST MINIMUM · LEVEL AA<br/>DOES NOT SUPPORT</p></div>
+        <div class="f-body"><p><b>Detail</b>On the article page, the audio player UI falls below the 4.5:1 minimum for normal text. For a news organization, low-contrast text and audio player controls are a significant barrier to the primary use case.</p><p><b>WCAG</b>WCAG 1.4.3 · CONTRAST MINIMUM · LEVEL AA<br/>DOES NOT SUPPORT</p></div>
       </details>
       <details class="f-row">
         <summary><span class="f-num">07</span><span class="f-main"><span class="f-title">No audio description on Watch section videos</span><span class="f-prob">Homepage videos include closed captions but no audio description track.</span></span><span class="f-pour"><span class="sev-tag s-high">HIGH</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
@@ -428,7 +428,7 @@
       </details>
       <details class="f-row">
         <summary><span class="f-num">08</span><span class="f-main"><span class="f-title">Focus order disrupted by ads on both page types</span><span class="f-prob">Homepage focus order generally follows visual layout but is disrupted by sponsored content.</span></span><span class="f-pour"><span class="sev-tag s-moderate">MODERATE</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
-        <div class="f-body"><p><b>Detail</b>Article page focus order is heavily disrupted, with the ad stack appearing before editorial content in keyboard sequence.</p><p><b>WCAG</b>WCAG 2.4.3 · FOCUS ORDER · LEVEL A<br/>PARTIALLY SUPPORTS</p></div>
+        <div class="f-body"><p><b>Detail</b>Article page focus order is heavily disrupted, with ads inserted throughout the article in keyboard sequence.</p><p><b>WCAG</b>WCAG 2.4.3 · FOCUS ORDER · LEVEL A<br/>PARTIALLY SUPPORTS</p></div>
       </details>
       <details class="f-row">
         <summary><span class="f-num">09</span><span class="f-main"><span class="f-title">6 skipped heading levels and a silent section heading</span><span class="f-prob">HeadingsMap and WAVE detected 6 skipped heading levels on the article page.</span></span><span class="f-pour"><span class="sev-tag s-moderate">MODERATE</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
@@ -473,12 +473,12 @@
         <div class="win-card-body">
           <p class="win-label">WIN 02 · SUPPORTS</p>
           <p class="win-title">Visible focus indicators</p>
-          <p class="win-body">A black outlined focus square appears on all tested interactive elements with strong contrast. A genuine strength. Many news sites skip this entirely.</p>
+          <p class="win-body">A black outlined focus square appears on all tested interactive elements with strong contrast. A genuine strength.</p>
         </div>
       </div>
       <div class="win-card">
         <div class="win-card-body">
-          <p class="win-label">WIN 03 · SUPPORTS</p>
+          <p class="win-label">WIN 03 · PARTIALLY SUPPORTS</p>
           <p class="win-title">3-minute audio version of articles</p>
           <p class="win-body">A full audio reading of the written content. A meaningful media alternative, not just a checkbox. A content-level accessibility decision.</p>
         </div>
@@ -507,12 +507,12 @@
       <div class="rec-card" data-num="01">
         <span class="rec-priority p-critical">CRITICAL</span>
         <p class="rec-title">Fix the ad implementation's keyboard behavior</p>
-        <details class="more quiet"><summary>Why</summary><p class="rec-body">This is the only recommendation that is also a legal exposure. WCAG 2.1.2 is a Level A criterion, baseline conformance. Ad units need to be navigable with a single tab stop, or grouped with a skip mechanism. This is not a front-end fix alone. It requires coordination with ad ops.</p></details>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">WCAG 2.1.2 is a Level A criterion, baseline conformance. Ad units need to be navigable with a single tab stop, or grouped with a skip mechanism. This is not a front-end fix alone. It requires coordination with ad ops.</p></details>
       </div>
       <div class="rec-card" data-num="02">
         <span class="rec-priority">HIGH PRIORITY</span>
         <p class="rec-title">Audit and remediate all empty buttons</p>
-        <details class="more quiet"><summary>Why</summary><p class="rec-body">32 empty buttons on the homepage and 6 on the article page each need an accessible name. The podcast play button should announce the episode name, not the duration. Every empty button is a dead end in keyboard navigation.</p></details>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">32 empty buttons on the homepage and 6 on the article page each need an accessible name. The podcast play button should announce the episode name, not the duration. Every empty button is a dead end for screen reader users.</p></details>
       </div>
       <div class="rec-card" data-num="03">
         <span class="rec-priority">HIGH PRIORITY</span>
@@ -522,7 +522,7 @@
       <div class="rec-card" data-num="04">
         <span class="rec-priority">MEDIUM PRIORITY</span>
         <p class="rec-title">Repair ARIA menus and link purpose</p>
-        <details class="more quiet"><summary>Why</summary><p class="rec-body">17 broken ARIA menus on the homepage need to be corrected or replaced. Section header links need descriptive accessible names that communicate destination, not just the section label. This is a heading and landmark audit combined.</p></details>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">17 broken ARIA menus on the homepage need to be corrected or replaced. Section header links need descriptive accessible names that communicate destination, not just the section label.</p></details>
       </div>
       <div class="rec-card" data-num="05">
         <span class="rec-priority">MEDIUM PRIORITY</span>
