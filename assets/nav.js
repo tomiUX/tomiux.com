@@ -219,6 +219,12 @@
     }
 
 
+
+    /* BACK TO WORK */
+    .tomiux-back { display: flex; justify-content: center; padding: 3rem 1.25rem 3.5rem; position: relative; z-index: 1; }
+    .tomiux-back a { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: #fff; background: #A122C0; border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 8px; padding: 0.85rem 1.5rem; transition: transform 0.12s, box-shadow 0.12s; }
+    .tomiux-back a:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #0a0520; }
+    .tomiux-back a:focus-visible { outline: 3px solid #A122C0; outline-offset: 3px; }
     /* JUMP BAR */
     #tomiux-jump { position: fixed; z-index: 900; font-family: 'Nunito', sans-serif; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
     #tomiux-jump.show, #tomiux-jump:focus-within { opacity: 1; pointer-events: auto; }
@@ -353,6 +359,18 @@
       window.addEventListener('resize', () => { if (window.innerWidth > 760) setMenu(false); });
     })();
 
+
+    // ── Back to all work (bottom of every case study) ─────────────────────────
+    if (!document.querySelector('.tomiux-back')) {
+      const back = document.createElement('div');
+      back.className = 'tomiux-back';
+      back.innerHTML = '<a href="https://tomiux.com/#work">\u2190 Back to all work</a>';
+      const foot = document.querySelector('footer');
+      const mainEl = document.querySelector('main');
+      if (foot && foot.parentNode) foot.parentNode.insertBefore(back, foot);
+      else if (mainEl) mainEl.appendChild(back);
+      else document.body.appendChild(back);
+    }
     // ── Dropdown ──────────────────────────────────────────────────────────────
     const btn = document.getElementById('nav-featured-btn');
     const menu = document.getElementById('nav-featured-menu');
