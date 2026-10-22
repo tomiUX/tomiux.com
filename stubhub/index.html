@@ -257,6 +257,28 @@
   details.more > summary:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--pixel-dark); }
   details.more > summary:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
   details.more[open] > summary { margin-bottom: 0.6rem; }
+  /* findings: compact list */
+  .f-list { border: 3px solid var(--pixel-dark); border-radius: 10px; box-shadow: 4px 4px 0 var(--pixel-dark); background: var(--white); overflow: hidden; }
+  .f-row + .f-row { border-top: 2px solid var(--lavender-mid); }
+  .f-row > summary { list-style: none; display: grid; grid-template-columns: 2.2rem 1fr auto 1.2rem; gap: 0.9rem; align-items: start; padding: 0.95rem 1.2rem; cursor: pointer; }
+  .f-row > summary::-webkit-details-marker { display: none; }
+  .f-row > summary:hover { background: var(--lavender-bg); }
+  .f-row > summary:focus-visible { outline: 3px solid var(--purple); outline-offset: -3px; }
+  .f-num { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem; color: var(--hot-pink); line-height: 1.3; }
+  .f-main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+  .f-title { font-weight: 900; font-size: 0.98rem; color: var(--text); line-height: 1.35; }
+  .f-prob { font-weight: 600; font-size: 0.85rem; color: var(--text-mid); line-height: 1.55; }
+  .f-pour { font-weight: 900; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--text-light); padding-top: 0.25rem; white-space: nowrap; }
+  .f-caret { font-weight: 900; color: var(--purple); padding-top: 0.1rem; transition: transform 0.15s; }
+  .f-row[open] .f-caret { transform: rotate(180deg); }
+  .f-row[open] > summary { background: var(--lavender-bg); }
+  .f-body { padding: 0 1.2rem 1.1rem calc(2.2rem + 2.1rem); display: flex; flex-direction: column; gap: 0.6rem; background: var(--lavender-bg); }
+  .f-body p { font-size: 0.86rem; color: var(--text-mid); line-height: 1.6; font-weight: 600; }
+  .f-body b { display: block; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.15rem; }
+  @media (max-width: 600px) { .f-row > summary { grid-template-columns: 1.8rem 1fr 1rem; padding: 0.85rem 0.9rem; } .f-pour { display: none; } .f-body { padding: 0 0.9rem 1rem 3.2rem; } }
+
+  details.more.quiet > summary { background: none; border: none; box-shadow: none; padding: 0.2rem 0; color: var(--purple); text-decoration: underline; text-underline-offset: 3px; font-size: 0.8rem; }
+  details.more.quiet > summary:hover { transform: none; box-shadow: none; color: var(--hot-pink); }
 </style>
 </head>
 <body>
@@ -439,249 +461,48 @@
       <div class="stat-cell"><span class="stat-num">4/4</span><span class="stat-label">POUR PRINCIPLES<br/>TOUCHED</span></div>
     </div>
 
-    <ol class="annotation-list" aria-label="Ten StubHub accessibility annotations">
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #1</span>
-          <span class="annotation-pour" aria-label="POUR: Perceivable, Robust">
-            <span class="pour-tag tag-p">P</span><span class="pour-tag tag-r">R</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Search Field Missing Persistent Label</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>Screen reader users hear no label when landing on the search field because the only text is a placeholder that disappears on typing.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>The design must specify a persistent visible label associated with the search input. Placeholder text is not a label.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>Each search field must have a persistent visible label associated with the input. For example: a <code>label</code> element reading "Search" placed above the input and linked via <code>for/id</code>. Placeholder text alone is not sufficient.</p>
-          </div></details>
-        </div>
-      </li>
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #2</span>
-          <span class="annotation-pour" aria-label="POUR: Perceivable">
-            <span class="pour-tag tag-p">P</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Decorative vs Meaningful Icon Not Specified</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>Screen reader users get no description of the ticket icon because the attribute points to <code>title</code> and <code>desc</code> elements that do not exist in the code.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>The design must specify whether this icon is decorative or meaningful. If meaningful, the exact accessible label text must be provided. Without that, the developer attempted accessibility but did so incorrectly.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>If decorative, hide it from screen readers entirely. If meaningful, give it an accessible name. For example: a <code>title</code> element inside the SVG with a description like "Ticket price icon" so screen readers can identify it.</p>
-          </div></details>
-        </div>
-      </li>
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #3</span>
-          <span class="annotation-pour" aria-label="POUR: Understandable">
-            <span class="pour-tag tag-u">U</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Continue Button Missing Context</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>Screen reader users hear only "Continue" with no indication that this button acknowledges a fee disclosure or where it navigates next.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>The design must specify a descriptive accessible name for every button that reflects its purpose. "Continue" alone is not sufficient when the action has a specific meaning in context.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>The button's accessible name must include its purpose. For example: "Continue to event tickets that include all fees." The visible "Continue" label can remain, but the accessible name must carry full context.</p>
-          </div></details>
-        </div>
-      </li>
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #4</span>
-          <span class="annotation-pour" aria-label="POUR: Understandable">
-            <span class="pour-tag tag-u">U</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Ticket Price Button Missing Event Context</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>Screen reader users navigating by button hear "From $247" repeated for every event, with no indication of which event the button applies to.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>Every repeated action button needs a unique accessible name that includes the event it acts on. A hover tooltip was designed for context, but tooltips are only available to mouse users, so keyboard and touch users never see it. Context that exists for some users must be available to all.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>Each ticket button needs an accessible name that includes the event. For example: <code>aria-label="Get tickets for Qatar vs Switzerland, June 13, Levi's Stadium, from $247"</code>. The visible label "From $247" can remain.</p>
-          </div></details>
-        </div>
-      </li>
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #5</span>
-          <span class="annotation-pour" aria-label="POUR: Understandable, Robust">
-            <span class="pour-tag tag-u">U</span><span class="pour-tag tag-r">R</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Status Badges Missing Context</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>Screen reader users hear "Hottest event" and "Best value" with no indication of what criteria determine these labels or what they mean in the context of buying tickets.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>The design must specify the full accessible name for every status badge, not just the visible shorthand, plus the correct role for each badge type. The developer used <code>role="term"</code> (intended for glossary definitions, not status indicators) and badge icons were left unnamed.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>Each badge needs an accessible name that includes context. For example: <code>aria-label="Hottest event: high demand, prices may increase"</code>. Mark badge icons <code>aria-hidden="true"</code> since the text label conveys the meaning. Replace <code>role="term"</code> with an appropriate status role.</p>
-          </div></details>
-        </div>
-      </li>
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #6</span>
-          <span class="annotation-pour" aria-label="POUR: Understandable, Robust">
-            <span class="pour-tag tag-u">U</span><span class="pour-tag tag-r">R</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Modal Title Missing Heading Structure</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>Screen reader users navigating by headings cannot find or identify the modal's purpose because "How many tickets?" is styled visually as a heading but coded as a plain <code>div</code> with no heading role.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>Every modal needs a defined heading level specified in the design. "How many tickets?" is the title of this modal and should have been annotated as an H1 or H2. Without that, the developer styled it visually but never marked it as a real heading.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>Mark "How many tickets?" with an actual <code>h1</code> or <code>h2</code> element inside the modal so screen reader users can identify the modal's purpose when navigating by headings.</p>
-          </div></details>
-        </div>
-      </li>
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #7</span>
-          <span class="annotation-pour" aria-label="POUR: Perceivable">
-            <span class="pour-tag tag-p">P</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Color Used to Convey Urgency</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>Screen reader users and users who cannot perceive color miss the urgency of "4 tickets sold for this event" because the message relies on pink text and a fire emoji to communicate importance.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>The design must specify that urgency or emphasis cannot be conveyed through color or emoji alone. Any message requiring user attention must be marked up so its importance is communicated without relying on visual styling.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>The urgency message must be marked up so screen readers announce it automatically when it appears. The fire emoji needs an accessible name or must be hidden from screen readers if the surrounding text already conveys urgency.</p>
-          </div></details>
-        </div>
-      </li>
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #8</span>
-          <span class="annotation-pour" aria-label="POUR: Operable">
-            <span class="pour-tag tag-o">O</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Auto-Appearing Modal Missing Focus Management</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>Keyboard users lose their place when this modal appears automatically mid-purchase flow because focus is not moved to the modal, and the triggering element is not defined.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>The design must specify that any modal appearing automatically must immediately receive focus when it opens. Without this, the developer had no guidance on focus behavior, leaving keyboard users stranded when the modal appears unexpectedly.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>When this modal opens automatically, focus must move immediately to the first interactive element or the modal heading. Focus should land on the "Continue" button or "Hey there!" heading on open, and return to the triggering element on close.</p>
-          </div></details>
-        </div>
-      </li>
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #9</span>
-          <span class="annotation-pour" aria-label="POUR: Perceivable, Understandable">
-            <span class="pour-tag tag-p">P</span><span class="pour-tag tag-u">U</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Error State Not Announced to Screen Readers</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>The error message "Please enter a valid email address" is visible as red text but is not announced to screen reader users. It has no programmatic connection to the input field and no live announcement role.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>The design must specify that the error message requires a programmatic connection to its field, not just visual placement near it. Red color and red border alone cannot communicate an error state to users who cannot perceive color.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>The email field must be marked invalid when an error occurs, and the error message must be announced automatically when it appears. The message must be associated with the input so screen readers connect the two. Red border and red text alone are not sufficient.</p>
-          </div></details>
-        </div>
-      </li>
-
-      <li class="annotation-card">
-        <div class="annotation-header">
-          <span class="annotation-num" aria-hidden="true">AA #10</span>
-          <span class="annotation-pour" aria-label="POUR: Understandable, Operable">
-            <span class="pour-tag tag-u">U</span><span class="pour-tag tag-o">O</span>
-          </span>
-        </div>
-        <div class="annotation-body">
-          <p class="annotation-title">Disabled Button Provides No Explanation</p>
-          <div class="annotation-block ab-problem">
-            <span class="annotation-block-label">PROBLEM</span>
-            <p>Keyboard users tab to the "Continue" button and receive no information about why it is disabled or what action is needed to enable it. They are left with no path forward.</p>
-          </div>
-          <details class="more"><summary>Spec gap + fix</summary><div class="annotation-block ab-spec">
-            <span class="annotation-block-label">SHOULD HAVE BEEN EXPLICIT</span>
-            <p>The design must specify what conditions disable a button and what message communicates that state to all users. A visually greyed-out button is not sufficient. The reason for the disabled state must be defined at design time.</p>
-          </div>
-          <div class="annotation-block ab-fix">
-            <span class="annotation-block-label">A11Y FIX</span>
-            <p>The disabled Continue button must communicate why it is unavailable to all users. For example: "Continue is unavailable until a valid email address is entered." That way, keyboard and screen reader users understand what action is needed.</p>
-          </div></details>
-        </div>
-      </li>
-
-    </ol>
+    <div class="f-list">
+      <details class="f-row">
+        <summary><span class="f-num">#1</span><span class="f-main"><span class="f-title">Search Field Missing Persistent Label</span><span class="f-prob">Screen reader users hear no label when landing on the search field because the only text is a placeholder that disappears on typing.</span></span><span class="f-pour" aria-label="POUR: Perceivable, Robust">P R</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>The design must specify a persistent visible label associated with the search input. Placeholder text is not a label.</p><p><b>Fix</b>Each search field must have a persistent visible label associated with the input. For example: a <code>label</code> element reading "Search" placed above the input and linked via <code>for/id</code>. Placeholder text alone is not sufficient.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#2</span><span class="f-main"><span class="f-title">Decorative vs Meaningful Icon Not Specified</span><span class="f-prob">Screen reader users get no description of the ticket icon because the attribute points to <code>title</code> and <code>desc</code> elements that do not exist in the code.</span></span><span class="f-pour" aria-label="POUR: Perceivable">P</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>The design must specify whether this icon is decorative or meaningful. If meaningful, the exact accessible label text must be provided. Without that, the developer attempted accessibility but did so incorrectly.</p><p><b>Fix</b>If decorative, hide it from screen readers entirely. If meaningful, give it an accessible name. For example: a <code>title</code> element inside the SVG with a description like "Ticket price icon" so screen readers can identify it.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#3</span><span class="f-main"><span class="f-title">Continue Button Missing Context</span><span class="f-prob">Screen reader users hear only "Continue" with no indication that this button acknowledges a fee disclosure or where it navigates next.</span></span><span class="f-pour" aria-label="POUR: Understandable">U</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>The design must specify a descriptive accessible name for every button that reflects its purpose. "Continue" alone is not sufficient when the action has a specific meaning in context.</p><p><b>Fix</b>The button's accessible name must include its purpose. For example: "Continue to event tickets that include all fees." The visible "Continue" label can remain, but the accessible name must carry full context.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#4</span><span class="f-main"><span class="f-title">Ticket Price Button Missing Event Context</span><span class="f-prob">Screen reader users navigating by button hear "From $247" repeated for every event, with no indication of which event the button applies to.</span></span><span class="f-pour" aria-label="POUR: Understandable">U</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>Every repeated action button needs a unique accessible name that includes the event it acts on. A hover tooltip was designed for context, but tooltips are only available to mouse users, so keyboard and touch users never see it. Context that exists for some users must be available to all.</p><p><b>Fix</b>Each ticket button needs an accessible name that includes the event. For example: <code>aria-label="Get tickets for Qatar vs Switzerland, June 13, Levi's Stadium, from $247"</code>. The visible label "From $247" can remain.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#5</span><span class="f-main"><span class="f-title">Status Badges Missing Context</span><span class="f-prob">Screen reader users hear "Hottest event" and "Best value" with no indication of what criteria determine these labels or what they mean in the context of buying tickets.</span></span><span class="f-pour" aria-label="POUR: Understandable, Robust">U R</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>The design must specify the full accessible name for every status badge, not just the visible shorthand, plus the correct role for each badge type. The developer used <code>role="term"</code> (intended for glossary definitions, not status indicators) and badge icons were left unnamed.</p><p><b>Fix</b>Each badge needs an accessible name that includes context. For example: <code>aria-label="Hottest event: high demand, prices may increase"</code>. Mark badge icons <code>aria-hidden="true"</code> since the text label conveys the meaning. Replace <code>role="term"</code> with an appropriate status role.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#6</span><span class="f-main"><span class="f-title">Modal Title Missing Heading Structure</span><span class="f-prob">Screen reader users navigating by headings cannot find or identify the modal's purpose because "How many tickets?" is styled visually as a heading but coded as a plain <code>div</code> with no heading role.</span></span><span class="f-pour" aria-label="POUR: Understandable, Robust">U R</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>Every modal needs a defined heading level specified in the design. "How many tickets?" is the title of this modal and should have been annotated as an H1 or H2. Without that, the developer styled it visually but never marked it as a real heading.</p><p><b>Fix</b>Mark "How many tickets?" with an actual <code>h1</code> or <code>h2</code> element inside the modal so screen reader users can identify the modal's purpose when navigating by headings.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#7</span><span class="f-main"><span class="f-title">Color Used to Convey Urgency</span><span class="f-prob">Screen reader users and users who cannot perceive color miss the urgency of "4 tickets sold for this event" because the message relies on pink text and a fire emoji to communicate importance.</span></span><span class="f-pour" aria-label="POUR: Perceivable">P</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>The design must specify that urgency or emphasis cannot be conveyed through color or emoji alone. Any message requiring user attention must be marked up so its importance is communicated without relying on visual styling.</p><p><b>Fix</b>The urgency message must be marked up so screen readers announce it automatically when it appears. The fire emoji needs an accessible name or must be hidden from screen readers if the surrounding text already conveys urgency.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#8</span><span class="f-main"><span class="f-title">Auto-Appearing Modal Missing Focus Management</span><span class="f-prob">Keyboard users lose their place when this modal appears automatically mid-purchase flow because focus is not moved to the modal, and the triggering element is not defined.</span></span><span class="f-pour" aria-label="POUR: Operable">O</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>The design must specify that any modal appearing automatically must immediately receive focus when it opens. Without this, the developer had no guidance on focus behavior, leaving keyboard users stranded when the modal appears unexpectedly.</p><p><b>Fix</b>When this modal opens automatically, focus must move immediately to the first interactive element or the modal heading. Focus should land on the "Continue" button or "Hey there!" heading on open, and return to the triggering element on close.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#9</span><span class="f-main"><span class="f-title">Error State Not Announced to Screen Readers</span><span class="f-prob">The error message "Please enter a valid email address" is visible as red text but is not announced to screen reader users. It has no programmatic connection to the input field and no live announcement role.</span></span><span class="f-pour" aria-label="POUR: Perceivable, Understandable">P U</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>The design must specify that the error message requires a programmatic connection to its field, not just visual placement near it. Red color and red border alone cannot communicate an error state to users who cannot perceive color.</p><p><b>Fix</b>The email field must be marked invalid when an error occurs, and the error message must be announced automatically when it appears. The message must be associated with the input so screen readers connect the two. Red border and red text alone are not sufficient.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#10</span><span class="f-main"><span class="f-title">Disabled Button Provides No Explanation</span><span class="f-prob">Keyboard users tab to the "Continue" button and receive no information about why it is disabled or what action is needed to enable it. They are left with no path forward.</span></span><span class="f-pour" aria-label="POUR: Understandable, Operable">U O</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Should have been explicit</b>The design must specify what conditions disable a button and what message communicates that state to all users. A visually greyed-out button is not sufficient. The reason for the disabled state must be defined at design time.</p><p><b>Fix</b>The disabled Continue button must communicate why it is unavailable to all users. For example: "Continue is unavailable until a valid email address is entered." That way, keyboard and screen reader users understand what action is needed.</p></div>
+      </details>
+    </div>
   </div>
 </div>
 
@@ -745,22 +566,22 @@
       <div class="rec-card" data-num="01">
         <span class="rec-priority">HIGH PRIORITY</span>
         <p class="rec-title">Add an a11y annotation layer to the Figma component library</p>
-        <details class="more"><summary>Why</summary><p class="rec-body">Every interactive component in the design system should ship with its accessible name pattern, role, focus order, and decorative-vs-meaningful flag visible in the file. Annotations are not extra work. They are the spec. If a component cannot be annotated, it cannot ship.</p></details>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">Every interactive component in the design system should ship with its accessible name pattern, role, focus order, and decorative-vs-meaningful flag visible in the file. Annotations are not extra work. They are the spec. If a component cannot be annotated, it cannot ship.</p></details>
       </div>
       <div class="rec-card" data-num="02">
         <span class="rec-priority">HIGH PRIORITY</span>
         <p class="rec-title">Define an "accessible name" requirement on every button and badge token</p>
-        <details class="more"><summary>Why</summary><p class="rec-body">Tokens for buttons, badges, and status indicators must include both the visible label and the accessible name as separate fields. The pattern of "Continue", "From $247", and "Hottest event" repeats across the flow because the design system never separated the two. Make it impossible to forget.</p></details>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">Tokens for buttons, badges, and status indicators must include both the visible label and the accessible name as separate fields. The pattern of "Continue", "From $247", and "Hottest event" repeats across the flow because the design system never separated the two. Make it impossible to forget.</p></details>
       </div>
       <div class="rec-card" data-num="03">
         <span class="rec-priority">MEDIUM PRIORITY</span>
         <p class="rec-title">Specify focus behavior for every modal and dialog at design time</p>
-        <details class="more"><summary>Why</summary><p class="rec-body">Auto-appearing modals, success states, and error dialogs need a focus-management spec attached to the artboard: where focus lands on open, where it returns on close, what gets the heading role. Developers should not be inferring this from screenshots.</p></details>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">Auto-appearing modals, success states, and error dialogs need a focus-management spec attached to the artboard: where focus lands on open, where it returns on close, what gets the heading role. Developers should not be inferring this from screenshots.</p></details>
       </div>
       <div class="rec-card" data-num="04">
         <span class="rec-priority">MEDIUM PRIORITY</span>
         <p class="rec-title">Pair every color-coded state with a non-color signal in the spec</p>
-        <details class="more"><summary>Why</summary><p class="rec-body">Disabled states, error states, urgency cues, and status indicators must carry a second channel (text, icon shape, role, or live region) defined at design time. WCAG 1.4.1 cannot be remediated in QA. It has to be designed in.</p></details>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">Disabled states, error states, urgency cues, and status indicators must carry a second channel (text, icon shape, role, or live region) defined at design time. WCAG 1.4.1 cannot be remediated in QA. It has to be designed in.</p></details>
       </div>
     </div>
   </div>
