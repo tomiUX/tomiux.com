@@ -53,9 +53,11 @@
       image-rendering: pixelated;
     }
     #tomiux-nav .nav-logo-text {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 1rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1.35rem;
       line-height: 1;
+      letter-spacing: -0.01em;
     }
     #tomiux-nav .logo-tomi { color: #A122C0; }
     #tomiux-nav .logo-ux   { color: #3FBB9E; }
