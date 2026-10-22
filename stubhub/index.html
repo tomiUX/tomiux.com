@@ -295,7 +295,7 @@
         <span class="line1">StubHub</span>
         <span class="line2">Annotations</span>
       </h1>
-      <p class="case-subtitle">Accessibility annotations for developer handoff, bridging the gap between design intent and WCAG 2.1 AA conformance in production.</p>
+      <p class="case-subtitle">Accessibility annotations for developer handoff, showing how clearer design-stage intent could have prevented known accessibility bugs.</p>
       <div class="case-meta-pills">
         <span class="pill pill-purple">Accessibility</span>
         <span class="pill pill-teal">Developer Handoff</span>
@@ -313,8 +313,8 @@
           <div class="stat-label-sm">ANNOTATIONS</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-number" style="color:var(--teal);">AA</div>
-          <div class="stat-label-sm">WCAG 2.1<br/>STANDARD</div>
+          <div class="stat-number" style="color:var(--teal-text, #13775F);">4</div>
+          <div class="stat-label-sm">POUR<br/>PRINCIPLES</div>
         </div>
         <div class="stat-cell">
           <div class="stat-number" style="color:var(--orange);">6</div>
@@ -378,13 +378,13 @@
         <div class="method-card-body">
           <div class="method-letter ml-teal" aria-hidden="true">C</div>
           <p class="method-title">The A11Y Fix</p>
-          <p class="method-body">The remediation a developer can implement directly: WCAG-aligned attributes, semantic HTML, focus management, and accessible names with full context.</p>
+          <p class="method-body">The remediation a developer can implement directly: accessible attributes, semantic HTML, focus management, and accessible names with full context.</p>
         </div>
       </div>
     </div>
 
     <p class="sub-label" style="margin-top: 1rem;">// POUR PRINCIPLES TOUCHED ACROSS THE FLOW</p>
-    <div class="pour-row" role="list" aria-label="WCAG POUR principle counts">
+    <div class="pour-row" role="list" aria-label="POUR principle counts">
       <div class="pour-cell" role="listitem">
         <div class="pour-letter p1" aria-hidden="true">P</div>
         <div class="pour-name">PERCEIVABLE</div>
@@ -529,7 +529,7 @@
         <div class="pattern-card-body">
           <p class="pattern-label">PATTERN 02</p>
           <p class="pattern-title">Color carrying the meaning alone</p>
-          <p class="pattern-body">Urgency, error states, and disabled states all rely on color as the only signal. WCAG 1.4.1 (Use of Color) is violated repeatedly. Every state change needs a non-color companion: text, icon shape, programmatic role, or announcement.</p>
+          <p class="pattern-body">Urgency, error states, and disabled states all rely on color as the only signal. Every state change needs a non-color companion: text, icon shape, programmatic role, or announcement.</p>
           <p class="pattern-refs">↳ #7 · #9 · #10</p>
         </div>
       </div>
@@ -581,7 +581,7 @@
       <div class="rec-card" data-num="04">
         <span class="rec-priority">MEDIUM PRIORITY</span>
         <p class="rec-title">Pair every color-coded state with a non-color signal in the spec</p>
-        <details class="more quiet"><summary>Why</summary><p class="rec-body">Disabled states, error states, urgency cues, and status indicators must carry a second channel (text, icon shape, role, or live region) defined at design time. WCAG 1.4.1 cannot be remediated in QA. It has to be designed in.</p></details>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">Disabled states, error states, urgency cues, and status indicators must carry a second channel (text, icon shape, role, or live region) defined at design time. Color-only signals cannot be remediated in QA. It has to be designed in.</p></details>
       </div>
     </div>
   </div>
