@@ -228,6 +228,40 @@
     .rec-card { padding: 4.5rem 1.25rem 1.25rem; }
     .rec-card::before { top: 1rem; left: 1rem; }
   }
+  /* trim + collapse */
+  details.more { margin-top: 0.6rem; }
+  details.more > summary { display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer; list-style: none; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.78rem; letter-spacing: 0.04em; color: var(--pixel-dark); background: var(--yellow); border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 6px; padding: 0.3rem 0.7rem; }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::after { content: '▾'; transition: transform 0.15s; }
+  details.more[open] > summary::after { transform: rotate(180deg); }
+  details.more > summary:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--pixel-dark); }
+  details.more > summary:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  details.more[open] > summary { margin-bottom: 0.6rem; }
+  /* findings: compact list */
+  .f-list { border: 3px solid var(--pixel-dark); border-radius: 10px; box-shadow: 4px 4px 0 var(--pixel-dark); background: var(--white); overflow: hidden; }
+  .f-row + .f-row { border-top: 2px solid var(--lavender-mid); }
+  .f-row > summary { list-style: none; display: grid; grid-template-columns: 2.2rem 1fr auto 1.2rem; gap: 0.9rem; align-items: start; padding: 0.95rem 1.2rem; cursor: pointer; }
+  .f-row > summary::-webkit-details-marker { display: none; }
+  .f-row > summary:hover { background: var(--lavender-bg); }
+  .f-row > summary:focus-visible { outline: 3px solid var(--purple); outline-offset: -3px; }
+  .f-num { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem; color: var(--hot-pink); line-height: 1.3; }
+  .f-main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+  .f-title { font-weight: 900; font-size: 0.98rem; color: var(--text); line-height: 1.35; }
+  .f-prob { font-weight: 600; font-size: 0.85rem; color: var(--text-mid); line-height: 1.55; }
+  .f-pour { font-weight: 900; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--text-light); padding-top: 0.25rem; white-space: nowrap; }
+  .f-caret { font-weight: 900; color: var(--purple); padding-top: 0.1rem; transition: transform 0.15s; }
+  .f-row[open] .f-caret { transform: rotate(180deg); }
+  .f-row[open] > summary { background: var(--lavender-bg); }
+  .f-body { padding: 0 1.2rem 1.1rem calc(2.2rem + 2.1rem); display: flex; flex-direction: column; gap: 0.6rem; background: var(--lavender-bg); }
+  .f-body p { font-size: 0.86rem; color: var(--text-mid); line-height: 1.6; font-weight: 600; }
+  .f-body b { display: block; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.15rem; }
+  @media (max-width: 600px) { .f-row > summary { grid-template-columns: 1.8rem 1fr 1rem; padding: 0.85rem 0.9rem; } .f-pour { display: none; } .f-body { padding: 0 0.9rem 1rem 3.2rem; } }
+
+  details.more.quiet > summary { background: none; border: none; box-shadow: none; padding: 0.2rem 0; color: var(--purple); text-decoration: underline; text-underline-offset: 3px; font-size: 0.8rem; }
+  details.more.quiet > summary:hover { transform: none; box-shadow: none; color: var(--hot-pink); }
+  /* npr: severity in summary on all widths */
+  .f-pour .sev-tag { margin-left: 0; font-size: 0.62rem; padding: 0.2rem 0.4rem; }
+  @media (max-width: 600px) { .f-row > summary { grid-template-columns: 1.8rem 1fr auto 1rem; } .f-pour { display: block; } }
 </style>
 </head>
 <body>
@@ -291,17 +325,14 @@
       <div>
         <p class="pull-quote">Where accessibility investments meet ad reality.</p>
         <p class="body-text">Public media organizations carry an implicit accessibility contract with their audiences. NPR's mission is to inform, and that mission breaks down when the interface gets in the way of the people trying to receive it.</p>
-        <p class="body-text">I chose NPR.org because it's a site I use and trust. I came in expecting a reasonably clean accessibility picture. What I found instead was a site doing several things genuinely well, and one thing that completely overshadows them: an ad implementation that has made keyboard navigation on article pages nearly impossible.</p>
-        <p class="body-text">A VPAT (Voluntary Product Accessibility Template) is the standardized industry document used to report WCAG conformance. It's the format procurement, legal, and enterprise teams request when evaluating software accessibility. Producing one correctly takes systematic manual testing, not just a scan.</p>
+        <p class="body-text">I chose NPR.org because it's a site I use and trust. I came in expecting a reasonably clean accessibility picture.</p>
+        <details class="more quiet"><summary>What's a VPAT?</summary><p class="body-text">A VPAT (Voluntary Product Accessibility Template) is the standardized industry document used to report WCAG conformance. It's the format procurement, legal, and enterprise teams request when evaluating software accessibility. Producing one correctly takes systematic manual testing, not just a scan.</p></details>
       </div>
       <div>
         <p class="sub-label">// WHAT THIS AUDIT COVERS</p>
         <ul class="insight-list">
           <li>WCAG 2.1 Level A and AA conformance, reported in VPAT 2.5Rev format</li>
-          <li>Two page types tested in parallel: NPR homepage and a single article page</li>
-          <li>Manual testing with VoiceOver and keyboard navigation, plus automated scans with WAVE and HeadingsMap</li>
           <li>Twelve documented failures across the homepage and article page</li>
-          <li>One central finding that overshadows the rest: a keyboard trap built by the ad implementation</li>
         </ul>
       </div>
     </div>
@@ -327,7 +358,6 @@
       <span class="chip">KEYBOARD</span>
       <span class="chip">MOUSE</span>
     </div>
-    <p class="body-text" style="max-width: 760px;">I brought working knowledge of NPR.org to the session. That mattered. I could tell the difference between something genuinely broken and something unfamiliar.</p>
   </div>
 </div>
 
@@ -349,11 +379,11 @@
     </div>
 
     <div class="callout">
-      <p><strong>On the NPR article page, 31 of 38 tab stops are ads or contextless inline links.</strong> For a keyboard-dependent user, reading an NPR article means tabbing through an ad gauntlet before reaching the content the page exists to deliver.</p>
+      <p>For a keyboard-dependent user, reading an NPR article means tabbing through an ad gauntlet before reaching the content the page exists to deliver.</p>
     </div>
 
     <p class="body-text">The failure is at WCAG 2.1.2 (No Keyboard Trap) and 2.4.3 (Focus Order). Sponsored content blocks require 5 or more consecutive tab stops to exit. The article audio player and KQED live player are technically keyboard-accessible, but buried under the ad stack in tab order, making them functionally unreachable.</p>
-    <p class="body-text">This is a design and implementation decision with compounding consequences. NPR's genuine accessibility wins (its skip-to-main-content link, visible focus indicators) are negated for keyboard users the moment they enter an article page. The skip link clears the nav. It doesn't clear the ads.</p>
+    <p class="body-text">NPR's genuine accessibility wins (its skip-to-main-content link, visible focus indicators) are negated for keyboard users the moment they enter an article page. The skip link clears the nav. It doesn't clear the ads.</p>
   </div>
 </div>
 
@@ -366,155 +396,57 @@
       <span class="section-badge" aria-hidden="true">04 // FINDINGS</span>
       <h2 class="section-title">Twelve failures, <span class="accent2">ranked by impact</span></h2>
     </div>
-    <p class="body-text" style="margin-bottom: 2.5rem; max-width: 760px;">All findings come directly from the VPAT below, organized by user impact rather than WCAG criterion order. Severity reflects how directly the failure blocks an actual person from using the site.</p>
 
-    <ol class="finding-list" aria-label="Audit findings ranked by severity">
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 01</span>
-          <span class="sev-tag s-critical">CRITICAL</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">Keyboard trap in sponsored content</p>
-          <p class="finding-desc">Keyboard users become trapped in ad units, requiring 5+ tab presses to exit each one. Over 27 of 38 total tab stops on the article page are ad-related. The article itself is functionally unreachable via keyboard.</p>
-          <p class="finding-wcag">WCAG 2.1.2 · NO KEYBOARD TRAP · LEVEL A<br/>DOES NOT SUPPORT</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 02</span>
-          <span class="sev-tag s-critical">CRITICAL</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">59 images missing alt text on the homepage</p>
-          <p class="finding-desc">WAVE detected 59 images and 3 linked images without alternative text on the homepage. 3 images and 3 linked images also failed on the article page. Screen reader users receive no information about these images.</p>
-          <p class="finding-wcag">WCAG 1.1.1 · NON-TEXT CONTENT · LEVEL A<br/>DOES NOT SUPPORT</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 03</span>
-          <span class="sev-tag s-critical">CRITICAL</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">32 empty buttons and 17 broken ARIA menus</p>
-          <p class="finding-desc">WAVE flagged 32 empty buttons on the homepage, 6 on the article page, and 17 broken ARIA menus. The podcast play button announces as "3 08 button," using audio duration as the accessible name. Every empty button is a dead end for screen reader users.</p>
-          <p class="finding-wcag">WCAG 4.1.2 · NAME, ROLE, VALUE · LEVEL A<br/>DOES NOT SUPPORT</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 04</span>
-          <span class="sev-tag s-critical">CRITICAL</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">Watch section videos have no title, description, or alt text</p>
-          <p class="finding-desc">Prerecorded videos on the homepage are announced only as "play video" via VoiceOver. Descriptions are teaser copy about the topic, not descriptions of the visual content. Entirely inaccessible for screen reader users.</p>
-          <p class="finding-wcag">WCAG 1.2.1 · AUDIO-ONLY AND VIDEO-ONLY · LEVEL A<br/>DOES NOT SUPPORT</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 05</span>
-          <span class="sev-tag s-high">HIGH</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">Link purpose not conveyed to screen readers</p>
-          <p class="finding-desc">Section header links ("National," "Law") are announced by VoiceOver with the section name only, no destination context. Inline article links read without surrounding sentence context. Screen reader users cannot determine where a link goes without clicking it.</p>
-          <p class="finding-wcag">WCAG 2.4.4 · LINK PURPOSE · LEVEL A<br/>DOES NOT SUPPORT</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 06</span>
-          <span class="sev-tag s-high">HIGH</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">44 contrast errors on the homepage</p>
-          <p class="finding-desc">WAVE detected 44 contrast errors on the homepage. On the article page, the audio player UI falls below the 4.5:1 minimum for normal text. For a news organization, low-contrast body text is a significant barrier to the primary use case.</p>
-          <p class="finding-wcag">WCAG 1.4.3 · CONTRAST MINIMUM · LEVEL AA<br/>DOES NOT SUPPORT</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 07</span>
-          <span class="sev-tag s-high">HIGH</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">No audio description on Watch section videos</p>
-          <p class="finding-desc">Homepage videos include closed captions but no audio description track. Visual-only content in the videos is inaccessible to blind and low-vision users regardless of how well the captions are written.</p>
-          <p class="finding-wcag">WCAG 1.2.5 · AUDIO DESCRIPTION · LEVEL AA<br/>DOES NOT SUPPORT</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 08</span>
-          <span class="sev-tag s-moderate">MODERATE</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">Focus order disrupted by ads on both page types</p>
-          <p class="finding-desc">Homepage focus order generally follows visual layout but is disrupted by sponsored content. Article page focus order is heavily disrupted, with the ad stack appearing before editorial content in keyboard sequence.</p>
-          <p class="finding-wcag">WCAG 2.4.3 · FOCUS ORDER · LEVEL A<br/>PARTIALLY SUPPORTS</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 09</span>
-          <span class="sev-tag s-moderate">MODERATE</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">6 skipped heading levels and a silent section heading</p>
-          <p class="finding-desc">HeadingsMap and WAVE detected 6 skipped heading levels on the article page. On the homepage, the "Watch" section heading is not announced by VoiceOver at all, breaking section structure for users navigating by headings.</p>
-          <p class="finding-wcag">WCAG 2.4.6 · HEADINGS AND LABELS · LEVEL AA<br/>PARTIALLY SUPPORTS</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 10</span>
-          <span class="sev-tag s-moderate">MODERATE</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">Inline links interrupt VoiceOver sentence reading</p>
-          <p class="finding-desc">On the article page, inline hyperlinks interrupt VoiceOver reading flow, requiring manual keyboard input to continue through a single sentence. Reading a linked paragraph becomes a stop-and-start process.</p>
-          <p class="finding-wcag">WCAG 1.3.2 · MEANINGFUL SEQUENCE · LEVEL A<br/>PARTIALLY SUPPORTS</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 11</span>
-          <span class="sev-tag s-low">LOW</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">Live ads update without a user pause mechanism</p>
-          <p class="finding-desc">On both page types, live ads update automatically without a pause, stop, or hide control. The NPR logo animates once on load without looping, which is a reasonable handling of animation.</p>
-          <p class="finding-wcag">WCAG 2.2.2 · PAUSE, STOP, HIDE · LEVEL A<br/>PARTIALLY SUPPORTS</p>
-        </div>
-      </li>
-
-      <li class="finding-card">
-        <div class="finding-header">
-          <span class="finding-num" aria-hidden="true">FINDING 12</span>
-          <span class="sev-tag s-low">LOW</span>
-        </div>
-        <div class="finding-body">
-          <p class="finding-title">Search results not announced to screen readers</p>
-          <p class="finding-desc">Submitting a search produced a brief audible tone through VoiceOver but no spoken announcement of results loading or result count. Users don't know if the search succeeded.</p>
-          <p class="finding-wcag">WCAG 4.1.3 · STATUS MESSAGES · LEVEL AA<br/>PARTIALLY SUPPORTS</p>
-        </div>
-      </li>
-
-    </ol>
+    <div class="f-list" aria-label="Audit findings ranked by severity">
+      <details class="f-row">
+        <summary><span class="f-num">01</span><span class="f-main"><span class="f-title">Keyboard trap in sponsored content</span><span class="f-prob">Keyboard users become trapped in ad units, requiring 5+ tab presses to exit each one.</span></span><span class="f-pour"><span class="sev-tag s-critical">CRITICAL</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>Over 27 of 38 total tab stops on the article page are ad-related. The article itself is functionally unreachable via keyboard.</p><p><b>WCAG</b>WCAG 2.1.2 · NO KEYBOARD TRAP · LEVEL A<br/>DOES NOT SUPPORT</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">02</span><span class="f-main"><span class="f-title">59 images missing alt text on the homepage</span><span class="f-prob">WAVE detected 59 images and 3 linked images without alternative text on the homepage.</span></span><span class="f-pour"><span class="sev-tag s-critical">CRITICAL</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>3 images and 3 linked images also failed on the article page. Screen reader users receive no information about these images.</p><p><b>WCAG</b>WCAG 1.1.1 · NON-TEXT CONTENT · LEVEL A<br/>DOES NOT SUPPORT</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">03</span><span class="f-main"><span class="f-title">32 empty buttons and 17 broken ARIA menus</span><span class="f-prob">WAVE flagged 32 empty buttons on the homepage, 6 on the article page, and 17 broken ARIA menus.</span></span><span class="f-pour"><span class="sev-tag s-critical">CRITICAL</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>The podcast play button announces as "3 08 button," using audio duration as the accessible name. Every empty button is a dead end for screen reader users.</p><p><b>WCAG</b>WCAG 4.1.2 · NAME, ROLE, VALUE · LEVEL A<br/>DOES NOT SUPPORT</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">04</span><span class="f-main"><span class="f-title">Watch section videos have no title, description, or alt text</span><span class="f-prob">Prerecorded videos on the homepage are announced only as "play video" via VoiceOver.</span></span><span class="f-pour"><span class="sev-tag s-critical">CRITICAL</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>Descriptions are teaser copy about the topic, not descriptions of the visual content. Entirely inaccessible for screen reader users.</p><p><b>WCAG</b>WCAG 1.2.1 · AUDIO-ONLY AND VIDEO-ONLY · LEVEL A<br/>DOES NOT SUPPORT</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">05</span><span class="f-main"><span class="f-title">Link purpose not conveyed to screen readers</span><span class="f-prob">Section header links ("National," "Law") are announced by VoiceOver with the section name only, no destination context.</span></span><span class="f-pour"><span class="sev-tag s-high">HIGH</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>Inline article links read without surrounding sentence context. Screen reader users cannot determine where a link goes without clicking it.</p><p><b>WCAG</b>WCAG 2.4.4 · LINK PURPOSE · LEVEL A<br/>DOES NOT SUPPORT</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">06</span><span class="f-main"><span class="f-title">44 contrast errors on the homepage</span><span class="f-prob">WAVE detected 44 contrast errors on the homepage.</span></span><span class="f-pour"><span class="sev-tag s-high">HIGH</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>On the article page, the audio player UI falls below the 4.5:1 minimum for normal text. For a news organization, low-contrast body text is a significant barrier to the primary use case.</p><p><b>WCAG</b>WCAG 1.4.3 · CONTRAST MINIMUM · LEVEL AA<br/>DOES NOT SUPPORT</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">07</span><span class="f-main"><span class="f-title">No audio description on Watch section videos</span><span class="f-prob">Homepage videos include closed captions but no audio description track.</span></span><span class="f-pour"><span class="sev-tag s-high">HIGH</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>Visual-only content in the videos is inaccessible to blind and low-vision users regardless of how well the captions are written.</p><p><b>WCAG</b>WCAG 1.2.5 · AUDIO DESCRIPTION · LEVEL AA<br/>DOES NOT SUPPORT</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">08</span><span class="f-main"><span class="f-title">Focus order disrupted by ads on both page types</span><span class="f-prob">Homepage focus order generally follows visual layout but is disrupted by sponsored content.</span></span><span class="f-pour"><span class="sev-tag s-moderate">MODERATE</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>Article page focus order is heavily disrupted, with the ad stack appearing before editorial content in keyboard sequence.</p><p><b>WCAG</b>WCAG 2.4.3 · FOCUS ORDER · LEVEL A<br/>PARTIALLY SUPPORTS</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">09</span><span class="f-main"><span class="f-title">6 skipped heading levels and a silent section heading</span><span class="f-prob">HeadingsMap and WAVE detected 6 skipped heading levels on the article page.</span></span><span class="f-pour"><span class="sev-tag s-moderate">MODERATE</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>On the homepage, the "Watch" section heading is not announced by VoiceOver at all, breaking section structure for users navigating by headings.</p><p><b>WCAG</b>WCAG 2.4.6 · HEADINGS AND LABELS · LEVEL AA<br/>PARTIALLY SUPPORTS</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">10</span><span class="f-main"><span class="f-title">Inline links interrupt VoiceOver sentence reading</span><span class="f-prob">On the article page, inline hyperlinks interrupt VoiceOver reading flow, requiring manual keyboard input to continue through a single sentence.</span></span><span class="f-pour"><span class="sev-tag s-moderate">MODERATE</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>Reading a linked paragraph becomes a stop-and-start process.</p><p><b>WCAG</b>WCAG 1.3.2 · MEANINGFUL SEQUENCE · LEVEL A<br/>PARTIALLY SUPPORTS</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">11</span><span class="f-main"><span class="f-title">Live ads update without a user pause mechanism</span><span class="f-prob">On both page types, live ads update automatically without a pause, stop, or hide control.</span></span><span class="f-pour"><span class="sev-tag s-low">LOW</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>The NPR logo animates once on load without looping, which is a reasonable handling of animation.</p><p><b>WCAG</b>WCAG 2.2.2 · PAUSE, STOP, HIDE · LEVEL A<br/>PARTIALLY SUPPORTS</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">12</span><span class="f-main"><span class="f-title">Search results not announced to screen readers</span><span class="f-prob">Submitting a search produced a brief audible tone through VoiceOver but no spoken announcement of results loading or result count.</span></span><span class="f-pour"><span class="sev-tag s-low">LOW</span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>Detail</b>Users don't know if the search succeeded.</p><p><b>WCAG</b>WCAG 4.1.3 · STATUS MESSAGES · LEVEL AA<br/>PARTIALLY SUPPORTS</p></div>
+      </details>
+    </div>
   </div>
 </div>
 
@@ -527,7 +459,7 @@
       <span class="section-badge" aria-hidden="true">05 // WHAT WORKS</span>
       <h2 class="section-title">Where NPR <span class="accent">gets it right</span></h2>
     </div>
-    <p class="body-text" style="margin-bottom: 2.5rem; max-width: 760px;">This audit is not a takedown. NPR has made real accessibility investments worth naming. A site can do all of these things correctly and still fail the people trying to read an article via keyboard. That is the problem.</p>
+    <p class="body-text" style="margin-bottom: 2.5rem; max-width: 760px;">This audit is not a takedown. NPR has made real accessibility investments worth naming.</p>
 
     <div class="wins-grid">
       <div class="win-card">
@@ -571,33 +503,31 @@
       <span class="section-badge" aria-hidden="true">06 // RECOMMENDATIONS</span>
       <h2 class="section-title">What to fix, <span class="accent2">in order</span></h2>
     </div>
-    <p class="body-text" style="margin-bottom: 2rem; max-width: 760px;">Prioritized by impact on real users, not WCAG criterion order.</p>
-
     <div class="rec-list">
       <div class="rec-card" data-num="01">
         <span class="rec-priority p-critical">CRITICAL</span>
         <p class="rec-title">Fix the ad implementation's keyboard behavior</p>
-        <p class="rec-body">This is the only recommendation that is also a legal exposure. WCAG 2.1.2 is a Level A criterion, baseline conformance. Ad units need to be navigable with a single tab stop, or grouped with a skip mechanism. This is not a front-end fix alone. It requires coordination with ad ops.</p>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">This is the only recommendation that is also a legal exposure. WCAG 2.1.2 is a Level A criterion, baseline conformance. Ad units need to be navigable with a single tab stop, or grouped with a skip mechanism. This is not a front-end fix alone. It requires coordination with ad ops.</p></details>
       </div>
       <div class="rec-card" data-num="02">
         <span class="rec-priority">HIGH PRIORITY</span>
         <p class="rec-title">Audit and remediate all empty buttons</p>
-        <p class="rec-body">32 empty buttons on the homepage and 6 on the article page each need an accessible name. The podcast play button should announce the episode name, not the duration. Every empty button is a dead end in keyboard navigation.</p>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">32 empty buttons on the homepage and 6 on the article page each need an accessible name. The podcast play button should announce the episode name, not the duration. Every empty button is a dead end in keyboard navigation.</p></details>
       </div>
       <div class="rec-card" data-num="03">
         <span class="rec-priority">HIGH PRIORITY</span>
         <p class="rec-title">Add alt text to all editorial images</p>
-        <p class="rec-body">59 homepage images lack alternative text. For a news organization, image alt text is also editorial context. A photo that can't be described is a story element that doesn't reach part of the audience. Establish an editorial workflow that requires alt text at upload.</p>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">59 homepage images lack alternative text. For a news organization, image alt text is also editorial context. A photo that can't be described is a story element that doesn't reach part of the audience. Establish an editorial workflow that requires alt text at upload.</p></details>
       </div>
       <div class="rec-card" data-num="04">
         <span class="rec-priority">MEDIUM PRIORITY</span>
         <p class="rec-title">Repair ARIA menus and link purpose</p>
-        <p class="rec-body">17 broken ARIA menus on the homepage need to be corrected or replaced. Section header links need descriptive accessible names that communicate destination, not just the section label. This is a heading and landmark audit combined.</p>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">17 broken ARIA menus on the homepage need to be corrected or replaced. Section header links need descriptive accessible names that communicate destination, not just the section label. This is a heading and landmark audit combined.</p></details>
       </div>
       <div class="rec-card" data-num="05">
         <span class="rec-priority">MEDIUM PRIORITY</span>
         <p class="rec-title">Resolve contrast failures on the audio player</p>
-        <p class="rec-body">The article audio player UI falls below the 4.5:1 minimum for normal text. Given how central audio is to NPR's identity, this is a meaningful gap. It's a discrete component that can be corrected without a broader redesign.</p>
+        <details class="more quiet"><summary>Why</summary><p class="rec-body">The article audio player UI falls below the 4.5:1 minimum for normal text. Given how central audio is to NPR's identity, this is a meaningful gap. It's a discrete component that can be corrected without a broader redesign.</p></details>
       </div>
     </div>
   </div>
@@ -612,8 +542,6 @@
       <span class="section-badge" aria-hidden="true">07 // THE DELIVERABLE</span>
       <h2 class="section-title">The full <span class="accent">VPAT</span></h2>
     </div>
-    <p class="body-text" style="margin-bottom: 2rem; max-width: 760px;">The complete WCAG 2.1 Level A and AA conformance report is formatted using the VPAT 2.5Rev template from the Information Technology Industry Council. It covers every applicable success criterion across both page types, with conformance level and remarks for each.</p>
-
     <div class="vpat-block">
       <div aria-hidden="true"></div>
       <p class="vpat-eyebrow">VPAT 2.5REV · WCAG 2.1 EDITION</p>
@@ -634,8 +562,7 @@
       <h2 class="section-title">The tension this audit <span class="accent2">revealed</span></h2>
     </div>
     <p class="body-text" style="margin-bottom: 1rem; max-width: 760px;">NPR is publicly funded, editorially independent, and mission-driven. It also runs ads. Those two things are in direct conflict when the ad implementation breaks the experience for keyboard users.</p>
-    <p class="body-text" style="margin-bottom: 1rem; max-width: 760px;">This audit surfaced something that goes beyond checklist compliance. A site can demonstrate genuine care for accessibility at the content layer (audio alternatives, visible focus states, working skip links) and still fail the people who need it most at the implementation layer, because ad ops and accessibility weren't in the same room.</p>
-    <p class="body-text" style="margin-bottom: 2.5rem; max-width: 760px;">WCAG conformance isn't a design system problem. It's a cross-functional coordination problem. The keyboard trap in NPR's article ads isn't a failure of values. It's a failure of process. Nobody in the ad implementation workflow was checking whether these units could be exited by a keyboard user.</p>
+    <p class="body-text" style="margin-bottom: 2.5rem; max-width: 760px;">WCAG conformance isn't a design system problem. It's a cross-functional coordination problem. The keyboard trap in NPR's article ads isn't a failure of values. It's a failure of process.</p>
 
     <div class="takeaway">
       <p class="takeaway-text">"That's the gap a VPAT surfaces that a quick WAVE scan doesn't. You have to sit in it and try to tab through an article."</p>

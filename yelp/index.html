@@ -278,6 +278,41 @@
   .footer-links a:hover { color: var(--pink); }
 
   /* ===== RESPONSIVE ===== */
+  /* trim + collapse */
+  details.more { margin-top: 0.6rem; }
+  details.more > summary { display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer; list-style: none; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.78rem; letter-spacing: 0.04em; color: var(--pixel-dark); background: var(--yellow); border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 6px; padding: 0.3rem 0.7rem; }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::after { content: '▾'; transition: transform 0.15s; }
+  details.more[open] > summary::after { transform: rotate(180deg); }
+  details.more > summary:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--pixel-dark); }
+  details.more > summary:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  details.more[open] > summary { margin-bottom: 0.6rem; }
+  /* findings: compact list */
+  .f-list { border: 3px solid var(--pixel-dark); border-radius: 10px; box-shadow: 4px 4px 0 var(--pixel-dark); background: var(--white); overflow: hidden; }
+  .f-row + .f-row { border-top: 2px solid var(--lavender-mid); }
+  .f-row > summary { list-style: none; display: grid; grid-template-columns: 2.2rem 1fr auto 1.2rem; gap: 0.9rem; align-items: start; padding: 0.95rem 1.2rem; cursor: pointer; }
+  .f-row > summary::-webkit-details-marker { display: none; }
+  .f-row > summary:hover { background: var(--lavender-bg); }
+  .f-row > summary:focus-visible { outline: 3px solid var(--purple); outline-offset: -3px; }
+  .f-num { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem; color: var(--hot-pink); line-height: 1.3; }
+  .f-main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+  .f-title { font-weight: 900; font-size: 0.98rem; color: var(--text); line-height: 1.35; }
+  .f-prob { font-weight: 600; font-size: 0.85rem; color: var(--text-mid); line-height: 1.55; }
+  .f-pour { font-weight: 900; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--text-light); padding-top: 0.25rem; white-space: nowrap; }
+  .f-caret { font-weight: 900; color: var(--purple); padding-top: 0.1rem; transition: transform 0.15s; }
+  .f-row[open] .f-caret { transform: rotate(180deg); }
+  .f-row[open] > summary { background: var(--lavender-bg); }
+  .f-body { padding: 0 1.2rem 1.1rem calc(2.2rem + 2.1rem); display: flex; flex-direction: column; gap: 0.6rem; background: var(--lavender-bg); }
+  .f-body p { font-size: 0.86rem; color: var(--text-mid); line-height: 1.6; font-weight: 600; }
+  .f-body b { display: block; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.15rem; }
+  .f-body .behavior-list { margin-top: 0; }
+  @media (max-width: 600px) { .f-row > summary { grid-template-columns: 1.8rem 1fr 1rem; padding: 0.85rem 0.9rem; } .f-pour { display: none; } .f-body { padding: 0 0.9rem 1rem 3.2rem; } }
+
+  details.more.quiet > summary { background: none; border: none; box-shadow: none; padding: 0.2rem 0; color: var(--purple); text-decoration: underline; text-underline-offset: 3px; font-size: 0.8rem; }
+  details.more.quiet > summary:hover { transform: none; box-shadow: none; color: var(--hot-pink); }
+  .quote-more > .quote-grid { margin-top: 0.4rem; margin-bottom: 0; }
+  .task-card details.more { margin-top: 0.25rem; }
+
   @media (max-width: 768px) {
     .case-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
     .overview-grid, .task-grid, .themes-grid, .quote-grid, .disconnect-body { grid-template-columns: 1fr; }
@@ -350,14 +385,14 @@
         <div class="overview-card-top"></div>
         <div class="overview-card-body">
           <div class="overview-card-title">The Goal</div>
-          <p class="overview-card-text">Evaluate how easily users can find specific businesses on Yelp when they have multiple must-have requirements: a specific time of day, noise level, or pet policy. Success and efficiency (time on task) were measured across 5 real-world task scenarios.</p>
+          <p class="overview-card-text">Evaluate how easily users can find specific businesses on Yelp when they have multiple must-have requirements: a specific time of day, noise level, or pet policy.</p>
         </div>
       </div>
       <div class="overview-card">
         <div class="overview-card-top"></div>
         <div class="overview-card-body">
           <div class="overview-card-title">Why Unmoderated</div>
-          <p class="overview-card-text">Unmoderated testing on the Lyssna platform allowed us to capture authentic user behavior without observation bias. Every participant was assigned the same city per task, regardless of their physical location, ensuring search results, filters, and business profiles were identical across all 30 sessions.</p>
+          <p class="overview-card-text">Unmoderated testing on the Lyssna platform allowed us to capture authentic user behavior without observation bias.</p>
         </div>
       </div>
     </div>
@@ -378,7 +413,6 @@
         <tr><td class="label-col">Measures</td><td>Task success (completion) and efficiency (time on task)</td></tr>
       </tbody>
     </table>
-    <p class="footnote">★ Location was fixed per task to eliminate local search bias and allow accurate time-on-task comparisons across all 30 sessions.</p>
   </div>
 </div>
 
@@ -396,32 +430,32 @@
       <div class="task-card">
         <span class="task-num">TASK 1 · PALO ALTO, CA</span>
         <div class="task-title">Group Dining</div>
-        <p class="task-desc">You're planning a retirement party for 12 people this Friday. Find a Mediterranean restaurant with a 4.0+ rating and locate where you'd start a reservation for the group.</p>
-        <div class="task-success-criteria">✓ Stop once available reservation times are visible</div>
+        <details class="more quiet"><summary>Scenario</summary><p class="task-desc">You're planning a retirement party for 12 people this Friday. Find a Mediterranean restaurant with a 4.0+ rating and locate where you'd start a reservation for the group.</p>
+        <div class="task-success-criteria">✓ Stop once available reservation times are visible</div></details>
       </div>
       <div class="task-card">
         <span class="task-num">TASK 2 · SAN DIEGO, CA</span>
         <div class="task-title">Service Hours</div>
-        <p class="task-desc">You just moved to San Diego and need a hair salon that's open on Sundays and offers online booking. Find one and click the "Request an Appointment" button.</p>
-        <div class="task-success-criteria">✓ Stop once the Request an Appointment button is clicked</div>
+        <details class="more quiet"><summary>Scenario</summary><p class="task-desc">You just moved to San Diego and need a hair salon that's open on Sundays and offers online booking. Find one and click the "Request an Appointment" button.</p>
+        <div class="task-success-criteria">✓ Stop once the Request an Appointment button is clicked</div></details>
       </div>
       <div class="task-card">
         <span class="task-num">TASK 3 · SAN FRANCISCO, CA</span>
         <div class="task-title">Quiet Coffee</div>
-        <p class="task-desc">Your power goes out. You need a coffee shop to work from. Search reviews for a shop that's described as "quiet" and has free wi-fi, then click Get Directions.</p>
-        <div class="task-success-criteria">✓ Stop once Get Directions is clicked</div>
+        <details class="more quiet"><summary>Scenario</summary><p class="task-desc">Your power goes out. You need a coffee shop to work from. Search reviews for a shop that's described as "quiet" and has free wi-fi, then click Get Directions.</p>
+        <div class="task-success-criteria">✓ Stop once Get Directions is clicked</div></details>
       </div>
       <div class="task-card">
         <span class="task-num">TASK 4 · AUSTIN, TX</span>
         <div class="task-title">Dog Brunch</div>
-        <p class="task-desc">You're traveling with your large dog and want to go to brunch. Find a spot with outdoor seating and confirm the reviews mention it's dog friendly.</p>
-        <div class="task-success-criteria">✓ Stop once a dog-friendly review mention is confirmed</div>
+        <details class="more quiet"><summary>Scenario</summary><p class="task-desc">You're traveling with your large dog and want to go to brunch. Find a spot with outdoor seating and confirm the reviews mention it's dog friendly.</p>
+        <div class="task-success-criteria">✓ Stop once a dog-friendly review mention is confirmed</div></details>
       </div>
       <div class="task-card" style="grid-column: span 2;">
         <span class="task-num">TASK 5 · SCOTTSDALE, AZ</span>
         <div class="task-title">Booking</div>
-        <p class="task-desc">You're on vacation with your partner. Find a massage therapist in Scottsdale with a 4.5+ rating and click the "Request an appointment" button to complete the task.</p>
-        <div class="task-success-criteria">✓ Stop once the Request an Appointment button is clicked</div>
+        <details class="more quiet"><summary>Scenario</summary><p class="task-desc">You're on vacation with your partner. Find a massage therapist in Scottsdale with a 4.5+ rating and click the "Request an appointment" button to complete the task.</p>
+        <div class="task-success-criteria">✓ Stop once the Request an Appointment button is clicked</div></details>
       </div>
     </div>
   </div>
@@ -515,7 +549,7 @@
         </div>
         <div class="theme-card-body">
           <div class="theme-card-title">The Search Bar as a Workaround</div>
-          <p class="theme-card-text">Almost every task, users defaulted to the search bar, not because they preferred it, but because the interface's structured filters failed them. When a filter couldn't be found, the search bar became the escape valve. Users typed "quiet coffee shop" directly when no "noise level" filter existed, and used text search for "Mediterranean" even though it was a filterable sidebar attribute.</p>
+          <p class="theme-card-text">Almost every task, users defaulted to the search bar, not because they preferred it, but because the interface's structured filters failed them. Users typed "quiet coffee shop" directly when no "noise level" filter existed, and used text search for "Mediterranean" even though it was a filterable sidebar attribute.</p>
           <span class="theme-stat">Observed across all 5 tasks</span>
         </div>
       </div>
@@ -539,7 +573,7 @@
         </div>
         <div class="theme-card-body">
           <div class="theme-card-title">If It Doesn't Look Like a Button, It Isn't One</div>
-          <p class="theme-card-text">In Task 2, the "Open At" text appeared in blue, but with no dropdown arrow, border, or underline to indicate editability. Users scanned past it and spent most of their time manually clicking into profile after profile. The feature existed. The affordance didn't. This pattern repeated with "Open Now," which looked like a status label rather than a clickable filter.</p>
+          <p class="theme-card-text">The feature existed. The affordance didn't.</p>
           <span class="theme-stat">Key friction point · Task 2</span>
         </div>
       </div>
@@ -551,7 +585,7 @@
         </div>
         <div class="theme-card-body">
           <div class="theme-card-title">Same Button, Different Name, Different Outcome</div>
-          <p class="theme-card-text">Task 5 revealed that Yelp displays different CTA labels for the same business depending on how the user arrived. Searching "Massage Therapist" produced "Get pricing & availability." Searching "Massage Therapy" produced "Request an appointment." Users with a rigid mental model for the button they were looking for couldn't find it, because the button they were looking for kept changing.</p>
+          <p class="theme-card-text">Users with a rigid mental model for the button they were looking for couldn't find it, because the button they were looking for kept changing.</p>
           <span class="theme-stat">7-min time variance · Task 5</span>
         </div>
       </div>
@@ -576,6 +610,14 @@
         <div class="quote-sentiment sent-frustration">😤 Overwhelmed by volume, couldn't find the one thing they needed</div>
       </div>
       <div class="quote-card">
+        <div class="quote-category">TASK 4 · FILTER OVER-TRUST</div>
+        <p class="quote-text">I've already filtered by 'dogs allowed,' so the task is complete.</p>
+        <div class="quote-sentiment sent-frustration">❌ Applied the filter and stopped; didn't verify the policy was still active</div>
+      </div>
+    </div>
+    <details class="more quiet quote-more"><summary>More quotes</summary>
+    <div class="quote-grid">
+      <div class="quote-card">
         <div class="quote-category">TASK 3 · SELF-BLAME</div>
         <p class="quote-text">This is a lot of options to go through.</p>
         <div class="quote-sentiment sent-confused">😔 User apologized repeatedly, blaming themselves for the interface's complexity</div>
@@ -585,11 +627,8 @@
         <p class="quote-text">I know you can search user reviews.</p>
         <div class="quote-sentiment sent-trust">✅ One of the 50% who succeeded; knew to go straight to review search</div>
       </div>
-      <div class="quote-card">
-        <div class="quote-category">TASK 4 · FILTER OVER-TRUST</div>
-        <p class="quote-text">I've already filtered by 'dogs allowed,' so the task is complete.</p>
-        <div class="quote-sentiment sent-frustration">❌ Applied the filter and stopped; didn't verify the policy was still active</div>
-      </div>
+    </div>
+    </details>
     </div>
   </div>
 </div>
@@ -604,76 +643,19 @@
       <h2 class="section-title" style="color:var(--purple);">What Yelp Built vs. What Users Did</h2>
     </div>
 
-    <!-- Disconnect: Task 2 -->
-    <div class="disconnect-card">
-      <div class="disconnect-header">
-        <span class="disconnect-num">TASK 2</span>
-        <span class="disconnect-title">The Ghost Filter</span>
-      </div>
-      <div class="disconnect-body">
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-designed">WHAT YELP BUILT</span>
-          <p class="disconnect-text">The "Open At" filter under Features is technically functional; clicking the blue text opens a date/time picker where users can specify a day and hour. The "Open Now" checkbox under Suggested also applies a real-time hours filter. Both tools exist. Both work.</p>
-        </div>
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-users">WHAT USERS DID INSTEAD</span>
-          <ul class="behavior-list">
-            <li>"Open At" appeared as static blue text with no dropdown arrow, no border, no affordance</li>
-            <li>"Open Now" read as a status label showing current time, not a clickable filter</li>
-            <li>Editing the time required a 3-step sequence users never discovered</li>
-            <li>Users spent most of their time manually clicking into profiles to check Sunday hours</li>
-            <li>67% success rate; the tool existed, the signifier did not</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Disconnect: Tasks 3 & 4 -->
-    <div class="disconnect-card">
-      <div class="disconnect-header">
-        <span class="disconnect-num">TASKS 3 & 4</span>
-        <span class="disconnect-title">The Hidden Search Box</span>
-      </div>
-      <div class="disconnect-body">
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-designed">WHAT YELP BUILT</span>
-          <p class="disconnect-text">Yelp places a "Search Reviews" bar directly within the reviews section of every business profile. This bar allows users to search for specific terms across all reviews, which is exactly what was needed to find mentions of "quiet," "dog friendly," or "wifi" without scrolling manually.</p>
-        </div>
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-users">WHAT USERS DID INSTEAD</span>
-          <ul class="behavior-list">
-            <li>Search bar was buried below the map, photos, and business info, mid-page</li>
-            <li>By the time users scrolled to that point, they were already reading reviews one-by-one</li>
-            <li>The bar's position made it appear supplementary, not essential</li>
-            <li>50% of Task 3 users never found it and spent up to 7 minutes reading manually</li>
-            <li>The one user who succeeded on Task 4 explicitly knew to use it from prior experience</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Disconnect: Task 5 -->
-    <div class="disconnect-card">
-      <div class="disconnect-header">
-        <span class="disconnect-num">TASK 5</span>
-        <span class="disconnect-title">The Shapeshifting CTA</span>
-      </div>
-      <div class="disconnect-body">
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-designed">THE ISSUE</span>
-          <p class="disconnect-text">Yelp's primary CTA button changes label depending on how the user arrived at a business listing. Searching "Massage Therapist" displays "Get pricing &amp; availability." Searching "Massage Therapy" or "Thai massage" displays "Request an appointment." The underlying action is identical (scheduling a session) but the label is not.</p>
-        </div>
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-users">WHAT USERS DID INSTEAD</span>
-          <ul class="behavior-list">
-            <li>Users built a rigid mental model around the button name from the task prompt</li>
-            <li>When the label didn't match, they assumed the feature was unavailable</li>
-            <li>Multiple participants returned to search with a different query to find "the right button"</li>
-            <li>Time variance peaked at 7 minutes, entirely due to this label mismatch</li>
-            <li>67% success rate, with failure concentrated in users who arrived via specific search terms</li>
-          </ul>
-        </div>
-      </div>
+    <div class="f-list">
+      <details class="f-row">
+        <summary><span class="f-num">#1</span><span class="f-main"><span class="f-title">The Ghost Filter</span><span class="f-prob">"Open At" appeared as static blue text with no dropdown arrow, no border, no affordance</span></span><span class="f-pour">TASK 2</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>What Yelp built</b>The "Open At" filter under Features is technically functional; clicking the blue text opens a date/time picker where users can specify a day and hour. The "Open Now" checkbox under Suggested also applies a real-time hours filter. Both tools exist. Both work.</p><p><b>What users did instead</b></p><ul class="behavior-list"><li>"Open Now" read as a status label showing current time, not a clickable filter</li><li>Editing the time required a 3-step sequence users never discovered</li><li>Users spent most of their time manually clicking into profiles to check Sunday hours</li></ul></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#2</span><span class="f-main"><span class="f-title">The Hidden Search Box</span><span class="f-prob">Search bar was buried below the map, photos, and business info, mid-page</span></span><span class="f-pour">TASKS 3 &amp; 4</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>What Yelp built</b>Yelp places a "Search Reviews" bar directly within the reviews section of every business profile. This bar allows users to search for specific terms across all reviews, which is exactly what was needed to find mentions of "quiet," "dog friendly," or "wifi" without scrolling manually.</p><p><b>What users did instead</b></p><ul class="behavior-list"><li>By the time users scrolled to that point, they were already reading reviews one-by-one</li><li>The bar's position made it appear supplementary, not essential</li><li>50% of Task 3 users never found it and spent up to 7 minutes reading manually</li><li>The one user who succeeded on Task 4 explicitly knew to use it from prior experience</li></ul></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">#3</span><span class="f-main"><span class="f-title">The Shapeshifting CTA</span><span class="f-prob">Yelp's primary CTA button changes label depending on how the user arrived at a business listing.</span></span><span class="f-pour">TASK 5</span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>The issue</b>Searching "Massage Therapist" displays "Get pricing &amp; availability." Searching "Massage Therapy" or "Thai massage" displays "Request an appointment." The underlying action is identical (scheduling a session) but the label is not.</p><p><b>What users did instead</b></p><ul class="behavior-list"><li>When the label didn't match, they assumed the feature was unavailable</li><li>Multiple participants returned to search with a different query to find "the right button"</li><li>Time variance peaked at 7 minutes, entirely due to this label mismatch</li><li>67% success rate, with failure concentrated in users who arrived via specific search terms</li></ul></div>
+      </details>
     </div>
   </div>
 </div>
@@ -696,12 +678,8 @@
         </div>
         <div class="rec-card-body">
           <div class="rec-card-title">Elevate Search Reviews</div>
-          <ul class="rec-item-list">
-            <li>Move the "Search Reviews" bar directly under the Overall Rating section</li>
-            <li>Add placeholder microcopy: "Search for quiet, dog-friendly, wifi…"</li>
-            <li>Apply a visible border and background to signal interactivity</li>
-            <li>This single change addresses the 50% failure rate on Tasks 3 & 4</li>
-          </ul>
+          <ul class="rec-item-list"><li>This single change addresses the 50% failure rate on Tasks 3 & 4</li></ul>
+          <details class="more quiet"><summary>How</summary><ul class="rec-item-list"><li>Move the "Search Reviews" bar directly under the Overall Rating section</li><li>Add placeholder microcopy: "Search for quiet, dog-friendly, wifi…"</li><li>Apply a visible border and background to signal interactivity</li></ul></details>
         </div>
       </div>
 
@@ -712,12 +690,7 @@
         </div>
         <div class="rec-card-body">
           <div class="rec-card-title">Fix Filter Affordances</div>
-          <ul class="rec-item-list">
-            <li>Add a chevron arrow and border to the "Open At" time control</li>
-            <li>Style "Open Now" as a toggle button, not a label; it should look pressable</li>
-            <li>Reduce the time-edit flow from 3 steps to 1 (single click to open picker)</li>
-            <li>Add a "Good for Work / Study" filter to replace the "quiet" search workaround</li>
-          </ul>
+          <details class="more quiet"><summary>How</summary><ul class="rec-item-list"><li>Add a chevron arrow and border to the "Open At" time control</li><li>Style "Open Now" as a toggle button, not a label; it should look pressable</li><li>Reduce the time-edit flow from 3 steps to 1 (single click to open picker)</li><li>Add a "Good for Work / Study" filter to replace the "quiet" search workaround</li></ul></details>
         </div>
       </div>
 
@@ -728,12 +701,8 @@
         </div>
         <div class="rec-card-body">
           <div class="rec-card-title">Standardize CTA Labels</div>
-          <ul class="rec-item-list">
-            <li>Use one label: "Request an Appointment" across all search entry points</li>
-            <li>Add a calendar icon to reinforce the action's meaning at a glance</li>
-            <li>Never vary button text based on search query. Users carry mental models between sessions</li>
-            <li>This eliminates the 7-minute time variance gap entirely</li>
-          </ul>
+          <ul class="rec-item-list"><li>This eliminates the 7-minute time variance gap entirely</li></ul>
+          <details class="more quiet"><summary>How</summary><ul class="rec-item-list"><li>Use one label: "Request an Appointment" across all search entry points</li><li>Add a calendar icon to reinforce the action's meaning at a glance</li><li>Never vary button text based on search query. Users carry mental models between sessions</li></ul></details>
         </div>
       </div>
     </div>

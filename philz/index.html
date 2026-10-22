@@ -1115,6 +1115,42 @@
     max-width: 80ch;
   }
 
+  /* trim + collapse */
+  details.more { margin-top: 0.6rem; }
+  details.more > summary { display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer; list-style: none; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.78rem; letter-spacing: 0.04em; color: var(--pixel-dark); background: var(--yellow); border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 6px; padding: 0.3rem 0.7rem; }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::after { content: '▾'; transition: transform 0.15s; }
+  details.more[open] > summary::after { transform: rotate(180deg); }
+  details.more > summary:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--pixel-dark); }
+  details.more > summary:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  details.more[open] > summary { margin-bottom: 0.6rem; }
+  /* findings: compact list */
+  .f-list { border: 3px solid var(--pixel-dark); border-radius: 10px; box-shadow: 4px 4px 0 var(--pixel-dark); background: var(--white); overflow: hidden; }
+  .f-row + .f-row { border-top: 2px solid var(--lavender-mid); }
+  .f-row > summary { list-style: none; display: grid; grid-template-columns: 2.2rem 1fr auto 1.2rem; gap: 0.9rem; align-items: start; padding: 0.95rem 1.2rem; cursor: pointer; }
+  .f-row > summary::-webkit-details-marker { display: none; }
+  .f-row > summary:hover { background: var(--lavender-bg); }
+  .f-row > summary:focus-visible { outline: 3px solid var(--purple); outline-offset: -3px; }
+  .f-num { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.1rem; color: var(--hot-pink); line-height: 1.3; }
+  .f-main { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+  .f-title { font-weight: 900; font-size: 0.98rem; color: var(--text); line-height: 1.35; }
+  .f-prob { font-weight: 600; font-size: 0.85rem; color: var(--text-mid); line-height: 1.55; }
+  .f-pour { font-weight: 900; font-size: 0.7rem; letter-spacing: 0.12em; color: var(--text-light); padding-top: 0.25rem; white-space: nowrap; }
+  .f-caret { font-weight: 900; color: var(--purple); padding-top: 0.1rem; transition: transform 0.15s; }
+  .f-row[open] .f-caret { transform: rotate(180deg); }
+  .f-row[open] > summary { background: var(--lavender-bg); }
+  .f-body { padding: 0 1.2rem 1.1rem calc(2.2rem + 2.1rem); display: flex; flex-direction: column; gap: 0.6rem; background: var(--lavender-bg); }
+  .f-body p { font-size: 0.86rem; color: var(--text-mid); line-height: 1.6; font-weight: 600; }
+  .f-body b { display: block; font-weight: 900; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.15rem; }
+  .f-body ul { margin: 0; padding-left: 1.1rem; font-size: 0.86rem; color: var(--text-mid); line-height: 1.6; font-weight: 600; }
+  @media (max-width: 600px) { .f-row > summary { grid-template-columns: 1.8rem 1fr 1rem; padding: 0.85rem 0.9rem; } .f-pour { display: none; } .f-body { padding: 0 0.9rem 1rem 3.2rem; } }
+
+  details.more.quiet > summary { background: none; border: none; box-shadow: none; padding: 0.2rem 0; color: var(--purple); text-decoration: underline; text-underline-offset: 3px; font-size: 0.8rem; }
+  details.more.quiet > summary:hover { transform: none; box-shadow: none; color: var(--hot-pink); }
+  .prior-eval-link { font-weight: 900; color: var(--purple); text-underline-offset: 3px; }
+  .prior-eval-link:hover { color: var(--hot-pink); }
+  .quote-more .quote-grid { margin-top: 0.4rem; }
+
   /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
     .case-hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -1252,23 +1288,15 @@
           <td>15 sessions recorded; 12 usable for analysis. Participant profile: regular coffee or tea drinkers who had never or rarely used the Philz app.</td>
         </tr>
         <tr>
-          <td class="label-col">Tasks</td>
-          <td>4 core scenarios: store/location selection, coffee customization with modifiers, tea selection + special instructions, cart editing and checkout.</td>
-        </tr>
-        <tr>
           <td class="label-col">Scoring</td>
           <td>Each task rated: <strong>Success</strong> / <strong>Success with Difficulty</strong> / <strong>Did Not Succeed</strong>. Gesture log tracked specific interaction behaviors (map vs. search, tap-to-edit recognition, swipe-to-remove attempts).</td>
-        </tr>
-        <tr>
-          <td class="label-col">Goal</td>
-          <td>Assess learnability, gesture comprehension, and task completion for first-time users. Identify friction points specific to Philz's conversational UI model.</td>
         </tr>
       </tbody>
     </table>
 
     <div class="limitation-box">
       <div class="limitation-box-label">⚠ STUDY LIMITATION</div>
-      <p class="limitation-box-text">Inconsistent script adherence and participant prompting across 5 moderators likely inflated task success rates. Results should be read as conservative estimates of friction; the real numbers may be higher. This is a direct argument for standardized moderation protocols in future rounds.</p>
+      <p class="limitation-box-text">Inconsistent script adherence and participant prompting across 5 moderators likely inflated task success rates. Results should be read as conservative estimates of friction; the real numbers may be higher.</p>
     </div>
   </div>
 </div>
@@ -1287,26 +1315,34 @@
       <div class="task-card">
         <div class="task-num">TASK 1</div>
         <div class="task-title">📍 Select a Pickup Location</div>
+        <details class="more quiet"><summary>Script</summary>
         <p class="task-desc">Select a pick-up location in San Francisco, CA.</p>
         <div class="task-success-criteria">✓ Success: Uses search or map to find and select any SF location within reasonable time.</div>
+        </details>
       </div>
       <div class="task-card">
         <div class="task-num">TASK 2</div>
         <div class="task-title">☕ Add Coffee w/ Modifiers</div>
+        <details class="more quiet"><summary>Script</summary>
         <p class="task-desc">Add a medium "Oatmeal Cookie Cold Brew" with light almond milk and sweet honey. All three modifiers required.</p>
         <div class="task-success-criteria">✓ Success: Correct drink with all three modifiers (medium, light, almond milk, sweet, honey).</div>
+        </details>
       </div>
       <div class="task-card">
         <div class="task-num">TASK 3</div>
         <div class="task-title">🍵 Add Tea + Special Instructions</div>
+        <details class="more quiet"><summary>Script</summary>
         <p class="task-desc">Add any tea of choice, then add a special instruction: "Please do not use the teabag for brewing, use a mesh/filter to avoid microplastics."</p>
         <div class="task-success-criteria">✓ Success: Tea added; special instructions field located and used.</div>
+        </details>
       </div>
       <div class="task-card">
         <div class="task-num">TASK 4</div>
         <div class="task-title">🛒 Edit Cart &amp; Checkout</div>
+        <details class="more quiet"><summary>Script</summary>
         <p class="task-desc">Remove the cold brew from cart, add a second identical tea, then proceed to checkout. Stop at payment details.</p>
         <div class="task-success-criteria">✓ Success: Cold brew removed, tea quantity changed to 2, reached payment screen.</div>
+        </details>
       </div>
     </div>
 
@@ -1321,9 +1357,11 @@
       <div class="guide-callout-title">Test the app. Not the person.</div>
       <p class="guide-callout-text">The moderator script was designed to establish a low-pressure environment and encourage authentic think-aloud behavior. Moderators were instructed not to guide, confirm, or correct. Observe and document only.</p>
 
+      <details class="more quiet"><summary>Opening script</summary>
       <div class="guide-script-block">
         "Thank you for helping me today. We are testing the Philz Coffee app to see how easy it is for new users to navigate. Please think out loud as much as possible: tell me what you are looking at, what you're trying to do, and if anything surprises you. I am testing the app, not you, so there are no wrong answers."
       </div>
+      </details>
 
       <div class="guide-practices" style="margin-top:1.25rem;">
         <div class="guide-callout-label" style="width:100%;margin-bottom:0.5rem;">MODERATOR BEST PRACTICES</div>
@@ -1357,56 +1395,8 @@
     </div>
 
     <div class="prior-eval-intro">
-      <p>Before the moderated usability study, I evaluated both the Philz and Starbucks apps against Nielsen's 10 Usability Heuristics. That work established something important: Philz's conversational interface isn't just a liability. Parts of it are genuinely well-executed. The usability study findings hit harder when you understand what the design is <em>trying</em> to do.</p>
-    </div>
-
-    <div class="heuristic-split">
-      <div class="heuristic-col heuristic-col-good">
-        <div class="heuristic-col-header">
-          <span class="heuristic-col-icon">✓</span>
-          <span class="heuristic-col-label">Where Philz Succeeds</span>
-        </div>
-        <div class="heuristic-items">
-          <div class="heuristic-item">
-            <div class="heuristic-tag heuristic-tag-good">Visibility of System Status</div>
-            <p class="heuristic-text">The add-to-cart button delivers one of the more delightful feedback moments in any food ordering app. It reads "I'll Try It!" before the action, then transitions to "YAY!" after the item is added. It's a small interaction, but it confirms the action immediately and in a voice that matches the brand. Users know it worked.</p>
-          </div>
-          <div class="heuristic-item">
-            <div class="heuristic-tag heuristic-tag-good">Match Between System and Real World</div>
-            <p class="heuristic-text">The conversational sentence structure mirrors how you'd actually speak to a Philz barista. For users who are already Philz fans, this feels native and warm. The language is intentional, not accidental, and it succeeds at reinforcing the brand's in-café personality.</p>
-          </div>
-          <div class="heuristic-item">
-            <div class="heuristic-tag heuristic-tag-good">Aesthetic and Minimalist Design</div>
-            <p class="heuristic-text">The ordering screen is uncluttered. There are no competing calls to action, no promotional noise, no loyalty point banners fighting for attention mid-order. Several participants noted the interface looked "cute" and "simple" on first impression.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="heuristic-col heuristic-col-bad">
-        <div class="heuristic-col-header">
-          <span class="heuristic-col-icon">✕</span>
-          <span class="heuristic-col-label">Where It Breaks Down</span>
-        </div>
-        <div class="heuristic-items">
-          <div class="heuristic-item">
-            <div class="heuristic-tag heuristic-tag-bad">User Control and Freedom</div>
-            <p class="heuristic-text">Starbucks allows order cancellation post-placement. Philz does not. Once an order is submitted, users have no exit. In a heuristic evaluation this is a clear failure of user control; in a live usability session, it's the kind of thing that would cause real anxiety.</p>
-          </div>
-          <div class="heuristic-item">
-            <div class="heuristic-tag heuristic-tag-bad">Consistency and Standards</div>
-            <p class="heuristic-text">Underlined text on the web means a link. In native apps, tappable elements typically look like buttons, chips, or labeled controls. Philz's underlined modifier words violate this convention so thoroughly that 5 of 12 participants in the usability study never discovered them without struggle.</p>
-          </div>
-          <div class="heuristic-item">
-            <div class="heuristic-tag heuristic-tag-bad">Error Prevention</div>
-            <p class="heuristic-text">The Special Instructions field silently caps input with no character counter and no warning. This isn't just a usability failure; it's an error prevention failure. Users believe they've communicated a preference when they haven't. For someone with a dietary restriction, that gap matters.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="prior-eval-callout">
-      <div class="prior-eval-callout-label">THE TENSION</div>
-      <p class="prior-eval-callout-text">Philz's design is trying to do something real: bring the warmth of their café into a mobile experience. That's a legitimate design goal, and in places it works. The problem is that a handful of execution decisions (underlined modifiers as interactive elements, no character counter, a carousel that obscures the full menu) undermine the experience for anyone who isn't already a Philz regular. The usability study quantified exactly where those breakdowns happen.</p>
+      <p>Before the moderated usability study, I evaluated both the Philz and Starbucks apps against Nielsen's 10 Usability Heuristics. That work established something important: Philz's conversational interface isn't just a liability.</p>
+      <p style="margin-top:0.75rem;"><a class="prior-eval-link" href="https://tomiux.com/starbucks-vs-philz/">See the full heuristic evaluation →</a></p>
     </div>
 
   </div>
@@ -1510,7 +1500,7 @@
         </div>
         <div class="theme-card-body">
           <div class="theme-card-title">The Invisible Interface</div>
-          <p class="theme-card-text">Users' default mobile behaviors (tapping images, expecting dropdown menus) didn't match Philz's interaction model. Tappable underlined words were read as static text or decorative styling, not buttons.</p>
+          <p class="theme-card-text">Users' default mobile behaviors (tapping images, expecting dropdown menus) didn't match Philz's interaction model.</p>
           <span class="theme-stat">Only 7 of 12 users noticed modifiable text immediately</span>
         </div>
       </div>
@@ -1546,7 +1536,6 @@
         </div>
         <div class="theme-card-body">
           <div class="theme-card-title">Silent Character Limit</div>
-          <p class="theme-card-text">The Special Instructions field enforces a character limit but shows no counter and gives no feedback when the limit is hit. Users continued typing, unaware their request was being silently truncated.</p>
           <span class="theme-stat">"Nothing pops up showing I've run out of space."</span>
         </div>
       </div>
@@ -1566,6 +1555,19 @@
 
     <div class="quote-grid">
       <div class="quote-card">
+        <div class="quote-category">CUSTOMIZATION</div>
+        <p class="quote-text">Those are underlined, looks like hyperlinks. Looks like I'm supposed to click and edit them, but nowhere does it tell me to do that.</p>
+        <div class="quote-sentiment sent-balanced">🤔 Confused</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-category">SPECIAL INSTRUCTIONS</div>
+        <p class="quote-text">Oh, I'm out of characters! I can't type anymore. Nothing pops up on the screen showing that I've ran out of space in the text box, so I keep unknowingly typing.</p>
+        <div class="quote-sentiment sent-negative">😤 Frustrated</div>
+      </div>
+    </div>
+    <details class="more quiet quote-more"><summary>More quotes</summary>
+    <div class="quote-grid">
+      <div class="quote-card">
         <div class="quote-category">ONBOARDING</div>
         <p class="quote-text">The first two steps kind of lock you out of doing anything else, which I don't love. What if I wanted to make an order really quick? You just want to get to it.</p>
         <div class="quote-sentiment sent-negative">😤 Frustrated</div>
@@ -1576,19 +1578,9 @@
         <div class="quote-sentiment sent-negative">😤 Frustrated</div>
       </div>
       <div class="quote-card">
-        <div class="quote-category">CUSTOMIZATION</div>
-        <p class="quote-text">Those are underlined, looks like hyperlinks. Looks like I'm supposed to click and edit them, but nowhere does it tell me to do that.</p>
-        <div class="quote-sentiment sent-balanced">🤔 Confused</div>
-      </div>
-      <div class="quote-card">
         <div class="quote-category">MODIFIER LANGUAGE</div>
         <p class="quote-text">The adjectives, I understand from a branding standpoint make it look cute, but it's very difficult for ordering a drink. 'Creamy' and 'Almond Milk' don't make sense together.</p>
         <div class="quote-sentiment sent-balanced">🤔 Mixed</div>
-      </div>
-      <div class="quote-card">
-        <div class="quote-category">SPECIAL INSTRUCTIONS</div>
-        <p class="quote-text">Oh, I'm out of characters! I can't type anymore. Nothing pops up on the screen showing that I've ran out of space in the text box, so I keep unknowingly typing.</p>
-        <div class="quote-sentiment sent-negative">😤 Frustrated</div>
       </div>
       <div class="quote-card">
         <div class="quote-category">OVERALL SENTIMENT</div>
@@ -1606,6 +1598,7 @@
         <div class="quote-sentiment sent-positive">😊 Positive</div>
       </div>
     </div>
+    </details>
   </div>
 </div>
 
@@ -1619,65 +1612,26 @@
       <h2 class="section-title" style="color:var(--purple);">What Philz Built vs. What Users Did</h2>
     </div>
 
-    <!-- Task 2 -->
-    <div class="disconnect-card">
-      <div class="disconnect-header">
-        <span class="disconnect-num">TASK 2</span>
-        <span class="disconnect-title">Hidden Customization</span>
-      </div>
-      <div class="disconnect-body">
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-designed">WHAT PHILZ DESIGNED</span>
-          <p class="disconnect-text">A conversational sentence structured like a verbal order: "I'll have a <u>large</u>, with <u>creamy oat milk</u> and <u>sweet sugar</u>, iced." Tappable, underlined, bolded words allow the user to modify size, milk type, and sweetener inline, an extension of Philz's in-café voice.</p>
-        </div>
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-users">WHAT USERS DID INSTEAD</span>
-          <ul class="behavior-list">
+    <div class="f-list">
+      <details class="f-row">
+        <summary><span class="f-num">T2</span><span class="f-main"><span class="f-title">Hidden Customization</span><span class="f-prob">Did not recognize underlined/bold words as interactive</span></span><span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>What Philz designed</b>A conversational sentence structured like a verbal order: "I'll have a <u>large</u>, with <u>creamy oat milk</u> and <u>sweet sugar</u>, iced." Tappable, underlined, bolded words allow the user to modify size, milk type, and sweetener inline, an extension of Philz's in-café voice.</p><p><b>What users did instead</b></p>
+          <ul>
             <li>Tapped the product image, expecting a tap-through</li>
             <li>Opened Special Instructions instead of modifiers</li>
             <li>Added to cart and tried to edit using the cart's "Edit" button</li>
-            <li>Did not recognize underlined/bold words as interactive</li>
             <li>Discovered modifiers by accident, only after extended exploration</li>
           </ul>
         </div>
-      </div>
-    </div>
-
-    <!-- Task 1 -->
-    <div class="disconnect-card">
-      <div class="disconnect-header">
-        <span class="disconnect-num">TASK 1</span>
-        <span class="disconnect-title">Location Ambiguity</span>
-      </div>
-      <div class="disconnect-body">
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-designed">THE ISSUE</span>
-          <p class="disconnect-text">Region-based store labels ("San Francisco" vs. "South San Francisco") are ambiguous in a scrollable list. All 12 participants confirmed a store without verifying the full address. Only 3 were familiar enough with the area to recognize store names by neighborhood.</p>
-          <br/><p class="disconnect-text" style="color:var(--red);">Notable: Corte Madera (~30 minutes north) was grouped under the San Francisco region.</p>
-        </div>
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-designed">RECOMMENDATION</span>
-          <p class="disconnect-text">Show full address and city tag prominently in the store list. Correct geographic groupings so regional labels are accurate (Corte Madera ≠ San Francisco). Consider distance from current location as a default sort.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Task 4 -->
-    <div class="disconnect-card">
-      <div class="disconnect-header">
-        <span class="disconnect-num">TASK 4</span>
-        <span class="disconnect-title">Quantity Controls</span>
-      </div>
-      <div class="disconnect-body">
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-designed">WHAT PHILZ DESIGNED</span>
-          <p class="disconnect-text">Tapping the down-arrow on the quantity "1" in the cart opens a bottom drawer: a modal sheet that slides up from the bottom of the screen with stepper controls (+/-) and a "Choose Quantity" confirmation button.</p>
-        </div>
-        <div class="disconnect-side">
-          <span class="disconnect-side-label label-users">WHAT USERS EXPECTED</span>
-          <p class="disconnect-text">A classic dropdown selector or inline +/- stepper: standard patterns that are immediately recognizable. The bottom drawer was a surprise behavior that many participants didn't discover, leading to failed or abandoned attempts at quantity modification.</p>
-        </div>
-      </div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">T1</span><span class="f-main"><span class="f-title">Location Ambiguity</span><span class="f-prob">All 12 participants confirmed a store without verifying the full address.</span></span><span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>The issue</b>Region-based store labels ("San Francisco" vs. "South San Francisco") are ambiguous in a scrollable list. Only 3 were familiar enough with the area to recognize store names by neighborhood.</p><p style="color:var(--red);">Notable: Corte Madera (~30 minutes north) was grouped under the San Francisco region.</p><p><b>Recommendation</b>Show full address and city tag prominently in the store list. Correct geographic groupings so regional labels are accurate (Corte Madera ≠ San Francisco). Consider distance from current location as a default sort.</p></div>
+      </details>
+      <details class="f-row">
+        <summary><span class="f-num">T4</span><span class="f-main"><span class="f-title">Quantity Controls</span><span class="f-prob">The bottom drawer was a surprise behavior that many participants didn't discover, leading to failed or abandoned attempts at quantity modification.</span></span><span></span><span class="f-caret" aria-hidden="true">▾</span></summary>
+        <div class="f-body"><p><b>What Philz designed</b>Tapping the down-arrow on the quantity "1" in the cart opens a bottom drawer: a modal sheet that slides up from the bottom of the screen with stepper controls (+/-) and a "Choose Quantity" confirmation button.</p><p><b>What users expected</b>A classic dropdown selector or inline +/- stepper: standard patterns that are immediately recognizable.</p></div>
+      </details>
     </div>
   </div>
 </div>

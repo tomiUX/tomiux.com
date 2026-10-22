@@ -420,6 +420,22 @@
   .d2 { animation-delay: 0.25s; }
   .d3 { animation-delay: 0.4s; }
   .d4 { animation-delay: 0.55s; }
+  /* trim + collapse */
+  details.more { margin-top: 0.6rem; }
+  details.more > summary { display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer; list-style: none; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.78rem; letter-spacing: 0.04em; color: var(--pixel-dark); background: var(--yellow); border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); border-radius: 6px; padding: 0.3rem 0.7rem; }
+  details.more > summary::-webkit-details-marker { display: none; }
+  details.more > summary::after { content: '▾'; transition: transform 0.15s; }
+  details.more[open] > summary::after { transform: rotate(180deg); }
+  details.more > summary:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--pixel-dark); }
+  details.more > summary:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  details.more[open] > summary { margin-bottom: 0.6rem; }
+  details.more.quiet > summary { background: none; border: none; box-shadow: none; padding: 0.2rem 0; color: var(--purple); text-decoration: underline; text-underline-offset: 3px; font-size: 0.8rem; }
+  details.more.quiet > summary:hover { transform: none; box-shadow: none; color: var(--hot-pink); }
+  .platform-body details.more { margin-top: 0.4rem; }
+  .rec-card details.more { margin-top: 0; }
+  .rec-card details.more[open] > summary { margin-bottom: 0.4rem; }
+  details.by-heuristic { margin-top: 2.5rem; }
+  details.by-heuristic[open] > summary { margin-bottom: 1.5rem; }
 </style>
 </head>
 <body>
@@ -484,17 +500,14 @@
     <div class="problem-grid">
       <div>
         <p class="pull-quote">Cognitive accessibility isn't measured by what's there. It's measured by what isn't.</p>
-        <p class="body-text">Every click, pop-up, confusing icon, and inconsistent metric taxes a learner's limited mental energy. Energy that should be reserved for actually learning. This audit examined Coursera's web and mobile platforms to identify where the interface depletes that budget before a student reaches the material.</p>
         <p class="body-text">Using 6 of Nielsen's 10 Usability Heuristics as the evaluation lens (Focus, Error Prevention, Visual Comprehension, Understanding, Findability, and Clarity), I mapped each finding to a 1–4 severity scale, grounded in real, personal usage of the Google UX Design Certificate.</p>
       </div>
       <div>
         <p class="sub-label">// WHY THESE 6 HEURISTICS</p>
         <ul class="insight-list">
           <li>They represent the critical path of a learner from login to lesson</li>
-          <li>All 6 directly target cognitive budget and how much mental energy is available for learning</li>
           <li>A seamless experience rarely generates data; friction causes abandonment that does</li>
           <li>The 1–4 severity scale moves evaluation from subjective opinion to measurable barrier level</li>
-          <li>Personal, extended usage of the platform gave real-world context no lab session can replicate</li>
         </ul>
       </div>
     </div>
@@ -574,53 +587,56 @@
         <div class="platform-head ph-web"><span aria-hidden="true">🖥</span>&nbsp; WEBSITE</div>
         <div class="platform-body">
           <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">Theater Mode</span> Centers video, darkens background, syncs highlighted transcript. Removes peripheral distraction beautifully.</div>
-          </div>
-          <div class="platform-finding">
             <span class="pf-badge pf-s3">S3</span>
             <div class="pf-text"><span class="pf-title">Commitment Modal</span> Mandatory pop-up forces returning users through a "My Commitment" flow before re-entering a session in progress.</div>
-          </div>
-          <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">Pre-Assessment Prep</span> "Review Learning Objectives" and AI Coach access before graded challenges reduce anxiety and prime memory.</div>
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s3">S3</span>
             <div class="pf-text"><span class="pf-title">Save Note</span> Lacks button border or high-contrast background. A primary feature that is functionally invisible due to poor visual affordance.</div>
           </div>
           <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">White Space</span> Layout is clean and uncluttered, minimizing sensory overload for users reviewing completed work.</div>
-          </div>
-          <div class="platform-finding">
             <span class="pf-badge pf-s3">S3</span>
             <div class="pf-text"><span class="pf-title">Buried Portfolio Project</span> Hiding a key milestone inside a collapsed module breaks the user's mental map. A direct Search Tax.</div>
-          </div>
-          <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">Granular Lesson Metadata</span> Every module shows title, delivery method, and time estimate. Lets users budget their cognitive energy proactively.</div>
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s3">S3</span>
             <div class="pf-text"><span class="pf-title">Non-Standard Theater Mode Icon</span> No universal meaning, no persistent tooltip. Its immersive functionality remains hidden from most users.</div>
           </div>
           <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">"My Learning" Hub + Logo Nav</span> Centralized landing page and predictable logo "Home" button provide dual orientation safety nets.</div>
-          </div>
-          <div class="platform-finding">
             <span class="pf-badge pf-s3">S3</span>
             <div class="pf-text"><span class="pf-title">Link Anxiety (Coach)</span> Unclear if clicking "Coach" navigates away from the current lesson. Creates hesitation and lost-progress fear.</div>
-          </div>
-          <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">Personalized Goal Reflection</span> "Your career goal is…" uses the user's own established context to orient and motivate immediately.</div>
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
             <div class="pf-text"><span class="pf-title">Deceptive Styling: Titles</span> A title in the left pane looks like static branding but triggers a full page navigation. A visual-function lie.</div>
           </div>
+          <details class="more quiet">
+            <summary>Strengths (6)</summary>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Theater Mode</span> Centers video, darkens background, syncs highlighted transcript. Removes peripheral distraction beautifully.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Pre-Assessment Prep</span> "Review Learning Objectives" and AI Coach access before graded challenges reduce anxiety and prime memory.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">White Space</span> Layout is clean and uncluttered, minimizing sensory overload for users reviewing completed work.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Granular Lesson Metadata</span> Every module shows title, delivery method, and time estimate. Lets users budget their cognitive energy proactively.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">"My Learning" Hub + Logo Nav</span> Centralized landing page and predictable logo "Home" button provide dual orientation safety nets.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Personalized Goal Reflection</span> "Your career goal is…" uses the user's own established context to orient and motivate immediately.</div>
+            </div>
+          </details>
         </div>
       </div>
 
@@ -628,40 +644,20 @@
         <div class="platform-head ph-mobile"><span aria-hidden="true">📱</span>&nbsp; iOS APP</div>
         <div class="platform-body">
           <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">Labeled Bottom Nav</span> Learn, Explore, and Profile labels eliminate the Memory Tax. Users recognize words, not abstract symbols.</div>
-          </div>
-          <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
             <div class="pf-text"><span class="pf-title">Mandatory 4-Click Goal Flow</span> A forced commitment/goal-setting sequence on every return visit. An Interaction Tax paid before any learning begins.</div>
-          </div>
-          <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">Confirmation Prompts</span> Standard "Are you sure?" dialogs prevent accidental quiz exits and data loss.</div>
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
             <div class="pf-text"><span class="pf-title">Progress Confusion</span> 76% in one view, 45% in another, with different branding from the web. Forces Mental Math™ and causes planning errors around deadlines.</div>
           </div>
           <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">Explore Mode Vertical Scroll</span> A predictable scrolling feed for content discovery reduces spatial processing load.</div>
-          </div>
-          <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
             <div class="pf-text"><span class="pf-title">Hidden Navigation</span> The top menu cuts off with no fading edge cue, hiding essential tabs behind an undiscoverable swipe gesture.</div>
           </div>
           <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">Search FAB</span> Floating action button returns the user to their exact previous location after interruptions. Strong interruption resilience.</div>
-          </div>
-          <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
             <div class="pf-text"><span class="pf-title">Certificate Dead-End</span> No native way to view a certificate. The "Share" icon forces a jump to an external browser, breaking user flow and mental model.</div>
-          </div>
-          <div class="platform-finding">
-            <span class="pf-badge pf-s1">S1</span>
-            <div class="pf-text"><span class="pf-title">Time Estimates</span> Duration labels ("10 min") allow users with executive function challenges to plan sessions against their available mental energy.</div>
           </div>
           <div class="platform-finding">
             <span class="pf-badge pf-s4">S4</span>
@@ -671,97 +667,111 @@
             <span class="pf-badge pf-s4">S4</span>
             <div class="pf-text"><span class="pf-title">Spontaneous Language Glitch</span> Content and buttons spontaneously switch to an unrelated language. Destroys system trust. Makes the app unusable for affected users.</div>
           </div>
+          <details class="more quiet">
+            <summary>Strengths (5)</summary>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Labeled Bottom Nav</span> Learn, Explore, and Profile labels eliminate the Memory Tax. Users recognize words, not abstract symbols.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Confirmation Prompts</span> Standard "Are you sure?" dialogs prevent accidental quiz exits and data loss.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Explore Mode Vertical Scroll</span> A predictable scrolling feed for content discovery reduces spatial processing load.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Search FAB</span> Floating action button returns the user to their exact previous location after interruptions. Strong interruption resilience.</div>
+            </div>
+            <div class="platform-finding">
+              <span class="pf-badge pf-s1">S1</span>
+              <div class="pf-text"><span class="pf-title">Time Estimates</span> Duration labels ("10 min") allow users with executive function challenges to plan sessions against their available mental energy.</div>
+            </div>
+          </details>
         </div>
       </div>
 
     </div>
-  </div>
-</div>
+    <details class="more quiet by-heuristic">
+      <summary>Same findings by heuristic</summary>
+      <div class="framework-grid">
 
-<div class="pixel-divider" aria-hidden="true"></div>
-
-<!-- BY HEURISTIC -->
-<div class="section-bg-soft">
-  <div class="section-wrap">
-    <div class="section-header">
-      <span class="section-badge" aria-hidden="true" style="background:var(--orange);color:var(--pixel-dark);">04 // BY HEURISTIC CATEGORY</span>
-      <h2 class="section-title">Six lenses, <span class="accent">one learner</span></h2>
-    </div>
-    <div class="framework-grid">
-
-      <div class="framework-card">
-        <div class="framework-card-head fh-focus">HELP USERS FOCUS</div>
-        <div class="framework-card-body">
-          <p class="fw-def">Immersive features protect attention by removing peripheral UI noise. Unnecessary interruptions deplete the cognitive budget before learning begins.</p>
-          <ul class="fw-findings">
-            <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Theater Mode removes distractions, a cognitive accessibility best practice</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Commitment Modal creates interaction fatigue for every returning user</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">4-Click Interaction Tax paid on every return before any session can begin</span></li>
-          </ul>
+        <div class="framework-card">
+          <div class="framework-card-head fh-focus">HELP USERS FOCUS</div>
+          <div class="framework-card-body">
+            <p class="fw-def">Immersive features protect attention by removing peripheral UI noise. Unnecessary interruptions deplete the cognitive budget before learning begins.</p>
+            <ul class="fw-findings">
+              <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Theater Mode removes distractions, a cognitive accessibility best practice</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Commitment Modal creates interaction fatigue for every returning user</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">4-Click Interaction Tax paid on every return before any session can begin</span></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="framework-card">
-        <div class="framework-card-head fh-error">HELP USERS AVOID MISTAKES</div>
-        <div class="framework-card-body">
-          <p class="fw-def">Visual affordances make interactive elements obvious. If "Save Note" looks like plain text, the system fails to guide users to the feature.</p>
-          <ul class="fw-findings">
-            <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Pre-Assessment Prep with AI Coach reduces testing anxiety and primes memory</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Save Note is invisible with no button border or high-contrast background</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Conflicting progress percentages across views force Mental Math and planning errors</span></li>
-          </ul>
+        <div class="framework-card">
+          <div class="framework-card-head fh-error">HELP USERS AVOID MISTAKES</div>
+          <div class="framework-card-body">
+            <p class="fw-def">Visual affordances make interactive elements obvious. If "Save Note" looks like plain text, the system fails to guide users to the feature.</p>
+            <ul class="fw-findings">
+              <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Pre-Assessment Prep with AI Coach reduces testing anxiety and primes memory</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Save Note is invisible with no button border or high-contrast background</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Conflicting progress percentages across views force Mental Math and planning errors</span></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="framework-card">
-        <div class="framework-card-head fh-visual">VISUAL COMPREHENSION</div>
-        <div class="framework-card-body">
-          <p class="fw-def">Disorganized information architecture increases the Search Tax, the cognitive cost of hunting for something that should be immediately visible.</p>
-          <ul class="fw-findings">
-            <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Generous white space minimizes sensory overload when reviewing completed work</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Portfolio Project buried inside a collapsed module breaks the user's mental map</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Hidden nav bar with no fading-edge cue conceals essential tabs from most users</span></li>
-          </ul>
+        <div class="framework-card">
+          <div class="framework-card-head fh-visual">VISUAL COMPREHENSION</div>
+          <div class="framework-card-body">
+            <p class="fw-def">Disorganized information architecture increases the Search Tax, the cognitive cost of hunting for something that should be immediately visible.</p>
+            <ul class="fw-findings">
+              <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Generous white space minimizes sensory overload when reviewing completed work</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Portfolio Project buried inside a collapsed module breaks the user's mental map</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Hidden nav bar with no fading-edge cue conceals essential tabs from most users</span></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="framework-card">
-        <div class="framework-card-head fh-understand">UNDERSTANDING</div>
-        <div class="framework-card-body">
-          <p class="fw-def">Non-standard icons without tooltips create a Cognitive Gap the user must bridge alone, spending budget before any learning can happen.</p>
-          <ul class="fw-findings">
-            <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Lesson metadata (title, type, time) lets users budget their cognitive energy proactively</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Theater Mode icon has no universal meaning and its best feature stays hidden</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Certificate Dead-End forces users to an external browser to view their own certificate</span></li>
-          </ul>
+        <div class="framework-card">
+          <div class="framework-card-head fh-understand">UNDERSTANDING</div>
+          <div class="framework-card-body">
+            <p class="fw-def">Non-standard icons without tooltips create a Cognitive Gap the user must bridge alone, spending budget before any learning can happen.</p>
+            <ul class="fw-findings">
+              <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Lesson metadata (title, type, time) lets users budget their cognitive energy proactively</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Theater Mode icon has no universal meaning and its best feature stays hidden</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Certificate Dead-End forces users to an external browser to view their own certificate</span></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="framework-card">
-        <div class="framework-card-head fh-find">FINDABILITY</div>
-        <div class="framework-card-body">
-          <p class="fw-def">Orientation safety nets ensure users navigating complex structures can always return to a known starting point after an interruption.</p>
-          <ul class="fw-findings">
-            <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">"My Learning" Hub and logo navigation act as dual orientation safety nets</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Link Anxiety causes users to hesitate clicking "Coach" for fear of losing progress</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">No hierarchical context. Lessons don't show where they sit in the larger structure</span></li>
-          </ul>
+        <div class="framework-card">
+          <div class="framework-card-head fh-find">FINDABILITY</div>
+          <div class="framework-card-body">
+            <p class="fw-def">Orientation safety nets ensure users navigating complex structures can always return to a known starting point after an interruption.</p>
+            <ul class="fw-findings">
+              <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">"My Learning" Hub and logo navigation act as dual orientation safety nets</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s3">WEB S3</span><span class="fw-item-text">Link Anxiety causes users to hesitate clicking "Coach" for fear of losing progress</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">No hierarchical context. Lessons don't show where they sit in the larger structure</span></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="framework-card">
-        <div class="framework-card-head fh-clarity">CLARITY</div>
-        <div class="framework-card-body">
-          <p class="fw-def">Design elements should not contradict their function. A clickable title styled like static branding is an interface that lies to the user.</p>
-          <ul class="fw-findings">
-            <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Personalized goal reflection orients users with their own established context</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s4">WEB S4</span><span class="fw-item-text">Title styled as branding looks static but triggers a disorienting full-page navigation</span></li>
-            <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Spontaneous language glitch switches content language without warning</span></li>
-          </ul>
+        <div class="framework-card">
+          <div class="framework-card-head fh-clarity">CLARITY</div>
+          <div class="framework-card-body">
+            <p class="fw-def">Design elements should not contradict their function. A clickable title styled like static branding is an interface that lies to the user.</p>
+            <ul class="fw-findings">
+              <li class="fw-item"><span class="fw-pill pill-strength">WEB S1</span><span class="fw-item-text">Personalized goal reflection orients users with their own established context</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s4">WEB S4</span><span class="fw-item-text">Title styled as branding looks static but triggers a disorienting full-page navigation</span></li>
+              <li class="fw-item"><span class="fw-pill pill-s4">MOB S4</span><span class="fw-item-text">Spontaneous language glitch switches content language without warning</span></li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-    </div>
+      </div>
+    </details>
   </div>
 </div>
 
@@ -771,29 +781,41 @@
 <div class="section-bg-white">
   <div class="section-wrap">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true" style="background:var(--hot-pink);color:white;">05 // RECOMMENDATIONS</span>
+      <span class="section-badge" aria-hidden="true" style="background:var(--hot-pink);color:white;">04 // RECOMMENDATIONS</span>
       <h2 class="section-title">Making the system <span class="accent2">invisible</span></h2>
     </div>
     <div class="recs-grid">
       <div class="rec-card">
         <p class="rec-number">REC 01</p>
         <p class="rec-title">Sync the Data</p>
-        <p class="rec-body">Align progress metrics and branding across web and mobile. A single source of truth eliminates the Mental Math users are currently forced to perform and the anxiety that comes with it.</p>
+        <details class="more quiet">
+          <summary>Why</summary>
+          <p class="rec-body">Align progress metrics and branding across web and mobile. A single source of truth eliminates the Mental Math users are currently forced to perform and the anxiety that comes with it.</p>
+        </details>
       </div>
       <div class="rec-card">
         <p class="rec-number">REC 02</p>
         <p class="rec-title">Add Visual Cues for Off-Screen Content</p>
-        <p class="rec-body">Add a fading edge or partial tab visibility indicator to the mobile top nav. Right now users have no reason to know those tabs exist, let alone swipe for them.</p>
+        <details class="more quiet">
+          <summary>Why</summary>
+          <p class="rec-body">Add a fading edge or partial tab visibility indicator to the mobile top nav. Right now users have no reason to know those tabs exist, let alone swipe for them.</p>
+        </details>
       </div>
       <div class="rec-card">
         <p class="rec-number">REC 03</p>
         <p class="rec-title">Fix the Affordances</p>
-        <p class="rec-body">Give "Save Note" a proper button border. Add underlines to linked titles. Clear visual affordances eliminate both the invisible web controls and the tappability ambiguity on mobile.</p>
+        <details class="more quiet">
+          <summary>Why</summary>
+          <p class="rec-body">Give "Save Note" a proper button border. Add underlines to linked titles. Clear visual affordances eliminate both the invisible web controls and the tappability ambiguity on mobile.</p>
+        </details>
       </div>
       <div class="rec-card">
         <p class="rec-number">REC 04</p>
         <p class="rec-title">Native Certificate View</p>
-        <p class="rec-body">Replace the "Share" workaround with a dedicated "View Certificate" button that opens natively inside the app. Earning a credential is the primary reward and it shouldn't require a scavenger hunt.</p>
+        <details class="more quiet">
+          <summary>Why</summary>
+          <p class="rec-body">Replace the "Share" workaround with a dedicated "View Certificate" button that opens natively inside the app. Earning a credential is the primary reward and it shouldn't require a scavenger hunt.</p>
+        </details>
       </div>
     </div>
 
