@@ -221,7 +221,7 @@
   if (!document.querySelector('link[href*="Press+Start"]')) {
     const fontLink = document.createElement('link');
     fontLink.rel = 'stylesheet';
-    fontLink.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap';
     document.head.appendChild(fontLink);
   }
 
