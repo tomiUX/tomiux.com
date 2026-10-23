@@ -262,7 +262,7 @@
           <div class="card-num c-pink" aria-hidden="true">01</div>
           <span class="card-badge badge-pink">LOW FIDELITY</span>
           <p class="card-title">Paper Prototype</p>
-          <p class="card-body">Mapped core task flows (locking, unlocking, adding a guest) on paper. Ran usability tests to expose navigation problems before touching any digital tools.</p>
+          <p class="card-body">Mapped core task flows (locking, unlocking, adding a guest, switching between devices) on paper. Ran usability tests to expose navigation problems before touching any digital tools.</p>
         </div>
       </div>
       <div class="process-card">
@@ -271,7 +271,7 @@
           <div class="card-num c-yellow" aria-hidden="true">02</div>
           <span class="card-badge badge-yellow">PEER FEEDBACK</span>
           <p class="card-title">Iteration</p>
-          <p class="card-body">Peer critique revealed the permission hierarchy wasn't obvious. Restructured the guest access flow and redesigned how different access types are communicated.</p>
+          <p class="card-body">Peer feedback flagged accidental unlocks (leading to swipe-and-hold), plus color-only status and missing confirmations. Restructured the guest access flow and redesigned how different access types are communicated.</p>
         </div>
       </div>
       <div class="process-card">
@@ -329,9 +329,9 @@
       <div>
         <p class="sub-label">// RESEARCH INSIGHTS</p>
         <ul class="insight-list">
-          <li>Users couldn't distinguish permanent access from time-limited guest access in the existing app</li>
+          <li>Users pogo-sticked between locks just to check each one's status</li>
           <li>Paper testing showed "add guest" was buried, so it became a primary action in the redesign</li>
-          <li>The owner vs. guest mental model needed to be established in onboarding, not discovered mid-use</li>
+          <li>Guest setup felt "absurdly complex" in the existing app</li>
           <li>Multi-step permission setup spiked cognitive load, so I introduced progressive disclosure</li>
           <li>Lock/unlock feedback needed to be immediate and unambiguous across all permission levels</li>
         </ul>
@@ -392,7 +392,7 @@
         <div class="decision-card-body">
           <p class="decision-principle">NORMAN · AFFORDANCES</p>
           <p class="decision-title">Lock state is unmissable</p>
-          <p class="decision-body">The lock/unlock button uses size, color, and icon together, never color alone. Any user at any permission level instantly knows the state of every lock they can access.</p>
+          <p class="decision-body">The lock/unlock status uses color, a text label, and an icon together, never color alone. Any user at any permission level instantly knows the state of every lock they can access.</p>
         </div>
       </div>
       <div class="decision-card">
