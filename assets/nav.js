@@ -10,7 +10,7 @@
       left: 1rem;
       background: #A122C0;
       color: white;
-      padding: 0.75rem 1.25rem;
+      padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
       font-family: 'Nunito', sans-serif;
       font-weight: 800;
       font-size: 0.9rem;
@@ -38,12 +38,12 @@
       align-items: center;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0.75rem 2rem;
+      padding: var(--space-3, 0.75rem) var(--space-6, 2rem);
     }
     #tomiux-nav .nav-logo {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: var(--space-2, 0.5rem);
       text-decoration: none;
     }
     #tomiux-nav .nav-logo img {
@@ -62,7 +62,7 @@
     #tomiux-nav .logo-tomi { color: #A122C0; }
     #tomiux-nav .logo-ux   { color: #3FBB9E; }
     #tomiux-nav .nav-links {
-      display: flex; gap: 0.25rem; list-style: none;
+      display: flex; gap: var(--space-1, 0.25rem); list-style: none;
       align-items: center; margin: 0; padding: 0;
     }
     #tomiux-nav .nav-links a {
@@ -70,7 +70,7 @@
       font-size: 0.8rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: 0.08em;
       color: #4a1878; text-decoration: none;
-      padding: 0.45rem 0.9rem; border-radius: 6px;
+      padding: var(--space-2, 0.5rem) var(--space-4, 1rem); border-radius: 6px;
       transition: all 0.15s;
     }
     #tomiux-nav .nav-links a:hover { background: #f0e8ff; color: #A122C0; }
@@ -83,8 +83,8 @@
       font-size: 0.8rem; font-weight: 800;
       text-transform: uppercase; letter-spacing: 0.08em;
       color: #4a1878; background: none; border: none;
-      padding: 0.45rem 0.9rem; border-radius: 6px;
-      cursor: pointer; display: flex; align-items: center; gap: 0.3rem;
+      padding: var(--space-2, 0.5rem) var(--space-4, 1rem); border-radius: 6px;
+      cursor: pointer; display: flex; align-items: center; gap: var(--space-1, 0.25rem);
       transition: all 0.15s;
     }
     #tomiux-nav .nav-dropdown-btn::after { content: '\u25BE'; font-size: 0.6rem; opacity: 0.7; }
@@ -101,8 +101,8 @@
     #tomiux-nav .dropdown-menu.open { display: block; }
 
     #tomiux-nav .dropdown-menu a {
-      display: flex !important; align-items: center; gap: 0.5rem;
-      padding: 0.6rem 1rem !important; border-radius: 0 !important;
+      display: flex !important; align-items: center; gap: var(--space-2, 0.5rem);
+      padding: var(--space-2, 0.5rem) var(--space-4, 1rem) !important; border-radius: 0 !important;
       border-bottom: 2px solid #c8a8f0;
       font-size: 0.78rem !important; color: #4a1878 !important;
       white-space: nowrap; text-transform: none !important; letter-spacing: 0 !important;
@@ -114,7 +114,7 @@
 
     #tomiux-nav .nav-dropdown-tag {
       font-family: 'Nunito', sans-serif; font-weight: 800;
-      font-size: 0.7rem; padding: 0.15rem 0.4rem;
+      font-size: 0.7rem; padding: var(--space-1, 0.25rem) var(--space-2, 0.5rem);
       border: 1.5px solid #0a0520; color: #0a0520;
       letter-spacing: 0.05em; flex-shrink: 0;
     }
@@ -138,11 +138,11 @@
     footer {
       background: #A122C0 !important;
       border-top: 4px solid #0a0520 !important;
-      padding: 1.25rem 2rem !important;
+      padding: var(--space-4, 1rem) var(--space-6, 2rem) !important;
       display: grid !important;
       grid-template-columns: 1fr auto 1fr !important;
       align-items: center !important;
-      gap: 1rem !important;
+      gap: var(--space-4, 1rem) !important;
       position: relative;
       z-index: 1;
     }
@@ -160,7 +160,7 @@
       font-size: 0.72rem !important;
       color: #ffe566 !important;
       letter-spacing: 0.08em !important;
-      padding: 0.4rem 0.75rem !important;
+      padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem) !important;
       border: 2px solid #ffe566 !important;
       background: rgba(0,0,0,0.2) !important;
       border-radius: 4px !important;
@@ -186,7 +186,7 @@
     }
     footer .footer-links {
       display: flex !important;
-      gap: 1.25rem !important;
+      gap: var(--space-4, 1rem) !important;
       justify-self: end;
     }
     footer .footer-links a {
@@ -206,18 +206,18 @@
     }
 
     /* ===== PHONE MENU ===== */
-    #tomiux-nav .nav-toggle { display: none; align-items: center; gap: 0.4rem; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.45rem 0.8rem; background: #ffe566; color: #0a0520; border: 2px solid #0a0520; box-shadow: 2px 2px 0 #0a0520; border-radius: 6px; cursor: pointer; }
+    #tomiux-nav .nav-toggle { display: none; align-items: center; gap: var(--space-2, 0.5rem); font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem); background: #ffe566; color: #0a0520; border: 2px solid #0a0520; box-shadow: 2px 2px 0 #0a0520; border-radius: 6px; cursor: pointer; }
     #tomiux-nav .nav-toggle:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; }
     @media (max-width: 760px) {
-      #tomiux-nav .nav-inner { position: relative; padding: 0.6rem 1rem; }
+      #tomiux-nav .nav-inner { position: relative; padding: var(--space-2, 0.5rem) var(--space-4, 1rem); }
       #tomiux-nav .nav-toggle { display: inline-flex; }
-      #tomiux-nav .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 0.5rem 1rem 1rem; background: #fdf8ff; border-bottom: 4px solid #0a0520; box-shadow: 0 4px 0 #9b70d8; max-height: calc(100vh - 70px); overflow-y: auto; }
+      #tomiux-nav .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: var(--space-2, 0.5rem) var(--space-4, 1rem) var(--space-4, 1rem); background: #fdf8ff; border-bottom: 4px solid #0a0520; box-shadow: 0 4px 0 #9b70d8; max-height: calc(100vh - 70px); overflow-y: auto; }
       #tomiux-nav.menu-open .nav-links { display: flex; }
       #tomiux-nav .nav-links li { width: 100%; }
-      #tomiux-nav .nav-links a, #tomiux-nav .nav-dropdown-btn { display: flex; width: 100%; padding: 0.8rem 0.5rem; font-size: 0.9rem; border-radius: 0; border-bottom: 2px solid #c8a8f0; text-align: left; }
-      #tomiux-nav .nav-links .nav-cv { justify-content: center; margin-top: 0.75rem; border-radius: 6px !important; border: 3px solid #0a0520 !important; }
+      #tomiux-nav .nav-links a, #tomiux-nav .nav-dropdown-btn { display: flex; width: 100%; padding: var(--space-3, 0.75rem) var(--space-2, 0.5rem); font-size: 0.9rem; border-radius: 0; border-bottom: 2px solid #c8a8f0; text-align: left; }
+      #tomiux-nav .nav-links .nav-cv { justify-content: center; margin-top: var(--space-3, 0.75rem); border-radius: 6px !important; border: 3px solid #0a0520 !important; }
       #tomiux-nav .nav-dropdown { position: static; }
-      #tomiux-nav .dropdown-menu { position: static; min-width: 0; margin: 0.25rem 0 0.5rem; box-shadow: none; border: 2px solid #0a0520; }
+      #tomiux-nav .dropdown-menu { position: static; min-width: 0; margin: var(--space-1, 0.25rem) 0 var(--space-2, 0.5rem); box-shadow: none; border: 2px solid #0a0520; }
       #tomiux-nav .dropdown-menu a { white-space: normal !important; font-size: 0.85rem !important; }
     }
 
@@ -225,24 +225,24 @@
 
 
     /* TOP BAR BACK LINK */
-    #tomiux-nav .nav-back { display: inline-flex; align-items: center; gap: 0.35rem; margin-left: 1rem; margin-right: auto; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: #4a1878; padding: 0.4rem 0.75rem; border: 2px solid #0a0520; border-radius: 6px; background: #fff; box-shadow: 2px 2px 0 #0a0520; white-space: nowrap; }
+    #tomiux-nav .nav-back { display: inline-flex; align-items: center; gap: var(--space-1, 0.25rem); margin-left: var(--space-4, 1rem); margin-right: auto; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: #4a1878; padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem); border: 2px solid #0a0520; border-radius: 6px; background: #fff; box-shadow: 2px 2px 0 #0a0520; white-space: nowrap; }
     #tomiux-nav .nav-back:hover { background: #f0e8ff; color: #A122C0; }
     #tomiux-nav .nav-back:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; }
     #tomiux-nav .nb-short { display: none; }
     @media (max-width: 1080px) { #tomiux-nav .nb-long { display: none; } #tomiux-nav .nb-short { display: inline; } }
-    @media (max-width: 760px) { #tomiux-nav .nav-back { margin-left: 0.6rem; } }
+    @media (max-width: 760px) { #tomiux-nav .nav-back { margin-left: var(--space-2, 0.5rem); } }
     /* BACK TO WORK */
-    .tomiux-back { display: flex; justify-content: center; padding: 3rem 1.25rem 3.5rem; position: relative; z-index: 1; }
-    .tomiux-back a { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: #fff; background: #A122C0; border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 8px; padding: 0.85rem 1.5rem; transition: transform 0.12s, box-shadow 0.12s; }
+    .tomiux-back { display: flex; justify-content: center; padding: var(--space-7, 3rem) var(--space-4, 1rem) var(--space-7, 3rem); position: relative; z-index: 1; }
+    .tomiux-back a { display: inline-flex; align-items: center; gap: var(--space-2, 0.5rem); font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: #fff; background: #A122C0; border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 8px; padding: var(--space-3, 0.75rem) var(--space-5, 1.5rem); transition: transform 0.12s, box-shadow 0.12s; }
     .tomiux-back a:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 #0a0520; }
     .tomiux-back a:focus-visible { outline: 3px solid #A122C0; outline-offset: 3px; }
     /* JUMP BAR */
     #tomiux-jump { position: fixed; z-index: 900; font-family: 'Nunito', sans-serif; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
     #tomiux-jump.show, #tomiux-jump:focus-within { opacity: 1; pointer-events: auto; }
-    #tomiux-jump .tj-project { font-weight: 900; font-size: 0.92rem; line-height: 1.25; color: #0a0520; margin: 0 0 0.6rem 0.25rem; padding-bottom: 0.55rem; border-bottom: 2px solid #c8a8f0; }
-    #tomiux-jump .tj-title { font-weight: 900; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8850b0; margin: 0 0 0.5rem 0.25rem; }
-    #tomiux-jump .tj-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.15rem; }
-    #tomiux-jump a { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.4rem 0.55rem; border-radius: 6px; text-decoration: none; color: #4a1878; font-weight: 800; font-size: 0.8rem; line-height: 1.3; border: 2px solid transparent; }
+    #tomiux-jump .tj-project { font-weight: 900; font-size: 0.92rem; line-height: 1.25; color: #0a0520; margin: 0 0 var(--space-2, 0.5rem) var(--space-1, 0.25rem); padding-bottom: var(--space-2, 0.5rem); border-bottom: 2px solid #c8a8f0; }
+    #tomiux-jump .tj-title { font-weight: 900; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8850b0; margin: 0 0 var(--space-2, 0.5rem) var(--space-1, 0.25rem); }
+    #tomiux-jump .tj-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-1, 0.25rem); }
+    #tomiux-jump a { display: flex; align-items: baseline; gap: var(--space-2, 0.5rem); padding: var(--space-2, 0.5rem) var(--space-2, 0.5rem); border-radius: 6px; text-decoration: none; color: #4a1878; font-weight: 800; font-size: 0.8rem; line-height: 1.3; border: 2px solid transparent; }
     #tomiux-jump a:hover { background: #f0e8ff; color: #A122C0; }
     #tomiux-jump a:focus-visible { outline: 3px solid #A122C0; outline-offset: 1px; }
     #tomiux-jump a[aria-current="true"] { background: #ffe566; color: #0a0520; border-color: #0a0520; box-shadow: 2px 2px 0 #0a0520; }
@@ -250,14 +250,14 @@
     #tomiux-jump a[aria-current="true"] .tj-num { color: #0a0520; }
     #tomiux-jump .tj-toggle { display: none; }
     @media (min-width: 1500px) {
-      #tomiux-jump { opacity: 1; pointer-events: auto; left: 16px; top: 50%; transform: translateY(-50%); width: 190px; max-height: 80vh; overflow-y: auto; background: rgba(255,255,255,0.96); border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 10px; padding: 0.8rem 0.6rem; }
+      #tomiux-jump { opacity: 1; pointer-events: auto; left: 16px; top: 50%; transform: translateY(-50%); width: 190px; max-height: 80vh; overflow-y: auto; background: rgba(255,255,255,0.96); border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 10px; padding: var(--space-3, 0.75rem) var(--space-2, 0.5rem); }
     }
     @media (max-width: 1499px) {
       #tomiux-jump { right: 16px; bottom: 16px; max-width: calc(100vw - 32px); }
-      #tomiux-jump .tj-toggle { display: inline-flex; align-items: center; gap: 0.45rem; max-width: 100%; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.8rem; padding: 0.55rem 0.9rem; background: #ffe566; color: #0a0520; border: 3px solid #0a0520; box-shadow: 3px 3px 0 #0a0520; border-radius: 999px; cursor: pointer; }
+      #tomiux-jump .tj-toggle { display: inline-flex; align-items: center; gap: var(--space-2, 0.5rem); max-width: 100%; font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 0.8rem; padding: var(--space-2, 0.5rem) var(--space-4, 1rem); background: #ffe566; color: #0a0520; border: 3px solid #0a0520; box-shadow: 3px 3px 0 #0a0520; border-radius: 999px; cursor: pointer; }
       #tomiux-jump .tj-toggle:focus-visible { outline: 3px solid #A122C0; outline-offset: 2px; }
       #tomiux-jump .tj-current { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      #tomiux-jump .tj-panel { display: none; position: absolute; right: 0; bottom: calc(100% + 10px); width: 250px; max-height: 65vh; overflow-y: auto; background: #fff; border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 10px; padding: 0.6rem 0.5rem; }
+      #tomiux-jump .tj-panel { display: none; position: absolute; right: 0; bottom: calc(100% + 10px); width: 250px; max-height: 65vh; overflow-y: auto; background: #fff; border: 3px solid #0a0520; box-shadow: 4px 4px 0 #0a0520; border-radius: 10px; padding: var(--space-2, 0.5rem) var(--space-2, 0.5rem); }
       #tomiux-jump.open .tj-panel { display: block; }
       #tomiux-jump .tj-panel .tj-title { display: block; }
     }
