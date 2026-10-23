@@ -784,8 +784,7 @@
     tabindex="0"
     role="button"
     aria-label="Footer note"
-    title="you found it 👻"
-    id="footer-easter-egg"
+    id="footer-note"
   >✎ Red pen approved</div>
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
@@ -795,7 +794,7 @@
 </footer>
 
 <script>
-  const egg = document.getElementById('footer-easter-egg');
+  const egg = document.getElementById('footer-note');
   function activateEgg() {
     egg.setAttribute('data-found', 'true');
     egg.innerHTML = '<span>✎ Yes, I proofread the footer too</span>';

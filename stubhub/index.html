@@ -609,7 +609,7 @@
 
 <footer>
   <div class="footer-brand">© 2026 · STACY TOMASI · TOMIUX · ALL RIGHTS RESERVED</div>
-  <div class="footer-hits" tabindex="0" role="button" aria-label="Footer note" title="you found it 👻" id="footer-easter-egg">✎ Red pen approved</div>
+  <div class="footer-hits" tabindex="0" role="button" aria-label="Footer note" id="footer-note">✎ Red pen approved</div>
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
     <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
@@ -618,7 +618,7 @@
 </footer>
 
 <script>
-  const egg = document.getElementById('footer-easter-egg');
+  const egg = document.getElementById('footer-note');
   function activateEgg() { egg.setAttribute('data-found','true'); egg.innerHTML='<span>✎ Yes, I proofread the footer too</span>'; egg.setAttribute('aria-label','You found the footer note'); }
   egg.addEventListener('click', activateEgg);
   egg.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateEgg(); } });

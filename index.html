@@ -40,6 +40,7 @@
     --text-mid: #4a1878;
     --text-light: #6a3090;
     --pixel-dark: #0a0520;
+    --success: #0e7a5f; /* status green, 5.3:1 on white */
   }
 
   /* ===== SKIP LINK (WCAG 2.4.1) ===== */
@@ -101,10 +102,6 @@
   /* WCAG 2.3.3 — animations only run when user has no motion preference */
   @media (prefers-reduced-motion: no-preference) {
     body::before { animation: bgShimmer 8s ease-in-out infinite alternate; }
-    .pixel-deco { animation: floatPx 4s ease-in-out infinite; }
-    .gb-led { animation: ledBlink 2s ease-in-out infinite; }
-    .signal-dot { animation: pulse 1.4s ease-in-out infinite; }
-    .screen-mascot img { animation: screenBob 2s ease-in-out infinite; }
     .reveal { animation: up 0.7s ease forwards; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -112,10 +109,6 @@
   }
 
   @keyframes bgShimmer { 0% { opacity: 0.08; } 100% { opacity: 0.18; } }
-  @keyframes floatPx { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-12px) rotate(8deg); } }
-  @keyframes ledBlink { 0%, 100% { opacity: 1; } 85% { opacity: 1; } 90% { opacity: 0.3; } 95% { opacity: 1; } }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-  @keyframes screenBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
   @keyframes up { to { opacity: 1; transform: translateY(0); } }
 
   /* ===== NAV ===== */
@@ -461,11 +454,11 @@
   .stat-row:last-child { border-bottom: none; }
   .stat-label { color: var(--text-light); font-weight: 700; font-size: 0.75rem; }
   .stat-value { color: var(--text); font-weight: 800; text-align: right; }
-  .stat-value.open { color: #0e7a5f; }
+  .stat-value.open { color: var(--success); }
 
   .about-lead { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: clamp(1.15rem, 2vw, 1.4rem); color: var(--text); line-height: 1.5; margin-bottom: 1.25rem; }
   .about-lead .hl { color: var(--purple); }
-  .about-lead .hl2 { color: #0e7a5f; }
+  .about-lead .hl2 { color: var(--success); }
   .about-body { font-size: 0.92rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 1.25rem; font-weight: 600; }
 
   .contact-links { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; padding-top: 1.5rem; border-top: 3px dashed var(--lavender-mid); }
@@ -476,8 +469,6 @@
   /* ===== CONTACT ===== */
   .contact-pod { background: var(--white); border-radius: 16px; border: 3px solid var(--pixel-dark); box-shadow: 8px 8px 0 var(--pixel-dark); padding: 4rem 3rem; text-align: center; position: relative; overflow: hidden; max-width: 680px; margin: 0 auto; }
   .contact-pod::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 10px; background: repeating-linear-gradient(90deg, var(--pink) 0, var(--pink) 16.66%, var(--yellow) 16.66%, var(--yellow) 33.33%, var(--teal) 33.33%, var(--teal) 50%, var(--purple) 50%, var(--purple) 66.66%, var(--orange) 66.66%, var(--orange) 83.33%, var(--blue) 83.33%, var(--blue) 100%); }
-  .contact-signal { font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.72rem; color: #0e7a5f; letter-spacing: 0.12em; display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin-bottom: 1.5rem; }
-  .signal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 6px var(--teal); }
   .contact-headline { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: clamp(1.5rem, 3.5vw, 2.4rem); color: var(--text); line-height: 1.2; margin-bottom: 1.75rem; letter-spacing: 0; }
   .contact-headline .accent { color: var(--purple); }
   .contact-email { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: #ffffff; text-decoration: none; padding: 0.85rem 2rem; border-radius: 8px; border: 3px solid var(--pixel-dark); background: var(--purple); box-shadow: 4px 4px 0 var(--pixel-dark); transition: all 0.12s; margin-bottom: 1.5rem; }
@@ -736,7 +727,7 @@
   .cart strong { color: var(--text); font-size: 1rem; }
   .cart .fine { font-size: 0.68rem; color: var(--text-light); text-decoration: underline; }
   .cart .warn { color: #d11a2a; font-weight: 900; }
-  .cart .good { color: #0e7a5f; font-weight: 900; }
+  .cart .good { color: var(--success); font-weight: 900; }
 
   /* Seating */
   .diet-table { display: flex; flex-direction: column; gap: 0.3rem; }
@@ -1320,7 +1311,7 @@
     <img src="assets/Ghost_Logo_Tomi_UX.svg" alt="" aria-hidden="true" style="height:28px;width:auto;" />
     <span>© 2026 · STACY TOMASI<br/>TOMIUX · ALL RIGHTS RESERVED</span>
   </div>
-  <div class="footer-hits" tabindex="0" role="button" aria-label="Footer note" title="you found it 👻" id="footer-easter-egg">✎ Red pen approved</div>
+  <div class="footer-hits" tabindex="0" role="button" aria-label="Footer note" id="footer-note">✎ Red pen approved</div>
   <div class="footer-links">
     <a href="mailto:hello@tomiux.com">Email</a>
     <a href="https://www.linkedin.com/in/stacytomasi/" target="_blank" rel="noopener" aria-label="LinkedIn (opens in new tab)">LinkedIn</a>
@@ -1376,8 +1367,8 @@
   })();
 
 
-  // ===== EASTER EGG — keyboard handler (WCAG 2.1.1) =====
-  const egg = document.getElementById('footer-easter-egg');
+  // ===== FOOTER NOTE — keyboard handler (WCAG 2.1.1) =====
+  const egg = document.getElementById('footer-note');
   function activateEgg() {
     egg.setAttribute('data-found', 'true');
     egg.innerHTML = '<span>✎ Yes, I proofread the footer too</span>';
