@@ -1117,7 +1117,7 @@
 <div class="demo-box">
   <div class="ig-post" id="ec-kent-state-instagram-post">
     <div class="ig-split"><span class="ig-navy"></span><span class="ig-gold"></span></div>
-    <p class="ig-detail">SAT · 7 PM · M.A.C. CENTER</p>
+    <p class="ig-detail">JAN 16 · 6:30 PM · M.A.C. CENTER</p>
     <p class="ig-title">GAME DAY</p>
   </div>
   <div class="demo-row"><button type="button" class="demo-btn" aria-pressed="false" data-contrast="ec-kent-state-instagram">Apply the fix</button></div>
@@ -1170,13 +1170,13 @@
           </div>
           <div class="ec-tags"><span class="insight-tag tag-teal">Cognitive design</span><span class="insight-tag tag-purple">Gestalt</span><span class="insight-tag tag-yellow">Signifiers</span></div>
           <p class="ec-hook">Restraint as a feature: calm grid, clear categories, one mystery button.</p>
-          <div class="ec-stats"><div class="ec-stat"><span class="ec-stat-num">Calm</span><span class="ec-stat-lbl">Clean grid, clear categories, no pushy pop-ups</span></div><div class="ec-stat"><span class="ec-stat-num">+</span><span class="ec-stat-lbl">Bright green button with no label. Sell? Post? Go live?</span></div><div class="ec-stat"><span class="ec-stat-num">Gone</span><span class="ec-stat-lbl">No Recently Viewed, so finding an item again means starting over</span></div></div>
+          <div class="ec-stats"><div class="ec-stat"><span class="ec-stat-num">Calm</span><span class="ec-stat-lbl">Clean grid, clear categories, no pushy pop-ups</span></div><div class="ec-stat"><span class="ec-stat-num">+</span><span class="ec-stat-lbl">Bright green button with no label. Sell? Post? Go live?</span></div><div class="ec-stat"><span class="ec-stat-num">0</span><span class="ec-stat-lbl">No Recently Viewed, so finding an item again means starting over</span></div></div>
         </div>
         <div class="project-body">
           <div class="project-context">
             <div><p class="context-section-label">The ask</p><p class="context-text">The counterpoint to Temu: a niche live-selling marketplace for plants, collectibles, and more, judged on the same cognitive lens.</p></div>
             <div><p class="context-section-label">What I found</p><ul class="ec-list"><li>Clean, evenly spaced grid. Gestalt similarity does the sorting</li><li>Emoji category buttons with labels: fast to recognize</li><li>Referral gift icon sits quietly by search, present but not pushy</li><li>The bright green + button never says what it does</li><li>No “Recently Viewed,” so finding an item again means starting over</li></ul></div>
-            <div><p class="context-section-label">The fix</p><ul class="ec-list ec-fix"><li>Label the + (“Sell” or “Go live”)</li><li>Tooltips on the + and gift box for first-timers</li><li>Add “Recently Viewed”</li></ul></div>
+            <div><p class="context-section-label">The fix</p><ul class="ec-list ec-fix"><li>Label the + (“Sell” or “Post”)</li><li>Tooltips on the + and gift box for first-timers</li><li>Add “Recently Viewed”</li></ul></div>
           </div>
           <div class="project-sandbox">
             <p class="sandbox-label">TRY IT · WHAT DOES THE GREEN BUTTON DO?</p>
@@ -1275,12 +1275,12 @@
           </div>
           <div class="ec-tags"><span class="insight-tag tag-yellow">Cognitive design flows</span><span class="insight-tag tag-pink">Feature Integration Theory</span><span class="insight-tag tag-teal">Good vs. bad</span></div>
           <p class="ec-hook">Same task, two designs. One catches the vegan guest assigned chicken. One doesn’t.</p>
-          <div class="ec-stats"><div class="ec-stat"><span class="ec-stat-num">Tom</span><span class="ec-stat-lbl">Vegan guest assigned chicken. The bad design hides it</span></div><div class="ec-stat"><span class="ec-stat-num">13 → 2</span><span class="ec-stat-lbl">Tables shown vs. tables actually open</span></div><div class="ec-stat"><span class="ec-stat-num">4 × 4</span><span class="ec-stat-lbl">Norman principles broken, each tied to a cognitive construct</span></div></div>
+          <div class="ec-stats"><div class="ec-stat"><span class="ec-stat-num">Tom</span><span class="ec-stat-lbl">Vegan guest assigned chicken. The bad design hides it</span></div><div class="ec-stat"><span class="ec-stat-num">13 → 2</span><span class="ec-stat-lbl">Tables shown vs. tables that fit the seating rules</span></div><div class="ec-stat"><span class="ec-stat-num">4 + 4</span><span class="ec-stat-lbl">4 Norman principles broken, 4 cognitive constructs</span></div></div>
         </div>
         <div class="project-body">
           <div class="project-context">
             <div><p class="context-section-label">The ask</p><p class="context-text">Design a good and a deliberately bad interaction flow for a wedding seating tool, then prove why the bad one fails using cognitive psychology.</p></div>
-            <div><p class="context-section-label">What I found</p><ul class="ec-list"><li>Visibility × whole before parts: a flat dashboard buries the plus-ones task</li><li>Constraint × conjunction search: 13 identical table buttons instead of the 2 that are open</li><li>Affordance × two visual pathways: data you can read but no Confirm to act on</li><li>Feedback × Feature Integration Theory: no flag, so vegan + chicken blends in</li></ul></div>
+            <div><p class="context-section-label">What I found</p><ul class="ec-list"><li>Visibility × whole before parts: a flat dashboard buries the plus-ones task</li><li>Constraint × conjunction search: 13 identical table buttons instead of the 2 that fit the rules</li><li>Affordance × two visual pathways: data you can read but no Confirm to act on</li><li>Attention × Feature Integration Theory: no flag, so vegan + chicken blends in</li></ul></div>
             <div><p class="context-section-label">Why it matters</p><ul class="ec-list ec-fix"><li>A single pop-out feature (a flag) is seen automatically</li><li>A conflict that needs two facts combined needs focused attention. People miss it</li><li>Bad design here sends the wrong meal to the caterer</li></ul></div>
           </div>
           <div class="project-sandbox">
@@ -1471,7 +1471,7 @@
       var id = b.getAttribute('data-guess');
       var right = b.textContent.indexOf('live') > -1;
       document.getElementById(id + '-count').textContent = (right ? 'Right: it starts your own live sale. ' : 'Nope: it starts your own live sale. ') + 'A one-word label would end the guessing.';
-      var plus = document.getElementById(id + '-plus'); plus.textContent = '+ Go live'; plus.classList.add('labeled');
+      var plus = document.getElementById(id + '-plus'); plus.textContent = '+ Sell'; plus.classList.add('labeled');
     });
   });
 
