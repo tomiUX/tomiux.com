@@ -767,6 +767,99 @@
   .ec-lightbox img { display: block; max-width: 100%; max-height: calc(92vh - 76px); margin: 0 auto; object-fit: contain; }
 
   /* EC-DRAWER CSS:END */
+  /* ===== HANDS-ON (drawer content; reuses .ec-drawer and .ec-card styles) ===== */
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  .ho-drawer .context-text a { color: var(--purple); font-weight: 800; }
+  .ho-photo { margin: var(--space-3) 0 0; border: 3px dashed var(--lavender-dark); border-radius: 10px; background: var(--white); min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-1); font-weight: 800; font-size: 0.78rem; color: var(--text-light); text-align: center; padding: var(--space-3); }
+  .ho-photo > span:first-child { font-size: 1.6rem; }
+  .ho-photo.small { min-height: 110px; }
+  .ho-table-wrap { overflow-x: auto; border: 2px solid var(--pixel-dark); border-radius: 8px; background: var(--white); }
+  .ho-table-wrap:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  .ho-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 420px; }
+  .ho-table th, .ho-table td { padding: var(--space-2) var(--space-3); text-align: left; border-bottom: 2px solid var(--lavender-bg); }
+  .ho-table thead th { background: var(--pixel-dark); color: #fff; font-weight: 900; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .ho-table tbody th { font-weight: 900; color: var(--text); }
+  .ho-table tr.win { background: #e9fbf5; }
+  .ho-chip { display: inline-block; font-weight: 900; font-size: 0.7rem; padding: 2px var(--space-2); border: 2px solid var(--pixel-dark); border-radius: 4px; color: var(--pixel-dark); }
+  .ho-chip.good { background: var(--mint); }
+  .ho-chip.ok { background: var(--yellow); }
+  .ho-chip.bad { background: var(--baby-pink); }
+  .ho-diagram { margin: var(--space-3) 0 0; background: var(--white); border: 2px solid var(--pixel-dark); border-radius: 10px; padding: var(--space-3); }
+  .ho-diagram svg { width: 100%; height: auto; display: block; max-width: 420px; margin: 0 auto; }
+  .ho-diagram figcaption { font-size: 0.75rem; font-weight: 700; color: var(--text-mid); margin-top: var(--space-2); line-height: 1.5; }
+  .ho-tabs, .ho-controls { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+  .ho-tabs .demo-btn[aria-pressed="false"], .ho-controls .demo-btn { background: var(--white); color: var(--text); }
+  .ho-tabs .demo-btn[aria-pressed="true"] { background: var(--purple); color: #fff; }
+  .ho-controls label { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 800; font-size: 0.8rem; color: var(--text-mid); cursor: pointer; margin-right: var(--space-3); }
+  .ho-controls input[type=range] { width: 130px; accent-color: var(--purple); }
+  .ho-controls input[type=checkbox] { accent-color: var(--purple); width: 16px; height: 16px; }
+  .ho-controls input:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  .ho-stage { position: relative; height: clamp(300px, 52vh, 460px); background: radial-gradient(circle at 50% 40%, #ffffff 0%, #ece2ff 100%); border: 3px solid var(--pixel-dark); border-radius: 10px; overflow: hidden; touch-action: none; cursor: grab; }
+  .ho-stage:active { cursor: grabbing; }
+  .ho-stage canvas { display: block; width: 100%; height: 100%; }
+  .ho-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; color: var(--text-light); }
+  .ho-legend { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); font-size: 0.72rem; font-weight: 800; color: var(--text-mid); }
+  .ho-legend i { display: inline-block; width: 11px; height: 11px; border: 2px solid var(--pixel-dark); border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
+  .ho-shot { margin: var(--space-3) 0 0; }
+  .ho-shot img { display: block; width: 100%; height: auto; border: 2px solid var(--pixel-dark); border-radius: 8px; box-shadow: 3px 3px 0 var(--pixel-dark); }
+  .ho-shot figcaption { font-size: 0.75rem; font-weight: 700; color: var(--text-mid); margin-top: var(--space-2); line-height: 1.5; }
+  .ho-shot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+  .ho-shot-grid .ho-shot img { aspect-ratio: 4 / 3; object-fit: cover; }
+  .ho-sub { font-weight: 700; color: var(--text-light); font-size: 0.7rem; }
+  .ho-shot-grid.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .ho-shot-grid.three figcaption { font-size: 0.7rem; }
+  .ho-lessons.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  @media (max-width: 600px) { .ho-lessons.three { grid-template-columns: 1fr; } }
+  .ho-shot-grid.four { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .ho-video { margin: 0; text-align: center; }
+  .ho-video video { display: block; margin: 0 auto; width: auto; max-width: 100%; max-height: 440px; aspect-ratio: 9 / 16; background: #0a0520; border: 2px solid var(--pixel-dark); border-radius: 8px; box-shadow: 3px 3px 0 var(--pixel-dark); }
+  .ho-video figcaption { font-size: 0.75rem; font-weight: 700; color: var(--text-mid); margin-top: var(--space-2); }
+  .ho-timeline { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); padding: 0; margin: 0 0 var(--space-2); }
+  .ho-timeline li { display: grid; grid-template-columns: 58px 1fr; gap: var(--space-3); align-items: start; font-size: 0.86rem; font-weight: 600; color: var(--text-mid); line-height: 1.55; background: var(--lavender-bg); border: 2px solid var(--pixel-dark); border-radius: 8px; padding: var(--space-3); }
+  .ho-timeline li strong { color: var(--text); font-weight: 900; }
+  .ho-timeline li.fail { background: #fff0f6; }
+  .ho-timeline li.win { background: #e9fbf5; box-shadow: 3px 3px 0 var(--pixel-dark); }
+  .ho-tl-tag { font-weight: 900; font-size: 0.7rem; letter-spacing: 0.06em; text-align: center; padding: var(--space-1) 0; background: var(--yellow); border: 2px solid var(--pixel-dark); border-radius: 4px; color: var(--pixel-dark); }
+  .ho-timeline li.fail .ho-tl-tag { background: var(--baby-pink); }
+  .ho-timeline li.win .ho-tl-tag { background: var(--mint); }
+  .ho-lessons { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--space-3); }
+  @media (max-width: 600px) {
+    .ho-timeline li { grid-template-columns: 1fr; }
+    .ho-tl-tag { justify-self: start; padding: var(--space-1) var(--space-2); }
+    .ho-lessons { grid-template-columns: 1fr; }
+  }
+  .ho-drawer .ec-list li.idea::before { color: var(--yellow); -webkit-text-stroke: 0.6px var(--pixel-dark); }
+  .ho-drawer .ec-list li.con::before { content: '✗'; color: var(--hot-pink); }
+  .ho-drawer .ec-list li.pro::before { content: '✓'; color: var(--teal-text); }
+  .ho-tldr { grid-column: 1 / -1; margin-top: var(--space-3); }
+  .ho-tldr .ho-lessons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 600px) { .ho-tldr .ho-lessons { grid-template-columns: 1fr; } }
+  .ho-tldr-hero { display: flex; align-items: center; gap: var(--space-3); background: var(--mint); border: 3px solid var(--pixel-dark); border-radius: 10px; box-shadow: 4px 4px 0 var(--pixel-dark); padding: var(--space-3); margin-bottom: var(--space-3); }
+  .ho-tldr-num { font-weight: 900; font-size: clamp(2.6rem, 9vw, 3.6rem); line-height: 1; color: var(--pixel-dark); }
+  .ho-tldr-txt { font-size: 0.85rem; font-weight: 600; color: var(--pixel-dark); line-height: 1.45; }
+  .ho-tldr-txt strong { display: block; font-weight: 900; font-size: 0.95rem; }
+  .ho-sag { margin-top: var(--space-3); }
+  .ho-sag-stage { position: relative; aspect-ratio: 3 / 2; border: 2px solid var(--pixel-dark); border-radius: 8px; overflow: hidden; box-shadow: 3px 3px 0 var(--pixel-dark); background: var(--pixel-dark); }
+  .ho-sag-layer { position: absolute; inset: 0; opacity: 0; }
+  .ho-sag-layer[data-sag="1"] { opacity: 1; }
+  .ho-sag-layer img, .ho-sag-ov { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .ho-sag-layer img { object-fit: cover; }
+  .ho-sag-chip { position: absolute; bottom: var(--space-2); left: var(--space-2); font-weight: 900; font-size: 0.72rem; padding: 2px var(--space-2); border: 2px solid var(--pixel-dark); border-radius: 4px; color: var(--pixel-dark); }
+  .ho-sag-chip.bad { background: var(--baby-pink); }
+  .ho-sag-chip.ok { background: var(--yellow); }
+  .ho-sag-chip.good { background: var(--mint); }
+  .ho-sag-pin { position: absolute; left: 51%; top: 21%; transform: translate(-50%, -100%); font-weight: 900; font-size: 0.68rem; padding: 2px var(--space-2); background: #e6d0ff; border: 2px solid var(--pixel-dark); border-radius: 4px; color: var(--pixel-dark); white-space: nowrap; }
+  .ho-sag-load { position: absolute; top: var(--space-2); right: var(--space-2); font-weight: 900; font-size: 0.72rem; padding: 2px var(--space-2); background: var(--white); border: 2px solid var(--pixel-dark); border-radius: 4px; color: var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark); white-space: nowrap; }
+  .ho-sag-load.heavy { background: var(--yellow); }
+  .ho-sag-range { width: 100%; margin: var(--space-3) 0 var(--space-1); accent-color: var(--purple); height: 28px; cursor: pointer; }
+  .ho-sag-range:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  .ho-sag-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-1); }
+  .ho-sag-step { font: inherit; font-weight: 800; font-size: 0.75rem; padding: var(--space-2) var(--space-1); background: var(--white); color: var(--text); border: 2px solid var(--pixel-dark); border-radius: 6px; cursor: pointer; line-height: 1.2; }
+  .ho-sag-step b { display: block; font-weight: 900; font-size: 0.9rem; }
+  @media (max-width: 600px) { .ho-sag-step { font-size: 0.66rem; white-space: nowrap; padding-left: 0; padding-right: 0; } }
+  .ho-sag-step[aria-pressed="true"] { background: var(--purple); color: #fff; }
+  .ho-sag-step:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
+  .ho-sag-cap { font-size: 0.78rem; font-weight: 700; color: var(--text-mid); margin: var(--space-2) 0 0; line-height: 1.5; min-height: 2.4em; }
 </style>
 </head>
 <body>
@@ -798,6 +891,7 @@
         </div>
       </li>
       <li><a href="#extra-credit">Mini Audits</a></li>
+      <li><a href="#hands-on">Hands-On</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="assets/Stacy-Tomasi-UX-Designer-Resume.pdf" class="nav-cv" target="_blank" rel="noopener" aria-label="View CV (opens in new tab)">CV ↗</a></li>
@@ -1029,11 +1123,29 @@
 
 <div class="pixel-divider" aria-hidden="true"></div>
 
+<!-- HANDS-ON -->
+<div class="section-bg-soft" style="position:relative;z-index:1;">
+  <div class="section-wrap" id="hands-on">
+    <div class="section-header">
+      <span class="section-badge" aria-hidden="true">04 // HANDS-ON</span>
+      <h2 class="section-title"><span class="accent2">Getting</span> <span class="accent2">Handsy</span></h2>
+    </div>
+    <p class="artifacts-intro">Same process, off the screen. Measure, test, break it, print it again.</p>
+    <div class="specimen-grid">
+      <a class="specimen" href="#ho-milsbo" data-ho="milsbo" aria-haspopup="dialog" aria-label="Greenhouse Shelf Remedy, 3D printed hardware"><span class="specimen-num" aria-hidden="true">№ 001</span><div class="specimen-icon" aria-hidden="true">🔩</div><span class="specimen-name">Greenhouse Shelf Remedy</span><span class="specimen-tag">3D Print</span></a>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 002</span><div class="specimen-icon">🪴</div><span class="specimen-name">Plant Pot Wedges</span><span class="specimen-tag">Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 003</span><div class="specimen-icon">🖨️</div><span class="specimen-name">On the print bed</span><span class="specimen-tag">Soon</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="pixel-divider" aria-hidden="true"></div>
+
 <!-- ABOUT -->
 <div class="section-bg-soft" style="position:relative;z-index:1;">
   <div class="section-wrap" id="about">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">04 // ABOUT</span>
+      <span class="section-badge" aria-hidden="true">05 // ABOUT</span>
       <h2 class="section-title"><span style="color:#ff2d9b;">About /</span> <span style="color:#ff2d9b;">Résumé</span></h2>
     </div>
     <div class="about-grid">
@@ -1071,7 +1183,7 @@
 <div class="section-bg-white" style="position:relative;z-index:1;">
   <div class="section-wrap" id="contact">
     <div class="section-header">
-      <span class="section-badge" aria-hidden="true">05 // CONTACT</span>
+      <span class="section-badge" aria-hidden="true">06 // CONTACT</span>
       <h2 class="section-title"><span class="accent">Get in</span> <span class="accent">Touch</span></h2>
     </div>
     <div class="contact-pod">
@@ -1084,6 +1196,137 @@
 
 </main>
 <!-- EC-DRAWER:START (generated) -->
+<!-- HANDS-ON DRAWER -->
+<dialog class="ec-drawer ho-drawer" id="ho-drawer" aria-labelledby="ho-drawer-label">
+  <div class="ec-drawer-bar">
+    <p class="ec-drawer-label" id="ho-drawer-label">Hands-On · <span id="ho-drawer-pos">1 of 1</span></p>
+    <div class="ec-drawer-actions">
+      <button type="button" class="ec-drawer-btn" id="ho-prev" aria-label="Previous build" hidden>←</button>
+      <button type="button" class="ec-drawer-btn" id="ho-next" aria-label="Next build" hidden>→</button>
+      <button type="button" class="ec-drawer-btn close" id="ho-close">✕ Close</button>
+    </div>
+  </div>
+  <div class="ec-drawer-scroll" id="ho-drawer-scroll">
+    <section class="ec-panel" data-ho-panel="milsbo" hidden>
+      <article class="project-entry ec-card open">
+        <div class="project-stripe stripe-yellow"></div>
+        <div class="project-header">
+          <div class="ec-head-main">
+            <div class="project-num">№ 001</div>
+            <h2 class="project-name" id="ho-milsbo-title" tabindex="-1">Greenhouse Shelf Remedy</h2>
+          </div>
+          <div class="ec-tags"><span class="insight-tag tag-yellow">3D printed</span><span class="insight-tag tag-teal">Iteration</span><span class="insight-tag tag-purple">Physical product</span></div>
+          <p class="ec-hook">A sagging acrylic shelf, two glass doors, and several iterations.</p>
+          <div class="ec-stats"><div class="ec-stat"><span class="ec-stat-num">0</span><span class="ec-stat-lbl">Cabinet modifications</span></div><div class="ec-stat"><span class="ec-stat-num">2</span><span class="ec-stat-lbl">Brackets, one per door</span></div><div class="ec-stat"><span class="ec-stat-num">3</span><span class="ec-stat-lbl">Plate versions, plus a new slope shelf support</span></div></div>
+          <div class="ho-tldr">
+            <p class="sandbox-label">TL;DR</p>
+            <div class="ho-tldr-hero"><span class="ho-tldr-num">9×</span><span class="ho-tldr-txt"><strong>Easily holds 9× the weight, with less sag than 1 plant on the old supports.</strong> 10 lb 13 oz wasn't the limit. The new back support carries the shelf even with both doors open, and a slope shelf support on each door levels the front when they close.</span></div>
+            <div class="ho-lessons">
+              <div class="ec-stat"><span class="ec-stat-num">54 → 50</span><span class="ec-stat-lbl">Measure the real thing, not a photo</span></div>
+              <div class="ec-stat"><span class="ec-stat-num">25°</span><span class="ec-stat-lbl">Design for the loaded shelf, not the empty one</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-context">
+            <div><p class="context-section-label">The problem</p><p class="context-text">The wide acrylic shelf in my IKEA Milsbo greenhouse sits on top of 5 small supports, one at each corner and one at the center back. Loaded with watered pots, it sags along the front. I skipped drilling: every shelf in the cabinet is adjustable, and today's fix could be tomorrow's problem.</p><div class="ho-sag" id="ho-sag">
+                <div class="ho-sag-stage">
+                  <div class="ho-sag-layer" data-sag="1"><img src="hands-on/milsbo/sag-1.jpg" alt="Old supports with 1 plant on the wide shelf, doors open: the front edge dips slightly in the middle" loading="lazy"><svg class="ho-sag-ov" viewBox="0 0 900 600" aria-hidden="true"><path d="M110,330 Q450,350 790,330 L110,330Z" fill="#ff6eb4" fill-opacity=".4"/><path d="M110,330 Q450,350 790,330" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M110,330 Q450,350 790,330" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M110,330 L790,330" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M110,330 L790,330" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/><clipPath id="ho-mag1"><circle cx="748" cy="452" r="132"/></clipPath><g clip-path="url(#ho-mag1)"><rect x="616" y="320" width="264" height="264" fill="#0a0520"/><g transform="translate(748,452) scale(4) translate(-450,-335)"><image href="hands-on/milsbo/sag-1.jpg" width="900" height="600"/><path d="M110,330 Q450,350 790,330 L110,330Z" fill="#ff6eb4" fill-opacity=".4"/><path d="M110,330 Q450,350 790,330" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M110,330 Q450,350 790,330" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M110,330 L790,330" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M110,330 L790,330" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/></g></g><circle cx="748" cy="452" r="132" fill="none" stroke="#0a0520" stroke-width="8"/><circle cx="748" cy="452" r="132" fill="none" stroke="#fff" stroke-width="3"/><text x="748" y="570" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-weight="900" font-size="26" fill="#fff" stroke="#0a0520" stroke-width="6" paint-order="stroke">4× middle</text></svg><span class="ho-sag-chip bad">Small dip</span><span class="ho-sag-load">⚖️ 1 lb 3.9 oz</span></div>
+                  <div class="ho-sag-layer" data-sag="2"><img src="hands-on/milsbo/sag-2.jpg" alt="Old supports with 2 plants: the front edge dips more" loading="lazy"><svg class="ho-sag-ov" viewBox="0 0 900 600" aria-hidden="true"><path d="M110,337 Q448,360 795,334 L110,337Z" fill="#ff6eb4" fill-opacity=".4"/><path d="M110,337 Q448,360 795,334" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M110,337 Q448,360 795,334" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M110,337 L795,334" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M110,337 L795,334" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/><clipPath id="ho-mag2"><circle cx="748" cy="452" r="132"/></clipPath><g clip-path="url(#ho-mag2)"><rect x="616" y="320" width="264" height="264" fill="#0a0520"/><g transform="translate(748,452) scale(4) translate(-450,-342)"><image href="hands-on/milsbo/sag-2.jpg" width="900" height="600"/><path d="M110,337 Q448,360 795,334 L110,337Z" fill="#ff6eb4" fill-opacity=".4"/><path d="M110,337 Q448,360 795,334" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M110,337 Q448,360 795,334" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M110,337 L795,334" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M110,337 L795,334" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/></g></g><circle cx="748" cy="452" r="132" fill="none" stroke="#0a0520" stroke-width="8"/><circle cx="748" cy="452" r="132" fill="none" stroke="#fff" stroke-width="3"/><text x="748" y="570" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-weight="900" font-size="26" fill="#fff" stroke="#0a0520" stroke-width="6" paint-order="stroke">4× middle</text></svg><span class="ho-sag-chip bad">Bigger dip</span><span class="ho-sag-load">⚖️ 3 lb 13.6 oz</span></div>
+                  <div class="ho-sag-layer" data-sag="3"><img src="hands-on/milsbo/sag-3.jpg" alt="Old supports with 3 plants: the deepest dip" loading="lazy"><svg class="ho-sag-ov" viewBox="0 0 900 600" aria-hidden="true"><path d="M105,337 Q448,366 800,336 L105,337Z" fill="#ff6eb4" fill-opacity=".4"/><path d="M105,337 Q448,366 800,336" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M105,337 Q448,366 800,336" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M105,337 L800,336" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M105,337 L800,336" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/><clipPath id="ho-mag3"><circle cx="748" cy="452" r="132"/></clipPath><g clip-path="url(#ho-mag3)"><rect x="616" y="320" width="264" height="264" fill="#0a0520"/><g transform="translate(748,452) scale(4) translate(-450,-344)"><image href="hands-on/milsbo/sag-3.jpg" width="900" height="600"/><path d="M105,337 Q448,366 800,336 L105,337Z" fill="#ff6eb4" fill-opacity=".4"/><path d="M105,337 Q448,366 800,336" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M105,337 Q448,366 800,336" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M105,337 L800,336" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M105,337 L800,336" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/></g></g><circle cx="748" cy="452" r="132" fill="none" stroke="#0a0520" stroke-width="8"/><circle cx="748" cy="452" r="132" fill="none" stroke="#fff" stroke-width="3"/><text x="748" y="570" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-weight="900" font-size="26" fill="#fff" stroke="#0a0520" stroke-width="6" paint-order="stroke">4× middle</text></svg><span class="ho-sag-chip bad">Biggest dip</span><span class="ho-sag-load">⚖️ 6 lb 2.1 oz</span></div>
+                  <div class="ho-sag-layer" data-sag="4"><img src="hands-on/milsbo/sag-4.jpg" alt="New back support with 5 plants and the doors open: the front edge dips in the middle" loading="lazy"><svg class="ho-sag-ov" viewBox="0 0 900 600" aria-hidden="true"><path d="M150,330 Q440,348 770,330 L150,330Z" fill="#ff6eb4" fill-opacity=".4"/><path d="M150,330 Q440,348 770,330" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M150,330 Q440,348 770,330" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M150,330 L770,330" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M150,330 L770,330" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/><clipPath id="ho-mag4"><circle cx="748" cy="452" r="132"/></clipPath><g clip-path="url(#ho-mag4)"><rect x="616" y="320" width="264" height="264" fill="#0a0520"/><g transform="translate(748,452) scale(4) translate(-450,-334)"><image href="hands-on/milsbo/sag-4.jpg" width="900" height="600"/><path d="M150,330 Q440,348 770,330 L150,330Z" fill="#ff6eb4" fill-opacity=".4"/><path d="M150,330 Q440,348 770,330" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M150,330 Q440,348 770,330" stroke="#ff6eb4" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M150,330 L770,330" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M150,330 L770,330" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/></g></g><circle cx="748" cy="452" r="132" fill="none" stroke="#0a0520" stroke-width="8"/><circle cx="748" cy="452" r="132" fill="none" stroke="#fff" stroke-width="3"/><text x="748" y="570" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-weight="900" font-size="26" fill="#fff" stroke="#0a0520" stroke-width="6" paint-order="stroke">4× middle</text></svg><span class="ho-sag-chip ok">Back support: less dip</span><span class="ho-sag-load heavy">⚖️ 10 lb 13 oz · +4 lb 11 oz</span></div>
+                  <div class="ho-sag-layer" data-sag="5"><img src="hands-on/milsbo/sag-5.jpg" alt="Both upgrades with the same 5 plants, doors closed, slope shelf supports under the shelf: the front edge is nearly flat" loading="lazy"><svg class="ho-sag-ov" viewBox="0 0 900 600" aria-hidden="true"><path d="M100,333 Q455,342 790,330 L100,333Z" fill="#3FBB9E" fill-opacity=".4"/><path d="M100,333 Q455,342 790,330" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M100,333 Q455,342 790,330" stroke="#3FBB9E" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M100,333 L790,330" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M100,333 L790,330" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/><clipPath id="ho-mag5"><circle cx="748" cy="452" r="132"/></clipPath><g clip-path="url(#ho-mag5)"><rect x="616" y="320" width="264" height="264" fill="#0a0520"/><g transform="translate(748,452) scale(4) translate(-450,-334)"><image href="hands-on/milsbo/sag-5.jpg" width="900" height="600"/><path d="M100,333 Q455,342 790,330 L100,333Z" fill="#3FBB9E" fill-opacity=".4"/><path d="M100,333 Q455,342 790,330" stroke="#0a0520" stroke-width="5.5" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M100,333 Q455,342 790,330" stroke="#3FBB9E" stroke-width="3" fill="none" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M100,333 L790,330" stroke="#0a0520" stroke-width="4" fill="none" vector-effect="non-scaling-stroke"/><path d="M100,333 L790,330" stroke="#fff" stroke-width="2" stroke-dasharray="8 6" fill="none" vector-effect="non-scaling-stroke"/></g></g><circle cx="748" cy="452" r="132" fill="none" stroke="#0a0520" stroke-width="8"/><circle cx="748" cy="452" r="132" fill="none" stroke="#fff" stroke-width="3"/><text x="748" y="570" text-anchor="middle" font-family="Nunito, Arial, sans-serif" font-weight="900" font-size="26" fill="#fff" stroke="#0a0520" stroke-width="6" paint-order="stroke">4× middle</text></svg><span class="ho-sag-chip good">Both upgrades: nearly flat</span><span class="ho-sag-load heavy">⚖️ 10 lb 13 oz · +4 lb 11 oz</span></div>
+                </div>
+                <label class="sr-only" for="ho-sag-range">Before and after: slide from 1 plant to 5 plants with the doors closed</label>
+                <input type="range" id="ho-sag-range" class="ho-sag-range" min="0" max="4" step="0.01" value="0" aria-valuetext="Step 1 of 5">
+                <div class="ho-sag-steps" role="group" aria-label="Jump to a step">
+                  <button type="button" class="ho-sag-step" data-step="0" aria-pressed="true"><b>1</b> 1 plant</button>
+                  <button type="button" class="ho-sag-step" data-step="1" aria-pressed="false"><b>2</b> 2 plants</button>
+                  <button type="button" class="ho-sag-step" data-step="2" aria-pressed="false"><b>3</b> 3 plants</button>
+                  <button type="button" class="ho-sag-step" data-step="3" aria-pressed="false"><b>4</b> + back</button>
+                  <button type="button" class="ho-sag-step" data-step="4" aria-pressed="false"><b>5</b> + doors</button>
+                </div>
+                <p class="ho-sag-cap" id="ho-sag-cap" aria-live="polite"></p>
+              </div></div>
+            <div><p class="context-section-label">Starting point</p><ul class="ec-list"><li class="idea">Idea: <a href="https://www.thingiverse.com/thing:5326057" target="_blank" rel="noopener">Brad_Reputation's design<span class="sr-only"> (opens in new tab)</span></a> (CC BY). The shelf rides up a slope as the door closes</li><li class="con">His: super-glued at one height, with a steep front a heavy, sagging shelf can't get under</li><li class="pro">Mine: adjustable with a door plate, peg rail, and pegs, plus a gentler slope for a loaded shelf</li></ul></div>
+            <div><p class="context-section-label">How it holds on</p>
+              <div class="ho-table-wrap" tabindex="0" role="region" aria-label="Attachment options compared">
+                <table class="ho-table">
+                  <thead><tr><th scope="col">Method</th><th scope="col">Humidity</th><th scope="col">Removable</th><th scope="col">Adjustable</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Super glue <span class="ho-sub">(original design)</span></th><td><span class="ho-chip bad">Weak</span></td><td><span class="ho-chip bad">No</span></td><td><span class="ho-chip bad">No</span></td></tr>
+                    <tr><th scope="row">3M VHB tape</th><td><span class="ho-chip ok">Good</span></td><td><span class="ho-chip ok">With effort</span></td><td><span class="ho-chip bad">No</span></td></tr>
+                    <tr><th scope="row">Printed pin <span class="ho-sub">(V2)</span></th><td><span class="ho-chip good">Good</span></td><td><span class="ho-chip good">Yes</span></td><td><span class="ho-chip bad">Loosened the handle</span></td></tr>
+                    <tr class="win"><th scope="row">Cabinet's own screws ★ <span class="ho-sub">(V3)</span></th><td><span class="ho-chip good">Best</span></td><td><span class="ho-chip good">Yes</span></td><td><span class="ho-chip good">Peg rail</span></td></tr>
+                  </tbody>
+                </table>
+              </div></div>
+            <div><p class="context-section-label">Why both doors</p><ul class="ec-list ec-fix"><li>Open one door to water, the other still holds the shelf</li><li>Two contact points split the load across the front</li><li>The same part works left and right</li></ul>
+              <figure class="ho-diagram">
+                <svg viewBox="0 0 320 240" role="img" aria-labelledby="ho-dg-t ho-dg-d">
+                  <title id="ho-dg-t">Top view of the cabinet</title>
+                  <desc id="ho-dg-d">The shelf spans both doors. A bracket on each door supports the front edge. With the left door open, the right door's bracket still holds the shelf.</desc>
+                  <rect x="20" y="20" width="280" height="150" rx="6" fill="#ffffff" stroke="#0a0520" stroke-width="3"/>
+                  <rect x="34" y="40" width="252" height="110" rx="4" fill="#b3d9ff" fill-opacity=".55" stroke="#4a1878" stroke-width="2" stroke-dasharray="6 4"/>
+                  <text x="160" y="100" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="13" fill="#4a1878">acrylic shelf</text>
+                  <circle cx="40" cy="46" r="4" fill="#0a0520"/><circle cx="280" cy="46" r="4" fill="#0a0520"/><circle cx="40" cy="144" r="4" fill="#0a0520"/><circle cx="280" cy="144" r="4" fill="#0a0520"/>
+                  <rect x="150" y="26" width="20" height="12" rx="2" fill="#A122C0"/>
+                  <line x1="20" y1="172" x2="70" y2="226" stroke="#0a0520" stroke-width="5" stroke-linecap="round"/>
+                  <rect x="56" y="200" width="16" height="12" rx="2" fill="#3FBB9E" stroke="#0a0520" stroke-width="2" opacity=".7"/>
+                  <text x="80" y="232" font-family="Nunito, sans-serif" font-weight="800" font-size="10" fill="#4a1878">door open</text>
+                  <line x1="160" y1="172" x2="300" y2="172" stroke="#0a0520" stroke-width="5" stroke-linecap="round"/>
+                  <rect x="166" y="150" width="16" height="20" rx="2" fill="#3FBB9E" stroke="#0a0520" stroke-width="2"/>
+                  <text x="230" y="196" text-anchor="middle" font-family="Nunito, sans-serif" font-weight="800" font-size="10" fill="#1a0a3e">still holds</text>
+                </svg>
+                <figcaption>Top view: corner supports, the new back support (purple), and a bracket on each door (green).</figcaption>
+              </figure><figure class="ho-shot narrow"><a href="hands-on/milsbo/both-installed.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/both-installed.jpg" alt="Both doors closed with a pink slope shelf support on each door, pointing toward each other just under the acrylic shelf edge" loading="lazy"></a><figcaption>Both installed: one slope shelf support per door, just under the shelf edge.</figcaption></figure>
+            </div>
+          </div>
+          <div class="project-sandbox">
+            <p class="sandbox-label">ITERATIONS · TRY IT, TAKE IT APART</p>
+            <div class="demo-box ho-viewer-box">
+              <div class="ho-tabs" role="group" aria-label="Which version to show">
+                <button type="button" class="demo-btn" data-mode="all" aria-pressed="true">V1 → V2 → V3</button>
+                <button type="button" class="demo-btn" data-mode="v1" aria-pressed="false">V1</button>
+                <button type="button" class="demo-btn" data-mode="v2" aria-pressed="false">V2</button>
+                <button type="button" class="demo-btn" data-mode="v3" aria-pressed="false">V3</button>
+              </div>
+              <div class="ho-stage" id="ho-viewer" role="img" aria-label="Interactive 3D model of the door bracket. The text below describes what is shown."><p class="ho-loading">Loading 3D model…</p></div>
+              <div class="ho-controls">
+                <label for="ho-pull">Pull apart <input type="range" id="ho-pull" min="0" max="100" value="0"></label>
+                <label><input type="checkbox" id="ho-door" checked> Door</label>
+                <label><input type="checkbox" id="ho-slope" checked> Slope support + pegs</label>
+                <label><input type="checkbox" id="ho-shelf" checked> Shelf</label>
+              </div>
+              <div class="ho-controls"><span class="demo-hint">View:</span><button type="button" class="demo-btn" data-view="front">Shelf side</button><button type="button" class="demo-btn" data-view="side">Side</button><button type="button" class="demo-btn" data-view="back">Door side</button></div>
+              <p class="demo-count" id="ho-desc" aria-live="polite"></p>
+              <div class="ho-legend" aria-hidden="true"><span><i style="background:#9b70d8"></i>V1</span><span><i style="background:#c8b4f0"></i>V2</span><span><i style="background:#3FBB9E"></i>V3</span><span><i style="background:#e8ebef"></i>Cabinet's screws</span><span><i style="background:#ff8c42"></i>V2 pin</span><span><i style="background:#ff5252"></i>V1 hole that missed</span><span><i style="background:#ff6eb4"></i>Slope shelf support</span><span><i style="background:#ffd21f"></i>Pegs</span><span><i style="background:#7b7f8a"></i>Door</span></div>
+            </div>
+            <p class="demo-note">The real print files. Drag to rotate.</p>
+            <p class="sandbox-label">WATCH IT WORK</p>
+            <figure class="ho-video"><video src="hands-on/milsbo/door-close.mp4" poster="hands-on/milsbo/door-close-poster.jpg" controls muted playsinline loop preload="none" aria-describedby="ho-vid-cap"></video><figcaption id="ho-vid-cap">Opening and closing the door: the slope shelf support slides under the loaded shelf.</figcaption></figure>
+
+            <p class="sandbox-label">WHAT CHANGED</p>
+            <ol class="ho-timeline">
+              <li class="fail"><span class="ho-tl-tag">V1</span><div><strong>Plate + peg rail.</strong> The plate sits under both cabinet screws, with 7 peg holes to move the slope shelf support up or down based on how much weight the shelf holds. I assumed the screws were 54 mm apart; calipers said 50, so the bottom hole missed by 4 mm.</div></li>
+              <li class="fail"><span class="ho-tl-tag">V2</span><div><strong>Swapped that screw for a pin.</strong> I needed the slope shelf support lower, which covered the bottom screw spot. Held by only the top screw, the plate could shift left and right, so I tried a pin in the bottom hole and added an 8th peg hole. I dropped the pin to keep the door handle secure.</div></li>
+              <li class="win"><span class="ho-tl-tag">V3</span><div><strong>Screw back, pocket over its head.</strong> An 11.5 mm pocket on the back fits over the bottom screw, so the plate can't swing. Back to 7 peg holes, because they're bigger now and 9 mm apart to match the slope shelf support's pegs.</div></li>
+              <li class="win"><span class="ho-tl-tag">SLOPE</span><div><strong>Gentler slope shelf support.</strong> Loaded with pots, the shelf sagged below the old slope shelf support's blunt front and caught on it. The new one climbs at 25° to a thin tip 10 mm low, so the shelf slides on instead.<figure class="ho-shot"><a href="hands-on/milsbo/slopes-old-new-h.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/slopes-old-new-h.jpg" alt="The old slope shelf support (left) next to the new one (right), turned to match the profile drawing: the new one is longer and tapers to a thin tip" loading="lazy"></a><figcaption>Old (left) vs. new (right)</figcaption></figure><figure class="ho-shot"><a href="hands-on/milsbo/slope-compare.png" target="_blank" rel="noopener"><img src="hands-on/milsbo/slope-compare.png" alt="Side profiles: the old slope with a tall blunt front where the sagging shelf catches, and the new slope with a long gentle ramp to a thin low tip" loading="lazy"></a><figcaption>The profiles</figcaption></figure></div></li>
+              <li class="win"><span class="ho-tl-tag">BACK</span><div><strong>New wider back support.</strong> Replaces the small stock support at the middle back of the cabinet. It carries the load when both doors are open, so the shelf never depends on the doors. Worked first try.<div class="ho-shot-grid three"><figure class="ho-shot"><a href="hands-on/milsbo/stock-support.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/stock-support.jpg" alt="The small white stock shelf support that came with the cabinet, next to its screw" loading="lazy"></a><figcaption>Stock (came with it)</figcaption></figure><figure class="ho-shot"><a href="hands-on/milsbo/back-support-top.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/back-support-top.jpg" alt="The printed back support from underneath, showing its support ribs and screw hole" loading="lazy"></a><figcaption>New: underside</figcaption></figure><figure class="ho-shot"><a href="hands-on/milsbo/back-support-side.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/back-support-side.jpg" alt="The back support from the front, showing the screw pocket between the ribs" loading="lazy"></a><figcaption>New: front</figcaption></figure></div></div></li>
+            </ol>
+            <div class="ec-shots"><p class="sandbox-label">FROM THE BENCH</p><div class="ho-shot-grid four">
+              <figure class="ho-shot"><a href="hands-on/milsbo/v1-parts.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/v1-parts.jpg" alt="V1 printed parts: four pegs, two slope shelf supports, and two door plates, one with a ground-out bottom hole" loading="lazy"></a><figcaption>V1 parts</figcaption></figure>
+              <figure class="ho-shot"><a href="hands-on/milsbo/v2-pivot.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/v2-pivot.jpg" alt="V2 bracket on the cabinet door, tilted because it pivots on its single top screw" loading="lazy"></a><figcaption>V2 pivoting</figcaption></figure>
+              <figure class="ho-shot"><a href="hands-on/milsbo/v3-measure.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/v3-measure.jpg" alt="Calipers reading 10.99 millimeters across the bottom door screw head" loading="lazy"></a><figcaption>Sizing V3's pocket</figcaption></figure>
+              <figure class="ho-shot"><a href="hands-on/milsbo/v3-new-slope.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/v3-new-slope.jpg" alt="V3 plate on the door with the new tapered slope held by two pegs" loading="lazy"></a><figcaption>V3 + new slope support</figcaption></figure>
+            </div></div>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+</dialog>
+
 <dialog class="ec-drawer" id="ec-drawer" aria-labelledby="ec-drawer-label">
   <div class="ec-drawer-bar">
     <p class="ec-drawer-label" id="ec-drawer-label">Mini Audits · <span id="ec-drawer-pos">1 of 6</span></p>
@@ -1634,6 +1877,173 @@
   fromHash();
 })();
 // EC-DRAWER JS:END
+// HO-DRAWER JS:START
+(function () {
+  var dlg = document.getElementById('ho-drawer');
+  if (!dlg) return;
+  var panels = [].slice.call(dlg.querySelectorAll('.ec-panel'));
+  var pos = document.getElementById('ho-drawer-pos'), scroller = document.getElementById('ho-drawer-scroll');
+  var prev = document.getElementById('ho-prev'), next = document.getElementById('ho-next');
+  var current = 0, opener = null, canModal = typeof dlg.showModal === 'function';
+  if (panels.length > 1) { prev.hidden = false; next.hidden = false; }
+  function show(i, focusTitle) {
+    current = (i + panels.length) % panels.length;
+    panels.forEach(function (p, k) { p.hidden = k !== current; });
+    pos.textContent = (current + 1) + ' of ' + panels.length;
+    scroller.scrollTop = 0;
+    var id = panels[current].getAttribute('data-ho-panel');
+    try { history.replaceState(null, '', '#ho-' + id); } catch (e) {}
+    if (focusTitle) { var t = panels[current].querySelector('.project-name'); if (t) t.focus(); }
+    if (id === 'milsbo' && window.hoMilsboViewer) window.hoMilsboViewer();
+  }
+  function openById(id, from) {
+    var i = panels.findIndex(function (p) { return p.getAttribute('data-ho-panel') === id; });
+    if (i < 0) return false;
+    opener = from || null;
+    if (!canModal) { location.hash = 'ho-' + id; return true; }
+    document.documentElement.classList.add('ec-lock');
+    if (!dlg.open) dlg.showModal();
+    show(i, true);
+    return true;
+  }
+  document.querySelectorAll('[data-ho]').forEach(function (a) {
+    a.addEventListener('click', function (e) { if (openById(a.getAttribute('data-ho'), a)) e.preventDefault(); });
+  });
+  prev.addEventListener('click', function () { show(current - 1, true); });
+  next.addEventListener('click', function () { show(current + 1, true); });
+  document.getElementById('ho-close').addEventListener('click', function () { dlg.close(); });
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', function () {
+    document.documentElement.classList.remove('ec-lock');
+    try { history.replaceState(null, '', location.pathname + location.search + '#hands-on'); } catch (e) {}
+    var back = opener || document.querySelector('[data-ho="' + panels[current].getAttribute('data-ho-panel') + '"]');
+    if (back) back.focus();
+  });
+  var m = location.hash.match(/^#ho-([\w-]+)$/);
+  if (m) { var tile = document.querySelector('[data-ho="' + m[1] + '"]'); if (tile) tile.scrollIntoView({ block: 'center' }); openById(m[1], tile); }
+})();
+
+// Milsbo 3D viewer: three.js loads only when the drawer opens
+(function () {
+  var started = false;
+  var MODELS = 'hands-on/milsbo/models.json';
+  var LIBS = ['https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js',
+              'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js'];
+  function load(src) { return new Promise(function (ok, bad) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = bad; document.head.appendChild(s); }); }
+  window.hoMilsboViewer = function () {
+    if (started) return; started = true;
+    var stage = document.getElementById('ho-viewer');
+    var p = window.THREE ? Promise.resolve() : load(LIBS[0]).then(function () { return load(LIBS[1]); });
+    Promise.all([p, fetch(MODELS).then(function (r) { return r.json(); })]).then(function (res) { build(stage, res[1]); })
+      .catch(function () { stage.querySelector('.ho-loading').textContent = 'The 3D model could not load. Try refreshing.'; });
+  };
+  function build(stage, M) {
+    var T = window.THREE;
+    stage.querySelector('.ho-loading').remove();
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var r = new T.WebGLRenderer({ antialias: true, alpha: true });
+    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); stage.appendChild(r.domElement);
+    var scene = new T.Scene(), cam = new T.PerspectiveCamera(30, 1, 1, 4000);
+    var ctl = new T.OrbitControls(cam, r.domElement); ctl.enableDamping = !reduce;
+    scene.add(new T.HemisphereLight(0xffffff, 0x8877aa, 0.85));
+    var d1 = new T.DirectionalLight(0xffffff, 0.7); d1.position.set(120, 160, 220); scene.add(d1);
+    var d2 = new T.DirectionalLight(0xffffff, 0.35); d2.position.set(-160, 60, -200); scene.add(d2);
+    function geo(o) {
+      var b = Uint8Array.from(atob(o.v), function (c) { return c.charCodeAt(0); }).buffer;
+      var f = Uint8Array.from(atob(o.f), function (c) { return c.charCodeAt(0); }).buffer;
+      var g = new T.BufferGeometry();
+      g.setAttribute('position', new T.BufferAttribute(new Float32Array(b), 3));
+      g.setIndex(new T.BufferAttribute(o.i === 'u32' ? new Uint32Array(f) : new Uint16Array(f), 1));
+      g.computeVertexNormals(); return g;
+    }
+    var G = {}; Object.keys(M).forEach(function (k) { G[k] = geo(M[k]); });
+    function mat(c, op, metal) { return new T.MeshStandardMaterial({ color: c, roughness: metal ? 0.3 : 0.6, metalness: metal ? 0.25 : 0, flatShading: !metal, transparent: !!op, opacity: op || 1, depthWrite: !op }); }
+    var steel = mat(0xe8ebef, 0, 1), pegM = mat(0xffd21f); pegM.side = T.DoubleSide;
+    function label(txt, col) {
+      var c = document.createElement('canvas'); c.width = 256; c.height = 128; var x = c.getContext('2d');
+      x.fillStyle = col; x.strokeStyle = '#0a0520'; x.lineWidth = 8; x.beginPath();
+      if (x.roundRect) x.roundRect(28, 14, 200, 100, 18); else x.rect(28, 14, 200, 100);
+      x.fill(); x.stroke(); x.fillStyle = '#0a0520'; x.font = '900 64px Nunito, Arial, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(txt, 128, 66);
+      var sp = new T.Sprite(new T.SpriteMaterial({ map: new T.CanvasTexture(c), depthTest: false })); sp.scale.set(22, 11, 1); sp.position.set(0, 26, 6); sp.renderOrder = 10; return sp;
+    }
+    var SPEC = {
+      v1: { plate: 'v1', col: 0x9b70d8, tag: '#c8a8f0', pegs: [-56], extra: [['screwBot', mat(0xe8ebef, 0.55, 1), 'ghost'], ['ring', mat(0xff5252), 'plate']] },
+      v2: { plate: 'v2', col: 0xc8b4f0, tag: '#e6dcff', pegs: [-56], extra: [['pin', mat(0xff8c42), 'pin']] },
+      v3: { plate: 'v3', col: 0x3FBB9E, tag: '#91EBD3', ramp: 'rampNew', pegs: [-56, -65], extra: [['screwBot', steel, 'door']] }
+    };
+    var rigs = {};
+    Object.keys(SPEC).forEach(function (k) {
+      var S = SPEC[k], g = new T.Group(); g.position.y = 44; scene.add(g);
+      var P = { door: new T.Mesh(G.door, mat(0x7b7f8a, 0.5)), plate: new T.Mesh(G[S.plate], mat(S.col)), top: new T.Mesh(G.screwTop, steel),
+                ramp: new T.Mesh(G[S.ramp || 'ramp'], mat(0xff6eb4)), shelf: new T.Mesh(G.shelf, mat(0x9fd3ff, 0.35)), ex: [], pegs: [] };
+      ['door', 'plate', 'top', 'ramp', 'shelf'].forEach(function (n) { g.add(P[n]); });
+      S.extra.forEach(function (e) { var m = new T.Mesh(G[e[0]], e[1]); m.userData.k = e[2]; if (e[2] === 'ghost') m.userData.base = 1.6; g.add(m); P.ex.push(m); });
+      S.pegs.forEach(function (y) { var m = new T.Mesh(G.peg, pegM); m.scale.x = -1; m.position.y = y; g.add(m); P.pegs.push(m); });
+      g.add(label(k.toUpperCase(), S.tag));
+      rigs[k] = { g: g, P: P };
+    });
+    var DESC = {
+      all: 'V1, V2 and V3 on the door. Pull apart to see how they stack.',
+      v1: 'V1: the bottom hole (red ring) sits 4 mm off the real screw. One peg fits.',
+      v2: 'V2: an orange pin replaces the bottom screw. One peg fits.',
+      v3: 'V3: the screw is back, with a pocket over its head. Both pegs fit, and the new slope shelf support tapers to a thin, low tip.'
+    };
+    var mode = 'all', pull = 0, showDoor = true, showShelf = true, showSlope = true;
+    function apply() {
+      var X = { v1: -46, v2: 0, v3: 46 };
+      Object.keys(rigs).forEach(function (k) {
+        var R = rigs[k], P = R.P, t = pull;
+        R.g.visible = mode === 'all' || mode === k; R.g.position.x = mode === 'all' ? X[k] : 0;
+        P.door.visible = showDoor; P.shelf.visible = showShelf; P.ramp.visible = showSlope;
+        P.plate.position.z = t * 14; P.top.position.z = t * 14;
+        P.ramp.position.z = t * 45; P.shelf.position.z = t * 70;
+        P.pegs.forEach(function (m) { m.visible = showSlope; m.position.z = t * 45; m.position.x = t * 30; });
+        P.ex.forEach(function (m) { var k2 = m.userData.k; m.position.z = (m.userData.base || 0) + (k2 === 'plate' || k2 === 'ghost' ? t * 14 : k2 === 'pin' ? t * 6 : 0); });
+      });
+      document.getElementById('ho-desc').textContent = DESC[mode];
+    }
+    var V = { front: [60, 30, 230], side: [250, 20, 0], back: [-60, 30, -230] };
+    function view(k) { var p = V[k]; var s = (mode === 'all' ? 1.45 : 1) * Math.max(1, 0.8 / (cam.aspect || 1)); cam.position.set(p[0] * s, p[1], p[2] * s); ctl.target.set(0, 0, 0); ctl.update(); }
+    var box = stage.closest('.ho-viewer-box');
+    box.querySelectorAll('[data-mode]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        mode = b.getAttribute('data-mode');
+        box.querySelectorAll('[data-mode]').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        apply(); view('front');
+      });
+    });
+    box.querySelectorAll('[data-view]').forEach(function (b) { b.addEventListener('click', function () { view(b.getAttribute('data-view')); }); });
+    document.getElementById('ho-pull').addEventListener('input', function (e) { pull = e.target.value / 100; apply(); });
+    document.getElementById('ho-door').addEventListener('change', function (e) { showDoor = e.target.checked; apply(); });
+    document.getElementById('ho-shelf').addEventListener('change', function (e) { showShelf = e.target.checked; apply(); });
+    document.getElementById('ho-slope').addEventListener('change', function (e) { showSlope = e.target.checked; apply(); });
+    function size() { var b = stage.getBoundingClientRect(); if (!b.width) return; r.setSize(b.width, b.height, false); cam.aspect = b.width / b.height; cam.updateProjectionMatrix(); }
+    if (window.ResizeObserver) new ResizeObserver(size).observe(stage); else window.addEventListener('resize', size);
+    size(); apply(); view('front');
+    (function loop() { ctl.update(); r.render(scene, cam); requestAnimationFrame(loop); })();
+  }
+})();
+// Sag before/after slider: crossfades 3 photos, snaps to the nearest step on release
+(function () {
+  var box = document.getElementById('ho-sag'); if (!box) return;
+  var range = document.getElementById('ho-sag-range'), cap = document.getElementById('ho-sag-cap');
+  var layers = box.querySelectorAll('.ho-sag-layer'), steps = box.querySelectorAll('.ho-sag-step');
+  var NAMES = ["Old supports, 1 plant", "Old supports, 2 plants", "Old supports, 3 plants", "New back support, 5 plants, doors open", "Both upgrades, 5 plants, doors closed"];
+  var CAPS = ["Old supports, 1 plant (1 lb 3.9 oz). The front edge (pink) dips below the straight line between the corners (dashed).", "Old supports, 2 plants (3 lb 13.6 oz): the dip grows.", "Old supports, 3 plants (6 lb 2.1 oz): the deepest dip, low enough to catch on a tall, blunt slope shelf support.", "Stress test: 2 more plants, +4 lb 11 oz (about 76% more than step 3). With both doors open, the new back support carries it all, with less dip than step 3.", "Same 10 lb 13 oz, doors closed: the slope shelf supports lift the front. Easily holds 9\u00d7 the weight with less sag than 1 plant on the old supports."];
+  function paint(v) {
+    layers.forEach(function (l, k) { if (k) l.style.opacity = Math.max(0, Math.min(1, v - (k - 1))); });
+    var n = Math.round(v);
+    steps.forEach(function (b, k) { b.setAttribute('aria-pressed', k === n ? 'true' : 'false'); });
+    cap.textContent = CAPS[n];
+    range.setAttribute('aria-valuetext', 'Step ' + (n + 1) + ' of ' + layers.length + ': ' + NAMES[n]);
+  }
+  function go(n) { range.value = n; paint(n); }
+  range.addEventListener('input', function () { paint(+range.value); });
+  range.addEventListener('change', function () { go(Math.round(+range.value)); });
+  steps.forEach(function (b) { b.addEventListener('click', function () { go(+b.getAttribute('data-step')); }); });
+  paint(0);
+})();
+// HO-DRAWER JS:END
 </script>
 
 </body>
