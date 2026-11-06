@@ -98,7 +98,7 @@ function startGame(isFirstLoad) {
   mapping = null; matched = 0; sortReported = false;
   clearInterval(tick); tick = null;
   show('screen-sort');
-  renderBins(); updatePhase(!isFirstLoad); recount(); updateHud();
+  renderBins(); renderCard(!isFirstLoad); recount(); updateHud();
 }
 
 /* No visible timer and no speed bonus. This only records how long a sort takes
@@ -157,23 +157,6 @@ function renderCard(takeFocus) {
   if (takeFocus) card.focus();
 }
 
-/* Sorting and naming happen on the same page. When the last card lands, the
-   card disappears, a rename field opens under each pile header, and the
-   results button appears. Pull a card back out and it all reverses, with
-   whatever was typed left intact. */
-function updatePhase(takeFocus) {
-  const done = !queue.length;
-  el('current-card').hidden = done;
-  el('how-inline').hidden = done;
-  el('btn-lock').hidden = !done;
-  el('deck-hint').textContent = done
-    ? 'All placed. Check your piles, then see how you did.'
-    : 'Which pile does this belong in?';
-  el('bins').querySelectorAll('kbd').forEach(k => { k.hidden = done; });
-
-  if (done) { if (takeFocus !== false) el('btn-lock').focus(); }
-  else renderCard(takeFocus);
-}
 
 function updateHud() {
   el('hud-progress').textContent = (deck.length - queue.length) + ' / ' + deck.length;
@@ -187,10 +170,11 @@ function place(pileIndex) {
   order.push({ card: card, pile: pileIndex });
   el('live-sort').textContent = queue.length
     ? `${card} placed in pile ${pileIndex + 1}. ${queue.length} left.`
-    : `${card} placed in pile ${pileIndex + 1}. All placed. Name each pile, then see how you did.`;
+    : `${card} placed in pile ${pileIndex + 1}. That was the last one, here are your results.`;
   paintBins(); recount(); updateHud();
-  if (!queue.length) sortComplete();
-  updatePhase();
+  // last card placed: no confirm step, just show the result
+  if (!queue.length) { sortComplete(); finish(); return; }
+  renderCard();
 }
 
 function undoLast() {
@@ -208,7 +192,7 @@ function pullBack(card, pileIndex) {
   if (o !== -1) order.splice(o, 1);
   queue.unshift(card);
   el('live-sort').textContent = `${card} taken back out of pile ${pileIndex + 1}. ${queue.length} left to place.`;
-  paintBins(); recount(); updateHud(); updatePhase();
+  paintBins(); recount(); updateHud(); renderCard();
 }
 
 /* ============================ naming ============================ */
@@ -271,7 +255,6 @@ el('keys-map').innerHTML = Array.from({ length: PILES })
 el('deck-size').textContent = Object.keys(ANSWER).length;
 
 el('btn-undo').addEventListener('click', undoLast);
-el('btn-lock').addEventListener('click', finish);
 el('btn-again').addEventListener('click', () => startGame(false));
 
 /* ── drag: pointer events, so one code path covers mouse, trackpad and touch ── */
