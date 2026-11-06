@@ -97,8 +97,10 @@ function startGame(isFirstLoad) {
   order = []; elapsed = 0; startedAt = 0;
   mapping = null; matched = 0; sortReported = false;
   clearInterval(tick); tick = null;
-  show('screen-sort');
+  showResults(false);
   renderBins(); renderCard(!isFirstLoad); recount(); updateHud();
+  // on a replay the reader is parked down at the results, so bring the board back
+  if (!isFirstLoad) el('deck-hint').scrollIntoView({ block: 'center', behavior: 'smooth' });
 }
 
 /* No visible timer and no speed bonus. This only records how long a sort takes
@@ -192,6 +194,7 @@ function pullBack(card, pileIndex) {
   if (o !== -1) order.splice(o, 1);
   queue.unshift(card);
   el('live-sort').textContent = `${card} taken back out of pile ${pileIndex + 1}. ${queue.length} left to place.`;
+  showResults(false);
   paintBins(); recount(); updateHud(); renderCard();
 }
 
@@ -238,15 +241,41 @@ function finish() {
          </div>`
       : `<div class="callout pink"><p><strong>You put Herbal with the moods.</strong> None of my 9 participants did that. Bold.</p></div>`;
 
-  show('screen-final');
+  showResults(true);
   track('card_sort_complete', { cards_matched: matched, seconds: elapsed });
 }
 
 /* ============================ plumbing ============================ */
-function show(id) {
-  ['screen-sort','screen-final'].forEach(s => el(s).hidden = s !== id);
-  const root = document.querySelector('.cs-game');
-  if (root) root.scrollIntoView({ block: 'start', behavior: 'smooth' });
+/* The board never disappears. Results open underneath the piles the player just
+   built, and close again if they pull a card back out. */
+function showResults(on) {
+  el('screen-final').hidden = !on;
+  el('current-card').hidden = on;
+  el('how-inline').hidden = on;
+  el('deck-hint').textContent = on
+    ? 'All placed. Here is how it went.'
+    : 'Which pile does this belong in?';
+  el('bins').querySelectorAll('kbd').forEach(k => { k.hidden = on; });
+  if (on) revealResults();
+}
+
+/* Nudge the results into view without shoving the piles off the top. The goal is
+   that the player still sees the board they built, with the verdict opening
+   underneath it. */
+function revealResults() {
+  const out = el('screen-final');
+  const sc = scrollerFor(out);
+  const view = sc ? sc.getBoundingClientRect()
+                  : { top: 0, bottom: window.innerHeight };
+  const h = view.bottom - view.top;
+  const top = out.getBoundingClientRect().top;
+  /* Where we want the results to start: just past halfway down, so the piles
+     above stay on screen. */
+  const wanted = view.top + h * 0.55;
+  const delta = top - wanted;
+  if (delta <= 8) return;
+  if (sc) sc.scrollTo({ top: sc.scrollTop + delta, behavior: 'smooth' });
+  else window.scrollBy({ top: delta, behavior: 'smooth' });
 }
 
 el('keys-map').innerHTML = Array.from({ length: PILES })
