@@ -227,20 +227,6 @@ function finish() {
          <p>For comparison: across the full ${STUDY.fullDeck} card study, 19 were placed identically by all 9 of them. The 20th, Herbal, moved exactly once, and I read that as a slip rather than a disagreement. Agreement on the grouping was close to total.</p>
        </div>`;
 
-  const herbalPile = piles.findIndex(p => p.indexOf('Herbal') > -1);
-  const herbalLandedIn = herbalPile > -1 ? mapping[herbalPile] : null;
-  el('herbal-beat').innerHTML = herbalLandedIn === 'barware'
-    ? `<div class="callout pink">
-         <p><strong>You put Herbal with the barware.</strong> So did 1 of my 9 participants, the only card in the study anyone placed differently.</p>
-         <p>I think they slipped. There's no obvious reason to file a flavor under equipment, and nothing else in their sort was out of place. But in an unmoderated study you can't tell a misclick from a real disagreement, and that's worth saying out loud instead of counting it as a finding.</p>
-       </div>`
-    : herbalLandedIn === 'flavor'
-      ? `<div class="callout pink">
-           <p><strong>You put Herbal with the flavors</strong>, along with 8 of my 9 participants. The ninth filed it with the barware.</p>
-           <p>I read that as a slip rather than a disagreement, though an unmoderated sort can't prove it either way.</p>
-         </div>`
-      : `<div class="callout pink"><p><strong>You put Herbal with the moods.</strong> None of my 9 participants did that. Bold.</p></div>`;
-
   showResults(true);
   track('card_sort_complete', { cards_matched: matched, seconds: elapsed });
 }
