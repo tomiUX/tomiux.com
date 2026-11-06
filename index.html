@@ -1375,6 +1375,34 @@
                   <p class="small" style="text-align:center;margin-top:var(--space-3)">Tap any card sitting in a pile to pull it back out.</p>
                   <p class="sr-only" aria-live="polite" id="live-sort"></p>
 
+                  <!-- RESULTS: revealed in place, under the piles the player just built -->
+                  <div id="screen-final" hidden>
+                    <h2>How you did</h2>
+                    <div id="grouping-verdict"></div>
+                    <div id="herbal-beat"></div>
+
+
+                    <div class="callout yellow">
+                      <p><strong>Nobody could agree what to call them.</strong></p>
+                      <p>My 9 participants got no labels either. They grouped the cards, made as many piles as they wanted, and wrote their own name on each one. Added up, they invented <strong>25 different category names</strong>.</p>
+                      <p>Only three of those names were used by more than one person:</p>
+                      <ul class="tally">
+                        <li><span class="tally-n">5 people</span> <span>said <strong>Tools</strong></span></li>
+                        <li><span class="tally-n">4 people</span> <span>said <strong>Taste</strong></span></li>
+                        <li><span class="tally-n">3 people</span> <span>said <strong>Flavors</strong></span></li>
+                      </ul>
+                      <p>Every other name was used once and once only. Mood. Vibes. Theme. Emotions. Bar Equipment. Drink Making Items.</p>
+                    </div>
+                    <div class="callout pink">
+                      <p><strong>That's the finding.</strong> They put the same cards in the same piles. Then they called those piles 25 different things.</p>
+                      <p>A card sort doesn't hand you the architecture. It hands you the vocabulary, and the vocabulary is where the argument lives.</p>
+                    </div>
+
+                    <div class="actions">
+                      <button class="btn" id="btn-again">▶ Play again</button>
+                    </div>
+                  </div>
+
                   <div class="preamble" id="preamble">
                     <p class="lead">I ran a card sort with <strong>9 participants</strong> to test three new filters for MakeMeACocktail.com: flavor, mood, and barware.</p>
                     <p>Here are <strong id="deck-size">12</strong> of the 20 cards, with no labels on the piles. Group them however they make sense to you, then name what you built.</p>
@@ -1389,33 +1417,6 @@
                   </div>
                 </section>
 
-                <!-- RESULTS -->
-                <section id="screen-final" hidden>
-                  <h2>How you did</h2>
-                  <div id="grouping-verdict"></div>
-                  <div id="herbal-beat"></div>
-
-
-                  <div class="callout yellow">
-                    <p><strong>Nobody could agree what to call them.</strong></p>
-                    <p>My 9 participants got no labels either. They grouped the cards, made as many piles as they wanted, and wrote their own name on each one. Added up, they invented <strong>25 different category names</strong>.</p>
-                    <p>Only three of those names were used by more than one person:</p>
-                    <ul class="tally">
-                      <li><span class="tally-n">5 people</span> <span>said <strong>Tools</strong></span></li>
-                      <li><span class="tally-n">4 people</span> <span>said <strong>Taste</strong></span></li>
-                      <li><span class="tally-n">3 people</span> <span>said <strong>Flavors</strong></span></li>
-                    </ul>
-                    <p>Every other name was used once and once only. Mood. Vibes. Theme. Emotions. Bar Equipment. Drink Making Items.</p>
-                  </div>
-                  <div class="callout pink">
-                    <p><strong>That's the finding.</strong> They put the same cards in the same piles. Then they called those piles 25 different things.</p>
-                    <p>A card sort doesn't hand you the architecture. It hands you the vocabulary, and the vocabulary is where the argument lives.</p>
-                  </div>
-
-                  <div class="actions">
-                    <button class="btn" id="btn-again">▶ Play again</button>
-                  </div>
-                </section>
 
               </div>
             </div>
