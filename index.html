@@ -1363,6 +1363,21 @@
 
                 <!-- STEP 1: sort into unnamed piles. Live immediately, no start gate. -->
                 <section id="screen-sort">
+                  <!-- SETUP + DIRECTIONS: everything the player needs before they start, above the board -->
+                  <div class="preamble" id="preamble">
+                    <p class="lead">I ran a card sort with <strong>9 participants</strong> to test three new filters for MakeMeACocktail.com: flavor, mood, and barware.</p>
+                    <p>Here are <strong id="deck-size">12</strong> of the 20 cards, with no labels on the piles. Group them however they make sense to you.</p>
+                    <div class="howto">
+                      <p class="howto-title">Two ways to place a card. Pick whichever you like.</p>
+                      <ul>
+                        <li><span class="howto-tag">Drag</span> <span>Pick the card up and drop it on a pile.</span></li>
+                        <li><span class="howto-tag">Keys</span> <span>Fastest way through. <span id="keys-map"></span></span></li>
+                      </ul>
+                      <p class="small" style="margin:var(--space-3) 0 0">Changed your mind? <strong>Undo last card</strong>, press <strong>Backspace</strong>, or tap any card already sitting in a pile to pull it back out. Nothing is locked in until you say so.</p>
+                    </div>
+                    <p class="try-below">Try it below.</p>
+                  </div>
+
                   <div class="deck-area">
                     <p class="deck-hint" id="deck-hint">Which pile does this belong in?</p>
                     <button class="card" id="current-card" aria-describedby="deck-hint"></button>
@@ -1402,18 +1417,6 @@
                     </div>
                   </div>
 
-                  <div class="preamble" id="preamble">
-                    <p class="lead">I ran a card sort with <strong>9 participants</strong> to test three new filters for MakeMeACocktail.com: flavor, mood, and barware.</p>
-                    <p>Here are <strong id="deck-size">12</strong> of the 20 cards, with no labels on the piles. Group them however they make sense to you, then name what you built.</p>
-                    <div class="howto">
-                      <p class="howto-title">Two ways to place a card. Pick whichever you like.</p>
-                      <ul>
-                        <li><span class="howto-tag">Drag</span> <span>Pick the card up and drop it on a pile.</span></li>
-                        <li><span class="howto-tag">Keys</span> <span>Fastest way through. <span id="keys-map"></span></span></li>
-                      </ul>
-                      <p class="small" style="margin:var(--space-3) 0 0">Changed your mind? <strong>Undo last card</strong>, press <strong>Backspace</strong>, or tap any card already sitting in a pile to pull it back out. Nothing is locked in until you say so.</p>
-                    </div>
-                  </div>
                 </section>
 
 
