@@ -323,41 +323,113 @@ el('btn-again').addEventListener('click', () => startGame(false));
 const cur = el('current-card');
 let drag = null;
 
+/* Hit test without the dragged card getting in its own way. Done by toggling
+   pointer-events for the duration of the test rather than for the whole drag,
+   so a card never ends up permanently unclickable if a drag is interrupted. */
 const binAt = (x, y) => {
+  const prev = cur.style.pointerEvents;
+  cur.style.pointerEvents = 'none';
   const node = document.elementFromPoint(x, y);
+  cur.style.pointerEvents = prev;
   return node ? node.closest('.bin') : null;
 };
 const highlight = bin => {
   el('bins').querySelectorAll('.bin').forEach(b => b.classList.toggle('over', b === bin));
 };
 
+/* The piles can sit below the fold, especially on a phone inside the drawer.
+   Without this, you pick a card up, drag to the bottom of the screen and there
+   is nowhere to drop it. Dragging near an edge scrolls the container, and the
+   card's offset is corrected by however far it scrolled so it stays under
+   your finger. */
+const EDGE = 100, MAX_SPEED = 11;
+
+function scrollerFor(node) {
+  let n = node.parentElement;
+  while (n && n !== document.body) {
+    const oy = getComputedStyle(n).overflowY;
+    if ((oy === 'auto' || oy === 'scroll') && n.scrollHeight > n.clientHeight + 4) return n;
+    n = n.parentElement;
+  }
+  return null;              // null means scroll the window
+}
+const scrollTopOf = sc => sc ? sc.scrollTop : (window.scrollY || window.pageYOffset || 0);
+
+function autoScroll() {
+  const sc = drag.scroller;
+  const view = sc ? sc.getBoundingClientRect() : { top: 0, bottom: window.innerHeight };
+  const bins = el('bins').getBoundingClientRect();
+
+  // The only reason to scroll is to bring the piles into reach. Once every pile
+  // is on screen, stop. That avoids running away past the drop targets, and
+  // avoids the opposite trap of freezing as soon as one pile is under the finger.
+  const allPilesVisible = bins.top >= view.top && bins.bottom <= view.bottom;
+  const pilesTallerThanView = bins.height > (view.bottom - view.top);
+  if (allPilesVisible || (pilesTallerThanView && binAt(drag.x, drag.y))) return;
+
+  // ramp with how far into the edge zone you are, so it creeps rather than lurches
+  let delta = 0;
+  if (drag.y > view.bottom - EDGE)   delta =  Math.min(1, (drag.y - (view.bottom - EDGE)) / EDGE) * MAX_SPEED;
+  else if (drag.y < view.top + EDGE) delta = -Math.min(1, ((view.top + EDGE) - drag.y) / EDGE) * MAX_SPEED;
+  if (Math.abs(delta) < 0.5) return;
+
+  if (sc) sc.scrollTop += delta; else window.scrollBy(0, delta);
+}
+
+function paintDrag() {
+  const dx = drag.x - drag.x0;
+  const dy = drag.y - drag.y0 + (scrollTopOf(drag.scroller) - drag.scroll0);
+  cur.style.transform = `translate(${dx}px, ${dy}px)`;
+  highlight(binAt(drag.x, drag.y));
+}
+
+function frame() {
+  if (!drag || !drag.moved) return;
+  autoScroll();
+  paintDrag();
+  drag.raf = requestAnimationFrame(frame);
+}
+
 cur.addEventListener('pointerdown', e => {
   if (!queue.length) return;
-  drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, moved: false };
-  cur.setPointerCapture(e.pointerId);
+  const scroller = scrollerFor(cur);
+  drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY,
+           moved: false, scroller: scroller, scroll0: scrollTopOf(scroller), raf: null };
+  cur.style.transform = '';
+  try { cur.setPointerCapture(e.pointerId); } catch (err) {}
 });
 
 cur.addEventListener('pointermove', e => {
   if (!drag || e.pointerId !== drag.id) return;
-  const dx = e.clientX - drag.x0, dy = e.clientY - drag.y0;
-  if (!drag.moved && Math.abs(dx) < 6 && Math.abs(dy) < 6) return;
-  drag.moved = true;
-  cur.classList.add('dragging');
-  cur.style.transform = `translate(${dx}px, ${dy}px)`;
-  highlight(binAt(e.clientX, e.clientY));
+  drag.x = e.clientX; drag.y = e.clientY;
+  if (!drag.moved) {
+    if (Math.abs(e.clientX - drag.x0) < 6 && Math.abs(e.clientY - drag.y0) < 6) return;
+    drag.moved = true;
+    cur.classList.add('dragging');
+    drag.raf = requestAnimationFrame(frame);
+  }
+  paintDrag();
 });
 
 function endDrag(e, cancelled) {
-  if (!drag || e.pointerId !== drag.id) return;
-  const target = (!cancelled && drag.moved) ? binAt(e.clientX, e.clientY) : null;
+  if (!drag || (e && e.pointerId !== undefined && e.pointerId !== drag.id)) return;
+  if (drag.raf) cancelAnimationFrame(drag.raf);
+  const target = (!cancelled && drag.moved) ? binAt(drag.x, drag.y) : null;
   cur.classList.remove('dragging');
   cur.style.transform = '';
+  cur.style.pointerEvents = '';
   highlight(null);
   drag = null;
   if (target) place(+target.dataset.pile);
 }
+
 cur.addEventListener('pointerup', e => endDrag(e, false));
 cur.addEventListener('pointercancel', e => endDrag(e, true));
+/* belt and braces: if capture is lost or the pointer dies outside the page,
+   end the drag anyway rather than leaving a card stranded mid-air */
+cur.addEventListener('lostpointercapture', () => { if (drag) endDrag(null, true); });
+window.addEventListener('pointerup', e => { if (drag) endDrag(e, false); });
+window.addEventListener('blur', () => { if (drag) endDrag(null, true); });
 
 /* ── keyboard: 1 / 2 / 3 to place, Backspace or Cmd+Z to undo ── */
 document.addEventListener('keydown', e => {

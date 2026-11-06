@@ -81,7 +81,8 @@
   }
 .cs-game .card:focus-visible { outline: 3px solid var(--purple); outline-offset: 4px; }
 .cs-game .card.dragging {
-    cursor: grabbing; pointer-events: none; z-index: 50;
+    
+    cursor: grabbing; z-index: 50;
     background: var(--hot-pink); color: #fff; box-shadow: 10px 10px 0 rgba(10,5,32,0.35);
   }
 .cs-game .bins { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); }
