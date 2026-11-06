@@ -119,10 +119,6 @@ function renderBins() {
         <span class="bin-label">Pile ${i+1}</span>
         <span class="bin-count" data-count="${i}">0</span>
       </button>
-      <div class="name-field" data-namefield="${i}" hidden>
-        <label for="name-${i}">Rename this pile</label>
-        <input type="text" id="name-${i}" autocomplete="off" maxlength="40" placeholder="What is this pile?">
-      </div>
       <p class="pile-label" data-plabel="${i}" hidden>In this pile · tap to take back</p>
       <ul class="bin-list" data-list="${i}"></ul>
     </section>`;
@@ -135,9 +131,6 @@ function renderBins() {
       if (chip) { pullBack(chip.dataset.card, +bin.dataset.pile); return; }
       if (e.target.closest('.bin-head')) place(+bin.dataset.pile);
     });
-  });
-  el('bins').querySelectorAll('input[type="text"]').forEach(input => {
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); finish(); } });
   });
   paintBins();
 }
@@ -174,12 +167,11 @@ function updatePhase(takeFocus) {
   el('how-inline').hidden = done;
   el('btn-lock').hidden = !done;
   el('deck-hint').textContent = done
-    ? 'All placed. Now give each pile a name.'
+    ? 'All placed. Check your piles, then see how you did.'
     : 'Which pile does this belong in?';
-  el('bins').querySelectorAll('[data-namefield]').forEach(fieldset => { fieldset.hidden = !done; });
   el('bins').querySelectorAll('kbd').forEach(k => { k.hidden = done; });
 
-  if (done) { if (takeFocus !== false) el('name-0').focus(); }
+  if (done) { if (takeFocus !== false) el('btn-lock').focus(); }
   else renderCard(takeFocus);
 }
 
@@ -229,17 +221,6 @@ function sortComplete() {
   track('card_sort_sorted', { cards_matched: bestFit().hits, seconds: elapsed });
 }
 
-function matchName(catId, guess) {
-  const g = norm(guess);
-  if (!g) return null;
-  const pool = STUDY.openNames[catId] || [];
-  const forms = n => (n.variants || [n.name]).map(norm);
-  let best = pool.find(n => forms(n).includes(g));
-  if (!best && g.length >= 4) best = pool.find(n => forms(n).some(f => f.includes(g) || g.includes(f)));
-  if (!best) return null;
-  const typed = (best.variants || [best.name]).find(v => norm(v) === g);
-  return { label: typed || best.name, count: best.count, confirmed: best.confirmed };
-}
 
 /* ============================ results ============================ */
 function finish() {
@@ -247,32 +228,6 @@ function finish() {
   const fit = bestFit();
   mapping = fit.map;                      // mapping[i] = the real category pile i lines up with
   matched = fit.hits;
-  let nameHtml = '';
-
-  piles.forEach((pile, i) => {
-    const catId = mapping[i];
-    const cat = byCat[catId];
-    const guess = el('name-' + i).value.trim();
-    const hit = matchName(catId, guess);
-    const official = norm(guess) === norm(cat.label);
-    let line;
-
-    if (hit && hit.confirmed) {
-      line = `<strong>${hit.count} of ${STUDY.participants}</strong> participants called it “${hit.label}” too.`;
-    } else if (hit) {
-      line = `A participant used “${hit.label}” as well, one of the 25 names that came back.`;
-    } else if (official) {
-      line = `That's the label I used in my own closed sort. None of my open sort participants landed on it word for word.`;
-    } else {
-      line = `None of my 9 participants used that one. There were 25 names in total, so there was room.`;
-    }
-
-    nameHtml += `<div class="verdict${hit ? '' : ' miss'}">
-      <p class="vname">“${guess || '(left blank)'}” <span style="color:var(--text-light)">was my</span> <span style="color:var(--purple)">${cat.label}</span> <span style="color:var(--text-light)">pile</span></p>
-      <p class="small">${line}</p></div>`;
-  });
-
-  el('name-verdicts').innerHTML = nameHtml;
 
   const n = deck.length;
   el('grouping-verdict').innerHTML = matched === n

@@ -110,9 +110,6 @@
 .cs-game .bin-label { flex: 1; text-align: left; }
 .cs-game .bin-head:hover { background: var(--yellow); transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--pixel-dark); }
 .cs-game .bin-head:focus-visible { outline: 3px solid var(--purple); outline-offset: 3px; }
-.cs-game .name-field { margin-bottom: var(--space-3); }
-.cs-game .name-field label { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin-bottom: var(--space-1); }
-.cs-game .name-field input[type="text"] { font-size: 0.95rem; padding: var(--space-2) var(--space-3); }
 .cs-game .pile-label { font-size: 0.62rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-light); margin-bottom: var(--space-1); }
 .cs-game .bin-count { background: var(--pixel-dark); color: var(--yellow); border-radius: 4px; padding: 0 var(--space-2); font-size: 0.72rem; }
 .cs-game .bin-list { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-1); }
@@ -146,16 +143,6 @@
     border: 2px solid var(--pixel-dark); box-shadow: 2px 2px 0 var(--pixel-dark);
     border-radius: 5px; padding: 4px var(--space-2);
   }
-.cs-game label { display: block; font-weight: 900; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-2); }
-.cs-game input[type="text"] {
-    font-family: inherit; font-weight: 800; font-size: 1rem; width: 100%;
-    padding: var(--space-3); border: 3px solid var(--pixel-dark); border-radius: 8px;
-    background: var(--white); color: var(--text); min-height: 48px;
-  }
-.cs-game input[type="text"]:focus-visible { outline: 3px solid var(--purple); outline-offset: 2px; }
-.cs-game .verdict { border-left: 6px solid var(--teal); padding-left: var(--space-3); margin-bottom: var(--space-4); }
-.cs-game .verdict .vname { font-weight: 900; font-size: 1.05rem; }
-.cs-game .verdict.miss { border-left-color: var(--lavender-dark); }
 .cs-game .actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-5); }
 .cs-game .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .cs-game [hidden] { display: none !important; }
