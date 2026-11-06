@@ -56,7 +56,8 @@
 .cs-game .btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 .cs-game .btn.ghost { background: var(--white); color: var(--purple); }
 .cs-game .btn.ghost:hover { background: var(--lavender-mid); }
-.cs-game .preamble { margin-top: var(--space-7); padding-top: var(--space-5); border-top: 3px dashed var(--lavender-mid); }
+.cs-game .preamble { margin-bottom: var(--space-6); padding-bottom: var(--space-5); border-bottom: 3px dashed var(--lavender-mid); }
+.cs-game .try-below { font-weight: 900; font-size: 1.05rem; text-align: center; margin: var(--space-5) 0 0; }
 .cs-game .howto { background: var(--offwhite); border: 3px solid var(--pixel-dark); box-shadow: 4px 4px 0 var(--pixel-dark); border-radius: 10px; padding: var(--space-4); margin-bottom: var(--space-5); }
 .cs-game .howto-title { font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text); margin-bottom: var(--space-3); }
 .cs-game .howto ul { list-style: none; display: grid; gap: var(--space-3); }
