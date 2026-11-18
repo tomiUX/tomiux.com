@@ -803,6 +803,8 @@
   .ho-legend i { display: inline-block; width: 11px; height: 11px; border: 2px solid var(--pixel-dark); border-radius: 3px; margin-right: 4px; vertical-align: -1px; }
   .ho-shot { margin: var(--space-3) 0 0; }
   .ho-shot img { display: block; width: 100%; height: auto; border: 2px solid var(--pixel-dark); border-radius: 8px; box-shadow: 3px 3px 0 var(--pixel-dark); }
+  .ho-shot.tall { max-width: 300px; }
+  .ho-shot-grid.tall .ho-shot img { aspect-ratio: 9 / 16; }
   .ho-shot figcaption { font-size: 0.75rem; font-weight: 700; color: var(--text-mid); margin-top: var(--space-2); line-height: 1.5; }
   .ho-shot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
   .ho-shot-grid .ho-shot img { aspect-ratio: 4 / 3; object-fit: cover; }
@@ -1135,8 +1137,10 @@
     <p class="artifacts-intro">Same process, off the screen. Measure, test, break it, print it again.</p>
     <div class="specimen-grid">
       <a class="specimen" href="#ho-milsbo" data-ho="milsbo" aria-haspopup="dialog" aria-label="Greenhouse Shelf Remedy, 3D printed hardware"><span class="specimen-num" aria-hidden="true">№ 001</span><div class="specimen-icon" aria-hidden="true">🔩</div><span class="specimen-name">Greenhouse Shelf Remedy</span><span class="specimen-tag">3D Print</span></a>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 002</span><div class="specimen-icon">🪴</div><span class="specimen-name">Plant Pot Wedges</span><span class="specimen-tag">Soon</span></div>
-      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 003</span><div class="specimen-icon">🖨️</div><span class="specimen-name">On the print bed</span><span class="specimen-tag">Soon</span></div>
+      <a class="specimen" href="#ho-milk-crate" data-ho="milk-crate" aria-haspopup="dialog" aria-label="Milk Crate, 3D printed grid planter"><span class="specimen-num" aria-hidden="true">№ 002</span><div class="specimen-icon" aria-hidden="true">🧺</div><span class="specimen-name">Milk Crate</span><span class="specimen-tag">3D Print</span></a>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 003</span><div class="specimen-icon">🍦</div><span class="specimen-name">Double Scoop</span><span class="specimen-tag">Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 004</span><div class="specimen-icon">🪴</div><span class="specimen-name">Plant Pot Wedges</span><span class="specimen-tag">Soon</span></div>
+      <div class="specimen coming-soon" aria-hidden="true"><span class="specimen-num">№ 005</span><div class="specimen-icon">🖨️</div><span class="specimen-name">On the print bed</span><span class="specimen-tag">Soon</span></div>
     </div>
   </div>
 </div>
@@ -1201,7 +1205,7 @@
 <!-- HANDS-ON DRAWER -->
 <dialog class="ec-drawer ho-drawer" id="ho-drawer" aria-labelledby="ho-drawer-label">
   <div class="ec-drawer-bar">
-    <p class="ec-drawer-label" id="ho-drawer-label">Hands-On · <span id="ho-drawer-pos">1 of 1</span></p>
+    <p class="ec-drawer-label" id="ho-drawer-label">Hands-On · <span id="ho-drawer-pos">1 of 2</span></p>
     <div class="ec-drawer-actions">
       <button type="button" class="ec-drawer-btn" id="ho-prev" aria-label="Previous build" hidden>←</button>
       <button type="button" class="ec-drawer-btn" id="ho-next" aria-label="Next build" hidden>→</button>
@@ -1321,6 +1325,57 @@
               <figure class="ho-shot"><a href="hands-on/milsbo/v2-pivot.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/v2-pivot.jpg" alt="V2 bracket on the cabinet door, tilted because it pivots on its single top screw" loading="lazy"></a><figcaption>V2 pivoting</figcaption></figure>
               <figure class="ho-shot"><a href="hands-on/milsbo/v3-measure.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/v3-measure.jpg" alt="Calipers reading 10.99 millimeters across the bottom door screw head" loading="lazy"></a><figcaption>Sizing V3's pocket</figcaption></figure>
               <figure class="ho-shot"><a href="hands-on/milsbo/v3-new-slope.jpg" target="_blank" rel="noopener"><img src="hands-on/milsbo/v3-new-slope.jpg" alt="V3 plate on the door with the new tapered slope held by two pegs" loading="lazy"></a><figcaption>V3 + new slope support</figcaption></figure>
+            </div></div>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="ec-panel" data-ho-panel="milk-crate" hidden>
+      <article class="project-entry ec-card open">
+        <div class="project-stripe stripe-teal"></div>
+        <div class="project-header">
+          <div class="ec-head-main">
+            <div class="project-num">№ 002</div>
+            <h2 class="project-name" id="ho-milk-crate-title" tabindex="-1">Milk Crate</h2>
+          </div>
+          <div class="ec-tags"><span class="insight-tag tag-teal">3D printed</span><span class="insight-tag tag-yellow">Original design</span><span class="insight-tag tag-purple">Iteration</span></div>
+          <p class="ec-hook">A tiny milk crate that hangs on the greenhouse wire grid.</p>
+          <div class="ec-stats"><div class="ec-stat"><span class="ec-stat-num">1</span><span class="ec-stat-lbl">Pot, narrow footprint</span></div><div class="ec-stat"><span class="ec-stat-num">0</span><span class="ec-stat-lbl">Tools or drilling</span></div><div class="ec-stat"><span class="ec-stat-num">7</span><span class="ec-stat-lbl">Crate iterations</span></div></div>
+        </div>
+        <div class="project-body">
+          <div class="project-context">
+            <div><p class="context-section-label">The problem</p><p class="context-text">My hobby got out of hand and my greenhouse ran out of space. Plants of every size, shelves with different jobs, and each plant is picky about its light.</p>
+              <figure class="ho-shot tall"><a href="hands-on/milk-crate/hanging.jpg" target="_blank" rel="noopener"><img src="hands-on/milk-crate/hanging.jpg" alt="A light green printed milk crate hanging on the white wire grid inside the greenhouse, holding a variegated plant in a clear pot with a blue plant tag that reads Gatsby" loading="lazy"></a><figcaption>Gatsby, hanging right where it needs the light.</figcaption></figure></div>
+            <div><p class="context-section-label">The fix</p><p class="context-text">Built for tight spots: one pot, a narrow footprint, and one drip tray that slides out from underneath.</p></div>
+            <div><p class="context-section-label">How it holds on</p><ul class="ec-list ec-fix"><li>Separate printed hooks snap onto the back of the crate</li><li>They hook over the wire grid, with no tools and no drilling</li><li>Lift it off and rehang it anywhere on the grid</li><li>Hooks print solid (100% infill, 4 walls) for strength</li></ul>
+              <figure class="ho-shot tall"><a href="hands-on/milk-crate/in-hand.jpg" target="_blank" rel="noopener"><img src="hands-on/milk-crate/in-hand.jpg" alt="The empty light green crate held in a hand, showing the two hooks on the back corners and the drip tray underneath" loading="lazy"></a><figcaption>Two hooks on the back, drip tray underneath.</figcaption></figure></div>
+          </div>
+          <div class="project-sandbox">
+            <p class="sandbox-label">TRY IT, TAKE IT APART</p>
+            <div class="demo-box ho-viewer-box" id="mc-viewer-box">
+              <div class="ho-stage" id="mc-viewer" role="img" aria-label="Interactive 3D model of the milk crate on the wire grid. The text below describes what is shown."><p class="ho-loading">Loading 3D model…</p></div>
+              <div class="ho-controls">
+                <label for="mc-pull">Pull apart <input type="range" id="mc-pull" min="0" max="100" value="0"></label>
+                <label><input type="checkbox" id="mc-grid" checked> Grid</label>
+                <label><input type="checkbox" id="mc-hooks" checked> Hooks</label>
+                <label><input type="checkbox" id="mc-tray" checked> Drip tray</label>
+                <label><input type="checkbox" id="mc-plant" checked> Plant</label>
+              </div>
+              <p class="demo-count" id="mc-desc" aria-live="polite"></p>
+              <div class="ho-legend" aria-hidden="true"><span><i style="background:#93a982"></i>Crate</span><span><i style="background:#7a9268"></i>Hooks</span><span><i style="background:#a9bb98"></i>Drip tray</span><span><i style="background:#e8ebef"></i>Wire grid</span><span><i style="background:#5f8f4e"></i>Plant (for scale)</span></div>
+            </div>
+            <p class="demo-note">The real print files, plus a little monstera for scale. Drag to rotate, scroll or pinch to zoom.</p>
+            <p class="sandbox-label">WHAT CHANGED</p>
+            <ol class="ho-timeline">
+              <li class="fail"><span class="ho-tl-tag">V1–V4</span><div><strong>Finding the shape.</strong> Plain walls, then taller walls, then milk crate styling.</div></li>
+              <li class="fail"><span class="ho-tl-tag">V5</span><div><strong>Built-in hooks.</strong> They snapped off when I removed the supports.</div></li>
+              <li class="fail"><span class="ho-tl-tag">V6</span><div><strong>Separate hooks in back pockets.</strong> No supports needed, but the hooks fell out when the crate was off the grid.</div></li>
+              <li class="win"><span class="ho-tl-tag">V7</span><div><strong>Snap-in hooks.</strong> A groove in each pocket holds the hook in place, and a spring tab makes it click every time.</div></li>
+            </ol>
+            <div class="ec-shots"><p class="sandbox-label">IN THE GREENHOUSE</p><div class="ho-shot-grid three tall">
+              <figure class="ho-shot"><a href="hands-on/milk-crate/hooks-back.jpg" target="_blank" rel="noopener"><img src="hands-on/milk-crate/hooks-back.jpg" alt="The crate from the back corner, showing the two hooks snapped into the corner pockets" loading="lazy"></a><figcaption>The two hooks</figcaption></figure>
+              <figure class="ho-shot"><a href="hands-on/milk-crate/tray-out.jpg" target="_blank" rel="noopener"><img src="hands-on/milk-crate/tray-out.jpg" alt="The drip tray pulled out from under the crate on the grid" loading="lazy"></a><figcaption>Drip tray out</figcaption></figure>
+              <figure class="ho-shot"><a href="hands-on/milk-crate/angle.jpg" target="_blank" rel="noopener"><img src="hands-on/milk-crate/angle.jpg" alt="The crate on the grid from an angle, with a blue Gatsby plant tag" loading="lazy"></a><figcaption>Hanging on the grid</figcaption></figure>
             </div></div>
           </div>
         </div>
@@ -1984,6 +2039,7 @@
     try { history.replaceState(null, '', '#ho-' + id); } catch (e) {}
     if (focusTitle) { var t = panels[current].querySelector('.project-name'); if (t) t.focus(); }
     if (id === 'milsbo' && window.hoMilsboViewer) window.hoMilsboViewer();
+    if (id === 'milk-crate' && window.hoCrateViewer) window.hoCrateViewer();
   }
   function openById(id, from) {
     var i = panels.findIndex(function (p) { return p.getAttribute('data-ho-panel') === id; });
@@ -2010,6 +2066,100 @@
   });
   var m = location.hash.match(/^#ho-([\w-]+)$/);
   if (m) { var tile = document.querySelector('[data-ho="' + m[1] + '"]'); if (tile) tile.scrollIntoView({ block: 'center' }); openById(m[1], tile); }
+})();
+
+// Milk Crate 3D viewer: exploded view on the wire grid
+(function () {
+  var started = false;
+  var LIBS = ['https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js',
+              'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js'];
+  function load(src) { return new Promise(function (ok, bad) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = bad; document.head.appendChild(s); }); }
+  window.hoCrateViewer = function () {
+    if (started) return; started = true;
+    var stage = document.getElementById('mc-viewer');
+    var p = window.THREE ? Promise.resolve() : load(LIBS[0]).then(function () { return load(LIBS[1]); });
+    Promise.all([p, fetch('hands-on/milk-crate/models.json').then(function (r) { return r.json(); })]).then(function (res) { build(stage, res[1]); })
+      .catch(function () { stage.querySelector('.ho-loading').textContent = 'The 3D model could not load. Try refreshing.'; });
+  };
+  function build(stage, M) {
+    var T = window.THREE;
+    stage.querySelector('.ho-loading').remove();
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var r = new T.WebGLRenderer({ antialias: true, alpha: true });
+    r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); stage.appendChild(r.domElement);
+    var scene = new T.Scene(), cam = new T.PerspectiveCamera(30, 1, 1, 4000);
+    var ctl = new T.OrbitControls(cam, r.domElement); ctl.enableDamping = !reduce;
+    scene.add(new T.HemisphereLight(0xffffff, 0x8877aa, 0.85));
+    var d1 = new T.DirectionalLight(0xffffff, 0.7); d1.position.set(120, 160, -220); scene.add(d1);
+    var d2 = new T.DirectionalLight(0xffffff, 0.35); d2.position.set(-160, 60, 200); scene.add(d2);
+    function geo(o) {
+      var b = Uint8Array.from(atob(o.v), function (c) { return c.charCodeAt(0); }).buffer;
+      var f = Uint8Array.from(atob(o.f), function (c) { return c.charCodeAt(0); }).buffer;
+      var g = new T.BufferGeometry();
+      g.setAttribute('position', new T.BufferAttribute(new Float32Array(b), 3));
+      g.setIndex(new T.BufferAttribute(new Uint32Array(f), 1));
+      g.computeVertexNormals(); return g;
+    }
+    function mat(c, metal) { return new T.MeshStandardMaterial({ color: c, roughness: metal ? 0.3 : 0.6, metalness: metal ? 0.25 : 0, flatShading: !metal }); }
+    var P = {
+      grid: new T.Mesh(geo(M.grid), mat(0xe8ebef, 1)),
+      crate: new T.Mesh(geo(M.crate), mat(0x93a982)),
+      tray: new T.Mesh(geo(M.tray), mat(0xa9bb98)),
+      hookL: new T.Mesh(geo(M.hookL), mat(0x7a9268)),
+      hookR: new T.Mesh(geo(M.hookR), mat(0x7a9268))
+    };
+    Object.keys(P).forEach(function (k) { scene.add(P[k]); });
+    // A little monstera in its 81 mm nursery pot, for scale (not a print file)
+    var plant = new T.Group(); plant.position.set(0, -27, -47); scene.add(plant);
+    var potM = new T.MeshStandardMaterial({ color: 0xdfe8f0, roughness: 0.15, transparent: true, opacity: 0.35, depthWrite: false, side: T.DoubleSide });
+    var pot = new T.Mesh(new T.CylinderGeometry(40.5, 32.7, 74, 40, 1, true), potM); pot.position.y = 37; plant.add(pot);
+    var soil = new T.Mesh(new T.CylinderGeometry(38.5, 38.5, 3, 40), mat(0x5a3b28)); soil.position.y = 66; plant.add(soil);
+    var stemM = mat(0x7da35f), leafM = mat(0x5f8f4e), leafV = mat(0xc9d9b4);
+    leafM.side = T.DoubleSide; leafV.side = T.DoubleSide;
+    function leafShape(w, h) {
+      var sh = new T.Shape();
+      sh.moveTo(0, 0);
+      sh.bezierCurveTo(w * 0.55, -h * 0.12, w * 0.62, h * 0.55, 0, h);
+      sh.bezierCurveTo(-w * 0.62, h * 0.55, -w * 0.55, -h * 0.12, -w * 0.08, -h * 0.02);
+      sh.lineTo(0, h * 0.08); sh.lineTo(0, 0);
+      [[0.22, 0.35], [-0.22, 0.4], [0.25, 0.62], [-0.24, 0.66]].forEach(function (c) {
+        var hole = new T.Path(); hole.absellipse(c[0] * w, c[1] * h, w * 0.06, h * 0.05, 0, Math.PI * 2, false, 0); sh.holes.push(hole);
+      });
+      return new T.ShapeGeometry(sh, 16);
+    }
+    [[0, 150, 0, 1.0, 0, 75, 70], [-55, 110, 10, 0.9, 1, 60, 56], [50, 118, -8, -0.8, 0, 62, 58], [-25, 85, -30, 2.4, 0, 45, 42], [28, 80, 25, -2.2, 1, 40, 38]]
+      .forEach(function (L) {
+        var end = new T.Vector3(L[0], L[1], L[2]);
+        var curve = new T.CatmullRomCurve3([new T.Vector3(0, 66, 0), new T.Vector3(L[0] * 0.25, 66 + (L[1] - 66) * 0.55, L[2] * 0.25), end]);
+        plant.add(new T.Mesh(new T.TubeGeometry(curve, 20, 1.6, 6, false), stemM));
+        var lf = new T.Mesh(leafShape(L[5], L[6]), L[4] ? leafV : leafM);
+        lf.position.copy(end); lf.rotation.set(-1.15, L[3], 0); plant.add(lf);
+      });
+    var pull = 0, show = { grid: true, hooks: true, tray: true, plant: true };
+    var desc = document.getElementById('mc-desc');
+    function apply() {
+      var t = pull;
+      P.grid.visible = show.grid; P.tray.visible = show.tray; P.hookL.visible = P.hookR.visible = show.hooks;
+      P.crate.position.set(0, 0, 0);
+      P.hookL.position.set(0, t * 40, 0); P.hookR.position.set(0, t * 40, 0);
+      P.tray.position.set(0, 0, -t * 85);
+      plant.visible = show.plant; plant.position.y = -27 + t * 75;
+      desc.textContent = t < 0.05
+        ? 'The crate hanging on the grid with a little monstera. Two hooks sit in pockets on the back corners and hook over a grid wire.'
+        : 'Pulled apart: the plant lifts out, the hooks lift out of their pockets, and the drip tray slides out the front.';
+    }
+    var V = { front: [240, 190, -560] };
+    function view(k) { var p = V[k], s = Math.max(1, 0.8 / (cam.aspect || 1)); cam.position.set(p[0] * s, p[1], p[2] * s); ctl.target.set(0, 55, -40); ctl.update(); }
+    document.getElementById('mc-pull').addEventListener('input', function (e) { pull = e.target.value / 100; apply(); });
+    document.getElementById('mc-grid').addEventListener('change', function (e) { show.grid = e.target.checked; apply(); });
+    document.getElementById('mc-hooks').addEventListener('change', function (e) { show.hooks = e.target.checked; apply(); });
+    document.getElementById('mc-tray').addEventListener('change', function (e) { show.tray = e.target.checked; apply(); });
+    document.getElementById('mc-plant').addEventListener('change', function (e) { show.plant = e.target.checked; apply(); });
+    function size() { var b = stage.getBoundingClientRect(); if (!b.width) return; r.setSize(b.width, b.height, false); cam.aspect = b.width / b.height; cam.updateProjectionMatrix(); }
+    if (window.ResizeObserver) new ResizeObserver(size).observe(stage); else window.addEventListener('resize', size);
+    size(); apply(); view('front');
+    (function loop() { ctl.update(); r.render(scene, cam); requestAnimationFrame(loop); })();
+  }
 })();
 
 // Milsbo 3D viewer: three.js loads only when the drawer opens
