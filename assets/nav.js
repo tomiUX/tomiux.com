@@ -308,6 +308,7 @@
     '    <li class="nav-dropdown">',
     '      <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false" id="nav-featured-btn">Case Studies</button>',
     '      <div class="dropdown-menu" role="menu" aria-labelledby="nav-featured-btn" id="nav-featured-menu">',
+    '        <a href="https://tomiux.com/coursera-workplace/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">SPATIAL</span> Coursera Workplace</a>',
     '        <a href="https://tomiux.com/pottery-barn/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">HEURISTIC</span> Pottery Barn</a>',
     '        <a href="https://tomiux.com/starbucks-vs-philz/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">HEURISTIC</span> Starbucks vs. Philz</a>',
     '        <a href="https://tomiux.com/blue-nile-brilliant-earth/" role="menuitem"><span class="nav-dropdown-tag" aria-hidden="true">USABILITY</span> Blue Nile vs. Brilliant Earth</a>',
